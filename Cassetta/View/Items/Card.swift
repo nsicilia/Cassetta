@@ -13,7 +13,7 @@ struct Card: View {
             HStack(alignment: .top){
                 VStack{
                     //Image
-                    Image("Flower")
+                    Image("GenericImage")
                         .resizable()
                         .scaledToFill()
                         .frame(
@@ -45,14 +45,14 @@ struct Card: View {
                         } label: {
                             Image(systemName: "play.circle.fill")
                                 .font(.title)
-                                .foregroundColor(.black)
-                            Text("Play")
-                                .foregroundColor(.black)
+                                .foregroundColor(Color("CassettaBlack"))
+                            Text("25 mins")
+                                .foregroundColor(.gray)
                         }
-                        .padding(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 6))
-                        .background(.white)
-                        .cornerRadius(12.0)
-                        .shadow(color: Color.black.opacity(0.2), radius: 8)
+//                        .padding(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 6))
+//                        .background(.white)
+//                        .cornerRadius(12.0)
+//                        .shadow(color: Color.black.opacity(0.2), radius: 8)
                     }
                     
                 }
@@ -64,9 +64,14 @@ struct Card: View {
         .padding([.bottom, .top])
         .padding([.leading, .trailing], 8)
         .frame(maxWidth: UIScreen.main.bounds.width - 10.0, maxHeight: 230.0, alignment: .top)
-        .background(Color(UIColor.systemGray6))
+        .background(Color("CassettaWhite"))
         .cornerRadius(15.0)
-        .shadow(color: Color.black.opacity(0.2), radius: 8)
+        .overlay {
+            RoundedRectangle(cornerRadius: 15)
+                .stroke(Color("CassettaBorder"), lineWidth: 1)
+
+        }
+        .shadow(color: Color.black.opacity(0.2), radius: 6, x: 0, y: 6)
         
     }
     

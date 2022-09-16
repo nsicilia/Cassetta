@@ -14,11 +14,13 @@ struct Feed: View {
                 ForEach(1...10, id: \.self) { count in
                     Card()
                         .padding(.bottom,10)
+                        .padding(.top)
                 }
             }
             
             
         }
+        .background(Color(.secondarySystemBackground))
     }
 }
 

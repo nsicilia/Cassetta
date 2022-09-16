@@ -11,76 +11,82 @@ struct ContentView: View {
     init() {
         UITabBar.appearance().backgroundColor = UIColor.systemBackground
         UINavigationBar.appearance().barTintColor = UIColor.systemBackground
-
+        
     }
     
     
     var body: some View {
-
-            TabView{
-                //Home
-                NavigationView{
+        
+        TabView{
+            //Home
+            NavigationView{
                 Feed()
-                        .toolbar {
-                            ToolbarItemGroup(placement: .navigationBarLeading) {
-                                Text("Cassetta")
-                                    .font(.largeTitle)
-                                    .bold()
-                                    .foregroundColor(Color(UIColor.systemGray))
-                                    
-                            }
+                    .toolbar {
+                        ToolbarItemGroup(placement: .navigationBarLeading) {
+                            Text("Cassetta")
+                                .font(.largeTitle)
+                                .bold()
+                                .foregroundColor(Color(UIColor.orange))
+                                .navigationBarTitleDisplayMode(.inline)
                         }
                         
-                }
-                .tabItem {
-                    Image(systemName: "house")
-                }
-                
-                
-                //Search
-                NavigationView{
-                SearchView()
-                }
-                    .tabItem {
-                        Image(systemName: "magnifyingglass")
                     }
-                
-                
-                //Upload
-                NavigationView{
-                UploadPostView()
-                }
-                    .tabItem {
-                        Image(systemName: "plus")
-                    }
-                
-                //Upload
-                NavigationView{
-                NotificationsView()
-                }
-                    .tabItem {
-                        Image(systemName: "heart")
-                            .cornerRadius(12.0)
-                            .shadow(color: Color.black.opacity(0.2), radius: 8)
-                    }
-                    
-                
-                
-                //Profile
-                NavigationView{
-                UserProfile()
-                        .toolbar {
-                            Label("More Settings", systemImage: "ellipsis")
-                        }
-                }
-                    .tabItem {
-                        Image(systemName: "person")
-                    }
-                
-                
-                
             }
-
+            .tabItem {
+                Image(systemName: "house")
+            }
+            
+            
+            
+            //Search
+            NavigationView{
+                SearchView()
+                    .navigationTitle("Search")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .accentColor(.black)
+            }
+            .tabItem {
+                Image(systemName: "magnifyingglass")
+            }
+            
+            
+            //Upload
+            NavigationView{
+                UploadPostView()
+            }
+            .tabItem {
+                Image(systemName: "plus")
+            }
+            
+            
+            //Notification
+            NavigationView{
+                NotificationsView()
+                    .navigationTitle("Notifications")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .accentColor(.black)
+            }
+            .tabItem {
+                Image(systemName: "heart")
+                    .cornerRadius(12.0)
+                    .shadow(color: Color.black.opacity(0.2), radius: 8)
+            }
+            
+            
+            //Profile
+            NavigationView{
+                UserProfile()
+                    .toolbar {
+                        Label("More Settings", systemImage: "ellipsis")
+                    }
+            }
+            .tabItem {
+                Image(systemName: "person")
+            }
+            
+            
+            
+        }
         
         
         
@@ -92,6 +98,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .preferredColorScheme(.dark)
+//            .preferredColorScheme(.dark)
     }
 }

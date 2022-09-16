@@ -18,6 +18,22 @@ struct SearchView: View {
             SearchBar(text: $searchText, isEditing: $inSearchMode)
                 .padding()
             
+            //grid view/ user list view
+            ZStack{
+                if inSearchMode {
+                    UserListView()
+                    
+                } else {
+                    //Default view
+                    VStack{
+                        HighlightsView()
+                        
+                        CategoryGridView()
+                            .padding(.top)
+                    }
+                }
+            }
+            
         }
         
     }
