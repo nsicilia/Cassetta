@@ -13,7 +13,7 @@ struct SearchView: View {
     
     var body: some View {
         
-        ScrollView{
+        ScrollView(showsIndicators: false){
             //search bar
             SearchBar(text: $searchText, isEditing: $inSearchMode)
                 .padding()
@@ -27,14 +27,16 @@ struct SearchView: View {
                     //Default view
                     VStack{
                         HighlightsView()
+                            .padding(.bottom)
                         
                         CategoryGridView()
-                            .padding(.top)
+                            
                     }
                 }
             }
             
         }
+        .background(Color(UIColor.secondarySystemBackground))
         
     }
 }

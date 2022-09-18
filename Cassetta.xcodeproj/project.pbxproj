@@ -19,6 +19,9 @@
 		014DF98F28D3B7D400E6A754 /* HighlightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF98E28D3B7D300E6A754 /* HighlightCell.swift */; };
 		014DF99128D4D17D00E6A754 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF99028D4D17D00E6A754 /* CategoryCell.swift */; };
 		014DF99328D4DE8400E6A754 /* CategoryGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF99228D4DE8400E6A754 /* CategoryGridView.swift */; };
+		014DF99528D4FF9A00E6A754 /* UserStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF99428D4FF9A00E6A754 /* UserStatView.swift */; };
+		014DF99728D5000E00E6A754 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF99628D5000E00E6A754 /* ProfileHeaderView.swift */; };
+		014DF99928D5006200E6A754 /* ProfileActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF99828D5006200E6A754 /* ProfileActionButtonView.swift */; };
 		0189DBAB27D7035100956E28 /* CassettaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189DBAA27D7035100956E28 /* CassettaApp.swift */; };
 		0189DBAD27D7035100956E28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189DBAC27D7035100956E28 /* ContentView.swift */; };
 		0189DBAF27D7035400956E28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0189DBAE27D7035400956E28 /* Assets.xcassets */; };
@@ -42,6 +45,9 @@
 		014DF98E28D3B7D300E6A754 /* HighlightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightCell.swift; sourceTree = "<group>"; };
 		014DF99028D4D17D00E6A754 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		014DF99228D4DE8400E6A754 /* CategoryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryGridView.swift; sourceTree = "<group>"; };
+		014DF99428D4FF9A00E6A754 /* UserStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatView.swift; sourceTree = "<group>"; };
+		014DF99628D5000E00E6A754 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		014DF99828D5006200E6A754 /* ProfileActionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileActionButtonView.swift; sourceTree = "<group>"; };
 		0189DBA727D7035100956E28 /* Cassetta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cassetta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0189DBAA27D7035100956E28 /* CassettaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassettaApp.swift; sourceTree = "<group>"; };
 		0189DBAC27D7035100956E28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -171,6 +177,9 @@
 			isa = PBXGroup;
 			children = (
 				018C4A5128516FE70029BEB1 /* UserProfile.swift */,
+				014DF99428D4FF9A00E6A754 /* UserStatView.swift */,
+				014DF99628D5000E00E6A754 /* ProfileHeaderView.swift */,
+				014DF99828D5006200E6A754 /* ProfileActionButtonView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -323,15 +332,18 @@
 			files = (
 				014DF99128D4D17D00E6A754 /* CategoryCell.swift in Sources */,
 				0189DBAD27D7035100956E28 /* ContentView.swift in Sources */,
+				014DF99928D5006200E6A754 /* ProfileActionButtonView.swift in Sources */,
 				0116A8E128C3BEB60050780B /* SearchView.swift in Sources */,
 				018C4A54285194870029BEB1 /* Feed.swift in Sources */,
 				0189DBC027E03CBA00956E28 /* ListenLikeCount.swift in Sources */,
 				018C4A5228516FE70029BEB1 /* UserProfile.swift in Sources */,
 				014DF99328D4DE8400E6A754 /* CategoryGridView.swift in Sources */,
+				014DF99728D5000E00E6A754 /* ProfileHeaderView.swift in Sources */,
 				0189DBBC27DC38EC00956E28 /* Card.swift in Sources */,
 				014DF98F28D3B7D400E6A754 /* HighlightCell.swift in Sources */,
 				014DF98B28D3A7C900E6A754 /* NotificationCell.swift in Sources */,
 				014DF98D28D3AC8C00E6A754 /* HighlightsView.swift in Sources */,
+				014DF99528D4FF9A00E6A754 /* UserStatView.swift in Sources */,
 				014DF98128D1807500E6A754 /* Extensions.swift in Sources */,
 				0116A8DF28C3BE390050780B /* UploadPostView.swift in Sources */,
 				0189DBAB27D7035100956E28 /* CassettaApp.swift in Sources */,

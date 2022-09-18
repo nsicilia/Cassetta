@@ -23,17 +23,28 @@ struct ContentView: View {
                 Feed()
                     .toolbar {
                         ToolbarItemGroup(placement: .navigationBarLeading) {
-                            Text("Cassetta")
-                                .font(.largeTitle)
-                                .bold()
-                                .foregroundColor(Color(UIColor.orange))
-                                .navigationBarTitleDisplayMode(.inline)
+                            Image("BlackCassettaLogo")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(height: 40)
                         }
                         
+                        ToolbarItemGroup(placement: .navigationBarTrailing) {
+                            Image(systemName: "envelope")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 20, height: 20)
+                        }
                     }
+                    .navigationBarTitleDisplayMode(.inline)
+                    
             }
             .tabItem {
                 Image(systemName: "house")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 60, height: 60)
+                    .padding(.top, 10)
             }
             
             
@@ -87,6 +98,8 @@ struct ContentView: View {
             
             
         }
+        .accentColor(Color("CassettaOrange"))
+        
         
         
         

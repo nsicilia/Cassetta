@@ -25,6 +25,8 @@ struct CategoryCell: View {
         }
         .padding([.leading, .trailing])
         .frame(width: (UIScreen.screenWidth / 2 ) - 20, height: 95)
+        .background(Color("CassettaWhite"))
+        .cornerRadius(15)
         .overlay {
             RoundedRectangle(cornerRadius: 15)
                 .stroke(Color(UIColor.secondaryLabel), lineWidth: 1)

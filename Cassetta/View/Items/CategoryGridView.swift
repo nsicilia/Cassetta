@@ -22,7 +22,7 @@ struct CategoryGridView: View {
                 //todo: Make a for each with all the titles emojis and link location
                 
                 Group{
-                    
+                    //News
                     NavigationLink {
                         Feed()
                     } label: {
@@ -30,16 +30,47 @@ struct CategoryGridView: View {
                             .foregroundColor(Color(UIColor.label))
                     }
                     
-                    CategoryCell(categoryTitle: "Tech", cetegoryEmoji: "💻")
+                    //Tech
+                    NavigationLink {
+                        Feed()
+                    } label: {
+                        CategoryCell(categoryTitle: "Tech", cetegoryEmoji: "💻")
+                            .foregroundColor(Color(UIColor.label))
+                    }
                     
-                    CategoryCell(categoryTitle: "Crypto", cetegoryEmoji: "💰")
                     
-                    CategoryCell(categoryTitle: "Sports", cetegoryEmoji: "🏀")
-                    
-                    CategoryCell(categoryTitle: "TV & Media", cetegoryEmoji: "📺")
-                    
-                    CategoryCell(categoryTitle: "Career", cetegoryEmoji: "👩‍🔬")
+                    //Crypto
+                    NavigationLink {
+                        Feed()
+                    } label: {
+                        CategoryCell(categoryTitle: "Crypto", cetegoryEmoji: "💰")
+                            .foregroundColor(Color(UIColor.label))
+                    }
+                    //Sports
+                    NavigationLink {
+                        Feed()
+                    } label: {
+                        CategoryCell(categoryTitle: "Sports", cetegoryEmoji: "🏀")
+                            .foregroundColor(Color(UIColor.label))
+                    }
+                    //Tv & Media
+                    NavigationLink {
+                        Feed()
+                    } label: {
+                        CategoryCell(categoryTitle: "TV & Media", cetegoryEmoji: "📺")
+                            .foregroundColor(Color(UIColor.label))
+                    }
+                    //Career
+                    NavigationLink {
+                        Feed()
+                    } label: {
+                        CategoryCell(categoryTitle: "Career", cetegoryEmoji: "👩‍🔬")
+                            .foregroundColor(Color(UIColor.label))
+                    }
+
                 }
+                
+                
                 
                 Group{
                     CategoryCell(categoryTitle: "Personal Growth", cetegoryEmoji: "🌷")
@@ -59,7 +90,9 @@ struct CategoryGridView: View {
                 
             }
             .padding(.horizontal, 4)
+            .padding(.top)
         }
+        
     }
 }
 

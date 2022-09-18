@@ -9,15 +9,15 @@ import SwiftUI
 
 struct Feed: View {
     var body: some View {
-        ScrollView{
+        ScrollView(showsIndicators: false){
             LazyVStack {
-                ForEach(1...10, id: \.self) { count in
+                ForEach(1...15, id: \.self) { count in
                     Card()
-                        .padding(.bottom,10)
-                        .padding(.top)
+                        .padding(.bottom,8)
                 }
+                
             }
-            
+            .padding(.top)
             
         }
         .background(Color(.secondarySystemBackground))
