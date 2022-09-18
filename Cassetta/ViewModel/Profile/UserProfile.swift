@@ -10,28 +10,11 @@ import SwiftUI
 struct UserProfile: View {
     var body: some View {
         
-        ScrollView{
-            Image("GenericUser")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 82.0, height: 82.0)
-                .cornerRadius(.infinity)
-                .padding(.top)
-            Text("Jessica Schaefer")
-                .font(.title2)
-                .bold()
-            Text("@jessschaefer54")
-                .font(.body)
-                .foregroundColor(.gray)
-                .padding(.bottom, 40)
+        ScrollView(showsIndicators: false){
+            ProfileHeaderView()
+                .padding(.bottom)
             
-            
-            LazyVStack {
-                ForEach(1...10, id: \.self) { count in
-                    Card()
-                        .padding(.bottom,10)
-                }
-            }
+            Feed()
             
         }
         
