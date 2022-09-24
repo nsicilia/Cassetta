@@ -25,8 +25,11 @@ struct ContentView: View {
                         ToolbarItemGroup(placement: .navigationBarLeading) {
                             Image("BlackCassettaLogo")
                                 .resizable()
+                                .renderingMode(.template)
                                 .scaledToFill()
                                 .frame(height: 40)
+                                .foregroundColor(Color("CassettaBlack"))
+                                
                         }
                         
                         ToolbarItemGroup(placement: .navigationBarTrailing) {

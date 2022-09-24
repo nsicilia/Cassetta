@@ -169,6 +169,7 @@
 		0116A8D628C3B70A0050780B /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0189DBAC27D7035100956E28 /* ContentView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -224,6 +225,7 @@
 		0189DBA927D7035100956E28 /* Cassetta */ = {
 			isa = PBXGroup;
 			children = (
+				0189DBAA27D7035100956E28 /* CassettaApp.swift */,
 				0189DBAE27D7035400956E28 /* Assets.xcassets */,
 				0116A8CD28C3B66B0050780B /* API */,
 				0116A8CC28C3B6620050780B /* Model */,
@@ -246,8 +248,6 @@
 		0189DBBA27DC38C700956E28 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0189DBAC27D7035100956E28 /* ContentView.swift */,
-				0189DBAA27D7035100956E28 /* CassettaApp.swift */,
 				0116A8D028C3B6BF0050780B /* Authentication */,
 				0116A8D328C3B6EC0050780B /* Feed */,
 				0116A8CF28C3B6AF0050780B /* Items */,
