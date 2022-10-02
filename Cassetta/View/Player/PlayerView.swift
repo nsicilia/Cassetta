@@ -116,7 +116,7 @@ struct PlayerView: View {
         .frame(maxHeight: expand ? .infinity : 80)
         .background(
             VStack(spacing: 0) {
-                BlurView()
+                BlurView(style: .systemChromeMaterial)
                 Divider()
             }
                 .onTapGesture {
