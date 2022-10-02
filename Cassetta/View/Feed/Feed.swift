@@ -6,22 +6,29 @@
 //
 
 import SwiftUI
+import MinimizableView
 
 struct Feed: View {
+    @EnvironmentObject var miniHandler: MinimizableViewHandler
+    
     var body: some View {
         ScrollView(showsIndicators: false){
             LazyVStack {
                 ForEach(1...15, id: \.self) { count in
                     Card()
                         .padding(.bottom,8)
+                        .onTapGesture {
+                            self.miniHandler.present()
+                        }
                 }
                 
             }
             .padding(.top)
-            
+            .background(Color(.secondarySystemBackground))
         }
-        .background(Color(.secondarySystemBackground))
+        //
     }
+    
 }
 
 struct Feed_Previews: PreviewProvider {
