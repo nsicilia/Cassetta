@@ -17,8 +17,8 @@ struct ContentView: View {
     
     var body: some View {
         
-        TabBarView()
-        .accentColor(Color("CassettaOrange"))
+        //TabBarView()
+        LoginView()
 
     }
 }
