@@ -118,7 +118,7 @@
 				0116A8D828C3B7BC0050780B /* Authentication */,
 				0116A8DA28C3B7D00050780B /* Feed */,
 				0116A8D928C3B7C70050780B /* Notifications */,
-				0116A8D728C3B7A60050780B /* Profile */,
+				01C078F32919A5F100EBD7C1 /* Profile */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -227,13 +227,6 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		0116A8D728C3B7A60050780B /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
 		0116A8D828C3B7BC0050780B /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +303,13 @@
 				0116A8D528C3B7030050780B /* UploadPost */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		01C078F32919A5F100EBD7C1 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		01DAE9D328DF88C500F61034 /* Player */ = {
