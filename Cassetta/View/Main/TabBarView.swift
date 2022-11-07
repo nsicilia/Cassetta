@@ -8,6 +8,25 @@
 import SwiftUI
 
 struct TabBarView: View {
+    
+    init(){
+        //Make the navigation bar trasparent
+        UINavigationBar.appearance().barTintColor = .clear
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        
+        //Make the TabBar white and not trasparent
+//        UITabBar.appearance().shadowImage = UIImage()
+//        UITabBar.appearance().backgroundImage = UIImage()
+//        UITabBar.appearance().isTranslucent = true
+//        UITabBar.appearance().backgroundColor = .white
+        
+        //Makes unselected icons black
+        UITabBar.appearance().unselectedItemTintColor = .black
+
+    }
+    
+
     var body: some View {
         TabView{
             //Home
@@ -25,17 +44,18 @@ struct TabBarView: View {
                         }
                         
                         ToolbarItemGroup(placement: .navigationBarTrailing) {
-                            Image(systemName: "envelope")
+                            Image("MessageImage")
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: 20, height: 20)
+                                .frame(width: 24, height: 24)
                         }
                     }
-                    .navigationBarTitleDisplayMode(.inline)
+                    
+                    .background(Color("CassettaTan"))
                     
             }
             .tabItem {
-                Image(systemName: "house")
+                Image("HomeImage")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 60, height: 60)
@@ -52,7 +72,8 @@ struct TabBarView: View {
                     .accentColor(.black)
             }
             .tabItem {
-                Image(systemName: "magnifyingglass")
+                Image("SearchImage")
+                    
             }
             
             
@@ -83,7 +104,15 @@ struct TabBarView: View {
             NavigationView{
                 UserProfile()
                     .toolbar {
-                        Label("More Settings", systemImage: "ellipsis")
+                        //Label("More Settings", systemImage: "ellipsis")
+                        
+                        Menu {
+                            Text("hat")
+                            Text("cat")
+                            Text("bat")
+                        } label: {
+                            Label("More Settings", systemImage: "ellipsis")
+                        }
                     }
             }
             .tabItem {
@@ -93,6 +122,7 @@ struct TabBarView: View {
             
             
         }
+        
     }
 }
 

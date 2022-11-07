@@ -26,6 +26,7 @@ struct CustomSecureField: View {
                         .foregroundColor(.black)
                     
                     SecureField("", text: $text)
+                        .foregroundColor(Color(.black))
                 }
             
         }

@@ -14,13 +14,13 @@ struct ListenLikeCount: View {
     
     var body: some View {
         HStack(spacing: 0){
-            Text("❤️")
-                .font(.title2)
-                .padding(0)
-            Text(String(ListenCount.roundedWithAbbreviations))
-                .font(.caption)
-                .foregroundColor(.gray)
-                .padding(.trailing)
+//            Text("❤️")
+//                .font(.title2)
+//                .padding(0)
+//            Text(String(ListenCount.roundedWithAbbreviations))
+//                .font(.caption)
+//                .foregroundColor(.gray)
+//                .padding(.trailing)
             Text("🎧")
             Text(String(LikeCount.roundedWithAbbreviations))
                 .font(.caption)

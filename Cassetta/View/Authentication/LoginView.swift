@@ -12,6 +12,7 @@ struct LoginView: View {
     @State private var password = ""
     
     @Environment(\.presentationMode) var mode
+    @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
         NavigationView{
@@ -70,6 +71,8 @@ struct LoginView: View {
                         
                         Button {
                             //todo
+                            viewModel.login()
+                            
                         } label: {
                             Text("Sign In ")
                                 .font(.headline)

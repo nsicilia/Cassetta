@@ -15,15 +15,15 @@ struct UserCell: View {
             Image("GenericUser")
                 .resizable()
                 .scaledToFill()
-                .frame(width: 48, height: 48)
+                .frame(width: 20, height: 20)
                 .clipShape(Circle())
             //username, fullname
             VStack(alignment: .leading){
-            Text("jessica")
-                    .font(.system(size: 14, weight: .semibold))
-                
             Text("Jessica Johnson")
-                    .font(.system(size: 14))
+                    .font(.system(size: 12))
+                
+//            Text("Jessica Johnson")
+//                    .font(.system(size: 14))
             }
             //Spacer()
         }

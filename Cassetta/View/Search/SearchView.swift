@@ -36,7 +36,7 @@ struct SearchView: View {
             }
             
         }
-        .background(Color(UIColor.secondarySystemBackground))
+        .background(Color("CassettaTan"))
         
     }
 }

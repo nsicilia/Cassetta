@@ -202,6 +202,10 @@
 		0116A8D428C3B6F50050780B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				018C4A5128516FE70029BEB1 /* UserProfile.swift */,
+				014DF99428D4FF9A00E6A754 /* UserStatView.swift */,
+				014DF99628D5000E00E6A754 /* ProfileHeaderView.swift */,
+				014DF99828D5006200E6A754 /* ProfileActionButtonView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -226,10 +230,6 @@
 		0116A8D728C3B7A60050780B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				018C4A5128516FE70029BEB1 /* UserProfile.swift */,
-				014DF99428D4FF9A00E6A754 /* UserStatView.swift */,
-				014DF99628D5000E00E6A754 /* ProfileHeaderView.swift */,
-				014DF99828D5006200E6A754 /* ProfileActionButtonView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -578,6 +578,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -607,6 +608,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

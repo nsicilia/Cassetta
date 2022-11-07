@@ -8,17 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
-    init() {
-        UITabBar.appearance().backgroundColor = UIColor.systemBackground
-        UINavigationBar.appearance().barTintColor = UIColor.systemBackground
-        
-    }
+    @EnvironmentObject var viewModel: AuthViewModel
+    
+//    init() {
+//        UITabBar.appearance().backgroundColor = UIColor.systemBackground
+//        UINavigationBar.appearance().barTintColor = UIColor.systemBackground
+//        
+//    }
     
     
     var body: some View {
         
-        //TabBarView()
-        LoginView()
+        TabBarView()
+//        Group{
+//            //if not logged in show loginview
+//            //else show main interface
+//            if viewModel.userSession == nil{
+//                LoginView()
+//            } else{
+//                TabBarView()
+//            }
+//        }
 
     }
 }

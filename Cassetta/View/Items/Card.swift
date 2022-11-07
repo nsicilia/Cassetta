@@ -10,68 +10,68 @@ import SwiftUI
 struct Card: View {
     var body: some View {
         VStack{
-            HStack(alignment: .top){
-                VStack{
-                    //Image
-                    Image("GenericImage")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(
-                            width: UIScreen.main.bounds.width / 3,
-                            height: UIScreen.main.bounds.width / 3
-                        )
-                        .cornerRadius(15.0)
-                    
-                    Spacer()
-                    
-                    ListenLikeCount(ListenCount: 12222, LikeCount: 234567)
-                        .padding(.top, 8)
-                }
-                
-                VStack(alignment: .leading) {
-                    Text("Unde aut dolores neque nesciunt alias voluptas qui qui id.")
-                        .font(.system(size: 18))
-                        .bold()
-                    
-                    UserCell()
-                    
-                    Spacer()
-                    HStack{
+            
+            VStack{
+                //Image
+                Image("GenericImage")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(
+                        //width: 330.0,
+                        width: UIScreen.main.bounds.width / 1.18,
                         
-                        Spacer()
-                        
-                        Button {
-                            print("Edit button was tapped")
-                        } label: {
-                            Image(systemName: "play.circle.fill")
-                                .font(.title)
-                                .foregroundColor(Color("CassettaBlack"))
-                            Text("25 mins")
-                                .foregroundColor(.gray)
-                        }
-//                        .padding(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 6))
-//                        .background(.white)
-//                        .cornerRadius(12.0)
-//                        .shadow(color: Color.black.opacity(0.2), radius: 8)
-                    }
-                    
-                }
-                .padding(.leading, 4)
+                       // height: 180.0
+                        height: UIScreen.main.bounds.height / 4.7
+                    )
+                    .cornerRadius(15.0)
                 
+                
+                Text("How to Become a Cats Influencer in Three Easy Steps")
+                    .frame(width: 330)
+                    .lineLimit(3)
+                    .font(.system(size: 18, weight: .semibold))
             }
             
+            
+            UserCell()
+            
+            Spacer()
+            
+            HStack{
+                ListenLikeCount(ListenCount: 12222, LikeCount: 234567)
+                
+                Spacer()
+                
+                Button {
+                    print("Edit button was tapped")
+                } label: {
+                    Image(systemName: "play.circle.fill")
+                        .font(.system(size: 15))
+                        .foregroundColor(Color("CassettaBlack"))
+                    Text("25 mins")
+                        .font(.system(size: 12))
+                        .foregroundColor(.gray)
+                }
+                
+            }
+            .frame(width: 330.0)
+            
+            
+            
+            
+            
         }
-        .padding([.bottom, .top])
+        .padding([.bottom, .top], 24)
         .padding([.leading, .trailing], 8)
-        .frame(maxWidth: UIScreen.main.bounds.width - 10.0, maxHeight: 230.0, alignment: .top)
+        .frame(maxWidth: UIScreen.main.bounds.width - 15.0, maxHeight: UIScreen.main.bounds.height / 2.4, alignment: .top)
         .background(Color("CassettaWhite"))
         .cornerRadius(15.0)
         .overlay {
             RoundedRectangle(cornerRadius: 15)
                 .stroke(Color("CassettaBorder"), lineWidth: 1)
-
+            
         }
-        .shadow(color: Color.black.opacity(0.2), radius: 6, x: 0, y: 6)
+        //.shadow(color: Color.black.opacity(0.2), radius: 6, x: 0, y: 6)
         
     }
     
@@ -87,4 +87,4 @@ struct Card_Previews: PreviewProvider {
             .preferredColorScheme(.dark)
     }
 }
-    
+

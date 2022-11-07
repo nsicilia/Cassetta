@@ -27,6 +27,7 @@ struct CustomTextField: View {
                         .foregroundColor(.black)
                     
                     TextField("", text: $text)
+                        .foregroundColor(Color(.black))
                 }
             
         }

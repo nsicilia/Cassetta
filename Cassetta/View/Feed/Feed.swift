@@ -16,7 +16,7 @@ struct Feed: View {
             LazyVStack {
                 ForEach(1...15, id: \.self) { count in
                     Card()
-                        .padding(.bottom,8)
+                        .padding(.bottom, 12)
                         .onTapGesture {
                             self.miniHandler.present()
                         }
@@ -24,7 +24,7 @@ struct Feed: View {
                 
             }
             .padding(.top)
-            .background(Color(.secondarySystemBackground))
+            .background(Color("CassettaTan"))
         }
         //
     }
