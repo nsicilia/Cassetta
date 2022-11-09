@@ -18,7 +18,11 @@ struct Feed: View {
                     Card()
                         .padding(.bottom, 12)
                         .onTapGesture {
-                            self.miniHandler.present()
+                            if self.miniHandler.isPresented {
+                                self.miniHandler.dismiss()
+                            }
+                                self.miniHandler.present()
+                            
                         }
                 }
                 

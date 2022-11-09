@@ -16,19 +16,18 @@ struct ContentView: View {
 //        
 //    }
     
-    
     var body: some View {
         
         //TabBarView()
-        Group{
-            //if not logged in show loginview
-            //else show main interface
-            if viewModel.userSession == nil{
-                LoginView()
-            } else{
-                TabBarView()
-            }
+        // Group{
+        //if not logged in show loginview
+        //else show main interface
+        if $viewModel.userSession == nil{
+            LoginView()
+        } else{
+            TabBarView()
         }
+    //}
 
     }
 }
@@ -38,6 +37,5 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(AuthViewModel())
-//            .preferredColorScheme(.dark)
     }
 }
