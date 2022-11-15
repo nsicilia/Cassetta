@@ -48,7 +48,7 @@ struct LoginView: View {
                         CustomTextField(text: $email, placeholder: Text("Email..."), imageName: "envelope")
                         
                         //password field
-                        CustomSecureField(text: $email, placeholder: Text("Password..."))
+                        CustomSecureField(text: $password, placeholder: Text("Password..."))
 
                         
                         //forgot password
@@ -71,7 +71,7 @@ struct LoginView: View {
                         
                         Button {
                             //todo
-                            viewModel.login()
+                            viewModel.login(withEmail: email, password: password)
                             
                         } label: {
                             Text("Sign In ")

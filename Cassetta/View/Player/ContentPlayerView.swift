@@ -32,12 +32,19 @@ struct ContentPlayerView: View {
             
             VStack {
                 
-                Capsule()
-                    .fill(Color.gray)
-                    .frame(width: !self.miniHandler.isMinimized ? 60 : 0, height: !self.miniHandler.isMinimized ? 4 : 0)
+                Image("LineDownImage")
+                   // .fill(Color.gray)
+                    .frame(width: !self.miniHandler.isMinimized ? 100 : 0, height: !self.miniHandler.isMinimized ? 4 : 0)
                     .opacity(!self.miniHandler.isMinimized ? 1 : 0)
                     .padding(.top, !self.miniHandler.isMinimized ? safeArea?.top : 0)
                     .padding(.vertical, !self.miniHandler.isMinimized ? 20 : 0)
+                
+//                Capsule()
+//                    .fill(Color.gray)
+//                    .frame(width: !self.miniHandler.isMinimized ? 60 : 0, height: !self.miniHandler.isMinimized ? 4 : 0)
+//                    .opacity(!self.miniHandler.isMinimized ? 1 : 0)
+//                    .padding(.top, !self.miniHandler.isMinimized ? safeArea?.top : 0)
+//                    .padding(.vertical, !self.miniHandler.isMinimized ? 20 : 0)
                 
                 //The miniplayer
                 HStack(spacing: 15) {
@@ -85,27 +92,46 @@ struct ContentPlayerView: View {
                         .cornerRadius(15)
                     
                     //The bottom info view
-                    LazyVStack(spacing: 15){
+                    LazyVStack(spacing: 15, pinnedViews: [.sectionHeaders]){
                         
-                        Text("The DIFFERENCE between the 5 boroughs (are the STEREOTYPES true)?")
+                        Text("\(Int.random(in: 0..<6)) The DIFFERENCE between the 5 boroughs (are the STEREOTYPES true)?")
                             .font(.title)
                             .foregroundColor(.primary)
                             .fontWeight(.semibold)
                             .padding([.horizontal, .top], 32)
                             .matchedGeometryEffect(id: "Label", in: animationNamespaceId)
                         
-                        ForEach(0 ... 20, id: \.self) { _ in
-                            Image("GenericImage")
-                                .resizable()
-                                .scaledToFit()
-                                .padding()
+                        HStack{
+                            
+                            Image(systemName: "gobackward.15")
+                                .font(.title)
+                            Spacer()
+                            
+                            Image(systemName: "play.fill")
+                                .font(.title)
+                            Spacer()
+                            Image(systemName: "goforward.15")
+                                .font(.title)
                         }
+                        .frame(width: UIScreen.screenWidth / 2.5)
+                        .padding(.vertical)
+                        
+                        
+                        Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
+                            .padding([.horizontal, .top], 32)
+                        
+                        Image("GenericImage")
+                            .resizable()
+                            .scaledToFit()
+                            .padding([.horizontal, .top], 32)
+                            
+                        
                     }
                     //this will have a stretch effect
                     .frame(height: !self.miniHandler.isMinimized ? nil : 0)
                     .opacity(!self.miniHandler.isMinimized ? 1 : 0)
                     
-                }
+                }//ScrollView
                 
             }//main vstack end
             
@@ -144,7 +170,7 @@ struct ContentPlayerView: View {
     func onended(value: DragGesture.Value){
         withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.95, blendDuration: 0.9)){
             //if value is > than height / 3 then closing view
-            if value.translation.height > height{
+            if value.translation.height > height / 3 {
                 self.miniHandler.isMinimized.toggle()
             }
             offset = 0

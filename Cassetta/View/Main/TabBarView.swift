@@ -17,6 +17,7 @@ struct TabBarView: View {
     @GestureState var dragOffset = CGSize.zero
     @Namespace var namespace
     
+    @EnvironmentObject var viewModel: AuthViewModel
     
     init(){
         //Make the navigation bar trasparent
@@ -24,13 +25,6 @@ struct TabBarView: View {
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         UINavigationBar.appearance().shadowImage = UIImage()
         
-        //Make the TabBar white and not trasparent
-//        UITabBar.appearance().shadowImage = UIImage()
-//        UITabBar.appearance().backgroundImage = UIImage()
-//        UITabBar.appearance().isTranslucent = true
-//        UITabBar.appearance().backgroundColor = .white
-        
-        //Makes unselected icons black
         UITabBar.appearance().unselectedItemTintColor = .black
 
     }
@@ -116,22 +110,29 @@ struct TabBarView: View {
                 NavigationView{
                     UserProfile()
                         .toolbar {
-                            //Label("More Settings", systemImage: "ellipsis")
-                            
                             Menu {
-                                Text("hat")
-                                Text("cat")
-                                Text("bat")
+                                Text("Settings")
+
+                                Text("coming soon")
+                                //Log out button
+                                Button {
+                                    viewModel.signout()
+                                } label: {
+                                    Text("Logout").foregroundColor(.black)
+                                }
+
                             } label: {
-                                Label("More Settings", systemImage: "ellipsis")
+                                Label("More Settings", systemImage: "gearshape")
+                                    .foregroundColor(.black)
                             }
+                            
                         }
                 }
                 .tabItem {
                     Image("ProfileImage")
                 }
                 
-                
+                //All tabs end
                 
             }
             
@@ -145,7 +146,7 @@ struct TabBarView: View {
                              dragOffset: $dragOffset,
                              dragUpdating: { (value, state, _) in
                 state = value.translation
-               // self.dragUpdated(value: value)
+                //self.dragUpdated(value: value)
                 
             }, dragOnChanged: { (value) in
                 
@@ -158,6 +159,7 @@ struct TabBarView: View {
         }
         
     }
+    
     
     func backgroundView() -> some View {
         VStack(spacing: 0){
@@ -177,20 +179,20 @@ struct TabBarView: View {
     
     
 //    func dragUpdated(value: DragGesture.Value) {
-//        
+//
 //        if self.miniHandler.isMinimized == false && value.translation.height > 0   { // expanded state
 //            withAnimation(.spring(response: 0)) {
 //                self.miniHandler.draggedOffsetY = value.translation.height  // divide by a factor > 1 for more "inertia"
 //            }
-//            
-//            
+//
+//
 //        } else if self.miniHandler.isMinimized && value.translation.height < 0   {// minimized state
 //            if self.miniHandler.draggedOffsetY >= -60 {
 //                withAnimation(.spring(response: 0)) {
 //                    self.miniHandler.draggedOffsetY = value.translation.height // divide by a factor > 1 for more "inertia"
 //                }
 //            }
-//            
+//
 //        }
 //    }
     
