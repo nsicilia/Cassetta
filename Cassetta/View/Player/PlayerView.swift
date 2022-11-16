@@ -50,16 +50,18 @@ struct PlayerView: View {
                 Image("GenericImage")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: expand ? 0 : 50, height: expand ? 0 : 50)
-                    .cornerRadius(15)
+                    .frame(width: expand ? 0 : 35, height: expand ? 0 : 35)
+                    .cornerRadius(5)
                 
                 //The MiniPlayer info & buttons
                 if !expand{
                     //MiniPlayer Text
-                    Text("Lady Gaga")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .matchedGeometryEffect(id: "Label", in: animation)
+                    VStack(alignment: .leading){
+                        Text("How I recored Poker Stick")
+                            .fontWeight(.bold)
+                            .matchedGeometryEffect(id: "Label", in: animation)
+                        Text("Lady Gaga")
+                    }
                     
                     Spacer(minLength: 0)
                     //The play button
@@ -113,7 +115,7 @@ struct PlayerView: View {
         }//main vstack end
         
         //expands to full screen when clicked
-        .frame(maxHeight: expand ? .infinity : 80)
+        .frame(maxHeight: expand ? .infinity : 65)
         .background(
             VStack(spacing: 0) {
                 BlurView(style: .systemChromeMaterial)
@@ -156,6 +158,6 @@ struct PlayerView: View {
 struct PlayerView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        PlayerView(animation: namespace, expand: .constant(true))
+        PlayerView(animation: namespace, expand: .constant(false))
     }
 }
