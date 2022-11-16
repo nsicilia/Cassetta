@@ -48,12 +48,17 @@ struct NotificationCell: View {
 
             }
         }
-        .padding(.horizontal)
+        .padding()
+        .background(.white)
+        .cornerRadius(15.0)
     }
 }
 
 struct NotificationCell_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationCell()
+        ZStack {
+            Color("CassettaTan").edgesIgnoringSafeArea(.all)
+            NotificationCell()
+        }
     }
 }

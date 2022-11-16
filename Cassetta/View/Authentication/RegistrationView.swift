@@ -21,17 +21,7 @@ struct RegistrationView: View {
     
     var body: some View {
         ZStack {
-//            LinearGradient(
-//                gradient: Gradient(stops: [
-//                    .init(color: Color("CassettaYellow"), location: 0),
-//                    .init(color: Color("CassettaOrange"), location: 0.42),
-//                    .init(color: Color("CassettaOrange"), location: 1)
-//                            ]),
-//                startPoint: .topLeading ,
-//                endPoint: .bottomTrailing)
-//                .ignoresSafeArea()
-//            Color("CassettaOrange")
-//                .ignoresSafeArea()
+
             
             Image("CassettaBackground")
                 .resizable()

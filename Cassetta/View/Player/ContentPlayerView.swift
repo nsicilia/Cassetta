@@ -59,7 +59,7 @@ struct ContentPlayerView: View {
                                 .fontWeight(.bold)
                                 .matchedGeometryEffect(id: "Label", in: animationNamespaceId)
                             
-                            Text("Lady Gaga")
+                            Text("Jessica Johnson")
                         }
                         
                         Spacer(minLength: 0)
@@ -68,6 +68,7 @@ struct ContentPlayerView: View {
                             Image(systemName: "play.fill")
                                 .font(.title2)
                                 .foregroundColor(.primary)
+                                .frame(width: 35.0, height: 35.0)
                         }
                         //The fast foward button
                         Button {/*todo*/
@@ -76,7 +77,9 @@ struct ContentPlayerView: View {
                             Image(systemName: "xmark")
                                 .font(.title2)
                                 .foregroundColor(.primary)
+                                .frame(width: 35.0, height: 35.0)
                         }
+                        
                     }
                 }
                 .padding(.horizontal)
@@ -135,7 +138,7 @@ struct ContentPlayerView: View {
             }//main vstack end
             
             //expands to full screen when clicked
-            .frame(maxHeight: !self.miniHandler.isMinimized ? .infinity : 80)
+            .frame(maxHeight: !self.miniHandler.isMinimized ? .infinity : 65)
             .background(
                 VStack(spacing: 0) {
                     BlurView(style: .systemChromeMaterial)

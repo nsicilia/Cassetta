@@ -47,14 +47,24 @@ struct ProfileHeaderView: View {
                 ProfileActionButtonView()
 
             }
-            .padding(.top)
+            .padding(.top, 42)
+            .padding(.bottom)
             
         }
+        .background(.white)
+        .cornerRadius(15.0)
+        .overlay {
+                    RoundedRectangle(cornerRadius: 15)
+                .stroke(Color(UIColor.secondaryLabel), lineWidth: 0.5)
+                }
     }
 }
 
 struct ProfileHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileHeaderView()
+        ZStack {
+            Color("CassettaTan").edgesIgnoringSafeArea(.all)
+            ProfileHeaderView()
+        }
     }
 }

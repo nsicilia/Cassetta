@@ -14,10 +14,10 @@ struct UserProfile: View {
             ProfileHeaderView()
                 .padding(.bottom)
             
-            Divider()
-                .frame(width: 350.0, height: 1.0)
-                .overlay(Color("CassettaBrown"))
-                .padding(.vertical)
+//            Divider()
+//                .frame(width: 350.0, height: 1.0)
+//                .overlay(Color("CassettaBrown"))
+//                .padding(.vertical)
             
             Feed()
             

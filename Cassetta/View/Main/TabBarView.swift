@@ -91,7 +91,7 @@ struct TabBarView: View {
                     Image("justchecking")
                         
                 }
-                .accentColor(.red)
+                
                 
                 
                 //Notification
@@ -103,8 +103,8 @@ struct TabBarView: View {
                 }
                 .tabItem {
                     Image("HeartImage")
-                        .cornerRadius(12.0)
-                        .shadow(color: Color.black.opacity(0.2), radius: 8)
+                      //  .cornerRadius(12.0)
+                       // .shadow(color: Color.black.opacity(0.2), radius: 8)
                 }
                 
                 
@@ -155,7 +155,7 @@ struct TabBarView: View {
             },
                              dragOnEnded: { (value) in
                 self.dragOnEnded(value: value)
-            }, geometry: proxy, settings: MiniSettings(minimizedHeight: 75))
+            }, geometry: proxy, settings: MiniSettings(minimizedHeight: 65))
             .environmentObject(self.miniHandler)
             
         }//GeometryReader
