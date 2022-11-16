@@ -88,8 +88,10 @@ struct TabBarView: View {
                     UploadPostView()
                 }
                 .tabItem {
-                    Image("AddImage")
+                    Image("justchecking")
+                        
                 }
+                .accentColor(.red)
                 
                 
                 //Notification
@@ -156,7 +158,7 @@ struct TabBarView: View {
             }, geometry: proxy, settings: MiniSettings(minimizedHeight: 75))
             .environmentObject(self.miniHandler)
             
-        }
+        }//GeometryReader
         
     }
     
