@@ -102,37 +102,22 @@ struct ContentPlayerView: View {
                             .fontWeight(.semibold)
                             .padding([.horizontal, .top], 32)
                             .matchedGeometryEffect(id: "Label", in: animationNamespaceId)
-                        
-                        HStack{
+                        Section(header: headerView(0)) {
+ 
+                            Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
+                                .padding([.horizontal, .top], 32)
                             
-                            Image(systemName: "gobackward.15")
-                                .font(.title)
-                            Spacer()
+                            Image("GenericImage")
+                                .resizable()
+                                .scaledToFit()
+                                .padding([.horizontal, .top], 32)
                             
-                            Image(systemName: "play.fill")
-                                .font(.title)
-                            Spacer()
-                            Image(systemName: "goforward.15")
-                                .font(.title)
+                            
                         }
-                        .frame(width: UIScreen.screenWidth / 2.5)
-                        .padding(.vertical)
-                        
-                        
-                        Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
-                            .padding([.horizontal, .top], 32)
-                        
-                        Image("GenericImage")
-                            .resizable()
-                            .scaledToFit()
-                            .padding([.horizontal, .top], 32)
-                            
-                        
+                        //this will have a stretch effect
+                        .frame(height: !self.miniHandler.isMinimized ? nil : 0)
+                        .opacity(!self.miniHandler.isMinimized ? 1 : 0)
                     }
-                    //this will have a stretch effect
-                    .frame(height: !self.miniHandler.isMinimized ? nil : 0)
-                    .opacity(!self.miniHandler.isMinimized ? 1 : 0)
-                    
                 }//ScrollView
                 
             }//main vstack end
@@ -171,6 +156,30 @@ struct ContentPlayerView: View {
                 self.miniHandler.isMinimized.toggle()
             }
             offset = 0
+        }
+    }
+    
+    private func headerView(_ index: Int) -> some View {
+        ZStack{
+            BlurView(style: .systemChromeMaterial)
+            HStack{
+                
+                Image(systemName: "gobackward.15")
+                    .font(.title)
+                Spacer()
+                
+                Image(systemName: "play.fill")
+                    .font(.title)
+                Spacer()
+                Image(systemName: "goforward.15")
+                    .font(.title)
+            }
+            .frame(width: UIScreen.screenWidth / 2.5)
+            .padding(.vertical)
+            .padding()
+            .font(.largeTitle)
+            .frame(maxWidth: .infinity)
+            
         }
     }
     

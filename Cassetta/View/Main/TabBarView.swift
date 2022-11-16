@@ -62,10 +62,7 @@ struct TabBarView: View {
                 }
                 .tabItem {
                     Image("HomeImage")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 60, height: 60)
-                        .padding(.top, 10)
+
                 }
                 
                 
@@ -98,13 +95,11 @@ struct TabBarView: View {
                 NavigationView{
                     NotificationsView()
                         .navigationTitle("Notifications")
-                        .navigationBarTitleDisplayMode(.inline)
-                        .accentColor(.black)
+//                        .navigationBarTitleDisplayMode(.inline)
+//                        .accentColor(.black)
                 }
                 .tabItem {
                     Image("HeartImage")
-                      //  .cornerRadius(12.0)
-                       // .shadow(color: Color.black.opacity(0.2), radius: 8)
                 }
                 
                 
@@ -116,6 +111,7 @@ struct TabBarView: View {
                                 Text("Settings")
 
                                 Text("coming soon")
+                                
                                 //Log out button
                                 Button {
                                     viewModel.signout()
