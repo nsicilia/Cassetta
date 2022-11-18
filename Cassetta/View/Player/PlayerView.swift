@@ -30,10 +30,8 @@ struct PlayerView: View {
                         VStack {
                             
                             Capsule()
-                                .fill(Color.gray)
-                              //  .frame(width: self.miniHandler.isMinimized == false ? 40 : 0, height: self.miniHandler.isMinimized == false ? 5 : 0)
+                                .fill(Color.white)
                                 .frame(width: 40, height: 5)
-                               // .opacity(self.miniHandler.isMinimized == false ? 1 : 0)
                                 .padding(.top, safeArea?.top  ?? 0)
 
                             HStack {
@@ -46,6 +44,12 @@ struct PlayerView: View {
                                 .frame(width: self.miniHandler.isMinimized == false ? nil : 0, height: self.miniHandler.isMinimized == false ? nil : 0)
                                 
                                     Spacer()
+                                
+                                Capsule()
+                                    .fill(Color.gray)
+                                    .frame(width: 60, height: 5)
+                                
+                                Spacer()
                                 
                                     Button(action: {
                                         self.miniHandler.dismiss()
