@@ -138,28 +138,22 @@ struct TabBarView: View {
             }
             .background(Color(.secondarySystemFill))
             .statusBar(hidden: self.miniHandler.isPresented && self.miniHandler.isMinimized == false)
-            .minimizableView(
-                content: {PlayerView(animationNamespaceId: self.namespace)},
-                compactView: {
-                    MiniPlayerView()
-                    
-                },backgroundView: {
-                    Color.white
-                        .ignoresSafeArea()
-                    
-                },
+            .minimizableView(content: {PlayerView(animationNamespaceId: self.namespace)},
+              compactView: {
+                MiniPlayerView()  // replace EmptyView() by CompactViewExample() to see the a different approach for the compact view
+            }, backgroundView: {
+                self.backgroundView()},
                 dragOffset: $dragOffset,
                 dragUpdating: { (value, state, _) in
                     state = value.translation
                     self.dragUpdated(value: value)
-                    
-                },
-                dragOnChanged: { (value) in
-                },
+
+            }, dragOnChanged: { (value) in
+       
+            },
                 dragOnEnded: { (value) in
-                    self.dragOnEnded(value: value)
-                },
-                geometry: proxy, settings: MiniSettings(minimizedHeight: 75))
+                self.dragOnEnded(value: value)
+            }, geometry: proxy, settings: MiniSettings(minimizedHeight: 75))
             .environmentObject(self.miniHandler)
             
         }//GeometryReader
@@ -169,7 +163,7 @@ struct TabBarView: View {
     
     func backgroundView() -> some View {
         VStack(spacing: 0){
-            BlurView(style: .systemChromeMaterial)
+            Color.white.ignoresSafeArea()
             if self.miniHandler.isMinimized {
                 Divider()
             }
@@ -188,7 +182,7 @@ struct TabBarView: View {
         
         if self.miniHandler.isMinimized == false && value.translation.height > 0   { // expanded state
             withAnimation(.spring(response: 0)) {
-              //  self.miniHandler.draggedOffsetY = value.translation.height  // divide by a factor > 1 for more "inertia"
+                self.miniHandler.draggedOffsetY = value.translation.height  // divide by a factor > 1 for more "inertia"
             }
             
         } else if self.miniHandler.isMinimized && value.translation.height < 0   {// minimized state
