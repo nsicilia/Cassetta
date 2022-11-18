@@ -8,7 +8,8 @@
 import SwiftUI
 import MinimizableView
 
-struct ContentPlayerView: View {
+struct SUNSETContentPlayerView: View {
+    
     
     var height = UIScreen.main.bounds.height / 3
     @State var offset: CGFloat = 0
@@ -191,7 +192,7 @@ struct ContentPlayerView_Previews: PreviewProvider {
     static var previews: some View {
         VStack{
             Spacer()
-            ContentPlayerView( animationNamespaceId: namespace).environmentObject(MinimizableViewHandler())
+            SUNSETContentPlayerView( animationNamespaceId: namespace).environmentObject(MinimizableViewHandler())
         }
     }
 }

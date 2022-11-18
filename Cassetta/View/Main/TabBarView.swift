@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MinimizableView
+import Combine
 
 
 struct TabBarView: View {
@@ -16,6 +17,8 @@ struct TabBarView: View {
     @State var selectedTabIndex: Int = 0
     @GestureState var dragOffset = CGSize.zero
     @Namespace var namespace
+    
+   // @Binding var expand: Bool
     
     @EnvironmentObject var viewModel: AuthViewModel
     
@@ -133,25 +136,30 @@ struct TabBarView: View {
                 //All tabs end
                 
             }
-            
             .background(Color(.secondarySystemFill))
             .statusBar(hidden: self.miniHandler.isPresented && self.miniHandler.isMinimized == false)
-            .minimizableView(content: {ContentPlayerView(animationNamespaceId: self.namespace)},
-                             compactView: {
-                EmptyView()  // replace EmptyView() by CompactViewExample() to see the a different approach for the compact view
-            }, backgroundView: {
-                self.backgroundView()},
-                             dragOffset: $dragOffset,
-                             dragUpdating: { (value, state, _) in
-                state = value.translation
-                //self.dragUpdated(value: value)
-                
-            }, dragOnChanged: { (value) in
-                
-            },
-                             dragOnEnded: { (value) in
-                self.dragOnEnded(value: value)
-            }, geometry: proxy, settings: MiniSettings(minimizedHeight: 65))
+            .minimizableView(
+                content: {PlayerView(animationNamespaceId: self.namespace)},
+                compactView: {
+                    MiniPlayerView()
+                    
+                },backgroundView: {
+                    Color.white
+                        .ignoresSafeArea()
+                    
+                },
+                dragOffset: $dragOffset,
+                dragUpdating: { (value, state, _) in
+                    state = value.translation
+                    self.dragUpdated(value: value)
+                    
+                },
+                dragOnChanged: { (value) in
+                },
+                dragOnEnded: { (value) in
+                    self.dragOnEnded(value: value)
+                },
+                geometry: proxy, settings: MiniSettings(minimizedHeight: 75))
             .environmentObject(self.miniHandler)
             
         }//GeometryReader
@@ -176,23 +184,22 @@ struct TabBarView: View {
     }
     
     
-//    func dragUpdated(value: DragGesture.Value) {
-//
-//        if self.miniHandler.isMinimized == false && value.translation.height > 0   { // expanded state
-//            withAnimation(.spring(response: 0)) {
-//                self.miniHandler.draggedOffsetY = value.translation.height  // divide by a factor > 1 for more "inertia"
-//            }
-//
-//
-//        } else if self.miniHandler.isMinimized && value.translation.height < 0   {// minimized state
-//            if self.miniHandler.draggedOffsetY >= -60 {
-//                withAnimation(.spring(response: 0)) {
-//                    self.miniHandler.draggedOffsetY = value.translation.height // divide by a factor > 1 for more "inertia"
-//                }
-//            }
-//
-//        }
-//    }
+    func dragUpdated(value: DragGesture.Value) {
+        
+        if self.miniHandler.isMinimized == false && value.translation.height > 0   { // expanded state
+            withAnimation(.spring(response: 0)) {
+              //  self.miniHandler.draggedOffsetY = value.translation.height  // divide by a factor > 1 for more "inertia"
+            }
+            
+        } else if self.miniHandler.isMinimized && value.translation.height < 0   {// minimized state
+            if self.miniHandler.draggedOffsetY >= -60 {
+                withAnimation(.spring(response: 0)) {
+                    self.miniHandler.draggedOffsetY = value.translation.height // divide by a factor > 1 for more "inertia"
+                }
+            }
+            
+        }
+    }
     
     func dragOnEnded(value: DragGesture.Value) {
         

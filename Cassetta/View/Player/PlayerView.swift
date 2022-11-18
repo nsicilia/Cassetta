@@ -10,154 +10,202 @@ import MinimizableView
 
 struct PlayerView: View {
     
-    @EnvironmentObject var miniHandler: MinimizableViewHandler
-    
-    var animation: Namespace.ID
-    @Binding var expand: Bool
-    var height = UIScreen.main.bounds.height / 3
-    //safeArea
-    //var safeArea = UIApplication.shared.windows.first?.safeAreaInsets
     var safeArea = UIApplication
         .shared
         .connectedScenes
         .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
         .first { $0.isKeyWindow }?.safeAreaInsets
-    //Volume Slider
-    @State var volume: CGFloat = 0
-    //Gesture Offset
-    @State var offset: CGFloat = 0
     
-    var text: CGFloat = 5
-    
-    
-    
+    @EnvironmentObject var miniHandler: MinimizableViewHandler
+    // Volume Slider...
+    @State var volume : CGFloat = 0
+
+    var animationNamespaceId: Namespace.ID
+
     var body: some View {
+        GeometryReader { proxy in
+       
+                VStack(alignment: .center, spacing: 0) {
+       
+                        VStack {
+                            
+                            Capsule()
+                                .fill(Color.gray)
+                              //  .frame(width: self.miniHandler.isMinimized == false ? 40 : 0, height: self.miniHandler.isMinimized == false ? 5 : 0)
+                                .frame(width: 40, height: 5)
+                               // .opacity(self.miniHandler.isMinimized == false ? 1 : 0)
+                                .padding(.top, safeArea?.top  ?? 0)
+
+                            HStack {
+                                
+                                Button(action: {
+                                    self.miniHandler.minimize()
+                                }) {
+                                    Image(systemName: "chevron.down.circle").font(.system(size: 20)).foregroundColor(.primary)
+                                }.padding(.horizontal, 10)
+                                .frame(width: self.miniHandler.isMinimized == false ? nil : 0, height: self.miniHandler.isMinimized == false ? nil : 0)
+                                
+                                    Spacer()
+                                
+                                    Button(action: {
+                                        self.miniHandler.dismiss()
+                                    }) {
+                                        Image(systemName: "xmark.circle").font(.system(size: 20)).foregroundColor(.primary)
+                                    }.padding(.trailing, 10)
+                                    .frame(width: self.miniHandler.isMinimized == false ? nil : 0, height: self.miniHandler.isMinimized == false ? nil : 0)
+                                
+                            }.frame(width: self.miniHandler.isMinimized == false ? nil : 0, height: self.miniHandler.isMinimized == false ? nil : 0)
+                        }.frame(width: self.miniHandler.isMinimized == false ? nil : 0, height: self.miniHandler.isMinimized == false ? nil : 0).opacity(self.miniHandler.isMinimized ? 0 : 1)
+
         
-        //The main expanding/contracting body
-        
-        VStack {
+                        Spacer()
+
             
-            Capsule()
-                .fill(Color.gray)
-                .frame(width: expand ? 60 : 0, height: expand ? 4 : 0)
-                .opacity(expand ? 1 : 0)
-                .padding(.top, expand ? safeArea?.top : 0)
-                .padding(.vertical, expand ? 20 : 0)
-            
-            //The miniplayer
-            HStack(spacing: 15) {
-                //The miniPlayer and main image
-                Image("GenericImage")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: expand ? 0 : 35, height: expand ? 0 : 35)
-                    .cornerRadius(5)
-                
-                //The MiniPlayer info & buttons
-                if !expand{
-                    //MiniPlayer Text
-                    VStack(alignment: .leading){
-                        Text("How I recored Poker Stick")
-                            .fontWeight(.bold)
-                            .matchedGeometryEffect(id: "Label", in: animation)
-                        Text("Lady Gaga")
-                    }
-                    
-                    Spacer(minLength: 0)
-                    //The play button
-                    Button {/*todo*/} label: {
-                        Image(systemName: "play.fill")
-                            .font(.title2)
+                    ScrollView{
+                        
+                        Group{
+                            
+                            Image("GenericImage")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(height: self.miniHandler.isMinimized ? 0 : nil)
+                                .opacity(self.miniHandler.isMinimized ? 0 : 1)
+                                .cornerRadius(5)
+                            
+                        Text("The DIFFERENCE between the 5 boroughs (are the STEREOTYPES true)?")
+                            .font(.title)
                             .foregroundColor(.primary)
-                    }
-                    //The fast foward button
-                    Button {/*todo*/} label: {
-                        Image(systemName: "forward.fill")
-                            .font(.title2)
-                            .foregroundColor(.primary)
-                    }
-                }
-            }
-            .padding(.horizontal)
-            
-            
-            ScrollView {
-                //Main image in full size mode
-                Image("GenericImage")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: expand ? height : 0, height: expand ? height : 0)
-                    .cornerRadius(15)
-                
-                //The bottom info view
-                LazyVStack(spacing: 15){
-                    
-                    Text("The DIFFERENCE between the 5 boroughs (are the STEREOTYPES true)?")
-                        .font(.title)
-                        .foregroundColor(.primary)
-                        .fontWeight(.semibold)
-                        .padding([.horizontal, .top], 32)
-                        .matchedGeometryEffect(id: "Label", in: animation)
-                    
-                    ForEach(0 ... 20, id: \.self) { _ in
-                        Image("GenericImage")
-                            .resizable()
-                            .scaledToFit()
+                            .fontWeight(.semibold)
+                            .padding([.horizontal, .top], 32)
+                            .matchedGeometryEffect(id: "MainTitle", in: animationNamespaceId)
+                            .frame(height: self.miniHandler.isMinimized ? 0 : nil)
+                            .opacity(self.miniHandler.isMinimized ? 0 : 1)
+                            
+                            
+                            HStack{
+                                
+                                Button(action: {
+                                    //todo
+                                }, label: {
+                                    HStack{
+                                        Text("13k")
+                                        Text("💬")
+                                    }
+                                })
+                                
+                                Spacer()
+                                
+                                Button(action: {
+                                    //todo
+                                }, label: {
+                                    Image(systemName: "heart")
+                                })
+                                
+                                Spacer()
+                                
+                                Button(action: {
+                                    //todo
+                                }, label: {
+                                    Image(systemName: "hand.thumbsdown")
+                                })
+
+                                
+                            }
                             .padding()
+                            .frame(width: UIScreen.screenWidth / 2 )
+                        
+                        LazyVStack(spacing: 15, pinnedViews: [.sectionHeaders]){
+//                            Section(header: headerView(0)) {
+                                self.expandedControls
+                            //}
+                            
+                        }
+                            
                     }
+                        .padding(.horizontal)
+                        .onTapGesture {
+                            //placeholder to make the scrollview work for whatever reason
+                        }
+                        
+                    }//Scroll View
+                    .frame(height: self.miniHandler.isMinimized ? 0 : nil)
+                    .opacity(self.miniHandler.isMinimized ? 0 : 1)
+                    
+                    headerView(0)
+                    
+                    Spacer()
+
+
                 }
-                //this will have a stretch effect
-                .frame(height: expand ? nil : 0)
-                .opacity(expand ? 1 : 0)
-                
-            }
+
+        }.transition(AnyTransition.move(edge: .bottom))
+      
+
+    }
+    
+    var expandedControls: some View {
+        VStack(spacing: 15){
             
-        }//main vstack end
-        
-        //expands to full screen when clicked
-        .frame(maxHeight: expand ? .infinity : 65)
-        .background(
-            VStack(spacing: 0) {
-                BlurView(style: .systemChromeMaterial)
-                Divider()
-            }
-                .onTapGesture {
-                    withAnimation(.spring()){expand = true}
+            Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
+                .padding([.horizontal, .top], 32)
+            
+
+        }
+        .padding(.bottom)
+        .frame(height: self.miniHandler.isMinimized ? 0 : nil)
+        .opacity(self.miniHandler.isMinimized ? 0 : 1)
+    }
+    
+    
+    
+    private func headerView(_ index: Int) -> some View {
+        ZStack{
+            
+            HStack{
+                Button {
+                    //todo
+                } label: {
+                    Image(systemName: "gobackward.15")
+                        .font(.title)
+                        .foregroundColor(.black)
                 }
-        )
-        //moving the miniplayer above the tabbar
-        //tabbar height is 49
-        .cornerRadius(expand ? 20 : 0)
-        .offset(y: expand ? 0 : -48)
-        .offset(y: offset)
-        .gesture(DragGesture().onEnded(onended(value:)).onChanged(onchaged(value:)) )
-        .ignoresSafeArea()
-        
-    }
-    
-    
-    func onchaged(value: DragGesture.Value){
-        //only allowing when its expanded
-        if value.translation.height > 0 && expand{
-            offset = value.translation.height
-        }
-    }
-    func onended(value: DragGesture.Value){
-        withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.95, blendDuration: 0.9)){
-            //if value is > than height / 3 then closing view
-            if value.translation.height > height{
-                expand = false
+
+                
+                Spacer()
+                Button {
+                    //todo
+                } label: {
+                    Image(systemName: "play.fill")
+                        .font(.title)
+                        .foregroundColor(.black)
+                }
+                
+                Spacer()
+                Button {
+                    //todo
+                } label: {
+                    Image(systemName: "goforward.15")
+                        .font(.title)
+                        .foregroundColor(.black)
+                }
             }
-            offset = 0
+            .frame(width: UIScreen.screenWidth / 2.5)
+            .padding(.vertical)
+            .padding()
+            .font(.largeTitle)
+            .frame(maxWidth: .infinity)
+            
         }
+        .background(.white)
+        .frame(height: self.miniHandler.isMinimized ? 0 : nil)
+        .opacity(self.miniHandler.isMinimized ? 0 : 1)
     }
-    
-    
 }
 
 struct PlayerView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        PlayerView(animation: namespace, expand: .constant(false))
+        PlayerView( animationNamespaceId: namespace).environmentObject(MinimizableViewHandler())
     }
 }
+

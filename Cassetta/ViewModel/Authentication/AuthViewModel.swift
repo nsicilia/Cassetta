@@ -17,6 +17,7 @@ class AuthViewModel: ObservableObject {
     
     init(){
         userSession = Auth.auth().currentUser
+        fetchUser()
     }
     
     func login(withEmail email: String, password: String){
@@ -75,7 +76,16 @@ class AuthViewModel: ObservableObject {
     }
     
     func fetchUser(){
+        guard let uid = userSession?.uid else { return }
         
+        COLLECTION_USERS.document(uid).getDocument { SnapshotData, error in
+            if let error = error{
+                print("DEBUG: fetchUser() - \(error.localizedDescription)")
+                return
+            }
+            
+            let user = try? SnapshotData?.data(as: User.self)
+        }
     }
     
 }
