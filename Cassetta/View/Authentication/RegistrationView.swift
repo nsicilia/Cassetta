@@ -16,6 +16,8 @@ struct RegistrationView: View {
     @State private var image: Image?
     @State var imagePickerPresented = false
     
+    @State private var genericImage = UIImage(named: "GenericUser")
+    
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var viewModel: AuthViewModel
     
@@ -90,7 +92,7 @@ struct RegistrationView: View {
                     //sign up
                     Button {
                         //todo
-                        viewModel.register(withEmail: email, password: password, image: selectedImage, fullname: fullname, username: username)
+                        viewModel.register(withEmail: email, password: password, image: (selectedImage != nil) ? selectedImage: genericImage, fullname: fullname, username: username)
                         
                     } label: {
                         Text("Sign Up")
