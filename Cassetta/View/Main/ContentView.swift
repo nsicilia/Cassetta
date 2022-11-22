@@ -17,7 +17,9 @@ struct ContentView: View {
             if viewModel.userSession == nil{
                 LoginView()
             } else{
-                TabBarView()
+                if let user = viewModel.currentUser{
+                    TabBarView(user: user)
+                }
             }
         }
             

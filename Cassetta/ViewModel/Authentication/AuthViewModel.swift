@@ -12,6 +12,7 @@ import FirebaseStorage
 
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
+    @Published var currentUser: User?
     
     static let shared = AuthViewModel()
     
@@ -29,6 +30,7 @@ class AuthViewModel: ObservableObject {
             
             guard let user = result?.user else { return }
             self.userSession = user
+            self.fetchUser()
         }
     }
     
@@ -59,6 +61,7 @@ class AuthViewModel: ObservableObject {
                 Firestore.firestore().collection("users").document(user.uid).setData(data) { _ in
                     print("DEBUG:Succsessfully uploaded user data")
                     self.userSession = user
+                    self.fetchUser()
                 }
                 
             }
@@ -84,7 +87,8 @@ class AuthViewModel: ObservableObject {
                 return
             }
             
-            let user = try? SnapshotData?.data(as: User.self)
+            guard let user = try? SnapshotData?.data(as: User.self) else { return }
+            self.currentUser = user
         }
     }
     

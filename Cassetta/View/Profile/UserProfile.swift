@@ -8,16 +8,13 @@
 import SwiftUI
 
 struct UserProfile: View {
+    let user: User
+    
     var body: some View {
         
         ScrollView(showsIndicators: false){
-            ProfileHeaderView()
+            ProfileHeaderView(user: user)
                 .padding(.bottom)
-            
-//            Divider()
-//                .frame(width: 350.0, height: 1.0)
-//                .overlay(Color("CassettaBrown"))
-//                .padding(.vertical)
             
             Feed()
             
@@ -29,6 +26,6 @@ struct UserProfile: View {
 
 struct UserProfile_Previews: PreviewProvider {
     static var previews: some View {
-        UserProfile()
+        UserProfile(user: User(username: "name", email: "email@email.com", profileImageURL: "https://firebasestorage.googleapis.com:443/v0/b/instagramclone-256b6.appspot.com/o/profile_images%2F16B6A869-E2CE-4138-8D1C-7D8DA9C9A5E2?alt=media&token=5cf97352-08b8-4698-b71d-31b390a52b52", fullname: "Jane Doeinton"))
     }
 }

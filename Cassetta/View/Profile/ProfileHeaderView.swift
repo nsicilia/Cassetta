@@ -6,14 +6,17 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileHeaderView: View {
+    let user: User
+    
     var body: some View {
         VStack(alignment: .center){
             
             //Image
             VStack {
-                Image("GenericUser")
+                KFImage(URL(string: user.profileImageURL))
                     .resizable()
                     .scaledToFill()
                     .frame(width: 80, height: 80)
@@ -30,7 +33,7 @@ struct ProfileHeaderView: View {
             }
             
             //name
-            Text("Jessica Johnson")
+            Text(user.fullname)
                 .font(.system(size: 15, weight: .semibold))
                 .padding(.top)
             
@@ -44,7 +47,7 @@ struct ProfileHeaderView: View {
             
             VStack {
                 //Buttons
-                ProfileActionButtonView()
+                ProfileActionButtonView(isCurrentUser: user.isCurrentUser)
 
             }
             .padding(.top, 42)
@@ -64,7 +67,7 @@ struct ProfileHeaderView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color("CassettaTan").edgesIgnoringSafeArea(.all)
-            ProfileHeaderView()
+            ProfileHeaderView(user: User(username: "name", email: "email@email.com", profileImageURL: "https://firebasestorage.googleapis.com:443/v0/b/instagramclone-256b6.appspot.com/o/profile_images%2F16B6A869-E2CE-4138-8D1C-7D8DA9C9A5E2?alt=media&token=5cf97352-08b8-4698-b71d-31b390a52b52", fullname: "Jane Doeinton"))
         }
     }
 }
