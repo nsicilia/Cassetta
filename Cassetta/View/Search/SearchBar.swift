@@ -41,7 +41,6 @@ struct SearchBar: View {
                 Button {
                     isEditing = false
                     text = ""
-                    //added extension
                     UIApplication.shared.endEdit()
                 } label: {
                     Text("Cancel")

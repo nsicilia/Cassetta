@@ -15,32 +15,37 @@ struct SearchView: View {
     
     var body: some View {
         
-        ScrollView(showsIndicators: false){
-            //search bar
-            SearchBar(text: $searchText, isEditing: $inSearchMode)
-                .padding()
+        ZStack {
             
-            //grid view/ user list view
-            ZStack{
+            Color("CassettaTan").ignoresSafeArea()
+            
+            ScrollView(showsIndicators: false){
+                //search bar
+                SearchBar(text: $searchText, isEditing: $inSearchMode)
+                    .padding()
                 
-                if inSearchMode {
-                    
-                    UserListView(viewModel: viewModel, searchText: $searchText)
-                    
-                } else {
-                    //Default view
-                    VStack{
-                        HighlightsView()
-                            .padding(.bottom)
+                
+                //grid view/ user list view
+                ZStack{
+                    if inSearchMode {
+                        UserListView(viewModel: viewModel, searchText: $searchText)
                         
-                        CategoryGridView()
+                    } else {
+                        
+                        //Default view
+                        VStack{
+                            HighlightsView()
+                                .padding(.bottom)
                             
+                            CategoryGridView()
+                        }
+                        
                     }
                 }
+                
             }
-            
         }
-        .background(Color("CassettaTan"))
+        
         
     }
 }

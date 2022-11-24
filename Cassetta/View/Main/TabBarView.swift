@@ -112,7 +112,7 @@ struct TabBarView: View {
                 
                 //Profile
                 NavigationView{
-                    UserProfile(user: user)
+                    ProfileView(user: user)
                         .toolbar {
                             Menu {
                                 Text("Settings")

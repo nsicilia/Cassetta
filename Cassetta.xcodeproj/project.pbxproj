@@ -40,13 +40,15 @@
 		014DF99528D4FF9A00E6A754 /* UserStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF99428D4FF9A00E6A754 /* UserStatView.swift */; };
 		014DF99728D5000E00E6A754 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF99628D5000E00E6A754 /* ProfileHeaderView.swift */; };
 		014DF99928D5006200E6A754 /* ProfileActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF99828D5006200E6A754 /* ProfileActionButtonView.swift */; };
+		015E087E292EE19700350D13 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015E087D292EE19700350D13 /* UserService.swift */; };
+		015E0880292EF48400350D13 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015E087F292EF48400350D13 /* ProfileViewModel.swift */; };
 		0189DBAB27D7035100956E28 /* CassettaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189DBAA27D7035100956E28 /* CassettaApp.swift */; };
 		0189DBAD27D7035100956E28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189DBAC27D7035100956E28 /* ContentView.swift */; };
 		0189DBAF27D7035400956E28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0189DBAE27D7035400956E28 /* Assets.xcassets */; };
 		0189DBB227D7035500956E28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0189DBB127D7035400956E28 /* Preview Assets.xcassets */; };
 		0189DBBC27DC38EC00956E28 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189DBBB27DC38EC00956E28 /* Card.swift */; };
 		0189DBC027E03CBA00956E28 /* ListenLikeCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189DBBF27E03CBA00956E28 /* ListenLikeCount.swift */; };
-		018C4A5228516FE70029BEB1 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018C4A5128516FE70029BEB1 /* UserProfile.swift */; };
+		018C4A5228516FE70029BEB1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018C4A5128516FE70029BEB1 /* ProfileView.swift */; };
 		018C4A54285194870029BEB1 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018C4A53285194870029BEB1 /* Feed.swift */; };
 		0198C7D528E9F9E900676189 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0198C7D428E9F9E900676189 /* TabBarView.swift */; };
 		0198C7D728EA048C00676189 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0198C7D628EA048C00676189 /* CustomSecureField.swift */; };
@@ -84,6 +86,8 @@
 		014DF99428D4FF9A00E6A754 /* UserStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatView.swift; sourceTree = "<group>"; };
 		014DF99628D5000E00E6A754 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		014DF99828D5006200E6A754 /* ProfileActionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileActionButtonView.swift; sourceTree = "<group>"; };
+		015E087D292EE19700350D13 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		015E087F292EF48400350D13 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		0189DBA727D7035100956E28 /* Cassetta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cassetta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0189DBAA27D7035100956E28 /* CassettaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassettaApp.swift; sourceTree = "<group>"; };
 		0189DBAC27D7035100956E28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,7 +95,7 @@
 		0189DBB127D7035400956E28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0189DBBB27DC38EC00956E28 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		0189DBBF27E03CBA00956E28 /* ListenLikeCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenLikeCount.swift; sourceTree = "<group>"; };
-		018C4A5128516FE70029BEB1 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		018C4A5128516FE70029BEB1 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		018C4A53285194870029BEB1 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		0198C7D428E9F9E900676189 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		0198C7D628EA048C00676189 /* CustomSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureField.swift; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				01473BFE29232058004E0429 /* ImageUploader.swift */,
+				015E087D292EE19700350D13 /* UserService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -222,7 +227,7 @@
 		0116A8D428C3B6F50050780B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				018C4A5128516FE70029BEB1 /* UserProfile.swift */,
+				018C4A5128516FE70029BEB1 /* ProfileView.swift */,
 				014DF99428D4FF9A00E6A754 /* UserStatView.swift */,
 				014DF99628D5000E00E6A754 /* ProfileHeaderView.swift */,
 				014DF99828D5006200E6A754 /* ProfileActionButtonView.swift */,
@@ -329,6 +334,7 @@
 		01C078F32919A5F100EBD7C1 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				015E087F292EF48400350D13 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -443,7 +449,7 @@
 				0116A8E128C3BEB60050780B /* SearchView.swift in Sources */,
 				018C4A54285194870029BEB1 /* Feed.swift in Sources */,
 				0189DBC027E03CBA00956E28 /* ListenLikeCount.swift in Sources */,
-				018C4A5228516FE70029BEB1 /* UserProfile.swift in Sources */,
+				018C4A5228516FE70029BEB1 /* ProfileView.swift in Sources */,
 				01D0460C28E9F4C200038C1C /* CustomTextField.swift in Sources */,
 				014DF99328D4DE8400E6A754 /* CategoryGridView.swift in Sources */,
 				0130F5362929808D0033BC32 /* LargeUserCell.swift in Sources */,
@@ -465,9 +471,11 @@
 				0116A8DF28C3BE390050780B /* UploadPostView.swift in Sources */,
 				0189DBAB27D7035100956E28 /* CassettaApp.swift in Sources */,
 				014DF97F28D17EBC00E6A754 /* SearchBar.swift in Sources */,
+				015E087E292EE19700350D13 /* UserService.swift in Sources */,
 				01DAE9D028DF83E400F61034 /* PlayerView.swift in Sources */,
 				0116A8DC28C3B9800050780B /* UserCell.swift in Sources */,
 				0198C7DB28EA08C200676189 /* ImagePicker.swift in Sources */,
+				015E0880292EF48400350D13 /* ProfileViewModel.swift in Sources */,
 				014DF98328D29EF000E6A754 /* UserListView.swift in Sources */,
 				014DF98928D3A78300E6A754 /* NotificationsView.swift in Sources */,
 			);
