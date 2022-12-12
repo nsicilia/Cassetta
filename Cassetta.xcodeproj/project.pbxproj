@@ -23,7 +23,7 @@
 		010B6B8C2915AFDD00A13DC8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 010B6B8B2915AFDD00A13DC8 /* GoogleService-Info.plist */; };
 		010B6B8E2915B3B800A13DC8 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010B6B8D2915B3B800A13DC8 /* AuthViewModel.swift */; };
 		0116A8DC28C3B9800050780B /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116A8DB28C3B9800050780B /* UserCell.swift */; };
-		0116A8DF28C3BE390050780B /* UploadPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116A8DE28C3BE390050780B /* UploadPostView.swift */; };
+		0116A8DF28C3BE390050780B /* RecordPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116A8DE28C3BE390050780B /* RecordPostView.swift */; };
 		0116A8E128C3BEB60050780B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116A8E028C3BEB60050780B /* SearchView.swift */; };
 		0130F5362929808D0033BC32 /* LargeUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130F5352929808D0033BC32 /* LargeUserCell.swift */; };
 		0130F538292981A80033BC32 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130F537292981A80033BC32 /* SearchViewModel.swift */; };
@@ -56,6 +56,7 @@
 		0198C7D928EA080500676189 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0198C7D828EA080500676189 /* RegistrationView.swift */; };
 		0198C7DB28EA08C200676189 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0198C7DA28EA08C200676189 /* ImagePicker.swift */; };
 		0198C7DD28EA111400676189 /* ForgetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0198C7DC28EA111300676189 /* ForgetPasswordView.swift */; };
+		019F62E82947C1040045FF39 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F62E72947C1040045FF39 /* MainTabView.swift */; };
 		01C42089293AB528003FF2D5 /* PlayerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C42088293AB528003FF2D5 /* PlayerContentView.swift */; };
 		01C4208B293AB7EA003FF2D5 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C4208A293AB7EA003FF2D5 /* CommentsView.swift */; };
 		01C4208D293AC621003FF2D5 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C4208C293AC621003FF2D5 /* CommentCell.swift */; };
@@ -73,7 +74,7 @@
 		010B6B8B2915AFDD00A13DC8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		010B6B8D2915B3B800A13DC8 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		0116A8DB28C3B9800050780B /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
-		0116A8DE28C3BE390050780B /* UploadPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostView.swift; sourceTree = "<group>"; };
+		0116A8DE28C3BE390050780B /* RecordPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPostView.swift; sourceTree = "<group>"; };
 		0116A8E028C3BEB60050780B /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		0130F5352929808D0033BC32 /* LargeUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeUserCell.swift; sourceTree = "<group>"; };
 		0130F537292981A80033BC32 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -107,6 +108,7 @@
 		0198C7D828EA080500676189 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		0198C7DA28EA08C200676189 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		0198C7DC28EA111300676189 /* ForgetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordView.swift; sourceTree = "<group>"; };
+		019F62E72947C1040045FF39 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		01C42088293AB528003FF2D5 /* PlayerContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerContentView.swift; sourceTree = "<group>"; };
 		01C4208A293AB7EA003FF2D5 /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		01C4208C293AC621003FF2D5 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
@@ -246,7 +248,7 @@
 		0116A8D528C3B7030050780B /* UploadPost */ = {
 			isa = PBXGroup;
 			children = (
-				0116A8DE28C3BE390050780B /* UploadPostView.swift */,
+				0116A8DE28C3BE390050780B /* RecordPostView.swift */,
 			);
 			path = UploadPost;
 			sourceTree = "<group>";
@@ -256,6 +258,7 @@
 			children = (
 				0189DBAC27D7035100956E28 /* ContentView.swift */,
 				0198C7D428E9F9E900676189 /* TabBarView.swift */,
+				019F62E72947C1040045FF39 /* MainTabView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -478,12 +481,13 @@
 				014DF98B28D3A7C900E6A754 /* NotificationCell.swift in Sources */,
 				014DF98D28D3AC8C00E6A754 /* HighlightsView.swift in Sources */,
 				014DF99528D4FF9A00E6A754 /* UserStatView.swift in Sources */,
+				019F62E82947C1040045FF39 /* MainTabView.swift in Sources */,
 				0102516D2926F39E00908D62 /* User.swift in Sources */,
 				0102516F2926F58900908D62 /* Constants.swift in Sources */,
 				014DF98128D1807500E6A754 /* Extensions.swift in Sources */,
 				01C42089293AB528003FF2D5 /* PlayerContentView.swift in Sources */,
 				01C4208D293AC621003FF2D5 /* CommentCell.swift in Sources */,
-				0116A8DF28C3BE390050780B /* UploadPostView.swift in Sources */,
+				0116A8DF28C3BE390050780B /* RecordPostView.swift in Sources */,
 				0189DBAB27D7035100956E28 /* CassettaApp.swift in Sources */,
 				014DF97F28D17EBC00E6A754 /* SearchBar.swift in Sources */,
 				015E087E292EE19700350D13 /* UserService.swift in Sources */,

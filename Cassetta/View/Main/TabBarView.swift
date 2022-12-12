@@ -89,7 +89,7 @@ struct TabBarView: View {
                 
                 //Upload
                 NavigationView{
-                    UploadPostView()
+                    //RecordPostView()
                 }
                 .tabItem {
                     Image("justchecking")
