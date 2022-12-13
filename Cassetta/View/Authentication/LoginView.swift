@@ -45,10 +45,11 @@ struct LoginView: View {
                     
                     VStack(spacing: 20){
                         //email field
-                        CustomTextField(text: $email, placeholder: Text("Email..."), imageName: "envelope")
+                        //CustomTextField(text: $email, placeholder: Text("Email..."), imageName: "envelope")
+                        EmailTextField(text: $email)
                         
                         //password field
-                        CustomSecureField(text: $password, placeholder: Text("Password..."))
+                        CustomSecureField(text: $password, placeholder: Text("Password..."), newPassword: false)
 
                         
                         //forgot password

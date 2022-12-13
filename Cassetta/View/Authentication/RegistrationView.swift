@@ -77,22 +77,23 @@ struct RegistrationView: View {
                 
                 VStack(spacing: 20){
                     //email field
-                    CustomTextField(text: $email, placeholder: Text("Email..."), imageName: "envelope")
+                    //CustomTextField(text: $email, placeholder: Text("Email..."), imageName: "envelope")
+                    EmailTextField(text: $email)
                     
                     //username field
-                    CustomTextField(text: $username, placeholder: Text("Username..."), imageName: "person")
+                    CustomTextField(text: $username, placeholder: Text("Username..."), imageName: "person", allLowerCase: true)
                     
                     //full name field
-                    CustomTextField(text: $fullname, placeholder: Text("Full Name..."), imageName: "person")
+                    CustomTextField(text: $fullname, placeholder: Text("Full Name..."), imageName: "person", allLowerCase: false)
 
                     //password field
-                    CustomSecureField(text: $password, placeholder: Text("Password..."))
+                    CustomSecureField(text: $password, placeholder: Text("Password..."), newPassword: true)
                     
                     
                     //sign up
                     Button {
                         //todo
-                        viewModel.register(withEmail: email, password: password, image: (selectedImage != nil) ? selectedImage: genericImage, fullname: fullname, username: username)
+                        viewModel.register(withEmail: email.lowercased(), password: password, image: (selectedImage != nil) ? selectedImage: genericImage, fullname: fullname, username: username.lowercased())
                         
                     } label: {
                         Text("Sign Up")

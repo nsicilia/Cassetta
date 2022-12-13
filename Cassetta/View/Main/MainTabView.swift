@@ -42,153 +42,153 @@ struct MainTabView: View {
     var body: some View {
         GeometryReader { proxy in
             
-        VStack(spacing: 0) {
-            ZStack {
-                
-                Spacer()
-                    .fullScreenCover(isPresented: $showModel) {
-                        RecordPostView(showStatus: $showModel)
-                    }
-                
-                switch selectedIndex {
-                    //The Home view
-                case 0:
-                    NavigationView {
-                        Feed()
-                            .toolbar {
-                                ToolbarItemGroup(placement: .navigationBarLeading) {
-                                    Image("BlackCassettaLogo")
-                                        .resizable()
-                                        .renderingMode(.template)
-                                        .scaledToFill()
-                                        .frame(height: 40)
-                                        .foregroundColor(Color("CassettaBlack"))
-                                    
-                                }
-                                
-                                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                                    Image("MessageImage")
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 24, height: 24)
-                                }
-                            }
-                        
-                            .background(Color("CassettaTan"))
-                    }
+            VStack(spacing: 0) {
+                ZStack {
                     
-                    //Search view
-                case 1:
-                    NavigationView {
-                        SearchView()
-                            .navigationTitle("Search")
-                            .navigationBarTitleDisplayMode(.inline)
-                            .accentColor(.black)
-                    }
+                    Spacer()
+                        .fullScreenCover(isPresented: $showModel) {
+                            RecordPostView(showStatus: $showModel)
+                        }
                     
-                    //This is empty because it is the upload button
-                case 2:
-                    EmptyView()
-                    
-                    //Navigation view
-                case 3:
-                    NavigationView {
-                        NotificationsView()
-                            .navigationTitle("Notifications")
-                    }
-                    
-                    //Profile view
-                case 4:
-                    NavigationView{
-                        ProfileView(user: user)
-                            .toolbar {
-                                Menu {
-                                    Text("Settings")
-
-                                    Text("coming soon")
-                                    
-                                    //Log out button
-                                    Button {
-                                        viewModel.signout()
-                                    } label: {
-                                        Text("Logout").foregroundColor(.black)
+                    switch selectedIndex {
+                        //The Home view
+                    case 0:
+                        NavigationView {
+                            Feed()
+                                .toolbar {
+                                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                                        Image("BlackCassettaLogo")
+                                            .resizable()
+                                            .renderingMode(.template)
+                                            .scaledToFill()
+                                            .frame(height: 40)
+                                            .foregroundColor(Color("CassettaBlack"))
+                                        
                                     }
-
-                                } label: {
-                                    Label("More Settings", systemImage: "gearshape")
-                                        .foregroundColor(.black)
+                                    
+                                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                                        Image("MessageImage")
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 24, height: 24)
+                                    }
                                 }
-                                
+                            
+                                .background(Color("CassettaTan"))
+                        }
+                        
+                        //Search view
+                    case 1:
+                        NavigationView {
+                            SearchView()
+                                .navigationTitle("Search")
+                                .navigationBarTitleDisplayMode(.inline)
+                                .accentColor(.black)
+                        }
+                        
+                        //This is empty because it is the upload button
+                    case 2:
+                        EmptyView()
+                        
+                        //Navigation view
+                    case 3:
+                        NavigationView {
+                            NotificationsView()
+                                .navigationTitle("Notifications")
+                        }
+                        
+                        //Profile view
+                    case 4:
+                        NavigationView{
+                            ProfileView(user: user)
+                                .toolbar {
+                                    Menu {
+                                        Text("Settings")
+                                        
+                                        Text("coming soon")
+                                        
+                                        //Log out button
+                                        Button {
+                                            viewModel.signout()
+                                        } label: {
+                                            Text("Logout").foregroundColor(.black)
+                                        }
+                                        
+                                    } label: {
+                                        Label("More Settings", systemImage: "gearshape")
+                                            .foregroundColor(.black)
+                                    }
+                                    
+                                }
+                        }
+                        
+                    default:
+                        NavigationView {
+                            Text("Remaining Tabs")
+                        }
+                        
+                    }
+                }
+                
+                
+                Divider()
+                //  .padding(.bottom, 12)
+                
+                //The NavigationBar
+                HStack{
+                    ForEach(0..<5){ num in
+                        Button {
+                            
+                            if num == 2{
+                                showModel.toggle()
+                                return
                             }
+                            selectedIndex = num
+                            
+                        } label: {
+                            
+                            if num == 2{
+                                //The Upload button
+                                Spacer()
+                                Image(systemName: tabBarImageNames[num])
+                                    .font(.system(size: 44,weight: .black))
+                                    .foregroundColor(Color("CassettaOrange"))
+                                Spacer()
+                            }else {
+                                //The non-upload tabs
+                                Spacer()
+                                Image(tabBarImageNames[num])
+                                    .font(.system(size: 24,weight: .black))
+                                    .foregroundColor(selectedIndex == num ? Color(.label) : .gray)
+                                Spacer()
+                            }
+                        }
+                        
                     }
-                    
-                default:
-                    NavigationView {
-                        Text("Remaining Tabs")
-                    }
-                    
-                }
+                }//Navigation Bar
+                .padding(.bottom, 32)
             }
-
-            
-            Divider()
-              //  .padding(.bottom, 12)
-            
-            //The NavigationBar
-            HStack{
-                ForEach(0..<5){ num in
-                    Button {
-                        
-                        if num == 2{
-                            showModel.toggle()
-                            return
-                        }
-                        selectedIndex = num
-                        
-                    } label: {
-                        
-                        if num == 2{
-                            //The Upload button
-                            Spacer()
-                            Image(systemName: tabBarImageNames[num])
-                                .font(.system(size: 44,weight: .black))
-                                .foregroundColor(Color("CassettaOrange"))
-                            Spacer()
-                        }else {
-                            //The non-upload tabs
-                            Spacer()
-                            Image(tabBarImageNames[num])
-                                .font(.system(size: 24,weight: .black))
-                                .foregroundColor(selectedIndex == num ? Color(.label) : .gray)
-                            Spacer()
-                        }
-                    }
-                    
-                }
-            }//Navigation Bar
-            .padding(.bottom, 32)
-        }
-        //------------Test---------------
-        .statusBar(hidden: self.miniHandler.isPresented && self.miniHandler.isMinimized == false)
-        .minimizableView(content: {PlayerView(animationNamespaceId: self.namespace)},
-          compactView: {
-            MiniPlayerView()  // replace EmptyView() by CompactViewExample() to see the a different approach for the compact view
-        }, backgroundView: {
-            self.backgroundView()},
-            dragOffset: $dragOffset,
-            dragUpdating: { (value, state, _) in
+            //------------Test---------------
+            .statusBar(hidden: self.miniHandler.isPresented && self.miniHandler.isMinimized == false)
+            .minimizableView(content: {PlayerView(animationNamespaceId: self.namespace)},
+                             compactView: {
+                MiniPlayerView()  // replace EmptyView() by CompactViewExample() to see the a different approach for the compact view
+            }, backgroundView: {
+                self.backgroundView()},
+                             dragOffset: $dragOffset,
+                             dragUpdating: { (value, state, _) in
                 state = value.translation
                 self.dragUpdated(value: value)
-
-        }, dragOnChanged: { (value) in
-   
-        },
-            dragOnEnded: { (value) in
-            self.dragOnEnded(value: value)
-        }, geometry: proxy, settings: MiniSettings(minimizedHeight: 75))
-        .environmentObject(self.miniHandler)
-        
-    }//GeometryReader
+                
+            }, dragOnChanged: { (value) in
+                
+            },
+                             dragOnEnded: { (value) in
+                self.dragOnEnded(value: value)
+            }, geometry: proxy, settings: MiniSettings(minimizedHeight: 75))
+            .environmentObject(self.miniHandler)
+            
+        }//GeometryReader
         
         
     }
@@ -203,12 +203,12 @@ struct MainTabView: View {
             }
         }.cornerRadius(self.miniHandler.isMinimized ? 0 : 20)
             .shadow(color: .gray.opacity(self.colorScheme == .light ? 0.5 : 0), radius: 5, x: 0, y: -5)
-        .onTapGesture(perform: {
-            if self.miniHandler.isMinimized {
-                self.miniHandler.expand()
-                //alternatively, override the default animation. self.miniHandler.expand(animation: Animation)
-            }
-        })
+            .onTapGesture(perform: {
+                if self.miniHandler.isMinimized {
+                    self.miniHandler.expand()
+                    //alternatively, override the default animation. self.miniHandler.expand(animation: Animation)
+                }
+            })
     }
     
     
@@ -233,15 +233,15 @@ struct MainTabView: View {
         
         if self.miniHandler.isMinimized == false && value.translation.height > 90  {
             self.miniHandler.minimize()
-
+            
         } else if self.miniHandler.isMinimized &&  value.translation.height <= -60 {
-                  self.miniHandler.expand()
+            self.miniHandler.expand()
         }
         withAnimation(.spring()) {
             self.miniHandler.draggedOffsetY = 0
         }
-  
-
+        
+        
     }
 }
 

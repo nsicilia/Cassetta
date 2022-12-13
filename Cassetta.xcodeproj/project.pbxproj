@@ -57,6 +57,12 @@
 		0198C7DB28EA08C200676189 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0198C7DA28EA08C200676189 /* ImagePicker.swift */; };
 		0198C7DD28EA111400676189 /* ForgetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0198C7DC28EA111300676189 /* ForgetPasswordView.swift */; };
 		019F62E82947C1040045FF39 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F62E72947C1040045FF39 /* MainTabView.swift */; };
+		019F62EA2947D15E0045FF39 /* PlayBackPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F62E92947D15E0045FF39 /* PlayBackPostView.swift */; };
+		019F62EC2947D1FA0045FF39 /* DetailPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F62EB2947D1FA0045FF39 /* DetailPostView.swift */; };
+		019F62EE2947E9F40045FF39 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F62ED2947E9F40045FF39 /* MultilineTextField.swift */; };
+		019F62F02947F8D10045FF39 /* EmailTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F62EF2947F8D10045FF39 /* EmailTextField.swift */; };
+		019F62F22948FBC90045FF39 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F62F12948FBC90045FF39 /* CategoriesView.swift */; };
+		019F62F4294909AA0045FF39 /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F62F3294909AA0045FF39 /* StyledButton.swift */; };
 		01C42089293AB528003FF2D5 /* PlayerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C42088293AB528003FF2D5 /* PlayerContentView.swift */; };
 		01C4208B293AB7EA003FF2D5 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C4208A293AB7EA003FF2D5 /* CommentsView.swift */; };
 		01C4208D293AC621003FF2D5 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C4208C293AC621003FF2D5 /* CommentCell.swift */; };
@@ -109,6 +115,12 @@
 		0198C7DA28EA08C200676189 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		0198C7DC28EA111300676189 /* ForgetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordView.swift; sourceTree = "<group>"; };
 		019F62E72947C1040045FF39 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		019F62E92947D15E0045FF39 /* PlayBackPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBackPostView.swift; sourceTree = "<group>"; };
+		019F62EB2947D1FA0045FF39 /* DetailPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostView.swift; sourceTree = "<group>"; };
+		019F62ED2947E9F40045FF39 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
+		019F62EF2947F8D10045FF39 /* EmailTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTextField.swift; sourceTree = "<group>"; };
+		019F62F12948FBC90045FF39 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
+		019F62F3294909AA0045FF39 /* StyledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
 		01C42088293AB528003FF2D5 /* PlayerContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerContentView.swift; sourceTree = "<group>"; };
 		01C4208A293AB7EA003FF2D5 /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		01C4208C293AC621003FF2D5 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
@@ -178,6 +190,10 @@
 				0198C7D628EA048C00676189 /* CustomSecureField.swift */,
 				0198C7DA28EA08C200676189 /* ImagePicker.swift */,
 				0102516E2926F58900908D62 /* Constants.swift */,
+				019F62ED2947E9F40045FF39 /* MultilineTextField.swift */,
+				019F62EF2947F8D10045FF39 /* EmailTextField.swift */,
+				019F62F12948FBC90045FF39 /* CategoriesView.swift */,
+				019F62F3294909AA0045FF39 /* StyledButton.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -249,6 +265,8 @@
 			isa = PBXGroup;
 			children = (
 				0116A8DE28C3BE390050780B /* RecordPostView.swift */,
+				019F62E92947D15E0045FF39 /* PlayBackPostView.swift */,
+				019F62EB2947D1FA0045FF39 /* DetailPostView.swift */,
 			);
 			path = UploadPost;
 			sourceTree = "<group>";
@@ -468,6 +486,8 @@
 				01D0460C28E9F4C200038C1C /* CustomTextField.swift in Sources */,
 				014DF99328D4DE8400E6A754 /* CategoryGridView.swift in Sources */,
 				0130F5362929808D0033BC32 /* LargeUserCell.swift in Sources */,
+				019F62EA2947D15E0045FF39 /* PlayBackPostView.swift in Sources */,
+				019F62F4294909AA0045FF39 /* StyledButton.swift in Sources */,
 				010B6B8E2915B3B800A13DC8 /* AuthViewModel.swift in Sources */,
 				01D0460E28E9F8E600038C1C /* BlurView.swift in Sources */,
 				01473BFF29232058004E0429 /* ImageUploader.swift in Sources */,
@@ -485,14 +505,18 @@
 				0102516D2926F39E00908D62 /* User.swift in Sources */,
 				0102516F2926F58900908D62 /* Constants.swift in Sources */,
 				014DF98128D1807500E6A754 /* Extensions.swift in Sources */,
+				019F62F02947F8D10045FF39 /* EmailTextField.swift in Sources */,
 				01C42089293AB528003FF2D5 /* PlayerContentView.swift in Sources */,
 				01C4208D293AC621003FF2D5 /* CommentCell.swift in Sources */,
 				0116A8DF28C3BE390050780B /* RecordPostView.swift in Sources */,
 				0189DBAB27D7035100956E28 /* CassettaApp.swift in Sources */,
 				014DF97F28D17EBC00E6A754 /* SearchBar.swift in Sources */,
+				019F62EC2947D1FA0045FF39 /* DetailPostView.swift in Sources */,
 				015E087E292EE19700350D13 /* UserService.swift in Sources */,
+				019F62EE2947E9F40045FF39 /* MultilineTextField.swift in Sources */,
 				01DAE9D028DF83E400F61034 /* PlayerView.swift in Sources */,
 				0116A8DC28C3B9800050780B /* UserCell.swift in Sources */,
+				019F62F22948FBC90045FF39 /* CategoriesView.swift in Sources */,
 				0198C7DB28EA08C200676189 /* ImagePicker.swift in Sources */,
 				015E0880292EF48400350D13 /* ProfileViewModel.swift in Sources */,
 				014DF98328D29EF000E6A754 /* UserListView.swift in Sources */,

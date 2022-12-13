@@ -13,7 +13,7 @@ struct CommentsView: View {
     var body: some View {
         VStack {
             HStack{
-                CustomTextField(text: $input, placeholder: Text("Comment..."), imageName: "paperplane.fill")
+                CustomTextField(text: $input, placeholder: Text("Comment..."), imageName: "paperplane.fill", allLowerCase: false)
                 
                 Text("Send")
             }
