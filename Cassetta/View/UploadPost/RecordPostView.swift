@@ -10,6 +10,11 @@ import SwiftUI
 struct RecordPostView: View {
     @Binding var showStatus: Bool
     
+    //
+    @State var fileName = ""
+    @State var fileURL: URL = URL(fileURLWithPath: "")
+    @State var openfile = false
+    
     var body: some View {
         NavigationView {
             VStack{
@@ -17,6 +22,7 @@ struct RecordPostView: View {
                 Spacer()
                 
                 Text("Stuff")
+                Text(fileName)
                 
                 Spacer()
                 
@@ -29,18 +35,35 @@ struct RecordPostView: View {
                     HStack{
                         Spacer()
                         
+                        
+                        //The Upload a file Button
                         HStack {
                             Button {
                                 //todo
+                                openfile.toggle()
                             } label: {
                                 Image("UploadAudio")
                                     .resizable()
                                     .frame(width: 45, height: 45)
                                     .foregroundColor(.black)
                             }
+                            .fileImporter(isPresented: $openfile, allowedContentTypes: [.audio]) { result in
+                                do{
+                                    let fileURL = try result.get()
+                                    print("THEFILE: \(String(describing: fileURL))")
+                                    
+                                    self.fileName = fileURL.lastPathComponent
+                                    self.fileURL = fileURL
+                                }
+                                catch{
+                                    print("error reading docs\(error.localizedDescription)")
+                                }
+                            }
                         }
                         .frame(width: UIScreen.screenWidth * 0.001)
                         
+                        
+                        //Record an audio segment button
                         HStack {
                             Button {
                                 //todo
