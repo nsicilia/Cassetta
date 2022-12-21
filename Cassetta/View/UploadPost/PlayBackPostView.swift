@@ -9,6 +9,12 @@ import SwiftUI
 
 struct PlayBackPostView: View {
     @Binding var showStatus: Bool
+    //PlayAudio
+    @ObservedObject var audioPlayer = PreviewAudioPlayerViewModel()
+    @ObservedObject var audioRecorder: AudioRecorderViewModel
+    
+    //Passed URL from recorder view
+    @Binding var combinedURL: URL?
     
     var body: some View {
         VStack {
@@ -18,7 +24,49 @@ struct PlayBackPostView: View {
             Text("01:34:23")
                 .font(.largeTitle)
             
-            BottomControlsView()
+            HStack(spacing: 20){
+                
+                Button {
+                    print("play combined audio")
+                } label: {
+                    //MARK: Play/Pause Button
+                    if audioPlayer.isPlaying == false {
+                        //Audio is not playing
+                        Button {
+                            //let temp = try! ConcatenateAudioFiles().createArray(audioRecorder: audioRecorder)
+                            if let combined = combinedURL{
+                                self.audioPlayer.startPlayback(audio: combined)
+                            }
+                                
+                           // self.audioPlayer.startPlayback(audio: temp)
+                            print("Start playing audio")
+                        } label: {
+                            Image(systemName: "play.fill")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                        }
+                        
+                    }else{
+                        //Audio is playing
+                        Button {
+                            print("Stop playing audio")
+                            
+                            //self.audioPlayer.stopPlayback()
+                            self.audioPlayer.pausePlayback()
+                            
+                        } label: {
+                            Image(systemName: "stop.fill")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                        }
+                        
+                    }
+                }
+                
+            }
+            .padding(.top)
+            
+            
         }
         .toolbar {
             NavigationLink {
@@ -38,6 +86,6 @@ struct PlayBackPostView: View {
 
 struct PlayBackPostView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayBackPostView(showStatus: .constant(true))
+        PlayBackPostView(showStatus: .constant(true), audioRecorder: AudioRecorderViewModel(), combinedURL: .constant(URL(string: "https://www.apple.com")!))
     }
 }

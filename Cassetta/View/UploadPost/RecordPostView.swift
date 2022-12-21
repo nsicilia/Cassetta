@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct RecordPostView: View {
+    //create audioRecorder
+    @ObservedObject var audioRecorder: AudioRecorderViewModel
     @Binding var showStatus: Bool
-    
-    //
     @State var fileName = ""
     @State var fileURL: URL = URL(fileURLWithPath: "")
     @State var openfile = false
+    //create var for combined url
+    @State var combinedURL: URL?
+    
     
     var body: some View {
         NavigationView {
@@ -21,8 +24,11 @@ struct RecordPostView: View {
                 
                 Spacer()
                 
-                Text("Stuff")
-                Text(fileName)
+                Text("Swipe to delete recording ⬅️")
+                    .padding(.top, 8)
+                
+                //MARK: Recordings List
+                RecordingsList(audioRecorder: audioRecorder)
                 
                 Spacer()
                 
@@ -37,45 +43,66 @@ struct RecordPostView: View {
                         
                         
                         //The Upload a file Button
-                        HStack {
-                            Button {
-                                //todo
-                                openfile.toggle()
-                            } label: {
-                                Image("UploadAudio")
-                                    .resizable()
-                                    .frame(width: 45, height: 45)
-                                    .foregroundColor(.black)
-                            }
-                            .fileImporter(isPresented: $openfile, allowedContentTypes: [.audio]) { result in
-                                do{
-                                    let fileURL = try result.get()
-                                    print("THEFILE: \(String(describing: fileURL))")
-                                    
-                                    self.fileName = fileURL.lastPathComponent
-                                    self.fileURL = fileURL
-                                }
-                                catch{
-                                    print("error reading docs\(error.localizedDescription)")
-                                }
-                            }
-                        }
-                        .frame(width: UIScreen.screenWidth * 0.001)
+//                        HStack {
+//                            Button {
+//                                //todo
+//                                openfile.toggle()
+//                            } label: {
+//                                Image("UploadAudio")
+//                                    .resizable()
+//                                    .frame(width: 45, height: 45)
+//                                    .foregroundColor(.black)
+//                            }
+//                            .fileImporter(isPresented: $openfile, allowedContentTypes: [.audio]) { result in
+//                                do{
+//                                    let fileURL = try result.get()
+//                                    print("THEFILE: \(String(describing: fileURL))")
+//
+//                                    self.fileName = fileURL.lastPathComponent
+//                                    self.fileURL = fileURL
+//                                }
+//                                catch{
+//                                    print("error reading docs\(error.localizedDescription)")
+//                                }
+//                            }
+//                        }
+//                        .frame(width: UIScreen.screenWidth * 0.001)
                         
                         
                         //Record an audio segment button
                         HStack {
-                            Button {
-                                //todo
-                            } label: {
-                                Circle()
-                                    .frame(width: 80, height: 80)
-                                    .foregroundColor(.red)
-                                    .padding(6)
-                                    .overlay(Circle().stroke(.black, lineWidth: 4))
-                            }
+                            
+                            //MARK: The record button if/else
+                            if audioRecorder.recording == false {
+                                Button {
+                                    print("Start recording")
+                                    self.audioRecorder.startRecording()
+                                } label: {
+                        
+                                    Circle()
+                                        .frame(width: 80, height: 80)
+                                        .foregroundColor(.red)
+                                        .padding(6)
+                                        .overlay(Circle().stroke(.black, lineWidth: 4))
+                                }
+                                
+                            } else {
+                                
+                                Button {
+                                    print("Stop Recording")
+                                    self.audioRecorder.stopRecording()
+                                } label: {
+                                    RoundedRectangle(cornerRadius: 15, style: .continuous)
+                                        .frame(width: 80, height: 80)
+                                        .foregroundColor(.red)
+                                        .padding(6)
+                                        //.overlay(Circle().stroke(.black, lineWidth: 4))
+                                }
+                                
+                            }//END: record button
+                            
                         }
-                        .frame(width: UIScreen.screenWidth * 0.64)
+                        //.frame(width: UIScreen.screenWidth * 0.64)
                         
                         Spacer()
                     }
@@ -100,7 +127,14 @@ struct RecordPostView: View {
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     NavigationLink {
-                        PlayBackPostView(showStatus: $showStatus)
+                        PlayBackPostView(showStatus: $showStatus, audioRecorder: audioRecorder, combinedURL: $combinedURL)
+//                        CombinedAudioPlayerView(audioRecorder: audioRecorder, combinedURL: $combinedURL)
+                            .onAppear {
+                                Task{
+                                    combinedURL = try! await ConcatenateAudioFiles().createArray(audioRecorder: audioRecorder)
+                                }
+                            }
+                        
                     } label: {
                         Text("Next")
                             .bold()
@@ -118,8 +152,13 @@ struct RecordPostView: View {
 }
 
 
+
+
 struct RecordPostView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordPostView(showStatus: .constant(true))
+        RecordPostView(audioRecorder: AudioRecorderViewModel(), showStatus: .constant(true))
     }
 }
+
+
+
