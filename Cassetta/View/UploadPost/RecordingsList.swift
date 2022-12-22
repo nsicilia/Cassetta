@@ -18,6 +18,7 @@ struct RecordingsList: View {
             //apply the delete functionallity to to every RecordingRow in the RecordingList
             .onDelete(perform: delete)
         }
+        
     }
     
     //MARK: Delete recordings

@@ -78,9 +78,14 @@ class AudioRecorderViewModel: NSObject, ObservableObject {
     
     //MARK: End the Recording Session
     func stopRecording(){
+        //Get the url of the recording
+        let recordingURL = audioRecorder.url
         audioRecorder.stop()
         //inform contentview(subcribed views) that recording has ended
         recording = false
+        
+        //Trim the recording by 0.053 seconds
+        trimRecording(recordingURL: recordingURL)
         
         //calls the fetchRecordings() everytime a recording is completed
         fetchRecordings()
@@ -128,6 +133,38 @@ class AudioRecorderViewModel: NSObject, ObservableObject {
             
             //update our recordings array using the fetchRecording
             fetchRecordings()
+        }
+    }
+    
+    func trimRecording(recordingURL: URL) {
+        let asset = AVURLAsset(url: recordingURL)
+        let audioDuration = CMTimeGetSeconds(asset.duration)
+        let trimmedDuration = audioDuration - 0.053
+        let trimmedTime = CMTimeMakeWithSeconds(trimmedDuration, preferredTimescale: asset.duration.timescale)
+
+        let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetAppleM4A)!
+        exportSession.outputURL = recordingURL
+        exportSession.outputFileType = .m4a
+        exportSession.timeRange = CMTimeRange(start: CMTime.zero, duration: trimmedTime)
+
+        do {
+            try FileManager.default.removeItem(at: recordingURL)
+        } catch {
+            print("Error deleting original recording file: \(error)")
+        }
+
+        exportSession.exportAsynchronously {
+            switch exportSession.status {
+            case .completed:
+                
+                print("Trimming completed successfully")
+                print("exportSession \(exportSession.outputURL)")
+                self.fetchRecordings()
+            case .failed:
+                print("Trimming failed: \(exportSession.error!)")
+            default:
+                break
+            }
         }
     }
     

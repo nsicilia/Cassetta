@@ -16,6 +16,8 @@ struct PlayBackPostView: View {
     //Passed URL from recorder view
     @Binding var combinedURL: URL?
     
+    var temp = false
+    
     var body: some View {
         VStack {
             
@@ -33,13 +35,14 @@ struct PlayBackPostView: View {
                     if audioPlayer.isPlaying == false {
                         //Audio is not playing
                         Button {
-                            //let temp = try! ConcatenateAudioFiles().createArray(audioRecorder: audioRecorder)
+                            
                             if let combined = combinedURL{
                                 self.audioPlayer.startPlayback(audio: combined)
                             }
                                 
-                           // self.audioPlayer.startPlayback(audio: temp)
+                        
                             print("Start playing audio")
+                            
                         } label: {
                             Image(systemName: "play.fill")
                                 .resizable()
@@ -52,7 +55,9 @@ struct PlayBackPostView: View {
                             print("Stop playing audio")
                             
                             //self.audioPlayer.stopPlayback()
-                            self.audioPlayer.pausePlayback()
+                            
+                                self.audioPlayer.pausePlayback()
+
                             
                         } label: {
                             Image(systemName: "stop.fill")

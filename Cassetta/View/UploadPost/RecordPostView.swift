@@ -20,17 +20,17 @@ struct RecordPostView: View {
     
     var body: some View {
         NavigationView {
-            VStack{
+            VStack(spacing: 0){
                 
                 Spacer()
                 
                 Text("Swipe to delete recording ⬅️")
-                    .padding(.top, 8)
+                    .padding(.vertical, 8)
                 
                 //MARK: Recordings List
                 RecordingsList(audioRecorder: audioRecorder)
                 
-                Spacer()
+
                 
                 
                 VStack {
