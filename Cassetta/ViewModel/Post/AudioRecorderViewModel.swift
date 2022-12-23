@@ -158,7 +158,6 @@ class AudioRecorderViewModel: NSObject, ObservableObject {
             case .completed:
                 
                 print("Trimming completed successfully")
-                print("exportSession \(exportSession.outputURL)")
                 self.fetchRecordings()
             case .failed:
                 print("Trimming failed: \(exportSession.error!)")

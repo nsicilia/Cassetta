@@ -26,11 +26,39 @@ class PreviewAudioPlayerViewModel: NSObject, ObservableObject, AVAudioPlayerDele
     var audioPlayer: AVAudioPlayer!
     
     
+    //initialize an AVAudioSession shared instance
+    let playbackSession = AVAudioSession.sharedInstance()
+    
+    
     //MARK: Play audio from a passed in URL(a file path for the audio to be played)
     func startPlayback(audio: URL){
         
-        //initialize an AVAudioSession shared instance
-        let playbackSession = AVAudioSession.sharedInstance()
+        //play the audio from the given file path
+        do{
+            audioPlayer = try AVAudioPlayer(contentsOf: audio)
+            //set the AudioPlayer itself as the delegate of the AVAudioPlayer
+            audioPlayer.delegate = self
+            //play audio
+            //audioPlayer.play()
+            audioPlayer.prepareToPlay()
+            //inform subcribed views that player is running
+            //isPlaying = true
+            
+        } catch{
+            print("DEBUG: AudioPlayer - Playback failed.")
+        }
+    }
+    
+    
+    //MARK: Stop audio playback
+    func stopPlayback(){
+        audioPlayer.stop()
+        //inform subcribed views that player has stopped
+        isPlaying = false
+    }
+    
+    //MARK: Pause audio playback
+    func playPlayback(){
         
         //If headphones are connected to the device don't override audio output location
         if playbackSession.isHeadphonesConnected {
@@ -53,28 +81,8 @@ class PreviewAudioPlayerViewModel: NSObject, ObservableObject, AVAudioPlayerDele
             
         }
         
-        
-        //play the audio from the given file path
-        do{
-            audioPlayer = try AVAudioPlayer(contentsOf: audio)
-            //set the AudioPlayer itself as the delegate of the AVAudioPlayer
-            audioPlayer.delegate = self
-            //play audio
-            audioPlayer.play()
-            //inform subcribed views that player is running
-            isPlaying = true
-            
-        } catch{
-            print("DEBUG: AudioPlayer - Playback failed.")
-        }
-    }
-    
-    
-    //MARK: Stop audio playback
-    func stopPlayback(){
-        audioPlayer.stop()
-        //inform subcribed views that player has stopped
-        isPlaying = false
+        audioPlayer.play()
+        isPlaying = true
     }
     
     

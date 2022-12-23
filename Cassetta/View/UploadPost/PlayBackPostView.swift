@@ -12,66 +12,89 @@ struct PlayBackPostView: View {
     //PlayAudio
     @ObservedObject var audioPlayer = PreviewAudioPlayerViewModel()
     @ObservedObject var audioRecorder: AudioRecorderViewModel
-    
     //Passed URL from recorder view
     @Binding var combinedURL: URL?
+    
+    @State private var value: Double = 0.0
+    
+    @State private var isEditing: Bool = false
+    
+    let timer = Timer
+        .publish(every: 0.5, on: .main, in: .common)
+        .autoconnect()
+
     
     var temp = false
     
     var body: some View {
         VStack {
-            
-            
-            
             Text("01:34:23")
                 .font(.largeTitle)
             
-            HStack(spacing: 20){
-                
-                Button {
-                    print("play combined audio")
-                } label: {
-                    //MARK: Play/Pause Button
-                    if audioPlayer.isPlaying == false {
-                        //Audio is not playing
-                        Button {
-                            
-                            if let combined = combinedURL{
-                                self.audioPlayer.startPlayback(audio: combined)
-                            }
-                                
-                        
-                            print("Start playing audio")
-                            
-                        } label: {
-                            Image(systemName: "play.fill")
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                        }
-                        
-                    }else{
-                        //Audio is playing
-                        Button {
-                            print("Stop playing audio")
-                            
-                            //self.audioPlayer.stopPlayback()
-                            
-                                self.audioPlayer.pausePlayback()
 
-                            
-                        } label: {
-                            Image(systemName: "stop.fill")
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                        }
+                VStack(spacing: 5){
+                    Slider(value: $value, in: 0...(audioPlayer.audioPlayer?.duration ?? 60)){ editing in
                         
+                        isEditing = editing
+                        
+                        if !editing{
+                            audioPlayer.audioPlayer?.currentTime = value
+                        }
+                }
+                .tint(.white)
+                
+                //MARK: Playback Time
+                HStack{
+                    Text("0:00")
+                    Spacer()
+                    Text("1:00")
+                }
+                .font(.caption)
+                .foregroundColor(.secondary)
+            }
+
+            
+            
+            HStack(spacing: 20){
+                //MARK: Play/Pause Button
+                if audioPlayer.isPlaying == false {
+                    //Audio is not playing
+                    Button {
+                        self.audioPlayer.playPlayback()
+                        
+                    } label: {
+                        Image(systemName: "play.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.black)
+                    }
+                    
+                }else{
+                    //Audio is playing
+                    Button {
+                        self.audioPlayer.pausePlayback()
+                    } label: {
+                        Image(systemName: "pause.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.black)
                     }
                 }
-                
             }
             .padding(.top)
             
-            
+        }
+        .onAppear {
+            Task{
+                combinedURL = try! await ConcatenateAudioFiles().createArray(audioRecorder: audioRecorder)
+                if let combined = combinedURL{
+                    self.audioPlayer.startPlayback(audio: combined)
+                }
+            }
+        }
+        .onReceive(timer) { _ in
+            guard let player = audioPlayer.audioPlayer, !isEditing else {return}
+            value = player.currentTime
         }
         .toolbar {
             NavigationLink {
@@ -84,7 +107,7 @@ struct PlayBackPostView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
-
+            
         }
     }
 }

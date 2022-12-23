@@ -129,11 +129,11 @@ struct RecordPostView: View {
                     NavigationLink {
                         PlayBackPostView(showStatus: $showStatus, audioRecorder: audioRecorder, combinedURL: $combinedURL)
 //                        CombinedAudioPlayerView(audioRecorder: audioRecorder, combinedURL: $combinedURL)
-                            .onAppear {
-                                Task{
-                                    combinedURL = try! await ConcatenateAudioFiles().createArray(audioRecorder: audioRecorder)
-                                }
-                            }
+//                            .onAppear {
+//                                Task{
+//                                    combinedURL = try! await ConcatenateAudioFiles().createArray(audioRecorder: audioRecorder)
+//                                }
+//                            }
                         
                     } label: {
                         Text("Next")
