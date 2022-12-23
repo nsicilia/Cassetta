@@ -20,7 +20,7 @@ struct PlayBackPostView: View {
     @State private var isEditing: Bool = false
     
     let timer = Timer
-        .publish(every: 0.5, on: .main, in: .common)
+        .publish(every: 0.1, on: .main, in: .common)
         .autoconnect()
 
     
@@ -28,7 +28,7 @@ struct PlayBackPostView: View {
     
     var body: some View {
         VStack {
-            Text("01:34:23")
+            Text(DateComponentsFormatter.positional.string(from: (audioPlayer.audioPlayer?.currentTime ?? 0.0) - (audioPlayer.audioPlayer?.duration ?? 0.0)) ?? "00:00")
                 .font(.largeTitle)
             
 
@@ -41,21 +41,34 @@ struct PlayBackPostView: View {
                             audioPlayer.audioPlayer?.currentTime = value
                         }
                 }
-                .tint(.white)
+                .tint(.secondary)
                 
                 //MARK: Playback Time
                 HStack{
-                    Text("0:00")
+                    Text(DateComponentsFormatter.positional.string(from: audioPlayer.audioPlayer?.currentTime ?? 0.0) ?? "00:00")
                     Spacer()
-                    Text("1:00")
+                    Text(DateComponentsFormatter.positional.string(from: audioPlayer.audioPlayer?.duration ?? 0.0) ?? "00:00")
                 }
                 .font(.caption)
                 .foregroundColor(.secondary)
             }
+                .padding(.horizontal)
+
 
             
             
-            HStack(spacing: 20){
+            HStack(spacing: 30){
+                
+                Button {
+                    audioPlayer.goBack10Seconds()
+                } label: {
+                    Image(systemName: "gobackward.10")
+                        .resizable()
+                        .frame(width: 30, height: 33)
+                        .foregroundColor(.black)
+                }
+
+                
                 //MARK: Play/Pause Button
                 if audioPlayer.isPlaying == false {
                     //Audio is not playing
@@ -80,8 +93,18 @@ struct PlayBackPostView: View {
                             .foregroundColor(.black)
                     }
                 }
+                
+                
+                Button {
+                    audioPlayer.goForward10Seconds()
+                } label: {
+                    Image(systemName: "goforward.10")
+                        .resizable()
+                        .frame(width: 30, height: 33)
+                        .foregroundColor(.black)
+                }
             }
-            .padding(.top)
+            .padding(.top, 32)
             
         }
         .onAppear {
@@ -109,6 +132,7 @@ struct PlayBackPostView: View {
             }
             
         }
+        .padding()
     }
 }
 

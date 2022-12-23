@@ -93,6 +93,19 @@ class PreviewAudioPlayerViewModel: NSObject, ObservableObject, AVAudioPlayerDele
     }
     
     
+    func goBack10Seconds() {
+        guard audioPlayer.currentTime > 10 else { return }
+        audioPlayer.currentTime -= 10
+    }
+    
+    func goForward10Seconds() {
+        guard audioPlayer.currentTime + 10 < audioPlayer.duration else { return }
+        audioPlayer.currentTime += 10
+    }
+
+
+    
+    
     //MARK: Reset audio playing status when finished
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
         if flag{
