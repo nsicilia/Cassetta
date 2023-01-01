@@ -47,7 +47,7 @@ struct MainTabView: View {
                     
                     Spacer()
                         .fullScreenCover(isPresented: $showModel) {
-                            RecordPostView(showStatus: $showModel)
+                            RecordPostView(audioRecorder: AudioRecorderViewModel(), showStatus: $showModel)
                         }
                     
                     switch selectedIndex {
