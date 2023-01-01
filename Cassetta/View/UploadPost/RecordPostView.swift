@@ -126,20 +126,26 @@ struct RecordPostView: View {
                     }
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    NavigationLink {
-                        PlayBackPostView(showStatus: $showStatus, audioRecorder: audioRecorder, combinedURL: $combinedURL)
-//                        CombinedAudioPlayerView(audioRecorder: audioRecorder, combinedURL: $combinedURL)
-//                            .onAppear {
-//                                Task{
-//                                    combinedURL = try! await ConcatenateAudioFiles().createArray(audioRecorder: audioRecorder)
-//                                }
-//                            }
-                        
-                    } label: {
+                    
+                    if !audioRecorder.recordings.isEmpty {
+                        NavigationLink {
+                            PlayBackPostView(showStatus: $showStatus, audioRecorder: audioRecorder, combinedURL: $combinedURL)
+                            
+                            
+                        } label: {
+                            Text("Next")
+                                .bold()
+                                .frame(width: 80, height: 30)
+                                .background(Color("CassettaOrange"))
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                    }
+                    else{
                         Text("Next")
                             .bold()
                             .frame(width: 80, height: 30)
-                            .background(Color("CassettaOrange"))
+                            .background(.gray.opacity(0.3))
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }

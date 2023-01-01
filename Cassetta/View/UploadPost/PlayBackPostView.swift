@@ -73,8 +73,9 @@ struct PlayBackPostView: View {
                 if audioPlayer.isPlaying == false {
                     //Audio is not playing
                     Button {
-                        self.audioPlayer.playPlayback()
-                        
+                        if self.audioPlayer.audioPlayer != nil {
+                            self.audioPlayer.playPlayback()
+                        }
                     } label: {
                         Image(systemName: "play.fill")
                             .resizable()
@@ -111,8 +112,10 @@ struct PlayBackPostView: View {
             Task{
                 combinedURL = try! await ConcatenateAudioFiles().createArray(audioRecorder: audioRecorder)
                 if let combined = combinedURL{
-                    self.audioPlayer.startPlayback(audio: combined)
+                    self.audioPlayer.prepPlayback(audio: combined)
                 }
+                print("DEBUG: PlayBackPostView - \(String(describing: combinedURL))")
+                
             }
         }
         .onReceive(timer) { _ in

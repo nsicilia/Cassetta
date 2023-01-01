@@ -50,7 +50,8 @@ struct RecordingRow: View{
             if audioPlayer.isPlaying == false {
                 //Audio is not playing
                 Button {
-                    self.audioPlayer.startPlayback(audio: self.audioURL)
+                    self.audioPlayer.prepPlayback(audio: self.audioURL)
+                    self.audioPlayer.playPlayback()
                     print("Start playing audio")
                 } label: {
                     Image(systemName: "play.circle")

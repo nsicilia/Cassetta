@@ -31,7 +31,7 @@ class PreviewAudioPlayerViewModel: NSObject, ObservableObject, AVAudioPlayerDele
     
     
     //MARK: Play audio from a passed in URL(a file path for the audio to be played)
-    func startPlayback(audio: URL){
+    func prepPlayback(audio: URL){
         
         //play the audio from the given file path
         do{
@@ -59,6 +59,7 @@ class PreviewAudioPlayerViewModel: NSObject, ObservableObject, AVAudioPlayerDele
     
     //MARK: Pause audio playback
     func playPlayback(){
+        
         
         //If headphones are connected to the device don't override audio output location
         if playbackSession.isHeadphonesConnected {
