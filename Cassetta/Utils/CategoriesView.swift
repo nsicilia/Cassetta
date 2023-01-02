@@ -9,28 +9,32 @@ import SwiftUI
 
 struct CategoriesView: View {
     @Binding var value: String
+    @State var selectedButton: Int = 0
     
     var body: some View {
         
         VStack {
             HStack{
-                StyledButton(value: $value, name: "📰 News")
-                StyledButton(value: $value, name: "💻 Tech")
-                StyledButton(value: $value, name: "🏀 Sports")
+                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(1), name: "📰 News")
+                StyledButton(value: $value, selectedButton: $selectedButton,  selectedValue: .constant(2), name: "💻 Tech")
+                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(3), name: "🏀 Sports")
+                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(4), name: "🎨 Art")
             }
             HStack{
-                StyledButton(value: $value, name: "🎨 Art")
-                StyledButton(value: $value, name: "💰 Finance")
-                StyledButton(value: $value, name: "🏀 TV")
+//                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(4), name: "🎨 Art")
+                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(5), name: "💰 Finance")
+                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(6), name: "🏀 TV")
+                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(7), name: "💄 Beauty & Fashion")
             }
             HStack{
-                StyledButton(value: $value, name: "💄 Beauty & Fashion")
-                StyledButton(value: $value, name: "🌷 Growth")
+//                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(7), name: "💄 Beauty & Fashion")
+                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(8), name: "🌷 Growth")
+                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(9), name: "🥪 Food")
+                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(10), name: "🎵 Music")
             }
             HStack{
-                StyledButton(value: $value, name: "🥪 Food")
-                StyledButton(value: $value, name: "🎵 Music")
-                StyledButton(value: $value, name: "👩‍🔬 Career")
+                
+                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(11), name: "👩‍🔬 Career")
             }
 
         }

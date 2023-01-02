@@ -10,6 +10,8 @@ import SwiftUI
 struct StyledButton: View {
     @State var selected = false
     @Binding var value: String
+    @Binding var selectedButton: Int
+    @Binding var selectedValue: Int
     
     let name: String
     
@@ -17,6 +19,7 @@ struct StyledButton: View {
     var body: some View {
         Button(action: {
             self.selected.toggle()
+            selectedButton = selectedValue
             
             if selected{
                 value = name.unicodeScalars
@@ -27,9 +30,9 @@ struct StyledButton: View {
             
         }, label: {
             Text(name)
-                .padding()
-                .background(selected ? Color("CassettaOrange") : Color.white)
-                .foregroundColor(selected ? Color.white : Color.black)
+                .padding(10)
+                .background(selectedButton == selectedValue ? Color("CassettaOrange") : Color.white)
+                .foregroundColor(selectedButton == selectedValue ? Color.white : Color.black)
                 .cornerRadius(15)
         })
             .overlay(
@@ -42,6 +45,6 @@ struct StyledButton: View {
 
 struct StyledButton_Previews: PreviewProvider {
     static var previews: some View {
-        StyledButton(value: .constant("News"), name: "📰 News")
+        StyledButton(value: .constant("News"), selectedButton: .constant(1), selectedValue: .constant(1), name: "📰 News")
     }
 }
