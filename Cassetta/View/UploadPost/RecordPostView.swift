@@ -24,8 +24,10 @@ struct RecordPostView: View {
                 
                 Spacer()
                 
-                Text("Swipe to delete recording ⬅️")
-                    .padding(.vertical, 8)
+                if !audioRecorder.recordings.isEmpty{
+                    Text("Swipe to delete recording ⬅️")
+                        .padding(.vertical, 8)
+                }
                 
                 //MARK: Recordings List
                 RecordingsList(audioRecorder: audioRecorder)
