@@ -107,10 +107,13 @@ class AudioRecorderViewModel: NSObject, ObservableObject {
             let recording = Recording(fileURL: audio, createdAt: getCreationDate(for: audio))
             //add to the array
             recordings.append(recording)
+            print("DEBUG: AudioRecordingViewModel - createAt: \(recording.createdAt) name: \(recording.fileURL.lastPathComponent)")
         }
         
         //sort the recordings array by the creation date
-        recordings.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedAscending})
+       // recordings.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedAscending})
+        //recordings.sort(by: {$0.fileURL.lastPathComponent.compare($1.fileURL.lastPathComponent) == .orderedAscending})
+        recordings.sort(by: {$0.createdAt.compare($1.createdAt) == .orderedAscending})
         
         //update all observing views
         objectWillChange.send(self)
@@ -122,11 +125,11 @@ class AudioRecorderViewModel: NSObject, ObservableObject {
     func deleteRecording(urlsToDelete: [URL]){
         
         for url in urlsToDelete {
-            print("DEBUG:deleteRecording - URL attempting to delete \(url)")
+           // print("DEBUG:deleteRecording - URL attempting to delete \(url)")
             
             do{
                 try FileManager.default.removeItem(at: url)
-                print("DEBUG:deleteRecording - Sucessfully deleted \(url)")
+               // print("DEBUG:deleteRecording - Sucessfully deleted \(url)")
             } catch{
                 print("DEBUG:deleteRecording - File could not be deleted!")
             }
@@ -166,6 +169,43 @@ class AudioRecorderViewModel: NSObject, ObservableObject {
             }
         }
     }
+    
+    
+
+    func addFileRecording(from url: URL) {
+        let fileManager = FileManager.default
+        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let attributes = [FileAttributeKey.creationDate: Date()]
+        //let destinationURL = documentsDirectory.appendingPathComponent("\(Date().toString(dateFormat: "dd-MM-YY_'at'_HH:mm:ss"))"+"\(url.lastPathComponent)")
+        
+        let recordingExists = recordings.contains { (recordingInArray) -> Bool in
+            return recordingInArray.fileURL.lastPathComponent == url.lastPathComponent
+        }
+        
+        
+        let destinationURL = documentsDirectory.appendingPathComponent( recordingExists ? "\(Date().toString(dateFormat: "HH:mm:ss"))\(url.lastPathComponent)" : "\(url.lastPathComponent)")
+        
+        
+        do {
+            try fileManager.copyItem(at: url, to: destinationURL)
+            try fileManager.setAttributes(attributes, ofItemAtPath: destinationURL.path)
+
+            
+        } catch {
+            //print("DEBUG: AudioRecorderViewModel - Error copying file: \(error)")
+            return
+        }
+        
+        
+        let recording = Recording(fileURL: destinationURL, createdAt: Date())
+        //print("DEBUG: AudioRecordingViewModel: the recording createdAt - \(recording.createdAt)")
+        recordings.append(recording)
+        objectWillChange.send(self)
+        
+        fetchRecordings()
+    }
+
+
     
     
 }

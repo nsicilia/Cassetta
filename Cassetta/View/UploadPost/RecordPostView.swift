@@ -45,30 +45,31 @@ struct RecordPostView: View {
                         
                         
                         //The Upload a file Button
-//                        HStack {
-//                            Button {
-//                                //todo
-//                                openfile.toggle()
-//                            } label: {
-//                                Image("UploadAudio")
-//                                    .resizable()
-//                                    .frame(width: 45, height: 45)
-//                                    .foregroundColor(.black)
-//                            }
-//                            .fileImporter(isPresented: $openfile, allowedContentTypes: [.audio]) { result in
-//                                do{
-//                                    let fileURL = try result.get()
-//                                    print("THEFILE: \(String(describing: fileURL))")
-//
-//                                    self.fileName = fileURL.lastPathComponent
-//                                    self.fileURL = fileURL
-//                                }
-//                                catch{
-//                                    print("error reading docs\(error.localizedDescription)")
-//                                }
-//                            }
-//                        }
-//                        .frame(width: UIScreen.screenWidth * 0.001)
+                        HStack {
+                            Button {
+                                //todo
+                                openfile.toggle()
+                            } label: {
+                                    Image("UploadAudio")
+                                        .resizable()
+                                        .frame(width: 45, height: 45)
+                                    .foregroundColor(.black)
+
+                            }
+                            .fileImporter(isPresented: $openfile, allowedContentTypes: [.audio]) { result in
+                                do{
+                                    let fileURL = try result.get()
+                                    if fileURL.startAccessingSecurityScopedResource(){
+                                        audioRecorder.addFileRecording(from: fileURL)
+                                    }
+                                    
+                                }
+                                catch{
+                                    print("error reading docs\(error.localizedDescription)")
+                                }
+                            }
+                        }
+                        .frame(width: UIScreen.screenWidth * 0.001)
                         
                         
                         //Record an audio segment button
@@ -104,7 +105,7 @@ struct RecordPostView: View {
                             }//END: record button
                             
                         }
-                        //.frame(width: UIScreen.screenWidth * 0.64)
+                        .frame(width: UIScreen.screenWidth * 0.64)
                         
                         Spacer()
                     }

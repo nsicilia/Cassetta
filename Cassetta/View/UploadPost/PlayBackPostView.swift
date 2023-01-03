@@ -19,6 +19,8 @@ struct PlayBackPostView: View {
     
     @State private var isEditing: Bool = false
     
+    @State private var isReady: Bool = false
+    
     let timer = Timer
         .publish(every: 0.1, on: .main, in: .common)
         .autoconnect()
@@ -28,9 +30,16 @@ struct PlayBackPostView: View {
     
     var body: some View {
         VStack {
-            Text(DateComponentsFormatter.positional.string(from: (audioPlayer.audioPlayer?.currentTime ?? 0.0) - (audioPlayer.audioPlayer?.duration ?? 0.0)) ?? "00:00")
-                .font(.largeTitle)
             
+            
+            if isReady {
+                
+                Text(DateComponentsFormatter.positional.string(from: (audioPlayer.audioPlayer?.duration ?? 0.0) - (audioPlayer.audioPlayer?.currentTime ?? 0.0)) ?? "00:00")
+                    .font(.largeTitle)
+            }else{
+                ProgressView()
+                    .padding()
+            }
 
                 VStack(spacing: 5){
                     Slider(value: $value, in: 0...(audioPlayer.audioPlayer?.duration ?? 60)){ editing in
@@ -115,6 +124,7 @@ struct PlayBackPostView: View {
                     self.audioPlayer.prepPlayback(audio: combined)
                 }
                 print("DEBUG: PlayBackPostView - \(String(describing: combinedURL))")
+                isReady = true
                 
             }
         }
@@ -124,7 +134,7 @@ struct PlayBackPostView: View {
         }
         .toolbar {
             NavigationLink {
-                DetailPostView(showStatus: $showStatus)
+                DetailPostView(showStatus: $showStatus, combinedURL: $combinedURL)
             } label: {
                 Text("next")
                     .bold()

@@ -17,6 +17,8 @@ struct DetailPostView: View {
     //for color of publish button
     @State var selectedBtn = false
     
+    @Binding var combinedURL: URL?
+    
     var body: some View {
         
         ScrollView() {
@@ -106,6 +108,6 @@ struct DetailPostView: View {
 
 struct DetailPostView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailPostView(showStatus: .constant(true))
+        DetailPostView(showStatus: .constant(true), combinedURL: .constant(URL(string: "https://www.apple.com")!))
     }
 }
