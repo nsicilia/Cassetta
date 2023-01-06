@@ -69,8 +69,6 @@
 		019F62F02947F8D10045FF39 /* EmailTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F62EF2947F8D10045FF39 /* EmailTextField.swift */; };
 		019F62F22948FBC90045FF39 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F62F12948FBC90045FF39 /* CategoriesView.swift */; };
 		019F62F4294909AA0045FF39 /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F62F3294909AA0045FF39 /* StyledButton.swift */; };
-		01AA96E62966524900011F52 /* AudioUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AA96E52966524800011F52 /* AudioUploader.swift */; };
-		01AA96E829665C7E00011F52 /* UploadPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AA96E729665C7E00011F52 /* UploadPostViewModel.swift */; };
 		01C42089293AB528003FF2D5 /* PlayerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C42088293AB528003FF2D5 /* PlayerContentView.swift */; };
 		01C4208B293AB7EA003FF2D5 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C4208A293AB7EA003FF2D5 /* CommentsView.swift */; };
 		01C4208D293AC621003FF2D5 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C4208C293AC621003FF2D5 /* CommentCell.swift */; };
@@ -136,8 +134,6 @@
 		019F62EF2947F8D10045FF39 /* EmailTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTextField.swift; sourceTree = "<group>"; };
 		019F62F12948FBC90045FF39 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		019F62F3294909AA0045FF39 /* StyledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
-		01AA96E52966524800011F52 /* AudioUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUploader.swift; sourceTree = "<group>"; };
-		01AA96E729665C7E00011F52 /* UploadPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostViewModel.swift; sourceTree = "<group>"; };
 		01C42088293AB528003FF2D5 /* PlayerContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerContentView.swift; sourceTree = "<group>"; };
 		01C4208A293AB7EA003FF2D5 /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		01C4208C293AC621003FF2D5 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
@@ -197,7 +193,6 @@
 			children = (
 				01473BFE29232058004E0429 /* ImageUploader.swift */,
 				015E087D292EE19700350D13 /* UserService.swift */,
-				01AA96E52966524800011F52 /* AudioUploader.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -332,7 +327,6 @@
 			children = (
 				0121566F2953ADD600C7D4DC /* AudioRecorderViewModel.swift */,
 				012156712953AF3B00C7D4DC /* PreviewAudioPlayerViewModel.swift */,
-				01AA96E729665C7E00011F52 /* UploadPostViewModel.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -523,7 +517,6 @@
 				0130F5362929808D0033BC32 /* LargeUserCell.swift in Sources */,
 				019F62EA2947D15E0045FF39 /* PlayBackPostView.swift in Sources */,
 				019F62F4294909AA0045FF39 /* StyledButton.swift in Sources */,
-				01AA96E829665C7E00011F52 /* UploadPostViewModel.swift in Sources */,
 				010B6B8E2915B3B800A13DC8 /* AuthViewModel.swift in Sources */,
 				01D0460E28E9F8E600038C1C /* BlurView.swift in Sources */,
 				01473BFF29232058004E0429 /* ImageUploader.swift in Sources */,
@@ -535,7 +528,6 @@
 				0198C7D928EA080500676189 /* RegistrationView.swift in Sources */,
 				014DF98F28D3B7D400E6A754 /* HighlightCell.swift in Sources */,
 				014DF98B28D3A7C900E6A754 /* NotificationCell.swift in Sources */,
-				01AA96E62966524900011F52 /* AudioUploader.swift in Sources */,
 				012156742953B01D00C7D4DC /* ConcatenateAudioFiles.swift in Sources */,
 				014DF98D28D3AC8C00E6A754 /* HighlightsView.swift in Sources */,
 				014DF99528D4FF9A00E6A754 /* UserStatView.swift in Sources */,
