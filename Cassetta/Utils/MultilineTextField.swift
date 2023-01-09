@@ -18,7 +18,7 @@ struct MultilineTextField: View {
         
         VStack{
             TextEditor(text: self.$text)
-                .foregroundColor(self.text == placeholder ? .gray : .primary)
+                .foregroundColor(self.text == placeholder ? Color.gray.opacity(0.6) : .primary)
                 .onTapGesture {
                     if self.text == placeholder {
                         self.text = ""

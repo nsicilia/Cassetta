@@ -130,7 +130,9 @@ struct PlayBackPostView: View {
         }
         .onDisappear{
             if combinedURL != nil{
-                self.audioPlayer.stopPlayback()
+                if self.audioPlayer.isPlaying {
+                    self.audioPlayer.stopPlayback()
+                }
             }
         }
         .onReceive(timer) { _ in

@@ -17,7 +17,7 @@ struct DetailPostView: View {
     
     //Input Texts
     @State private var title = ""
-    @State private var description = "Description..."
+    @State  var description: String = "Description..."
     @State private var category = ""
     
     //for color of publish button
@@ -88,6 +88,7 @@ struct DetailPostView: View {
                 .padding(.bottom)
                 
                 MultilineTextField(text: $description, placeholder: "Description...")
+
                 
                 HStack(alignment: .center){
                     Text("Select a category:")
@@ -105,6 +106,9 @@ struct DetailPostView: View {
 
 
             }
+        }
+        .onTapGesture {
+            self.hideKeyboard()
         }
         .toolbar {
             Button {
