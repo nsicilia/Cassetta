@@ -128,13 +128,18 @@ struct PlayBackPostView: View {
                 
             }
         }
+        .onDisappear{
+            if combinedURL != nil{
+                self.audioPlayer.stopPlayback()
+            }
+        }
         .onReceive(timer) { _ in
             guard let player = audioPlayer.audioPlayer, !isEditing else {return}
             value = player.currentTime
         }
         .toolbar {
             NavigationLink {
-                DetailPostView(showStatus: $showStatus, combinedURL: $combinedURL)
+                DetailPostView(showStatus: $showStatus, combinedURL: $combinedURL, audioRecorder: audioRecorder)
             } label: {
                 Text("next")
                     .bold()

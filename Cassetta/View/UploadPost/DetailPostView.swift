@@ -25,7 +25,11 @@ struct DetailPostView: View {
     //AudioURL
     @Binding var combinedURL: URL?
     
+    @ObservedObject var audioRecorder: AudioRecorderViewModel
+    
     @ObservedObject var viewModel = UploadPostViewModel()
+    
+    
     
     var body: some View {
         
@@ -70,8 +74,9 @@ struct DetailPostView: View {
                 
                 
                 VStack{
-                    CustomTextField(text: $title, placeholder: Text("Title..."),
-                                    imageName: "", allLowerCase: false)
+                    TextField("Title...", text: $title)
+                        .padding()
+                        .padding(.horizontal,32)
                     .overlay {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color("CassettaBorder"), lineWidth: 2)
@@ -97,19 +102,6 @@ struct DetailPostView: View {
                 .padding(.vertical)
                 
                 CategoriesView(value: $category)
-                
-                Button {
-                    //todo
-                    if let image = selectedImage {
-                        if let audio = combinedURL{
-                            viewModel.uploadPost(title: title, description: description, category: category, image: image, audio: audio)
-                        }
-                    }
-                    
-                } label: {
-                    Text("Test Post")
-                }
-                .padding()
 
 
             }
@@ -118,7 +110,18 @@ struct DetailPostView: View {
             Button {
                 //todo
                 selectedBtn.toggle()
-                showStatus = false
+                if let image = selectedImage {
+                    if let audio = combinedURL{
+                        viewModel.uploadPost(title: title, description: description, category: category, image: image, audio: audio){ error in
+                            //error handling
+                            if let error = error {print("DEBUG: failed to upload an image - \(error.localizedDescription)"); return }
+                            //On Completion
+                            postImage = nil
+                            audioRecorder.recordings.removeAll()
+                            showStatus = false
+                        }//completion end
+                    }
+                }
             } label: {
                 VStack{
                     if selectedBtn{
@@ -151,6 +154,6 @@ extension DetailPostView{
 
 struct DetailPostView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailPostView(showStatus: .constant(true), combinedURL: .constant(URL(string: "https://www.apple.com")!))
+        DetailPostView(showStatus: .constant(true), combinedURL: .constant(URL(string: "https://www.apple.com")!), audioRecorder: AudioRecorderViewModel())
     }
 }
