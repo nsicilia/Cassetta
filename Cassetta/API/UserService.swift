@@ -6,6 +6,9 @@
 //
 
 import Firebase
+import FirebaseStorage
+
+typealias FirestoreCompletion = ((Error?) -> Void)?
 
 struct UserService{
 
