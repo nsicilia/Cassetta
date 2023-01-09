@@ -9,15 +9,23 @@ import SwiftUI
 
 struct DetailPostView: View {
     @Binding var showStatus: Bool
+    //The selected cover image
+    @State private var selectedImage: UIImage?
+    @State var postImage: Image?
+    //Image selecter status
+    @State var imagePickerPresented = false
     
+    //Input Texts
     @State private var title = ""
     @State private var description = "Description..."
     @State private var category = ""
     
     //for color of publish button
     @State var selectedBtn = false
-    
+    //AudioURL
     @Binding var combinedURL: URL?
+    
+    @ObservedObject var viewModel = UploadPostViewModel()
     
     var body: some View {
         
@@ -26,17 +34,24 @@ struct DetailPostView: View {
                 
                 Button {
                     //todo
+                    imagePickerPresented.toggle()
                 } label: {
                     VStack{
-                        Image("GenericPhotoIcon")
-                            .resizable()
-                            .renderingMode(.template)
-                            .scaledToFill()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.black)
-                        
-                        Text("Upload an \n image!")
-                            .foregroundColor(.black)
+                        if postImage == nil{
+                            Image("GenericPhotoIcon")
+                                .resizable()
+                                .renderingMode(.template)
+                                .scaledToFill()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.black)
+                            
+                            Text("Upload an \n image!")
+                                .foregroundColor(.black)
+                        }else if let image = postImage{
+                            image
+                                .resizable()
+                                .scaledToFill()
+                        }
                     }
                     .frame(width: 200, height: 200)
                     //.background(.gray.opacity(0.5))
@@ -47,6 +62,11 @@ struct DetailPostView: View {
                     }
                     .padding(.bottom, 32)
                 }
+                //The image selection pop-up, runs the loadImage function when the sheet is dismissed
+                .sheet(isPresented: $imagePickerPresented, onDismiss: loadImage, content: {
+                    //Selects an image from the UIKit image picker, sets that photo to selectedImage var
+                    ImagePicker(image: $selectedImage)
+                })
                 
                 
                 VStack{
@@ -77,6 +97,20 @@ struct DetailPostView: View {
                 .padding(.vertical)
                 
                 CategoriesView(value: $category)
+                
+                Button {
+                    //todo
+                    if let image = selectedImage {
+                        if let audio = combinedURL{
+                            viewModel.uploadPost(title: title, description: description, category: category, image: image, audio: audio)
+                        }
+                    }
+                    
+                } label: {
+                    Text("Test Post")
+                }
+                .padding()
+
 
             }
         }
@@ -104,6 +138,15 @@ struct DetailPostView: View {
     }
     }
 
+}
+
+
+extension DetailPostView{
+    func loadImage(){
+        //if the selectedImage is set we set it to the postImage(the UIKit to swiftui image conversion)
+        guard let selectedImage = selectedImage else {return }
+        postImage = Image(uiImage: selectedImage)
+    }
 }
 
 struct DetailPostView_Previews: PreviewProvider {
