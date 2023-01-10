@@ -116,6 +116,7 @@ struct DetailPostView: View {
                 selectedBtn.toggle()
                 if let image = selectedImage {
                     if let audio = combinedURL{
+                        
                         viewModel.uploadPost(title: title, description: description, category: category, image: image, audio: audio){ error in
                             //error handling
                             if let error = error {print("DEBUG: failed to upload an image - \(error.localizedDescription)"); return }
@@ -129,7 +130,7 @@ struct DetailPostView: View {
             } label: {
                 VStack{
                     if selectedBtn{
-                        ProgressView()
+                        ProgressView(value: viewModel.audioProgress)
                     }else{
                         Text("Publish")
                             .bold()

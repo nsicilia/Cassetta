@@ -8,11 +8,17 @@
 import UIKit
 import Firebase
 import FirebaseStorage
+import Foundation
+import SwiftUI
+import Combine
 
 
-struct AudioUploader {
+class AudioUploader: NSObject, ObservableObject {
+
+    @Published var progress: Double = 0
+    
     //static func uploadImage(image: UIImage, completion: @escaping(String) -> Void){
-    static func uploadAudio(audio: URL, completion: @escaping(String) -> Void){
+    func uploadAudio(audio: URL, completion: @escaping(String) -> Void){
         
         //generate unique file name string
         let filename = NSUUID().uuidString
@@ -22,7 +28,7 @@ struct AudioUploader {
         
         
         
-        ref.putFile(from: audio, metadata: nil) { _, error in
+       let uploadTask =  ref.putFile(from: audio, metadata: nil) { _, error in
             //error handling
             if let error = error {
                 print("DEBUG: failed to upload an audio file - \(error.localizedDescription)")
@@ -37,6 +43,12 @@ struct AudioUploader {
                 completion(audioURL)
             }
         }
+        
+        uploadTask.observe(.progress) { snapshot in
+                    let progress = snapshot.progress?.fractionCompleted
+                    self.progress = progress ?? 0
+                    print("Progress from uploadTask: \(self.progress)")
+                }
         
     }
 }

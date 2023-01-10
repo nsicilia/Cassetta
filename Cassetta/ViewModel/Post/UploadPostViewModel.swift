@@ -7,18 +7,22 @@
 
 import SwiftUI
 import Firebase
-
+import Combine
 
 class UploadPostViewModel: ObservableObject {
-    
+    @Published var audioProgress: Double = 0
+    private var audioUploadCancellable: Cancellable?
+
     func uploadPost(title: String, description: String, category: String, image:UIImage, audio: URL, completion: FirestoreCompletion){
         //get info about current user
         guard let user = AuthViewModel.shared.currentUser else { return }
         
         ImageUploader.uploadImage(image: image, type: .post) { imageURL in
             
+            let audioUploader = AudioUploader()
+            self.audioUploadCancellable = audioUploader.$progress.sink { self.audioProgress = $0 }
             
-            AudioUploader.uploadAudio(audio: audio) { audioURL in
+            audioUploader.uploadAudio(audio: audio) { audioURL in
                 
                 let data = ["title": title,
                             "description": description,
