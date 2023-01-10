@@ -23,7 +23,7 @@ struct CategoriesView: View {
             HStack{
 //                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(4), name: "🎨 Art")
                 StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(5), name: "💰 Finance")
-                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(6), name: "🏀 TV")
+                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(6), name: "📺 TV")
                 StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(7), name: "💄 Beauty & Fashion")
             }
             HStack{

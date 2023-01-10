@@ -36,6 +36,12 @@ struct DetailPostView: View {
         ScrollView() {
             VStack {
                 
+                if selectedBtn {
+                    ProgressView(value: viewModel.audioProgress)
+                        .progressViewStyle(RoundedRectProgressViewStyle())
+                        .transition(.move(edge: .bottom))
+                }
+                
                 Button {
                     //todo
                     imagePickerPresented.toggle()
@@ -78,7 +84,7 @@ struct DetailPostView: View {
                         .padding()
                         .padding(.horizontal,32)
                     .overlay {
-                        RoundedRectangle(cornerRadius: 10)
+                        RoundedRectangle(cornerRadius: 15)
                             .stroke(Color("CassettaBorder"), lineWidth: 2)
                             .padding(.horizontal, 32)
                     }
@@ -111,43 +117,73 @@ struct DetailPostView: View {
             self.hideKeyboard()
         }
         .toolbar {
-            Button {
-                //todo
-                selectedBtn.toggle()
-                if let image = selectedImage {
-                    if let audio = combinedURL{
-                        
-                        viewModel.uploadPost(title: title, description: description, category: category, image: image, audio: audio){ error in
-                            //error handling
-                            if let error = error {print("DEBUG: failed to upload an image - \(error.localizedDescription)"); return }
-                            //On Completion
-                            postImage = nil
-                            audioRecorder.recordings.removeAll()
-                            showStatus = false
-                        }//completion end
+            
+            if (selectedImage != nil && title != "" ) {
+                
+                Button {
+                    //todo
+
+                    if let image = selectedImage {
+                        if let audio = combinedURL{
+                            selectedBtn.toggle()
+                            
+                            viewModel.uploadPost(title: title, description: description, category: category, image: image, audio: audio){ error in
+                                //error handling
+                                if let error = error {print("DEBUG: failed to upload an image - \(error.localizedDescription)"); return }
+                                //On Completion
+                                postImage = nil
+                                audioRecorder.recordings.removeAll()
+                                showStatus = false
+                            }//completion end
+                        }
                     }
-                }
-            } label: {
-                VStack{
-                    if selectedBtn{
-                        ProgressView(value: viewModel.audioProgress)
-                    }else{
-                        Text("Publish")
-                            .bold()
+                } label: {
+                    VStack{
+                        if selectedBtn{
+                            ProgressView()
+                        }else{
+                            Text("Publish")
+                                .bold()
+                        }
                     }
-                }
                     .frame(width: 80, height: 30)
                     .background(selectedBtn ? .gray : Color("CassettaOrange"))
                     .foregroundColor(.white)
                     .cornerRadius(10)
+                }//label
+            } else {
+                Text("Publish")
+                    .bold()
+                    .frame(width: 80, height: 30)
+                    .background(.gray)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
             }
-            
 
     }
+        .navigationBarBackButtonHidden(selectedBtn ? true : false)
     }
 
 }
 
+//Styling of the progress bar for the upload
+struct RoundedRectProgressViewStyle: ProgressViewStyle {
+    let testwidth: CGFloat = CGFloat(UIScreen.screenWidth)
+    
+    func makeBody(configuration: Configuration) -> some View {
+        ZStack(alignment: .leading) {
+            RoundedRectangle(cornerRadius: 14)
+                .frame(width: UIScreen.screenWidth - 30, height: 28)
+                .foregroundColor(Color("CassettaTan"))
+                .overlay(Color.brown.opacity(0.05)).cornerRadius(14)
+            
+            RoundedRectangle(cornerRadius: 14)
+                .frame(width: CGFloat(configuration.fractionCompleted ?? 0) * testwidth - 30, height: 28)
+                .foregroundColor(Color("CassettaOrange"))
+        }
+        .padding()
+    }
+}
 
 extension DetailPostView{
     func loadImage(){

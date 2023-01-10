@@ -37,7 +37,9 @@ struct PlayBackPostView: View {
                 Text(DateComponentsFormatter.positional.string(from: (audioPlayer.audioPlayer?.duration ?? 0.0) - (audioPlayer.audioPlayer?.currentTime ?? 0.0)) ?? "00:00")
                     .font(.largeTitle)
             }else{
-                ProgressView()
+                ProgressView(){
+                    Text("Preparing audio for playback...")
+                }
                     .padding()
             }
 
@@ -140,17 +142,25 @@ struct PlayBackPostView: View {
             value = player.currentTime
         }
         .toolbar {
-            NavigationLink {
-                DetailPostView(showStatus: $showStatus, combinedURL: $combinedURL, audioRecorder: audioRecorder)
-            } label: {
+            if isReady{
+                NavigationLink {
+                    DetailPostView(showStatus: $showStatus, combinedURL: $combinedURL, audioRecorder: audioRecorder)
+                } label: {
+                    Text("next")
+                        .bold()
+                        .frame(width: 80, height: 30)
+                        .background(Color("CassettaOrange"))
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }//Nav label
+            } else {
                 Text("next")
                     .bold()
                     .frame(width: 80, height: 30)
-                    .background(Color("CassettaOrange"))
+                    .background(.gray)
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
-            
         }
         .padding()
     }
