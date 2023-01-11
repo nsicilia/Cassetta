@@ -18,6 +18,7 @@ struct RecordPostView: View {
     @State var combinedURL: URL?
     
     
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 0){
@@ -36,9 +37,15 @@ struct RecordPostView: View {
                 
                 
                 VStack {
-                    Text("00:00:00")
-                        .font(.system(size: 24))
-                        .padding(.bottom)
+                    if audioRecorder.recording == false {
+                        Text("00:00:00")
+                            .font(.system(size: 24))
+                            .padding(.bottom)
+                    } else {
+                        Text("\(self.audioRecorder.recordingDuration)")
+                            .font(.system(size: 24))
+                            .padding(.bottom)
+                    }
                     
                     HStack{
                         Spacer()

@@ -33,6 +33,14 @@ class AudioRecorderViewModel: NSObject, ObservableObject {
             objectWillChange.send(self)
         }
     }
+
+    @Published var recordingDuration: String = "00:00:00" {
+        didSet{
+            objectWillChange.send(self)
+        }
+    }
+    
+    var timerTest: Timer?
     
     //MARK: Record audio function
     func startRecording(){
@@ -67,6 +75,16 @@ class AudioRecorderViewModel: NSObject, ObservableObject {
         do{
             audioRecorder = try AVAudioRecorder(url: audioFileName, settings: settings)
             audioRecorder.record()
+            //test timer
+            guard timerTest == nil else { return }
+            timerTest = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                let time = self.audioRecorder.currentTime
+                let hours = Int(time) / 3600
+                let minutes = Int(time) / 60 % 60
+                let seconds = Int(time) % 60
+                self.recordingDuration = String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+                print("scheduledTimer: running")
+            }
             //inform contentview(subcribed views) that recording is running
             recording = true
             
@@ -83,6 +101,11 @@ class AudioRecorderViewModel: NSObject, ObservableObject {
         audioRecorder.stop()
         //inform contentview(subcribed views) that recording has ended
         recording = false
+        
+        //test timer
+        timerTest?.invalidate()
+        timerTest = nil
+        self.recordingDuration = "00:00:00"
         
         //Trim the recording by 0.053 seconds
         trimRecording(recordingURL: recordingURL)
