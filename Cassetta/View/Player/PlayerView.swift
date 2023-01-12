@@ -41,7 +41,7 @@ struct PlayerView: View {
                         Button(action: {
                             self.miniHandler.minimize()
                         }) {
-                            Image(systemName: "chevron.down.circle").font(.system(size: 20)).foregroundColor(.primary)
+                            Image(systemName: "chevron.down.circle").font(.system(size: 23)).foregroundColor(.secondary)
                         }.padding(.horizontal, 10)
                             .frame(width: self.miniHandler.isMinimized == false ? nil : 0, height: self.miniHandler.isMinimized == false ? nil : 0)
                         
@@ -56,7 +56,7 @@ struct PlayerView: View {
                         Button(action: {
                             self.miniHandler.dismiss()
                         }) {
-                            Image(systemName: "xmark.circle").font(.system(size: 20)).foregroundColor(.primary)
+                            Image(systemName: "xmark.circle").font(.system(size: 23)).foregroundColor(.secondary)
                         }.padding(.trailing, 10)
                             .frame(width: self.miniHandler.isMinimized == false ? nil : 0, height: self.miniHandler.isMinimized == false ? nil : 0)
                         

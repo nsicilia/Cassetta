@@ -13,7 +13,7 @@ struct Card: View {
             
             VStack{
                 //Image
-                Image("GenericImage")
+                Image("RecordPlayer")
                     .resizable()
                     .scaledToFill()
                     .frame(
@@ -25,9 +25,10 @@ struct Card: View {
                     )
                     .cornerRadius(15.0)
                 
-                
-                Text("How to Become a Cats Influencer in Three Easy Steps")
-                    .frame(width: 330)
+                Text("5 Shocking Facts About Records That Will Change the Way You Listen to Music Forever!")
+                   // .multilineTextAlignment(.center)
+                //Text("The DIFFERENCE between the 5 boroughs (are the STEREOTYPES true)?")
+                    .frame(width: UIScreen.main.bounds.width / 1.18)
                     .lineLimit(3)
                     .font(.system(size: 18, weight: .semibold))
             }
@@ -71,8 +72,6 @@ struct Card: View {
                 .stroke(Color("CassettaBorder"), lineWidth: 1)
             
         }
-        //.shadow(color: Color.black.opacity(0.2), radius: 6, x: 0, y: 6)
-        
     }
     
 }

@@ -138,8 +138,10 @@ class AudioRecorderViewModel: NSObject, ObservableObject {
         //recordings.sort(by: {$0.fileURL.lastPathComponent.compare($1.fileURL.lastPathComponent) == .orderedAscending})
         recordings.sort(by: {$0.createdAt.compare($1.createdAt) == .orderedAscending})
         
-        //update all observing views
-        objectWillChange.send(self)
+        DispatchQueue.main.async {
+            //update all observing views
+            self.objectWillChange.send(self)
+        }
     }
     
     
@@ -162,6 +164,8 @@ class AudioRecorderViewModel: NSObject, ObservableObject {
         }
     }
     
+    //MARK: function for trimming the last 0.053 off the end of an audio clip
+    //This is for better flow between clips
     func trimRecording(recordingURL: URL) {
         let asset = AVURLAsset(url: recordingURL)
         let audioDuration = CMTimeGetSeconds(asset.duration)
@@ -227,9 +231,23 @@ class AudioRecorderViewModel: NSObject, ObservableObject {
         
         fetchRecordings()
     }
-
-
     
+    //MARK: function to delete all the recording stored in the app
+    func deleteAllRecordings() {
+        let fileManager = FileManager.default
+        let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        do {
+            let fileURLs = try fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
+            for fileURL in fileURLs {
+                try fileManager.removeItem(at: fileURL)
+            }
+            self.fetchRecordings()
+        } catch {
+            print("DEBUG:AudioRecorder - Could not delete all recordings")
+        }
+    }
+
+
     
 }
 

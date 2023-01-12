@@ -132,7 +132,7 @@ struct DetailPostView: View {
                                 if let error = error {print("DEBUG: failed to upload an image - \(error.localizedDescription)"); return }
                                 //On Completion
                                 postImage = nil
-                                audioRecorder.recordings.removeAll()
+                                audioRecorder.deleteAllRecordings()
                                 showStatus = false
                             }//completion end
                         }
