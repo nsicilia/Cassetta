@@ -49,6 +49,9 @@
 		015CE4E3293AA2F50096D35C /* BottomControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015CE4E2293AA2F50096D35C /* BottomControlsView.swift */; };
 		015E087E292EE19700350D13 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015E087D292EE19700350D13 /* UserService.swift */; };
 		015E0880292EF48400350D13 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015E087F292EF48400350D13 /* ProfileViewModel.swift */; };
+		01818DBA2970C961008B4EB3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01818DB92970C961008B4EB3 /* Post.swift */; };
+		01818DBC2970D06E008B4EB3 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01818DBB2970D06E008B4EB3 /* FeedViewModel.swift */; };
+		01818DBE2971D598008B4EB3 /* GestureHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01818DBD2971D598008B4EB3 /* GestureHandlers.swift */; };
 		0189DBAB27D7035100956E28 /* CassettaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189DBAA27D7035100956E28 /* CassettaApp.swift */; };
 		0189DBAD27D7035100956E28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189DBAC27D7035100956E28 /* ContentView.swift */; };
 		0189DBAF27D7035400956E28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0189DBAE27D7035400956E28 /* Assets.xcassets */; };
@@ -115,6 +118,9 @@
 		015CE4E2293AA2F50096D35C /* BottomControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsView.swift; sourceTree = "<group>"; };
 		015E087D292EE19700350D13 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		015E087F292EF48400350D13 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		01818DB92970C961008B4EB3 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		01818DBB2970D06E008B4EB3 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		01818DBD2971D598008B4EB3 /* GestureHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureHandlers.swift; sourceTree = "<group>"; };
 		0189DBA727D7035100956E28 /* Cassetta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cassetta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0189DBAA27D7035100956E28 /* CassettaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassettaApp.swift; sourceTree = "<group>"; };
 		0189DBAC27D7035100956E28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -188,6 +194,7 @@
 			children = (
 				0102516C2926F39E00908D62 /* User.swift */,
 				0121566C2953AD3100C7D4DC /* RecordingDataModel.swift */,
+				01818DB92970C961008B4EB3 /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -216,6 +223,7 @@
 				019F62F3294909AA0045FF39 /* StyledButton.swift */,
 				0121566A2953ACD000C7D4DC /* Helper.swift */,
 				012156732953B01D00C7D4DC /* ConcatenateAudioFiles.swift */,
+				01818DBD2971D598008B4EB3 /* GestureHandlers.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -323,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				0130F537292981A80033BC32 /* SearchViewModel.swift */,
+				01818DBB2970D06E008B4EB3 /* FeedViewModel.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -511,6 +520,7 @@
 				014DF99128D4D17D00E6A754 /* CategoryCell.swift in Sources */,
 				0198C7D528E9F9E900676189 /* TabBarView.swift in Sources */,
 				0130F538292981A80033BC32 /* SearchViewModel.swift in Sources */,
+				01818DBA2970C961008B4EB3 /* Post.swift in Sources */,
 				0189DBAD27D7035100956E28 /* ContentView.swift in Sources */,
 				014DF99928D5006200E6A754 /* ProfileActionButtonView.swift in Sources */,
 				0116A8E128C3BEB60050780B /* SearchView.swift in Sources */,
@@ -555,9 +565,11 @@
 				019F62EC2947D1FA0045FF39 /* DetailPostView.swift in Sources */,
 				015E087E292EE19700350D13 /* UserService.swift in Sources */,
 				019F62EE2947E9F40045FF39 /* MultilineTextField.swift in Sources */,
+				01818DBC2970D06E008B4EB3 /* FeedViewModel.swift in Sources */,
 				01DAE9D028DF83E400F61034 /* PlayerView.swift in Sources */,
 				0116A8DC28C3B9800050780B /* UserCell.swift in Sources */,
 				019F62F22948FBC90045FF39 /* CategoriesView.swift in Sources */,
+				01818DBE2971D598008B4EB3 /* GestureHandlers.swift in Sources */,
 				0198C7DB28EA08C200676189 /* ImagePicker.swift in Sources */,
 				015E0880292EF48400350D13 /* ProfileViewModel.swift in Sources */,
 				014DF98328D29EF000E6A754 /* UserListView.swift in Sources */,

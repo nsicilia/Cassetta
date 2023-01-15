@@ -22,6 +22,8 @@ struct TabBarView: View {
         
     @EnvironmentObject var viewModel: AuthViewModel
     
+    @ObservedObject var feedViewModel = FeedViewModel()
+    
     
     init(user: User) {
         self.user = user
@@ -44,7 +46,7 @@ struct TabBarView: View {
             TabView {
                 //Home
                 NavigationView{
-                    Feed()
+                    Feed(viewModel: feedViewModel)
                         .toolbar {
                             ToolbarItemGroup(placement: .navigationBarLeading) {
                                 Image("BlackCassettaLogo")

@@ -26,27 +26,18 @@ class UploadPostViewModel: ObservableObject {
                 
                 let data = ["title": title,
                             "description": description,
-                            "cagegory": category,
+                            "category": category,
                             "timestamp": Timestamp(date: Date()),
                             "likes": 0,
+                            "dislikes": 0,
                             "imageUrl": imageURL,
-                            "audioURL": audioURL,
+                            "audioUrl": audioURL,
                             "ownerUid": user.id ?? "",
                             "ownerImageUrl": user.profileImageURL,
+                            "ownerFullname": user.fullname,
                             "ownerUsername": user.username] as [String: Any]
                 
                 COLLECTION_POSTS.addDocument(data: data, completion: completion)
-                
-//                COLLECTION_POSTS.addDocument(data: data) { error in
-//                    //Handle error
-//                    if let error = error{
-//                        print("DEBUG: UploadPostViewModel failed - \(error.localizedDescription)")
-//                        return
-//                    }
-//
-//                    print("DEBUG: Post Uploaded")
-//
-//                }
                 
             }//AudioUploader
         }//ImageUploader

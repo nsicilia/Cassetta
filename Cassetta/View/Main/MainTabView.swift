@@ -28,6 +28,11 @@ struct MainTabView: View {
         
     @EnvironmentObject var viewModel: AuthViewModel
     
+    //Main Feed Data ViewModel
+    @ObservedObject var feedViewModel = FeedViewModel()
+    
+    
+    
     
     init(user: User) {
         self.user = user
@@ -54,7 +59,7 @@ struct MainTabView: View {
                         //The Home view
                     case 0:
                         NavigationView {
-                            Feed()
+                            Feed(viewModel: feedViewModel)
                                 .toolbar {
                                     ToolbarItemGroup(placement: .navigationBarLeading) {
                                         Image("BlackCassettaLogo")
@@ -170,22 +175,31 @@ struct MainTabView: View {
             }
             //------------Test---------------
             .statusBar(hidden: self.miniHandler.isPresented && self.miniHandler.isMinimized == false)
-            .minimizableView(content: {PlayerView(animationNamespaceId: self.namespace)},
-                             compactView: {
+            .minimizableView(
+                content: {PlayerView(animationNamespaceId: self.namespace)},
+                compactView: {
                 MiniPlayerView()  // replace EmptyView() by CompactViewExample() to see the a different approach for the compact view
-            }, backgroundView: {
+                },
+                
+                backgroundView: {
                 self.backgroundView()},
-                             dragOffset: $dragOffset,
-                             dragUpdating: { (value, state, _) in
+                dragOffset: $dragOffset,
+                dragUpdating: { (value, state, _) in
                 state = value.translation
-                self.dragUpdated(value: value)
+                //self.dragUpdated(value: value)
+                GestureHandlers.dragUpdated(value: value, miniHandler: miniHandler)
+                },
                 
-            }, dragOnChanged: { (value) in
+                dragOnChanged: { (value) in
+                },
                 
-            },
-                             dragOnEnded: { (value) in
-                self.dragOnEnded(value: value)
-            }, geometry: proxy, settings: MiniSettings(minimizedHeight: 75))
+                dragOnEnded: { (value) in
+                    // self.dragOnEnded(value: value)
+                    GestureHandlers.dragOnEnded(value: value, miniHandler: miniHandler)
+                },
+                
+                geometry: proxy, settings: MiniSettings(minimizedHeight: 75)
+            )
             .environmentObject(self.miniHandler)
             
         }//GeometryReader
@@ -212,37 +226,37 @@ struct MainTabView: View {
     }
     
     
-    func dragUpdated(value: DragGesture.Value) {
-        
-        if self.miniHandler.isMinimized == false && value.translation.height > 0   { // expanded state
-            withAnimation(.spring(response: 0)) {
-                self.miniHandler.draggedOffsetY = value.translation.height  // divide by a factor > 1 for more "inertia"
-            }
-            
-        } else if self.miniHandler.isMinimized && value.translation.height < 0   {// minimized state
-            if self.miniHandler.draggedOffsetY >= -60 {
-                withAnimation(.spring(response: 0)) {
-                    self.miniHandler.draggedOffsetY = value.translation.height // divide by a factor > 1 for more "inertia"
-                }
-            }
-            
-        }
-    }
+//    func dragUpdated(value: DragGesture.Value) {
+//
+//        if self.miniHandler.isMinimized == false && value.translation.height > 0   { // expanded state
+//            withAnimation(.spring(response: 0)) {
+//                self.miniHandler.draggedOffsetY = value.translation.height  // divide by a factor > 1 for more "inertia"
+//            }
+//
+//        } else if self.miniHandler.isMinimized && value.translation.height < 0   {// minimized state
+//            if self.miniHandler.draggedOffsetY >= -60 {
+//                withAnimation(.spring(response: 0)) {
+//                    self.miniHandler.draggedOffsetY = value.translation.height // divide by a factor > 1 for more "inertia"
+//                }
+//            }
+//
+//        }
+//    }
     
-    func dragOnEnded(value: DragGesture.Value) {
-        
-        if self.miniHandler.isMinimized == false && value.translation.height > 90  {
-            self.miniHandler.minimize()
-            
-        } else if self.miniHandler.isMinimized &&  value.translation.height <= -60 {
-            self.miniHandler.expand()
-        }
-        withAnimation(.spring()) {
-            self.miniHandler.draggedOffsetY = 0
-        }
-        
-        
-    }
+//    func dragOnEnded(value: DragGesture.Value) {
+//
+//        if self.miniHandler.isMinimized == false && value.translation.height > 90  {
+//            self.miniHandler.minimize()
+//
+//        } else if self.miniHandler.isMinimized &&  value.translation.height <= -60 {
+//            self.miniHandler.expand()
+//        }
+//        withAnimation(.spring()) {
+//            self.miniHandler.draggedOffsetY = 0
+//        }
+//
+//
+//    }
 }
 
 struct MainTabView_Previews: PreviewProvider {

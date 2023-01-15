@@ -10,12 +10,14 @@ import MinimizableView
 
 struct Feed: View {
     @EnvironmentObject var miniHandler: MinimizableViewHandler
+    //The Feed view model
+    @ObservedObject var viewModel: FeedViewModel
     
     var body: some View {
         ScrollView(showsIndicators: false){
             LazyVStack {
-                ForEach(1...15, id: \.self) { count in
-                    Card()
+                ForEach(viewModel.posts) { post in
+                    Card(post: post)
                         .padding(.bottom, 12)
                         .onTapGesture {
                             if self.miniHandler.isPresented {
@@ -37,6 +39,6 @@ struct Feed: View {
 
 struct Feed_Previews: PreviewProvider {
     static var previews: some View {
-        Feed().environmentObject(MinimizableViewHandler())
+        Feed( viewModel: FeedViewModel()).environmentObject(MinimizableViewHandler())
     }
 }

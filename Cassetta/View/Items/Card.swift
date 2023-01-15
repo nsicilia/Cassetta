@@ -6,14 +6,18 @@
 //
 
 import SwiftUI
+import Firebase
+import Kingfisher
 
 struct Card: View {
+    let post: Post
+    
     var body: some View {
         VStack{
             
             VStack{
-                //Image
-                Image("RecordPlayer")
+                //Post Image
+                KFImage(URL(string: post.imageUrl))
                     .resizable()
                     .scaledToFill()
                     .frame(
@@ -25,7 +29,8 @@ struct Card: View {
                     )
                     .cornerRadius(15.0)
                 
-                Text("5 Shocking Facts About Records That Will Change the Way You Listen to Music Forever!")
+                //Title
+                Text(post.title)
                    // .multilineTextAlignment(.center)
                 //Text("The DIFFERENCE between the 5 boroughs (are the STEREOTYPES true)?")
                     .frame(width: UIScreen.main.bounds.width / 1.18)
@@ -34,7 +39,7 @@ struct Card: View {
             }
             
             
-            UserCell()
+            UserCell(ownerFullname: post.ownerFullname, ownerImageUrl: post.ownerImageUrl, ownerUsername: post.ownerUsername)
             
             Spacer()
             
@@ -77,13 +82,14 @@ struct Card: View {
 }
 struct Card_Previews_light: PreviewProvider {
     static var previews: some View {
-        Card()
+        Card(post: Post(audioUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", category: "News", description: "Description", dislikes: 2, imageUrl: "https://images.unsplash.com/photo-1555992336-fb0d29498b13?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80", likes: 4, ownerFullname: "Jessica Johnson", ownerImageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", ownerUid: "ddd", ownerUsername: "jessica", timestamp: Timestamp(), title: "5 Shocking Facts About Records That Will Change the Way You Listen to Music Forever!"))
     }
 }
-struct Card_Previews: PreviewProvider {
-    static var previews: some View {
-        Card()
-            .preferredColorScheme(.dark)
-    }
-}
+
+//struct Card_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Card(post: Post(audioUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", category: "News", description: "Description", dislikes: 2, imageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", likes: 4, ownerFullname: "Jessica Johnson", ownerImageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", ownerUid: "ddd", ownerUsername: "jessica", timestamp: Timestamp(), title: "5 Shocking Facts About Records That Will Change the Way You Listen to Music Forever!"))
+//            .preferredColorScheme(.dark)
+//    }
+//}
 

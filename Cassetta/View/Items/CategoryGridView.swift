@@ -24,7 +24,7 @@ struct CategoryGridView: View {
                 Group{
                     //News
                     NavigationLink {
-                        Feed()
+                        Feed(viewModel: FeedViewModel())
                     } label: {
                         CategoryCell(categoryTitle: "News", cetegoryEmoji: "📰")
                             .foregroundColor(Color(UIColor.label))
@@ -32,7 +32,7 @@ struct CategoryGridView: View {
                     
                     //Tech
                     NavigationLink {
-                        Feed()
+                        Feed(viewModel: FeedViewModel())
                     } label: {
                         CategoryCell(categoryTitle: "Tech", cetegoryEmoji: "💻")
                             .foregroundColor(Color(UIColor.label))
@@ -41,28 +41,28 @@ struct CategoryGridView: View {
                     
                     //Crypto
                     NavigationLink {
-                        Feed()
+                        Feed(viewModel: FeedViewModel())
                     } label: {
                         CategoryCell(categoryTitle: "Crypto", cetegoryEmoji: "💰")
                             .foregroundColor(Color(UIColor.label))
                     }
                     //Sports
                     NavigationLink {
-                        Feed()
+                        Feed(viewModel: FeedViewModel())
                     } label: {
                         CategoryCell(categoryTitle: "Sports", cetegoryEmoji: "🏀")
                             .foregroundColor(Color(UIColor.label))
                     }
                     //Tv & Media
                     NavigationLink {
-                        Feed()
+                        Feed(viewModel: FeedViewModel())
                     } label: {
                         CategoryCell(categoryTitle: "TV & Media", cetegoryEmoji: "📺")
                             .foregroundColor(Color(UIColor.label))
                     }
                     //Career
                     NavigationLink {
-                        Feed()
+                        Feed(viewModel: FeedViewModel())
                     } label: {
                         CategoryCell(categoryTitle: "Career", cetegoryEmoji: "👩‍🔬")
                             .foregroundColor(Color(UIColor.label))
@@ -72,19 +72,19 @@ struct CategoryGridView: View {
                 
                 
                 
-                Group{
-                    CategoryCell(categoryTitle: "Personal Growth", cetegoryEmoji: "🌷")
-                    
-                    CategoryCell(categoryTitle: "Fashion & Beauty", cetegoryEmoji: "💃")
-                    
-                    CategoryCell(categoryTitle: "Art", cetegoryEmoji: "🎨")
-                    
-                    CategoryCell(categoryTitle: "Music", cetegoryEmoji: "🎵")
-                    
-                    CategoryCell(categoryTitle: "Food", cetegoryEmoji: "🥪")
-                    
-                    CategoryCell(categoryTitle: "Travel", cetegoryEmoji: "✈️")
-                }
+//                Group{
+//                    CategoryCell(categoryTitle: "Personal Growth", cetegoryEmoji: "🌷")
+//
+//                    CategoryCell(categoryTitle: "Fashion & Beauty", cetegoryEmoji: "💃")
+//
+//                    CategoryCell(categoryTitle: "Art", cetegoryEmoji: "🎨")
+//
+//                    CategoryCell(categoryTitle: "Music", cetegoryEmoji: "🎵")
+//
+//                    CategoryCell(categoryTitle: "Food", cetegoryEmoji: "🥪")
+//
+//                    CategoryCell(categoryTitle: "Travel", cetegoryEmoji: "✈️")
+//                }
                 
                 
                 
