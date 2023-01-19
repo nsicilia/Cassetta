@@ -18,8 +18,8 @@ struct ContentView: View {
                     LoginView()
                 } else{
                     if let user = viewModel.currentUser{
-                        //TabBarView(user: user)
-                        MainTabView(user: user)
+                        TabBarView(user: user)
+                        //MainTabView(user: user)
                     }
                 }
             }

@@ -22,7 +22,7 @@ struct ProfileView: View {
             ProfileHeaderView(viewModel: viewModel)
                 .padding(.bottom)
             
-            Feed(viewModel: FeedViewModel())
+           // Feed(viewModel: FeedViewModel())
             
         }
         .background(Color("CassettaTan"))

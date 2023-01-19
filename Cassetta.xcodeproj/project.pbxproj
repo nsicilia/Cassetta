@@ -83,6 +83,7 @@
 		01D0460E28E9F8E600038C1C /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D0460D28E9F8E600038C1C /* BlurView.swift */; };
 		01D25E3A2927F8C10099F9D8 /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D25E392927F8C10099F9D8 /* MiniPlayerView.swift */; };
 		01DAE9D028DF83E400F61034 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAE9CF28DF83E400F61034 /* PlayerView.swift */; };
+		01ECA3F02979B45A00AB9082 /* LNPopupUI-Static in Frameworks */ = {isa = PBXBuildFile; productRef = 01ECA3EF2979B45A00AB9082 /* LNPopupUI-Static */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -165,6 +166,7 @@
 				010251662926EE2700908D62 /* FirebaseMessaging in Frameworks */,
 				010251582926EE2700908D62 /* FirebaseAuth in Frameworks */,
 				010251642926EE2700908D62 /* FirebaseFunctions in Frameworks */,
+				01ECA3F02979B45A00AB9082 /* LNPopupUI-Static in Frameworks */,
 				0102515A2926EE2700908D62 /* FirebaseDatabase in Frameworks */,
 				01C45EF528E0E4B4008C3EB7 /* MinimizableView in Frameworks */,
 				0102515E2926EE2700908D62 /* FirebaseDynamicLinks in Frameworks */,
@@ -454,6 +456,7 @@
 				010251652926EE2700908D62 /* FirebaseMessaging */,
 				010251672926EE2700908D62 /* FirebaseStorage */,
 				0102516A2926EEF400908D62 /* Kingfisher */,
+				01ECA3EF2979B45A00AB9082 /* LNPopupUI-Static */,
 			);
 			productName = Cassetta;
 			productReference = 0189DBA727D7035100956E28 /* Cassetta.app */;
@@ -487,6 +490,7 @@
 				01C45EF328E0E4B4008C3EB7 /* XCRemoteSwiftPackageReference "MinimizableView" */,
 				010251542926EE2700908D62 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				010251692926EEF400908D62 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				01ECA3EE2979B45A00AB9082 /* XCRemoteSwiftPackageReference "LNPopupUI" */,
 			);
 			productRefGroup = 0189DBA827D7035100956E28 /* Products */;
 			projectDirPath = "";
@@ -812,6 +816,14 @@
 				kind = branch;
 			};
 		};
+		01ECA3EE2979B45A00AB9082 /* XCRemoteSwiftPackageReference "LNPopupUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LeoNatan/LNPopupUI.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -874,6 +886,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 01C45EF328E0E4B4008C3EB7 /* XCRemoteSwiftPackageReference "MinimizableView" */;
 			productName = MinimizableView;
+		};
+		01ECA3EF2979B45A00AB9082 /* LNPopupUI-Static */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01ECA3EE2979B45A00AB9082 /* XCRemoteSwiftPackageReference "LNPopupUI" */;
+			productName = "LNPopupUI-Static";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

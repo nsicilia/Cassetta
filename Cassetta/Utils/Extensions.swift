@@ -119,3 +119,16 @@ extension View {
     }
 }
 #endif
+
+
+extension UITabBarController {
+    override open func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let standardAppearance = UITabBarAppearance()
+
+        standardAppearance.backgroundColor = .white
+       
+
+        tabBar.standardAppearance = standardAppearance
+    }
+}

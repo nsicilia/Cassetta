@@ -7,11 +7,18 @@
 
 import SwiftUI
 import MinimizableView
+import Firebase
 
 struct Feed: View {
-    @EnvironmentObject var miniHandler: MinimizableViewHandler
+    //@EnvironmentObject var miniHandler: MinimizableViewHandler
     //The Feed view model
     @ObservedObject var viewModel: FeedViewModel
+    
+    @Binding var isPopupBarPresented: Bool
+    
+    @Binding var PlayingPost: Post?
+    
+    
     
     var body: some View {
         ScrollView(showsIndicators: false){
@@ -20,11 +27,8 @@ struct Feed: View {
                     Card(post: post)
                         .padding(.bottom, 12)
                         .onTapGesture {
-                            if self.miniHandler.isPresented {
-                                self.miniHandler.dismiss()
-                            }
-                                self.miniHandler.present()
-                            
+                            PlayingPost = post
+                            isPopupBarPresented = true
                         }
                 }
                 
@@ -39,6 +43,6 @@ struct Feed: View {
 
 struct Feed_Previews: PreviewProvider {
     static var previews: some View {
-        Feed( viewModel: FeedViewModel()).environmentObject(MinimizableViewHandler())
+        Feed( viewModel: FeedViewModel(), isPopupBarPresented: .constant(true), PlayingPost: .constant(Post(audioUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", category: "News", description: "Description", dislikes: 2, imageUrl: "https://images.unsplash.com/photo-1555992336-fb0d29498b13?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80", likes: 4, ownerFullname: "Jessica Johnson", ownerImageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", ownerUid: "ddd", ownerUsername: "jessica", timestamp: Timestamp(), title: "5 Shocking Facts About Records That Will Change the Way You Listen to Music Forever!")))
     }
 }

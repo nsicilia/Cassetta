@@ -24,7 +24,8 @@ struct CategoryGridView: View {
                 Group{
                     //News
                     NavigationLink {
-                        Feed(viewModel: FeedViewModel())
+                       // Feed(viewModel: FeedViewModel())
+                        Text("Coming")
                     } label: {
                         CategoryCell(categoryTitle: "News", cetegoryEmoji: "📰")
                             .foregroundColor(Color(UIColor.label))
@@ -32,7 +33,8 @@ struct CategoryGridView: View {
                     
                     //Tech
                     NavigationLink {
-                        Feed(viewModel: FeedViewModel())
+                       // Feed(viewModel: FeedViewModel())
+                        Text("Coming")
                     } label: {
                         CategoryCell(categoryTitle: "Tech", cetegoryEmoji: "💻")
                             .foregroundColor(Color(UIColor.label))
@@ -41,28 +43,32 @@ struct CategoryGridView: View {
                     
                     //Crypto
                     NavigationLink {
-                        Feed(viewModel: FeedViewModel())
+                        //Feed(viewModel: FeedViewModel())
+                        Text("Coming")
                     } label: {
                         CategoryCell(categoryTitle: "Crypto", cetegoryEmoji: "💰")
                             .foregroundColor(Color(UIColor.label))
                     }
                     //Sports
                     NavigationLink {
-                        Feed(viewModel: FeedViewModel())
+                      //  Feed(viewModel: FeedViewModel())
+                        Text("Coming")
                     } label: {
                         CategoryCell(categoryTitle: "Sports", cetegoryEmoji: "🏀")
                             .foregroundColor(Color(UIColor.label))
                     }
                     //Tv & Media
                     NavigationLink {
-                        Feed(viewModel: FeedViewModel())
+                       // Feed(viewModel: FeedViewModel())
+                        Text("Coming")
                     } label: {
                         CategoryCell(categoryTitle: "TV & Media", cetegoryEmoji: "📺")
                             .foregroundColor(Color(UIColor.label))
                     }
                     //Career
                     NavigationLink {
-                        Feed(viewModel: FeedViewModel())
+                        //Feed(viewModel: FeedViewModel())
+                        Text("Coming")
                     } label: {
                         CategoryCell(categoryTitle: "Career", cetegoryEmoji: "👩‍🔬")
                             .foregroundColor(Color(UIColor.label))

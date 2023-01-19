@@ -32,7 +32,7 @@ struct MainTabView: View {
     @ObservedObject var feedViewModel = FeedViewModel()
     
     
-    
+    @State var PlayingPost: Post?
     
     init(user: User) {
         self.user = user
@@ -59,7 +59,7 @@ struct MainTabView: View {
                         //The Home view
                     case 0:
                         NavigationView {
-                            Feed(viewModel: feedViewModel)
+                            Feed(viewModel: feedViewModel, isPopupBarPresented: .constant(false), PlayingPost: $PlayingPost)
                                 .toolbar {
                                     ToolbarItemGroup(placement: .navigationBarLeading) {
                                         Image("BlackCassettaLogo")
@@ -174,33 +174,33 @@ struct MainTabView: View {
                 .padding(.bottom, 32)
             }
             //------------Test---------------
-            .statusBar(hidden: self.miniHandler.isPresented && self.miniHandler.isMinimized == false)
-            .minimizableView(
-                content: {PlayerView(animationNamespaceId: self.namespace)},
-                compactView: {
-                MiniPlayerView()  // replace EmptyView() by CompactViewExample() to see the a different approach for the compact view
-                },
-                
-                backgroundView: {
-                self.backgroundView()},
-                dragOffset: $dragOffset,
-                dragUpdating: { (value, state, _) in
-                state = value.translation
-                //self.dragUpdated(value: value)
-                GestureHandlers.dragUpdated(value: value, miniHandler: miniHandler)
-                },
-                
-                dragOnChanged: { (value) in
-                },
-                
-                dragOnEnded: { (value) in
-                    // self.dragOnEnded(value: value)
-                    GestureHandlers.dragOnEnded(value: value, miniHandler: miniHandler)
-                },
-                
-                geometry: proxy, settings: MiniSettings(minimizedHeight: 75)
-            )
-            .environmentObject(self.miniHandler)
+//            .statusBar(hidden: self.miniHandler.isPresented && self.miniHandler.isMinimized == false)
+//            .minimizableView(
+//                content: {PlayerView()},
+//                compactView: {
+//                MiniPlayerView()  // replace EmptyView() by CompactViewExample() to see the a different approach for the compact view
+//                },
+//
+//                backgroundView: {
+//                self.backgroundView()},
+//                dragOffset: $dragOffset,
+//                dragUpdating: { (value, state, _) in
+//                state = value.translation
+//                //self.dragUpdated(value: value)
+//                GestureHandlers.dragUpdated(value: value, miniHandler: miniHandler)
+//                },
+//
+//                dragOnChanged: { (value) in
+//                },
+//
+//                dragOnEnded: { (value) in
+//                    // self.dragOnEnded(value: value)
+//                    GestureHandlers.dragOnEnded(value: value, miniHandler: miniHandler)
+//                },
+//
+//                geometry: proxy, settings: MiniSettings(minimizedHeight: 75)
+//            )
+//            .environmentObject(self.miniHandler)
             
         }//GeometryReader
         
