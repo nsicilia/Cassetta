@@ -85,7 +85,8 @@ struct MainTabView: View {
                         //Search view
                     case 1:
                         NavigationView {
-                            SearchView()
+                           // SearchView()
+                            Text("Search")
                                 .navigationTitle("Search")
                                 .navigationBarTitleDisplayMode(.inline)
                                 .accentColor(.black)
@@ -105,7 +106,8 @@ struct MainTabView: View {
                         //Profile view
                     case 4:
                         NavigationView{
-                            ProfileView(user: user)
+                           // ProfileView(user: user)
+                            Text("Temp")
                                 .toolbar {
                                     Menu {
                                         Text("Settings")

@@ -13,17 +13,13 @@ import Kingfisher
 struct TabBarView: View {
     
     let user: User
-    
-    //@ObservedObject var miniHandler: MinimizableViewHandler = MinimizableViewHandler()
-   // @Environment(\.colorScheme) var colorScheme
-   // @State var selectedTabIndex: Int = 0
-  //  @GestureState var dragOffset = CGSize.zero
-    //@Namespace var namespace
         
     @EnvironmentObject var viewModel: AuthViewModel
     
     @ObservedObject var feedViewModel = FeedViewModel()
     
+    //Search View Model initialized
+    @ObservedObject var searchModel = SearchViewModel()
     
     //Testing LNPopup
     @State var isPopupBarPresented = false
@@ -46,7 +42,6 @@ struct TabBarView: View {
 
         UITabBar.appearance().unselectedItemTintColor = .black
         
-
     }
     
 
@@ -89,7 +84,7 @@ struct TabBarView: View {
                     
                 //MARK: Search View
                     NavigationView{
-                        SearchView()
+                        SearchView(viewModel: searchModel, isPopupBarPresented: $isPopupBarPresented, PlayingPost: $PlayingPost)
                             .navigationTitle("Search")
                             .navigationBarTitleDisplayMode(.inline)
                             .accentColor(.black)
@@ -124,7 +119,7 @@ struct TabBarView: View {
                     
                     //Profile
                     NavigationView{
-                        ProfileView(user: user)
+                        ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, PlayingPost: $PlayingPost)
                             .toolbar {
                                 Menu {
                                     Text("Settings")
