@@ -130,7 +130,7 @@ class AudioRecorderViewModel: NSObject, ObservableObject {
             let recording = Recording(fileURL: audio, createdAt: getCreationDate(for: audio))
             //add to the array
             recordings.append(recording)
-            print("DEBUG: AudioRecordingViewModel - createAt: \(recording.createdAt) name: \(recording.fileURL.lastPathComponent)")
+           // print("DEBUG: AudioRecordingViewModel - createAt: \(recording.createdAt) name: \(recording.fileURL.lastPathComponent)")
         }
         
         //sort the recordings array by the creation date

@@ -125,7 +125,7 @@ struct PlayBackPostView: View {
                 if let combined = combinedURL{
                     self.audioPlayer.prepPlayback(audio: combined)
                 }
-                print("DEBUG: PlayBackPostView - \(String(describing: combinedURL))")
+              //  print("DEBUG: PlayBackPostView - \(String(describing: combinedURL))")
                 isReady = true
                 
             }

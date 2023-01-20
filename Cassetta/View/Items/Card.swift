@@ -69,7 +69,7 @@ struct Card: View {
         }
         .padding([.bottom, .top], 24)
         .padding([.leading, .trailing], 8)
-        .frame(maxWidth: UIScreen.main.bounds.width - 15.0, maxHeight: UIScreen.main.bounds.height / 2.4, alignment: .top)
+        .frame(maxWidth: UIScreen.screenWidth - 15.0, maxHeight: UIScreen.screenWidth - 15.0, alignment: .top)
         .background(Color("CassettaWhite"))
         .cornerRadius(15.0)
         .overlay {
@@ -77,6 +77,7 @@ struct Card: View {
                 .stroke(Color("CassettaBorder"), lineWidth: 1)
             
         }
+        
     }
     
 }

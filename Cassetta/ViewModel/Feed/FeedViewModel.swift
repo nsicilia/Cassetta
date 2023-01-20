@@ -27,7 +27,7 @@ class FeedViewModel: ObservableObject {
             // map the documents to Post objects using the data(as:) method and assign the result to the posts property
             self.posts = documents.compactMap({try? $0.data(as: Post.self)})
             
-            print("DEBUG: self.posts", self.posts)
+           // print("DEBUG: self.posts", self.posts)
         }
     }
 }

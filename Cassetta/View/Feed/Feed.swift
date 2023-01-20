@@ -24,12 +24,22 @@ struct Feed: View {
         ScrollView(showsIndicators: false){
             LazyVStack {
                 ForEach(viewModel.posts) { post in
-                    Card(post: post)
-                        .padding(.bottom, 12)
-                        .onTapGesture {
-                            PlayingPost = post
-                            isPopupBarPresented = true
-                        }
+                    
+                    Button {
+                        PlayingPost = post
+                        isPopupBarPresented = true
+                    } label: {
+                        Card(post: post)
+                    }
+                    .tint(.black)
+                    .padding(.bottom, 12)
+                    
+//                    Card(post: post)
+//                        .onTapGesture {
+//                            PlayingPost = post
+//                            isPopupBarPresented = true
+//                        }
+                    
                 }
                 
             }

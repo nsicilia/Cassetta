@@ -163,7 +163,7 @@ struct TabBarView: View {
             
         }
        
-        .popup(isBarPresented: $isPopupBarPresented , isPopupOpen: $isPopupOpen) {
+        .popup(isBarPresented: $isPopupBarPresented , isPopupOpen: $isPopupOpen, onOpen: {print("DEBUG: onOpen")}) {
                 PlayerView()
                     .popupTitle(
                         PlayingPost?.title ?? ""

@@ -46,7 +46,7 @@ struct ImageUploader {
                 return
             }
             
-            print("DEBUG:Succsessfully uploaded image")
+            //print("DEBUG:Succsessfully uploaded image")
             
             //get url of photo
             ref.downloadURL { url, _ in

@@ -47,8 +47,8 @@ class AuthViewModel: ObservableObject {
                 
                 guard let user = result?.user else { return }
                 
-                print("DEBUG:Succsessfully registered user")
-                print("DEBUG: uid \(user.uid)")
+               // print("DEBUG:Succsessfully registered user")
+               // print("DEBUG: uid \(user.uid)")
                 
                 //agrigate user infomration
                 let data = ["email": email,
@@ -59,7 +59,7 @@ class AuthViewModel: ObservableObject {
                 
                 //Upload
                 Firestore.firestore().collection("users").document(user.uid).setData(data) { _ in
-                    print("DEBUG:Succsessfully uploaded user data")
+                   // print("DEBUG:Succsessfully uploaded user data")
                     self.userSession = user
                     self.fetchUser()
                 }

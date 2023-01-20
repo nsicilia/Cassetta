@@ -59,11 +59,11 @@ class ConcatenateAudioFiles {
     
     func deleteFinalRecording(urlToDelete: URL){
         
-            print("DEBUG:deleteRecording - URL attempting to delete \(urlToDelete)")
+           // print("DEBUG:deleteRecording - URL attempting to delete \(urlToDelete)")
             
             do{
                 try FileManager.default.removeItem(at: urlToDelete)
-                print("DEBUG:deleteRecording - Sucessfully deleted \(urlToDelete)")
+               // print("DEBUG:deleteRecording - Sucessfully deleted \(urlToDelete)")
             } catch{
                 print("DEBUG:deleteRecording - File could not be deleted!")
             }

@@ -35,7 +35,7 @@ class AudioUploader: NSObject, ObservableObject {
                 return
             }
             
-            print("DEBUG:Succsessfully uploaded audio")
+           // print("DEBUG:Succsessfully uploaded audio")
             
             //get url of audio
             ref.downloadURL { url, _ in
