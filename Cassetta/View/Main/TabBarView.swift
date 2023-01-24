@@ -32,6 +32,8 @@ struct TabBarView: View {
     @State var PlayingPost: Post?
     
     
+    
+    
     init(user: User) {
         self.user = user
         
@@ -168,7 +170,9 @@ struct TabBarView: View {
                     .popupTitle(
                         PlayingPost?.title ?? ""
                     )
-                    .popupImage(Image("Flower"))
+                    //.popupImage(
+                       // UIImage(named: "DefaultPhotoIcon")
+                    //)
                     .popupBarItems({
                         Button(action: {
                             // isPlaying.toggle()
@@ -194,6 +198,9 @@ struct TabBarView: View {
     
     
 }
+
+
+
 
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
