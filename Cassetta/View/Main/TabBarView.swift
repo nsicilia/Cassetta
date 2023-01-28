@@ -166,29 +166,18 @@ struct TabBarView: View {
         }
        
         .popup(isBarPresented: $isPopupBarPresented , isPopupOpen: $isPopupOpen, onOpen: {print("DEBUG: onOpen")}) {
-                PlayerView()
-                    .popupTitle(
-                        PlayingPost?.title ?? ""
-                    )
+            
+            if let post = PlayingPost{
+                PlayerView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, post: post)
+            }
+            
+//                    .popupTitle(
+//                        PlayingPost?.title ?? ""
+//                    )
                     //.popupImage(
                        // UIImage(named: "DefaultPhotoIcon")
                     //)
-                    .popupBarItems({
-                        Button(action: {
-                            // isPlaying.toggle()
-                        }) {
-                            Image(systemName: "play.fill")
-                                .foregroundColor(.black)
-                        }
-                        
-                        Button(action: {
-                            isPopupBarPresented = false
-                             isPopupOpen = true
-                        }) {
-                            Image(systemName: "xmark")
-                                .foregroundColor(.black)
-                        }
-                    })
+            
             }
             .popupInteractionStyle(.drag)
         
