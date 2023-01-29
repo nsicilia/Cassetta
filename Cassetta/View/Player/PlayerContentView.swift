@@ -6,23 +6,28 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct PlayerContentView: View {
     @State var likeValue: Bool = false
     @State var dislikeValue: Bool = false
     
+    //The post
+    let post: Post
+    
     var body: some View {
         ScrollView{
             
             Group{
-                
-                Image("RecordPlayer")
+               // Image("DefaultImage")
+                Image(uiImage: UIImage(data: try! Data(contentsOf: URL(string: post.imageUrl)!)) ?? UIImage(named: "DefaultImage")!)
                     .resizable()
-                    .frame(width: UIScreen.screenWidth / 1.1, height: UIScreen.screenWidth / 1.4)
                     .aspectRatio(contentMode: .fill)
+                    .frame(width: UIScreen.screenWidth / 1.1, height: UIScreen.screenWidth / 1.4)
                     .cornerRadius(5)
-                
-                Text("5 Shocking Facts About Records That Will Change the Way You Listen to Music Forever!")
+                    
+                //the title
+                Text(post.title)
                     .font(.title)
                     .foregroundColor(.primary)
                     .fontWeight(.semibold)
@@ -106,7 +111,7 @@ struct PlayerContentView: View {
                 Text("Swipe for comments ➡️")
                 
                 LazyVStack(spacing: 15){
-                    Text("Are you a music lover who thought you knew everything there is to know about records? Think again! In this video, we uncover five shocking facts about records that will change the way you listen to music forever. From the secret messages hidden in early vinyl pressings to the surprising number of records still sold today, this video is packed with information that will blow your mind. Don't believe us? Watch the video and see for yourself. Trust us, you won't be disappointed. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
+                    Text(post.description)
                         .padding([.horizontal, .top], 32)
                 }
                 
@@ -121,6 +126,6 @@ struct PlayerContentView: View {
 
 struct PlayerContentView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerContentView()
+        PlayerContentView(post: Post(audioUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", category: "News", description: "A pineapple is a tropical fruit with a tough, spiky exterior and a juicy, sweet interior. It is known for its distinctive shape and golden yellow color, and is a popular ingredient in a variety of culinary dishes, both sweet and savory. Pineapple is also rich in vitamins, minerals and enzymes, making it a nutritious and delicious snack. To prepare a pineapple, the tough exterior is cut away, revealing the juicy and sweet flesh inside, which can be eaten fresh or used in recipes. Pineapples are grown in warm climates, such as Hawaii and South America.", dislikes: 2, imageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", likes: 4, ownerFullname: "Jessica Johnson", ownerImageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", ownerUid: "ddd", ownerUsername: "jessica", timestamp: Timestamp(), title: "3 Shocking Facts About Records That Will Change the Way You Listen to Music Forever!"))
     }
 }

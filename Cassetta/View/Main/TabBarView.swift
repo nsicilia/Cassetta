@@ -13,7 +13,7 @@ import Kingfisher
 struct TabBarView: View {
     
     let user: User
-        
+    
     @EnvironmentObject var viewModel: AuthViewModel
     
     @ObservedObject var feedViewModel = FeedViewModel()
@@ -41,18 +41,18 @@ struct TabBarView: View {
         UINavigationBar.appearance().barTintColor = .clear
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         UINavigationBar.appearance().shadowImage = UIImage()
-
+        
         UITabBar.appearance().unselectedItemTintColor = .black
         
     }
     
-
+    
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
                 TabView(selection: $selectedTab) {
                     
-                //MARK: Home View
+                    //MARK: Home View
                     NavigationView{
                         Feed(viewModel: feedViewModel, isPopupBarPresented: $isPopupBarPresented, PlayingPost: $PlayingPost)
                             .toolbar {
@@ -84,7 +84,7 @@ struct TabBarView: View {
                     
                     
                     
-                //MARK: Search View
+                    //MARK: Search View
                     NavigationView{
                         SearchView(viewModel: searchModel, isPopupBarPresented: $isPopupBarPresented, PlayingPost: $PlayingPost)
                             .navigationTitle("Search")
@@ -96,7 +96,7 @@ struct TabBarView: View {
                     }
                     
                     
-                //MARK: Upload View
+                    //MARK: Upload View
                     Image(systemName: "mic")
                         .onTapGesture {
                             self.showPopover = true
@@ -164,29 +164,23 @@ struct TabBarView: View {
             
             
         }
-       
+        
         .popup(isBarPresented: $isPopupBarPresented , isPopupOpen: $isPopupOpen, onOpen: {print("DEBUG: onOpen")}) {
             
             if let post = PlayingPost{
                 PlayerView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, post: post)
             }
             
-//                    .popupTitle(
-//                        PlayingPost?.title ?? ""
-//                    )
-                    //.popupImage(
-                       // UIImage(named: "DefaultPhotoIcon")
-                    //)
-            
-            }
-            .popupInteractionStyle(.drag)
-        
+        }
         
         
     }
     
     
+    
 }
+
+
 
 
 

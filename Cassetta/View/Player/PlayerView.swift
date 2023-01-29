@@ -45,7 +45,7 @@ struct PlayerView: View {
             Group{
                 TabView(selection: $currentTab) {
                     
-                    PlayerContentView().tag(0)
+                    PlayerContentView(post: post).tag(0)
                     
                     CommentsView().tag(1)
                 }
@@ -67,7 +67,10 @@ struct PlayerView: View {
         //title
         .popupTitle(verbatim: post.title)
         //image
-        //.popupImage(<#Image#>)
+        .popupImage(
+            Image(uiImage: UIImage(data: try! Data(contentsOf: URL(string: post.imageUrl)!)) ?? UIImage(named: "GenericPhotoIcon")!).resizable()
+        )
+
         //buttons
         .popupBarItems({
             Button(action: {
@@ -85,7 +88,7 @@ struct PlayerView: View {
                     .foregroundColor(.black)
             }
         })
-        
+        .popupInteractionStyle(.drag)
         
         
     }
