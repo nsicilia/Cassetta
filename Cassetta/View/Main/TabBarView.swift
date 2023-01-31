@@ -174,7 +174,7 @@ struct TabBarView: View {
             }
             
         }
-        
+        .popupInteractionStyle(.drag)
         
     }
     

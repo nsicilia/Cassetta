@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import MinimizableView
+
 import Combine
 
 struct MainTabView: View {
@@ -20,7 +20,7 @@ struct MainTabView: View {
     //Shows or hides the upload view
     @State var showModel = false
     
-    @ObservedObject var miniHandler: MinimizableViewHandler = MinimizableViewHandler()
+    
     @Environment(\.colorScheme) var colorScheme
     @State var selectedTabIndex: Int = 0
     @GestureState var dragOffset = CGSize.zero
@@ -211,21 +211,21 @@ struct MainTabView: View {
     
     
     
-    func backgroundView() -> some View {
-        VStack(spacing: 0){
-            Color.white.ignoresSafeArea()
-            if self.miniHandler.isMinimized {
-                Divider()
-            }
-        }.cornerRadius(self.miniHandler.isMinimized ? 0 : 20)
-            .shadow(color: .gray.opacity(self.colorScheme == .light ? 0.5 : 0), radius: 5, x: 0, y: -5)
-            .onTapGesture(perform: {
-                if self.miniHandler.isMinimized {
-                    self.miniHandler.expand()
-                    //alternatively, override the default animation. self.miniHandler.expand(animation: Animation)
-                }
-            })
-    }
+//    func backgroundView() -> some View {
+//        VStack(spacing: 0){
+//            Color.white.ignoresSafeArea()
+//            if self.miniHandler.isMinimized {
+//                Divider()
+//            }
+//        }.cornerRadius(self.miniHandler.isMinimized ? 0 : 20)
+//            .shadow(color: .gray.opacity(self.colorScheme == .light ? 0.5 : 0), radius: 5, x: 0, y: -5)
+//            .onTapGesture(perform: {
+//                if self.miniHandler.isMinimized {
+//                    self.miniHandler.expand()
+//                    //alternatively, override the default animation. self.miniHandler.expand(animation: Animation)
+//                }
+//            })
+//    }
     
     
 //    func dragUpdated(value: DragGesture.Value) {

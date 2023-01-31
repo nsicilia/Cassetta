@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import MinimizableView
+
 import Firebase
 
 struct Feed: View {

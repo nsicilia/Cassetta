@@ -109,15 +109,6 @@
       }
     },
     {
-      "identity" : "minimizableview",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/DominikButz/MinimizableView",
-      "state" : {
-        "branch" : "master",
-        "revision" : "85f640a722ce96285386818028ab5144ea517344"
-      }
-    },
-    {
       "identity" : "nanopb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/nanopb.git",

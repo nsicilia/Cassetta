@@ -7,11 +7,11 @@
 
 import SwiftUI
 import Combine
-import MinimizableView
+
 
 struct MiniPlayerView: View {
     
-    @EnvironmentObject var minimizableViewHandler: MinimizableViewHandler
+   
     
     var body: some View {
         GeometryReader { proxy in
@@ -43,7 +43,7 @@ struct MiniPlayerView: View {
                     })
                     
                     Button(action: {
-                        self.minimizableViewHandler.dismiss()
+                      //  self.minimizableViewHandler.dismiss()
                     }, label: {
                         
                         Image(systemName: "xmark")
@@ -55,9 +55,7 @@ struct MiniPlayerView: View {
                 
             }
             .frame(width: proxy.size.width, height: proxy.size.height)
-            .onTapGesture {
-                self.minimizableViewHandler.expand()
-            }.background(Color(.white))
+
             
         }
         .transition(AnyTransition.asymmetric(insertion: AnyTransition.opacity.animation(.easeIn(duration: 0.5)), removal: AnyTransition.opacity.animation(.easeOut(duration: 0.1))))

@@ -90,7 +90,7 @@ struct PlayerView: View {
                     .foregroundColor(.black)
             }
         })
-        .popupInteractionStyle(.drag)
+        
         
         
     }
