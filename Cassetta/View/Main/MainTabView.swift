@@ -59,7 +59,7 @@ struct MainTabView: View {
                         //The Home view
                     case 0:
                         NavigationView {
-                            Feed(viewModel: feedViewModel, isPopupBarPresented: .constant(false), PlayingPost: $PlayingPost)
+                            Feed(viewModel: feedViewModel, isPopupBarPresented: .constant(false), isPopupOpen: .constant(false), PlayingPost: $PlayingPost)
                                 .toolbar {
                                     ToolbarItemGroup(placement: .navigationBarLeading) {
                                         Image("BlackCassettaLogo")

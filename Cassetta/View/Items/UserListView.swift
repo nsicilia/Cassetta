@@ -15,6 +15,7 @@ struct UserListView: View {
     
     //For the LNPopup & Playerview
     @Binding var isPopupBarPresented: Bool
+    @Binding var isPopupOpen: Bool
     @Binding var PlayingPost: Post?
         
     var users: [User] {
@@ -27,7 +28,7 @@ struct UserListView: View {
                 ForEach(users) { user in
                     
                     NavigationLink {
-                        ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, PlayingPost: $PlayingPost)
+                        ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, PlayingPost: $PlayingPost)
                     } label: {
                         LargeUserCell(user: user)
                             .padding(.leading)

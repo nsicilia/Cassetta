@@ -55,7 +55,7 @@ struct TabBarView: View {
                     
                     //MARK: Home View
                     NavigationView{
-                        Feed(viewModel: feedViewModel, isPopupBarPresented: $isPopupBarPresented, PlayingPost: $PlayingPost)
+                        Feed(viewModel: feedViewModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, PlayingPost: $PlayingPost)
                             .toolbar {
                                 ToolbarItemGroup(placement: .navigationBarLeading) {
                                     Image("BlackCassettaLogo")
@@ -87,7 +87,7 @@ struct TabBarView: View {
                     
                     //MARK: Search View
                     NavigationView{
-                        SearchView(viewModel: searchModel, isPopupBarPresented: $isPopupBarPresented, PlayingPost: $PlayingPost)
+                        SearchView(viewModel: searchModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, PlayingPost: $PlayingPost)
                             .navigationTitle("Search")
                             .navigationBarTitleDisplayMode(.inline)
                             .accentColor(.black)
@@ -122,7 +122,7 @@ struct TabBarView: View {
                     
                     //Profile
                     NavigationView{
-                        ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, PlayingPost: $PlayingPost)
+                        ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, PlayingPost: $PlayingPost)
                             .toolbar {
                                 Menu {
                                     Text("Settings")
