@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import Kingfisher
 
 struct PlayerContentView: View {
     @State var likeValue: Bool = false
@@ -19,8 +20,10 @@ struct PlayerContentView: View {
         ScrollView{
             
             Group{
+                
                // Image("DefaultImage")
-                Image(uiImage: UIImage(data: try! Data(contentsOf: URL(string: post.imageUrl)!)) ?? UIImage(named: "DefaultImage")!)
+               // Image(uiImage: UIImage(data: try! Data(contentsOf: URL(string: post.imageUrl)!)) ?? UIImage(named: "DefaultImage")!)
+                KFImage(URL(string: post.imageUrl))
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: UIScreen.screenWidth / 1.1, height: UIScreen.screenWidth / 1.4)
@@ -123,6 +126,8 @@ struct PlayerContentView: View {
         }
     }
 }
+
+
 
 struct PlayerContentView_Previews: PreviewProvider {
     static var previews: some View {

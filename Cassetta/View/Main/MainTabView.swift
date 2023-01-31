@@ -29,7 +29,7 @@ struct MainTabView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     //Main Feed Data ViewModel
-    @ObservedObject var feedViewModel = FeedViewModel()
+    @ObservedObject var feedViewModel = FeedViewModel(config: .explore)
     
     
     @State var PlayingPost: Post?

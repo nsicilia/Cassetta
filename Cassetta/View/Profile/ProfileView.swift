@@ -28,7 +28,7 @@ struct ProfileView: View {
             self._isPopupBarPresented = isPopupBarPresented
             self._PlayingPost = PlayingPost
         
-            self.feedModel = FeedViewModel()
+        self.feedModel = FeedViewModel(config: .profile(user.id ?? ""))
         }
     
     var body: some View {

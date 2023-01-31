@@ -69,8 +69,10 @@ struct PlayerView: View {
         //image
         .popupImage(
             Image(uiImage: UIImage(data: try! Data(contentsOf: URL(string: post.imageUrl)!)) ?? UIImage(named: "GenericPhotoIcon")!).resizable()
+            
         )
-
+        
+        
         //buttons
         .popupBarItems({
             Button(action: {

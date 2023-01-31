@@ -6,6 +6,7 @@
 //
 
 import Firebase
+import FirebaseFirestore
 
 ///Access firestore collection "users"
 let COLLECTION_USERS = Firestore.firestore().collection("users")

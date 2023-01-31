@@ -16,20 +16,21 @@ struct TabBarView: View {
     
     @EnvironmentObject var viewModel: AuthViewModel
     
-    @ObservedObject var feedViewModel = FeedViewModel()
+    @ObservedObject var feedViewModel = FeedViewModel(config: .explore)
     
     //Search View Model initialized
     @ObservedObject var searchModel = SearchViewModel()
     
     //Testing LNPopup
     @State var isPopupBarPresented = false
+
     @State var isPopupOpen = true
     
     @State private var showPopover = false
     
     @State var selectedTab = 1
     
-    @State var PlayingPost: Post?
+    @State var PlayingPost: Post? 
     
     
     
@@ -165,9 +166,10 @@ struct TabBarView: View {
             
         }
         
-        .popup(isBarPresented: $isPopupBarPresented , isPopupOpen: $isPopupOpen, onOpen: {print("DEBUG: onOpen")}) {
+        .popup(isBarPresented: $isPopupBarPresented , isPopupOpen: $isPopupOpen ) {
             
             if let post = PlayingPost{
+                
                 PlayerView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, post: post)
             }
             
