@@ -78,8 +78,6 @@
 		01C4208D293AC621003FF2D5 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C4208C293AC621003FF2D5 /* CommentCell.swift */; };
 		01D0460A28E9F3A900038C1C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D0460928E9F3A900038C1C /* LoginView.swift */; };
 		01D0460C28E9F4C200038C1C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D0460B28E9F4C200038C1C /* CustomTextField.swift */; };
-		01D0460E28E9F8E600038C1C /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D0460D28E9F8E600038C1C /* BlurView.swift */; };
-		01D25E3A2927F8C10099F9D8 /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D25E392927F8C10099F9D8 /* MiniPlayerView.swift */; };
 		01DAE9D028DF83E400F61034 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAE9CF28DF83E400F61034 /* PlayerView.swift */; };
 		01ECA3F02979B45A00AB9082 /* LNPopupUI-Static in Frameworks */ = {isa = PBXBuildFile; productRef = 01ECA3EF2979B45A00AB9082 /* LNPopupUI-Static */; };
 /* End PBXBuildFile section */
@@ -147,8 +145,6 @@
 		01C4208C293AC621003FF2D5 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		01D0460928E9F3A900038C1C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		01D0460B28E9F4C200038C1C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		01D0460D28E9F8E600038C1C /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
-		01D25E392927F8C10099F9D8 /* MiniPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerView.swift; sourceTree = "<group>"; };
 		01DAE9CF28DF83E400F61034 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -412,8 +408,6 @@
 			isa = PBXGroup;
 			children = (
 				01DAE9CF28DF83E400F61034 /* PlayerView.swift */,
-				01D0460D28E9F8E600038C1C /* BlurView.swift */,
-				01D25E392927F8C10099F9D8 /* MiniPlayerView.swift */,
 				015CE4E2293AA2F50096D35C /* BottomControlsView.swift */,
 				01C42088293AB528003FF2D5 /* PlayerContentView.swift */,
 				01C4208A293AB7EA003FF2D5 /* CommentsView.swift */,
@@ -512,7 +506,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01D25E3A2927F8C10099F9D8 /* MiniPlayerView.swift in Sources */,
 				0198C7D728EA048C00676189 /* CustomSecureField.swift in Sources */,
 				014DF99128D4D17D00E6A754 /* CategoryCell.swift in Sources */,
 				0198C7D528E9F9E900676189 /* TabBarView.swift in Sources */,
@@ -532,7 +525,6 @@
 				019F62F4294909AA0045FF39 /* StyledButton.swift in Sources */,
 				01AA96E829665C7E00011F52 /* UploadPostViewModel.swift in Sources */,
 				010B6B8E2915B3B800A13DC8 /* AuthViewModel.swift in Sources */,
-				01D0460E28E9F8E600038C1C /* BlurView.swift in Sources */,
 				01473BFF29232058004E0429 /* ImageUploader.swift in Sources */,
 				014DF99728D5000E00E6A754 /* ProfileHeaderView.swift in Sources */,
 				0198C7DD28EA111400676189 /* ForgetPasswordView.swift in Sources */,
