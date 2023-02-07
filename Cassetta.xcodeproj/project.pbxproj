@@ -34,6 +34,8 @@
 		0130F5362929808D0033BC32 /* LargeUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130F5352929808D0033BC32 /* LargeUserCell.swift */; };
 		0130F538292981A80033BC32 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130F537292981A80033BC32 /* SearchViewModel.swift */; };
 		01473BFF29232058004E0429 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01473BFE29232058004E0429 /* ImageUploader.swift */; };
+		014BA7E62991A65600370AE3 /* AudioStreaming in Frameworks */ = {isa = PBXBuildFile; productRef = 014BA7E52991A65600370AE3 /* AudioStreaming */; };
+		014BA7E82991A9A400370AE3 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014BA7E72991A9A400370AE3 /* AudioManager.swift */; };
 		014DF97F28D17EBC00E6A754 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF97E28D17EBC00E6A754 /* SearchBar.swift */; };
 		014DF98128D1807500E6A754 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF98028D1807500E6A754 /* Extensions.swift */; };
 		014DF98328D29EF000E6A754 /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF98228D29EF000E6A754 /* UserListView.swift */; };
@@ -99,6 +101,7 @@
 		0130F5352929808D0033BC32 /* LargeUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeUserCell.swift; sourceTree = "<group>"; };
 		0130F537292981A80033BC32 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		01473BFE29232058004E0429 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
+		014BA7E72991A9A400370AE3 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		014DF97E28D17EBC00E6A754 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		014DF98028D1807500E6A754 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		014DF98228D29EF000E6A754 /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
@@ -156,6 +159,7 @@
 				0102516B2926EEF400908D62 /* Kingfisher in Frameworks */,
 				0102515C2926EE2700908D62 /* FirebaseDatabaseSwift in Frameworks */,
 				010251562926EE2700908D62 /* FirebaseAnalytics in Frameworks */,
+				014BA7E62991A65600370AE3 /* AudioStreaming in Frameworks */,
 				010251662926EE2700908D62 /* FirebaseMessaging in Frameworks */,
 				010251582926EE2700908D62 /* FirebaseAuth in Frameworks */,
 				010251642926EE2700908D62 /* FirebaseFunctions in Frameworks */,
@@ -174,6 +178,7 @@
 		0116A8CB28C3B5CE0050780B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				014BA7E32991A62000370AE3 /* Player */,
 				0121566E2953AD7B00C7D4DC /* Post */,
 				0116A8D828C3B7BC0050780B /* Authentication */,
 				0116A8DA28C3B7D00050780B /* Feed */,
@@ -339,6 +344,14 @@
 			path = Post;
 			sourceTree = "<group>";
 		};
+		014BA7E32991A62000370AE3 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				014BA7E72991A9A400370AE3 /* AudioManager.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
 		0189DB9E27D7035100956E28 = {
 			isa = PBXGroup;
 			children = (
@@ -445,6 +458,7 @@
 				010251672926EE2700908D62 /* FirebaseStorage */,
 				0102516A2926EEF400908D62 /* Kingfisher */,
 				01ECA3EF2979B45A00AB9082 /* LNPopupUI-Static */,
+				014BA7E52991A65600370AE3 /* AudioStreaming */,
 			);
 			productName = Cassetta;
 			productReference = 0189DBA727D7035100956E28 /* Cassetta.app */;
@@ -478,6 +492,7 @@
 				010251542926EE2700908D62 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				010251692926EEF400908D62 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				01ECA3EE2979B45A00AB9082 /* XCRemoteSwiftPackageReference "LNPopupUI" */,
+				014BA7E42991A65600370AE3 /* XCRemoteSwiftPackageReference "AudioStreaming" */,
 			);
 			productRefGroup = 0189DBA827D7035100956E28 /* Products */;
 			projectDirPath = "";
@@ -538,6 +553,7 @@
 				012156742953B01D00C7D4DC /* ConcatenateAudioFiles.swift in Sources */,
 				014DF98D28D3AC8C00E6A754 /* HighlightsView.swift in Sources */,
 				014DF99528D4FF9A00E6A754 /* UserStatView.swift in Sources */,
+				014BA7E82991A9A400370AE3 /* AudioManager.swift in Sources */,
 				019F62E82947C1040045FF39 /* MainTabView.swift in Sources */,
 				0102516D2926F39E00908D62 /* User.swift in Sources */,
 				0102516F2926F58900908D62 /* Constants.swift in Sources */,
@@ -792,6 +808,14 @@
 				kind = branch;
 			};
 		};
+		014BA7E42991A65600370AE3 /* XCRemoteSwiftPackageReference "AudioStreaming" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dimitris-c/AudioStreaming";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		01ECA3EE2979B45A00AB9082 /* XCRemoteSwiftPackageReference "LNPopupUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LeoNatan/LNPopupUI.git";
@@ -857,6 +881,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 010251692926EEF400908D62 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		014BA7E52991A65600370AE3 /* AudioStreaming */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 014BA7E42991A65600370AE3 /* XCRemoteSwiftPackageReference "AudioStreaming" */;
+			productName = AudioStreaming;
 		};
 		01ECA3EF2979B45A00AB9082 /* LNPopupUI-Static */ = {
 			isa = XCSwiftPackageProductDependency;
