@@ -36,6 +36,7 @@
 		01473BFF29232058004E0429 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01473BFE29232058004E0429 /* ImageUploader.swift */; };
 		014BA7E62991A65600370AE3 /* AudioStreaming in Frameworks */ = {isa = PBXBuildFile; productRef = 014BA7E52991A65600370AE3 /* AudioStreaming */; };
 		014BA7E82991A9A400370AE3 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014BA7E72991A9A400370AE3 /* AudioManager.swift */; };
+		014BA7EB2992CEC700370AE3 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 014BA7EA2992CEC700370AE3 /* AudioKit */; };
 		014DF97F28D17EBC00E6A754 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF97E28D17EBC00E6A754 /* SearchBar.swift */; };
 		014DF98128D1807500E6A754 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF98028D1807500E6A754 /* Extensions.swift */; };
 		014DF98328D29EF000E6A754 /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF98228D29EF000E6A754 /* UserListView.swift */; };
@@ -166,6 +167,7 @@
 				01ECA3F02979B45A00AB9082 /* LNPopupUI-Static in Frameworks */,
 				0102515A2926EE2700908D62 /* FirebaseDatabase in Frameworks */,
 				0102515E2926EE2700908D62 /* FirebaseDynamicLinks in Frameworks */,
+				014BA7EB2992CEC700370AE3 /* AudioKit in Frameworks */,
 				010251682926EE2700908D62 /* FirebaseStorage in Frameworks */,
 				010251602926EE2700908D62 /* FirebaseFirestore in Frameworks */,
 				010251622926EE2700908D62 /* FirebaseFirestoreSwift in Frameworks */,
@@ -459,6 +461,7 @@
 				0102516A2926EEF400908D62 /* Kingfisher */,
 				01ECA3EF2979B45A00AB9082 /* LNPopupUI-Static */,
 				014BA7E52991A65600370AE3 /* AudioStreaming */,
+				014BA7EA2992CEC700370AE3 /* AudioKit */,
 			);
 			productName = Cassetta;
 			productReference = 0189DBA727D7035100956E28 /* Cassetta.app */;
@@ -493,6 +496,7 @@
 				010251692926EEF400908D62 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				01ECA3EE2979B45A00AB9082 /* XCRemoteSwiftPackageReference "LNPopupUI" */,
 				014BA7E42991A65600370AE3 /* XCRemoteSwiftPackageReference "AudioStreaming" */,
+				014BA7E92992CEC700370AE3 /* XCRemoteSwiftPackageReference "AudioKit" */,
 			);
 			productRefGroup = 0189DBA827D7035100956E28 /* Products */;
 			projectDirPath = "";
@@ -816,6 +820,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		014BA7E92992CEC700370AE3 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		01ECA3EE2979B45A00AB9082 /* XCRemoteSwiftPackageReference "LNPopupUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LeoNatan/LNPopupUI.git";
@@ -886,6 +898,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 014BA7E42991A65600370AE3 /* XCRemoteSwiftPackageReference "AudioStreaming" */;
 			productName = AudioStreaming;
+		};
+		014BA7EA2992CEC700370AE3 /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 014BA7E92992CEC700370AE3 /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
 		};
 		01ECA3EF2979B45A00AB9082 /* LNPopupUI-Static */ = {
 			isa = XCSwiftPackageProductDependency;

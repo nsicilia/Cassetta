@@ -97,11 +97,12 @@ struct PlayerView: View {
         .onAppear{
             if previewstatus{
                 audioManager.startPlayer(track: post.audioUrl)
-                print("DEBUG: \(audioManager.player.state)")
+                //print("DEBUG: \(audioManager.player.state)")
             }
         }
         .onDisappear{
             audioManager.player.stop()
+            
         }
         
         
