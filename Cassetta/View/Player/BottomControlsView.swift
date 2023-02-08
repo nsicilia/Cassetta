@@ -11,6 +11,14 @@ struct BottomControlsView: View {
     
     @State private var value: Double = 00.0
     
+    var audioManager: AudioManager
+    
+    @State private var isEditing: Bool = false
+    
+    let timer = Timer
+        .publish(every: 0.5, on: .main, in: .common)
+        .autoconnect()
+    
     
     var body: some View {
         ZStack{
@@ -22,24 +30,24 @@ struct BottomControlsView: View {
                 VStack(spacing: 5){
                     
                     
-                    Slider(value: $value, in: 0...(60.0 ))
-//                    { editing in
-//
-//                        isEditing = editing
-//
-//                        if !editing {
-//                            audioManager.seekPlayer(timeInSec: value)
-//                        }
-//                    }
+                    Slider(value: $value, in: 0...(audioManager.player.duration))
+                    { editing in
+
+                        isEditing = editing
+
+                        if !editing {
+                            audioManager.seekPlayer(timeInSec: value)
+                        }
+                    }
                         .tint(Color("CassettaOrange"))
 
                     
                     //MARK: Playback Time
                     
                     HStack{
-                        Text("00:00")
+                        Text(DateComponentsFormatter.positional.string(from: audioManager.player.progress ) ?? "00:00")
                         Spacer()
-                        Text("60:00")
+                        Text(DateComponentsFormatter.positional.string(from: audioManager.player.duration ) ?? "00:00")
                     }
                     .font(.caption)
                     .foregroundColor(.black)
@@ -49,9 +57,10 @@ struct BottomControlsView: View {
                 
                 HStack{
                     Button {
-                        //todo
+                        //go backward ten
+                        audioManager.backwardTen()
                     } label: {
-                        Image(systemName: "gobackward.15")
+                        Image(systemName: "gobackward.10")
                             .font(.title)
                             .foregroundColor(.black)
                     }
@@ -59,18 +68,29 @@ struct BottomControlsView: View {
                     
                     Spacer()
                     Button {
-                        //todo
+                        audioManager.playingStatus.toggle()
+                        if audioManager.playingStatus {
+                            audioManager.player.resume()
+                            print("DEBUG: \(audioManager.player.state)")
+                            
+                        } else{
+                            audioManager.player.pause()
+                            print("DEBUG: \(audioManager.player.state)")
+                            
+                        }
+                        
                     } label: {
-                        Image(systemName: "play.fill")
+                        Image(systemName: audioManager.playingStatus ? "pause.fill" : "play.fill")
                             .font(.title)
                             .foregroundColor(.black)
                     }
                     
                     Spacer()
                     Button {
-                        //todo
+                        //Skip forward ten
+                        audioManager.forwardTen()
                     } label: {
-                        Image(systemName: "goforward.15")
+                        Image(systemName: "goforward.10")
                             .font(.title)
                             .foregroundColor(.black)
                     }
@@ -79,6 +99,11 @@ struct BottomControlsView: View {
                 .padding(.vertical, 10)
                 .font(.largeTitle)
             .frame(maxWidth: .infinity)
+            }
+            .onReceive(timer) { _ in
+                if !isEditing {
+                    value = audioManager.player.progress
+                }
             }
             
         }
@@ -90,6 +115,6 @@ struct BottomControlsView: View {
 
 struct BottomControlsView_Previews: PreviewProvider {
     static var previews: some View {
-        BottomControlsView()
+        BottomControlsView(audioManager: AudioManager())
     }
 }

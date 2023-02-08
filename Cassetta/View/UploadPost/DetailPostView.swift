@@ -15,6 +15,9 @@ struct DetailPostView: View {
     //Image selecter status
     @State var imagePickerPresented = false
     
+    //Duration from previous view
+    var audioDuration: Double
+    
     //Input Texts
     @State private var title = ""
     @State  var description: String = "Description..."
@@ -127,7 +130,7 @@ struct DetailPostView: View {
                         if let audio = combinedURL{
                             selectedBtn.toggle()
                             
-                            viewModel.uploadPost(title: title, description: description, category: category, image: image, audio: audio){ error in
+                            viewModel.uploadPost(title: title, description: description, category: category, image: image, audio: audio, duration: audioDuration){ error in
                                 //error handling
                                 if let error = error {print("DEBUG: failed to upload an image - \(error.localizedDescription)"); return }
                                 //On Completion
@@ -178,7 +181,7 @@ struct RoundedRectProgressViewStyle: ProgressViewStyle {
                 .overlay(Color.brown.opacity(0.05)).cornerRadius(14)
             
             RoundedRectangle(cornerRadius: 14)
-                .frame(width: CGFloat(configuration.fractionCompleted ?? 0) * testwidth - 30, height: 28)
+                .frame(width: CGFloat(configuration.fractionCompleted ?? 0) * abs(testwidth - 30), height: 28)
                 .foregroundColor(Color("CassettaOrange"))
         }
         .padding()
@@ -193,8 +196,10 @@ extension DetailPostView{
     }
 }
 
+
+
 struct DetailPostView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailPostView(showStatus: .constant(true), combinedURL: .constant(URL(string: "https://www.apple.com")!), audioRecorder: AudioRecorderViewModel())
+        DetailPostView(showStatus: .constant(true), audioDuration: 100.0, combinedURL: .constant(URL(string: "https://www.apple.com")!), audioRecorder: AudioRecorderViewModel())
     }
 }

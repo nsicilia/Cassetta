@@ -13,7 +13,7 @@ class UploadPostViewModel: ObservableObject {
     @Published var audioProgress: Double = 0
     private var audioUploadCancellable: Cancellable?
 
-    func uploadPost(title: String, description: String, category: String, image:UIImage, audio: URL, completion: FirestoreCompletion){
+    func uploadPost(title: String, description: String, category: String, image:UIImage, audio: URL, duration: Double, completion: FirestoreCompletion){
         //get info about current user
         guard let user = AuthViewModel.shared.currentUser else { return }
         
@@ -29,6 +29,8 @@ class UploadPostViewModel: ObservableObject {
                             "category": category,
                             "timestamp": Timestamp(date: Date()),
                             "likes": 0,
+                            "views": 0,
+                            "duration": duration,
                             "dislikes": 0,
                             "imageUrl": imageURL,
                             "audioUrl": audioURL,

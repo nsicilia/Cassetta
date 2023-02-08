@@ -144,7 +144,7 @@ struct PlayBackPostView: View {
         .toolbar {
             if isReady{
                 NavigationLink {
-                    DetailPostView(showStatus: $showStatus, combinedURL: $combinedURL, audioRecorder: audioRecorder)
+                    DetailPostView(showStatus: $showStatus, audioDuration: audioPlayer.audioPlayer?.duration ?? 0.0, combinedURL: $combinedURL, audioRecorder: audioRecorder)
                 } label: {
                     Text("next")
                         .bold()

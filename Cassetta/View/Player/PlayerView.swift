@@ -61,7 +61,7 @@ struct PlayerView: View {
             }
             
             
-            BottomControlsView()
+            BottomControlsView(audioManager: audioManager)
             
             Spacer()
             
@@ -72,8 +72,8 @@ struct PlayerView: View {
         .popupTitle(verbatim: post.title)
         //image
         .popupImage(
-            Image(uiImage: UIImage(data: try! Data(contentsOf: URL(string: post.imageUrl)!)) ?? UIImage(named: "GenericPhotoIcon")!).resizable()
-            
+           // Image(uiImage: UIImage(data: try! Data(contentsOf: URL(string: post.imageUrl)!)) ?? UIImage(named: "GenericPhotoIcon")!).resizable()
+            Image("DefaultImage").resizable()
         )
         
         
