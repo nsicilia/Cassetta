@@ -29,7 +29,7 @@ class UploadPostViewModel: ObservableObject {
                             "category": category,
                             "timestamp": Timestamp(date: Date()),
                             "likes": 0,
-                            "views": 0,
+                            "listens": 0,
                             "duration": duration,
                             "dislikes": 0,
                             "imageUrl": imageURL,

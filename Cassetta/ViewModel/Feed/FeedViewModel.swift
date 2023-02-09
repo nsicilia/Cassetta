@@ -9,6 +9,7 @@ import SwiftUI
 
 enum PostFeedConfiguration{
     case explore
+    case newest
     case profile(String)
 }
 
@@ -27,6 +28,9 @@ class FeedViewModel: ObservableObject {
         switch config {
         case .explore:
             fetchExplorePosts()
+            
+        case .newest:
+            fetchNewestPosts()
             
         case .profile(let uid):
             fetchUserPosts(forUid: uid)
@@ -58,6 +62,23 @@ class FeedViewModel: ObservableObject {
             // map the documents to Post objects using the data(as:) method and assign the result to the posts property
             self.posts = documents.compactMap({try? $0.data(as: Post.self)})
         }
-        
     }
+    
+    
+    func fetchNewestPosts(){
+        // retrieve documents from COLLECTION_POSTS collection
+        COLLECTION_POSTS.order(by: "timestamp", descending: true).getDocuments { SnapshotData, error in
+            //Handle error
+            if let error = error{ print("ERROR: SearchViewModel - \(error.localizedDescription)"); return }
+            
+            // check if SnapshotData contains any documents
+            guard let documents = SnapshotData?.documents else {return}
+            // map the documents to Post objects using the data(as:) method and assign the result to the posts property
+            self.posts = documents.compactMap({try? $0.data(as: Post.self)})
+            
+           // print("DEBUG: self.posts", self.posts)
+        }
+    }
+    
+    
 }

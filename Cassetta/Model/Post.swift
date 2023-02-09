@@ -23,5 +23,7 @@ struct Post: Identifiable, Decodable {
     let ownerUsername: String
     let timestamp: Timestamp
     let title: String
+    let duration: Double
+    let listens: Int
     
 }

@@ -11,7 +11,7 @@ struct BottomControlsView: View {
     
     @State private var value: Double = 00.0
     
-    var audioManager: AudioManager
+    @ObservedObject var audioManager: AudioManager
     
     @State private var isEditing: Bool = false
     

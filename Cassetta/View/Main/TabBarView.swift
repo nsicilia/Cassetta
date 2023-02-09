@@ -16,7 +16,7 @@ struct TabBarView: View {
     
     @EnvironmentObject var viewModel: AuthViewModel
     
-    @ObservedObject var feedViewModel = FeedViewModel(config: .explore)
+    @ObservedObject var feedViewModel = FeedViewModel(config: .newest)
     
     //Search View Model initialized
     @ObservedObject var searchModel = SearchViewModel()
