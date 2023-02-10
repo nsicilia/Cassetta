@@ -27,19 +27,21 @@ struct PlayerContentView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: UIScreen.screenWidth / 1.1, height: UIScreen.screenWidth / 1.4)
-                    .cornerRadius(5)
+                    .cornerRadius(15)
                     
                 //the title
                 Text(post.title)
+                    
                     .font(.title)
                     .foregroundColor(.primary)
                     .fontWeight(.semibold)
+                    .lineLimit(8)
                     .padding([.horizontal, .top], 32)
                 
                 
-                HStack{
+                HStack(spacing: 0){
                     
-                    HStack(spacing: 2){
+                    HStack(spacing: 1){
                         Text("173k")
                         Text("🎧")
                     }
@@ -47,7 +49,7 @@ struct PlayerContentView: View {
                     
                     Spacer()
                     
-                    HStack(spacing: 2){
+                    HStack(spacing: 1){
                         Text("13k")
                         Text("💬")
                     }
@@ -68,7 +70,7 @@ struct PlayerContentView: View {
                             Image(systemName: likeValue ? "heart.fill" : "heart")
                                 .resizable()
                                 .foregroundColor(likeValue ? .red : .gray)
-                                .frame(width: 23, height: 21)
+                                .frame(width: 20, height: 18)
                         }
                         .padding(.horizontal, 10)
                         .padding(.vertical, 8)
@@ -95,7 +97,7 @@ struct PlayerContentView: View {
                                 .resizable()
                                 .foregroundColor(dislikeValue ? .blue : .gray)
                                 
-                                .frame(width: 23, height: 23)
+                                .frame(width: 21, height: 21)
                         }
                         .padding(.horizontal, 10)
                         .padding(.vertical, 8)

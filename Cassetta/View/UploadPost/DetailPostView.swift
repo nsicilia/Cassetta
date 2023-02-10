@@ -36,6 +36,8 @@ struct DetailPostView: View {
     
     var body: some View {
         
+        ScrollViewReader{ scrollVal in
+        
         ScrollView() {
             VStack {
                 
@@ -43,6 +45,7 @@ struct DetailPostView: View {
                     ProgressView(value: viewModel.audioProgress)
                         .progressViewStyle(RoundedRectProgressViewStyle())
                         .transition(.move(edge: .bottom))
+                        .id(01)
                 }
                 
                 Button {
@@ -63,10 +66,14 @@ struct DetailPostView: View {
                         }else if let image = postImage{
                             image
                                 .resizable()
-                                .scaledToFill()
+                                .aspectRatio(contentMode: .fill)
+                            //.frame(width: UIScreen.screenWidth / 1.1, height: UIScreen.screenWidth / 1.4)
+                                .cornerRadius(15)
+                            
                         }
                     }
-                    .frame(width: 200, height: 200)
+                    // .frame(width: 200, height: 200)
+                    .frame(width: UIScreen.screenWidth / 1.1, height: UIScreen.screenWidth / 1.4)
                     //.background(.gray.opacity(0.5))
                     .cornerRadius(15)
                     .overlay {
@@ -86,18 +93,18 @@ struct DetailPostView: View {
                     TextField("Title...", text: $title)
                         .padding()
                         .padding(.horizontal,32)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color("CassettaBorder"), lineWidth: 2)
-                            .padding(.horizontal, 32)
-                    }
-                        
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(Color("CassettaBorder"), lineWidth: 2)
+                                .padding(.horizontal, 32)
+                        }
+                    
                 }
                 .frame(width: UIScreen.screenWidth / 0.93)
                 .padding(.bottom)
                 
                 MultilineTextField(text: $description, placeholder: "Description...")
-
+                
                 
                 HStack(alignment: .center){
                     Text("Select a category:")
@@ -112,9 +119,10 @@ struct DetailPostView: View {
                 .padding(.vertical)
                 
                 CategoriesView(value: $category)
-
-
+                
+                
             }
+            .id(01)
         }
         .onTapGesture {
             self.hideKeyboard()
@@ -123,12 +131,13 @@ struct DetailPostView: View {
             
             if (selectedImage != nil && title != "" ) {
                 
+                //The publish button
                 Button {
-                    //todo
-
+                    //publishin the post
                     if let image = selectedImage {
                         if let audio = combinedURL{
                             selectedBtn.toggle()
+                            scrollVal.scrollTo(01)
                             
                             viewModel.uploadPost(title: title, description: description, category: category, image: image, audio: audio, duration: audioDuration){ error in
                                 //error handling
@@ -154,6 +163,7 @@ struct DetailPostView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
                 }//label
+                
             } else {
                 Text("Publish")
                     .bold()
@@ -162,10 +172,11 @@ struct DetailPostView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
-
-    }
+            
+        }
         .navigationBarBackButtonHidden(selectedBtn ? true : false)
     }
+}
 
 }
 

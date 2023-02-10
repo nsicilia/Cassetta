@@ -58,16 +58,16 @@ class ConcatenateAudioFiles {
         exportSession?.outputFileType = .m4a
         await exportSession?.export()
         
-        //let temp2URL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("concatenated2.wav")
-        //convertAudio(tempURL, outputURL: temp2URL)
+       // let temp2URL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("concatenated2.wav")
+       // convertAudio(tempURL, outputURL: temp2URL)
         
         let temp2URL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("concatenated2.wav")
-        
+
         var options = FormatConverter.Options()
         options.format = .wav
         options.sampleRate = 44100
         options.bitRate = 16
-        options.channels = 1
+        options.channels = 2
         options.bitDepth = 16
         options.eraseFile = true
         options.isInterleaved = true

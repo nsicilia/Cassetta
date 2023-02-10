@@ -67,12 +67,12 @@ struct TabBarView: View {
                                     
                                 }
                                 
-                                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                                    Image("MessageImage")
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 24, height: 24)
-                                }
+//                                ToolbarItemGroup(placement: .navigationBarTrailing) {
+//                                    Image("MessageImage")
+//                                        .resizable()
+//                                        .scaledToFill()
+//                                        .frame(width: 24, height: 24)
+//                                }
                             }
                         
                             .background(Color("CassettaTan"))
