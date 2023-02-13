@@ -14,13 +14,15 @@ import MediaPlayer
 class AudioManager: ObservableObject{
     
     var player = AudioPlayer()
-    
+        
     @Published var playingStatus: Bool = true
     
     @Published var trackTitle: String = "Title of the post"
+    @Published var durationSecs: Double = 0.0
     @Published var coverArt = UIImage(named: "Flower")
     
     private var progressTimer: Timer?
+    
     
     init() {
         setupRemoteCommandCenter()
@@ -37,14 +39,25 @@ class AudioManager: ObservableObject{
         
         player.play(url: URL(string: track)!)
         
-        print("Duration \(player.duration)")
-        print("Test round \(round(player.duration * 10) / 10.0)")
-        print("Test ceil \(ceil(player.duration * 10) / 10.0)")
+        
+        
+        setupRemoteCommandCenter()
+        
+        //        print("DEBUG: track title \(trackTitle)")
+        //        print("DEBUG: Duration \(player.duration)")
+        //        print("DEBUG: Test round \(round(durationSecs * 10) / 10.0)")
+        //print("DEBUG: Test ceil \(ceil(player.duration * 10) / 10.0)")
     }
+    
+    func handleAudioEnd(){
+        player.seek(to: 0)
+            //player.play()
+        }
     
     
     func resumePlayer(){
         player.resume()
+        
     }
     
     func pausePlayer(){
@@ -109,7 +122,7 @@ class AudioManager: ObservableObject{
         nowPlayingInfoCenter.nowPlayingInfo = [
             MPMediaItemPropertyTitle: trackTitle,
             MPNowPlayingInfoPropertyElapsedPlaybackTime: 0.0,
-            MPMediaItemPropertyPlaybackDuration: 2200.0,
+            MPMediaItemPropertyPlaybackDuration: durationSecs,
             MPMediaItemPropertyArtwork: MPMediaItemArtwork(boundsSize: CGSize(width: 600, height: 600), requestHandler: { size in
                 return self.coverArt!
             })

@@ -30,7 +30,7 @@ struct BottomControlsView: View {
                 VStack(spacing: 5){
                     
                     
-                    Slider(value: $value, in: 0...(audioManager.player.duration))
+                    Slider(value: $value, in: 0...(audioManager.player.duration + 1 ))
                     { editing in
 
                         isEditing = editing
@@ -38,7 +38,15 @@ struct BottomControlsView: View {
                         if !editing {
                             audioManager.seekPlayer(timeInSec: value)
                         }
+                        
                     }
+                    .onChange(of: value, perform: { newValue in
+                        if newValue == audioManager.player.duration{
+                            
+                            audioManager.handleAudioEnd()
+                            
+                        }
+                    })
                         .tint(Color("CassettaOrange"))
 
                     

@@ -718,6 +718,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cassetta/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Cassetta;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Cassetta needs access to the microphone for recording a posts audio.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -751,6 +752,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cassetta/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Cassetta;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Cassetta needs access to the microphone for recording a posts audio.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

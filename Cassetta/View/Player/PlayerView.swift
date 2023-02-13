@@ -96,6 +96,8 @@ struct PlayerView: View {
         })
         .onAppear{
             if previewstatus{
+                audioManager.trackTitle = post.title
+                audioManager.durationSecs = (round(post.duration * 10) / 10.0) 
                 audioManager.startPlayer(track: post.audioUrl)
                 //print("DEBUG: \(audioManager.player.state)")
             }
