@@ -61,26 +61,38 @@ class ConcatenateAudioFiles {
        // let temp2URL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("concatenated2.wav")
        // convertAudio(tempURL, outputURL: temp2URL)
         
-        let temp2URL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("concatenated2.wav")
-
-        var options = FormatConverter.Options()
-        options.format = .wav
-        options.sampleRate = 44100
-        options.bitRate = 16
-        options.channels = 2
-        options.bitDepth = 16
-        options.eraseFile = true
-        options.isInterleaved = true
-
-
-        let converter = FormatConverter(inputURL: tempURL, outputURL: temp2URL, options: options)
-
-        converter.start { error in
-           // the error will be nil on success
-            print("DEBUG: \(String(describing: error))")
-        }
+//        let temp2URL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("concatenated2.wav")
+//
+//        var options = FormatConverter.Options()
+//        options.format = .wav
+//        options.sampleRate = 44100
+//        options.bitRate = 16
+//        options.channels = 2
+//        options.bitDepth = 16
+//        options.eraseFile = true
+//        options.isInterleaved = true
+//
+//
+//        let converter = FormatConverter(inputURL: tempURL, outputURL: temp2URL, options: options)
+//
+//        converter.start { error in
+//           // the error will be nil on success
+//            print("DEBUG: \(String(describing: error))")
+//        }
         
+        let temp2URL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("concatenated2.mp3")
         
+        MP3Converter().convert(input: tempURL, output: temp2URL)
+            .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .failure(let error):
+                        print("Conversion failed with error: \(error.localizedDescription)")
+                    case .finished:
+                        print("Conversion finished successfully!")
+                    }
+                }, receiveValue: { outputURL in
+                    print("Output file saved at: \(outputURL.path)")
+                })
         
         
         return temp2URL
