@@ -100,6 +100,15 @@
       }
     },
     {
+      "identity" : "lame-xcframework",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bb9z/LAME-xcframework",
+      "state" : {
+        "revision" : "4162c4d2b8aa9fcae29464ce7187a2ba16f50f04",
+        "version" : "3.100.0"
+      }
+    },
+    {
       "identity" : "leveldb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/leveldb.git",
