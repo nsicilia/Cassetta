@@ -17,6 +17,8 @@ class AudioManager: ObservableObject{
         
     @Published var playingStatus: Bool = true
     
+    @Published var trackURLString: String = ""
+    
     @Published var trackTitle: String = "Title of the post"
     @Published var durationSecs: Double = 0.0
     @Published var coverArt = UIImage(named: "Flower")
@@ -39,19 +41,14 @@ class AudioManager: ObservableObject{
         
         player.play(url: URL(string: track)!)
         
-        
+        trackURLString = track
         
         setupRemoteCommandCenter()
-        
-        //        print("DEBUG: track title \(trackTitle)")
-        //        print("DEBUG: Duration \(player.duration)")
-        //        print("DEBUG: Test round \(round(durationSecs * 10) / 10.0)")
-        //print("DEBUG: Test ceil \(ceil(player.duration * 10) / 10.0)")
+
     }
     
     func handleAudioEnd(){
-        player.seek(to: 0)
-            //player.play()
+        player.queue(url: URL(string: trackURLString)!)
         }
     
     
