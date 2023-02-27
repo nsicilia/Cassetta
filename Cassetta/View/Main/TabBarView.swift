@@ -170,7 +170,7 @@ struct TabBarView: View {
             
             if let post = PlayingPost{
                 
-                PlayerView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, post: post)
+                PlayerView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, post: post, postInfoVM: PostInfoViewModel(post: post))
             }
             
         }

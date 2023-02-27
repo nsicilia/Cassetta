@@ -17,16 +17,23 @@ struct PlayerView: View {
         .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
         .first { $0.isKeyWindow }?.safeAreaInsets
     
+    
+    
     @State var currentTab: Int = 0
     
     //Popupview
     @Binding var isPopupBarPresented: Bool
     @Binding var isPopupOpen: Bool
+    
+    
     let post: Post
     
     //PlayerState
     @State var previewstatus: Bool = true
     @StateObject var audioManager = AudioManager()
+    
+    //Test info
+    @StateObject var postInfoVM: PostInfoViewModel
     
     
     var body: some View {
@@ -49,7 +56,7 @@ struct PlayerView: View {
             Group{
                 TabView(selection: $currentTab) {
                     
-                    PlayerContentView(post: post).tag(0)
+                    PlayerContentView(postInfoVM: postInfoVM, post: post).tag(0)
                     
                     CommentsView().tag(1)
                 }
@@ -116,8 +123,10 @@ struct PlayerView: View {
 
 struct PlayerView_Previews: PreviewProvider {
     
+    static let pst = Post(audioUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", category: "News", description: "Description", dislikes: 2, imageUrl: "https://images.unsplash.com/photo-1555992336-fb0d29498b13?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80", likes: 4, ownerFullname: "Jessica Johnson", ownerImageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", ownerUid: "ddd", ownerUsername: "jessica", timestamp: Timestamp(), title: "5 Shocking Facts About Records That Will Change the Way You Listen to Music Forever!", duration: 4.0, listens: 3)
+    
     static var previews: some View {
-        PlayerView(isPopupBarPresented: .constant(true), isPopupOpen: .constant(false), post: Post(audioUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", category: "News", description: "Description", dislikes: 2, imageUrl: "https://images.unsplash.com/photo-1555992336-fb0d29498b13?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80", likes: 4, ownerFullname: "Jessica Johnson", ownerImageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", ownerUid: "ddd", ownerUsername: "jessica", timestamp: Timestamp(), title: "5 Shocking Facts About Records That Will Change the Way You Listen to Music Forever!", duration: 4.0, listens: 3), previewstatus: false)
+        PlayerView(isPopupBarPresented: .constant(true), isPopupOpen: .constant(false), post: pst , previewstatus: false, postInfoVM: PostInfoViewModel(post: pst))
     }
 }
 

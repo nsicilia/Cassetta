@@ -87,6 +87,7 @@
 		01D0460C28E9F4C200038C1C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D0460B28E9F4C200038C1C /* CustomTextField.swift */; };
 		01DAE9D028DF83E400F61034 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAE9CF28DF83E400F61034 /* PlayerView.swift */; };
 		01ECA3F02979B45A00AB9082 /* LNPopupUI-Static in Frameworks */ = {isa = PBXBuildFile; productRef = 01ECA3EF2979B45A00AB9082 /* LNPopupUI-Static */; };
+		01F4CDC829A96D6F00FDC7CD /* PostInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4CDC729A96D6F00FDC7CD /* PostInfoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -160,6 +161,7 @@
 		01D0460928E9F3A900038C1C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		01D0460B28E9F4C200038C1C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		01DAE9CF28DF83E400F61034 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		01F4CDC729A96D6F00FDC7CD /* PostInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInfoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -355,6 +357,7 @@
 				0121566F2953ADD600C7D4DC /* AudioRecorderViewModel.swift */,
 				012156712953AF3B00C7D4DC /* PreviewAudioPlayerViewModel.swift */,
 				01AA96E729665C7E00011F52 /* UploadPostViewModel.swift */,
+				01F4CDC729A96D6F00FDC7CD /* PostInfoViewModel.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				019F62EC2947D1FA0045FF39 /* DetailPostView.swift in Sources */,
 				014BA7FC299ADA2000370AE3 /* MP3Converter.swift in Sources */,
 				015E087E292EE19700350D13 /* UserService.swift in Sources */,
+				01F4CDC829A96D6F00FDC7CD /* PostInfoViewModel.swift in Sources */,
 				019F62EE2947E9F40045FF39 /* MultilineTextField.swift in Sources */,
 				01818DBC2970D06E008B4EB3 /* FeedViewModel.swift in Sources */,
 				01DAE9D028DF83E400F61034 /* PlayerView.swift in Sources */,

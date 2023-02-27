@@ -10,8 +10,10 @@ import Firebase
 import Kingfisher
 
 struct PlayerContentView: View {
-    @State var likeValue: Bool = false
-    @State var dislikeValue: Bool = false
+    @ObservedObject var postInfoVM: PostInfoViewModel
+    
+    var likeValue: Bool {return postInfoVM.post.didLike ?? false}
+    var dislikeValue: Bool {return postInfoVM.post.didDislike ?? false}
     
     //The post
     let post: Post
@@ -39,7 +41,7 @@ struct PlayerContentView: View {
                     .padding([.horizontal, .top], 32)
                 
                 
-                HStack(spacing: 0){
+                HStack(spacing: 10){
                     
                     HStack(spacing: 1){
                         Text("173k")
@@ -47,7 +49,7 @@ struct PlayerContentView: View {
                     }
                     
                     
-                    Spacer()
+                   // Spacer()
                     
                     HStack(spacing: 1){
                         Text("13k")
@@ -55,16 +57,15 @@ struct PlayerContentView: View {
                     }
                     
                     
-                    Spacer()
+                    //Spacer()
                     
                     //Like button
                     Button(action: {
                         //set like value
-                        likeValue.toggle()
-                        dislikeValue = false
+                        likeValue ? postInfoVM.unlike() : postInfoVM.like()
                     }, label: {
                         HStack{
-                            Text("13k")
+                            Text(postInfoVM.likeString)
                                 .foregroundColor(.black)
                             
                             Image(systemName: likeValue ? "heart.fill" : "heart")
@@ -72,6 +73,7 @@ struct PlayerContentView: View {
                                 .foregroundColor(likeValue ? .red : .gray)
                                 .frame(width: 20, height: 18)
                         }
+                        .frame(minWidth: post.likes >= 1000 ? 85 : 0)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 8)
                         
@@ -81,17 +83,17 @@ struct PlayerContentView: View {
                             .stroke(Color("CassettaBorder"), lineWidth: 2)
                     )
                     
-                    Spacer()
+                    //Spacer()
                     
                     //Dislike button
                     Button(action: {
                         //todo
-                        dislikeValue.toggle()
-                        likeValue = false
+                        dislikeValue ? postInfoVM.undislike() : postInfoVM.dislike()
                     }, label: {
                         HStack{
-                            Text("13k")
+                            Text(postInfoVM.dislikeString)
                                 .foregroundColor(.black)
+                                
                             
                             Image(systemName: dislikeValue ? "hand.thumbsdown.fill" : "hand.thumbsdown")
                                 .resizable()
@@ -99,7 +101,8 @@ struct PlayerContentView: View {
                                 
                                 .frame(width: 21, height: 21)
                         }
-                        .padding(.horizontal, 10)
+                        .frame(minWidth: post.dislikes >= 1000 ? 85 : 0)
+                         .padding(.horizontal, 10)
                         .padding(.vertical, 8)
                     })
                     .overlay(
@@ -110,8 +113,8 @@ struct PlayerContentView: View {
                     
                     
                 }
-                .padding()
-                .frame(width: UIScreen.screenWidth / 1.1 )
+                //.padding()
+                .frame(width: UIScreen.screenWidth )
                 
                 Text("Swipe for comments ➡️")
                 
@@ -132,7 +135,9 @@ struct PlayerContentView: View {
 
 
 struct PlayerContentView_Previews: PreviewProvider {
+    static let post = Post(audioUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", category: "News", description: "Description", dislikes: 2, imageUrl: "https://images.unsplash.com/photo-1555992336-fb0d29498b13?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80", likes: 4, ownerFullname: "Jessica Johnson", ownerImageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", ownerUid: "ddd", ownerUsername: "jessica", timestamp: Timestamp(), title: "5 Shocking Facts About Records That Will Change the Way You Listen to Music Forever!", duration: 4.0, listens: 3)
+    
     static var previews: some View {
-        PlayerContentView(post: Post(audioUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", category: "News", description: "Description", dislikes: 2, imageUrl: "https://images.unsplash.com/photo-1555992336-fb0d29498b13?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80", likes: 4, ownerFullname: "Jessica Johnson", ownerImageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", ownerUid: "ddd", ownerUsername: "jessica", timestamp: Timestamp(), title: "5 Shocking Facts About Records That Will Change the Way You Listen to Music Forever!", duration: 4.0, listens: 3))
+        PlayerContentView(postInfoVM:PostInfoViewModel(post: post), post:post)
     }
 }

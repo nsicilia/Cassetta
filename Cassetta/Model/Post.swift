@@ -14,9 +14,9 @@ struct Post: Identifiable, Decodable {
     let audioUrl: String
     let category: String
     let description: String
-    let dislikes: Int
+    var dislikes: Int
     let imageUrl: String
-    let likes: Int
+    var likes: Int
     let ownerFullname: String
     let ownerImageUrl: String
     let ownerUid: String
@@ -24,6 +24,8 @@ struct Post: Identifiable, Decodable {
     let timestamp: Timestamp
     let title: String
     let duration: Double
-    let listens: Int
+    var listens: Int
     
+    var didLike: Bool? = false
+    var didDislike: Bool? = false
 }
