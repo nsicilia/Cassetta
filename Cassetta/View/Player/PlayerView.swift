@@ -33,7 +33,7 @@ struct PlayerView: View {
     @StateObject var audioManager = AudioManager()
     
     //Test info
-    @StateObject var postInfoVM: PostInfoViewModel
+    @ObservedObject var postInfoVM: PostInfoViewModel
     
     
     var body: some View {
@@ -87,9 +87,19 @@ struct PlayerView: View {
         //buttons
         .popupBarItems({
             Button(action: {
-                // isPlaying.toggle()
+                audioManager.playingStatus.toggle()
+                if audioManager.playingStatus {
+                    audioManager.player.resume()
+                    print("DEBUG: \(audioManager.player.state)")
+                    
+                } else{
+                    audioManager.player.pause()
+                    print("DEBUG: \(audioManager.player.state)")
+                    
+                }
+                
             }) {
-                Image(systemName: "play.fill")
+                Image(systemName: audioManager.playingStatus ? "pause.fill" : "play.fill")
                     .foregroundColor(.black)
             }
             
@@ -106,12 +116,20 @@ struct PlayerView: View {
                 audioManager.trackTitle = post.title
                 audioManager.durationSecs = (round(post.duration * 10) / 10.0) 
                 audioManager.startPlayer(track: post.audioUrl)
-                //print("DEBUG: \(audioManager.player.state)")
+                audioManager.playingStatus = true
             }
         }
         .onDisappear{
             audioManager.player.stop()
             
+        }
+        .onChange(of: post) { newValue in
+            if previewstatus{
+                audioManager.trackTitle = newValue.title
+                audioManager.durationSecs = (round(newValue.duration * 10) / 10.0)
+                audioManager.startPlayer(track: newValue.audioUrl)
+                audioManager.playingStatus = true
+            }
         }
         
         

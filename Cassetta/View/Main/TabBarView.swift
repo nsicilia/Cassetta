@@ -33,6 +33,7 @@ struct TabBarView: View {
     @State var PlayingPost: Post? 
     
     
+    @State var playerViewPost: Post?
     
     
     init(user: User) {
@@ -167,15 +168,20 @@ struct TabBarView: View {
         }
         
         .popup(isBarPresented: $isPopupBarPresented , isPopupOpen: $isPopupOpen ) {
-            
-            if let post = PlayingPost{
+
+            if let post = playerViewPost{
                 
                 PlayerView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, post: post, postInfoVM: PostInfoViewModel(post: post))
             }
             
         }
         .popupInteractionStyle(.drag)
-        
+        .onChange(of: PlayingPost) { newValue in
+            isPopupBarPresented = true
+            
+            playerViewPost = newValue
+            
+        }
     }
     
     

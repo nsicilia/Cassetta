@@ -8,7 +8,7 @@
 import FirebaseFirestoreSwift
 import Firebase
 
-struct Post: Identifiable, Decodable {
+struct Post: Identifiable, Decodable, Equatable {
     @DocumentID var id: String?
     
     let audioUrl: String

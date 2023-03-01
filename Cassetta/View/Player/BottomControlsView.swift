@@ -75,6 +75,8 @@ struct BottomControlsView: View {
 
                     
                     Spacer()
+                    
+                    //PlayButton
                     Button {
                         audioManager.playingStatus.toggle()
                         if audioManager.playingStatus {
@@ -92,6 +94,8 @@ struct BottomControlsView: View {
                             .font(.title)
                             .foregroundColor(.black)
                     }
+                    
+                    
                     
                     Spacer()
                     Button {
