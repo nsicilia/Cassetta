@@ -10,13 +10,16 @@ import SwiftUI
 
 struct UserListView: View {
     
-    @ObservedObject var viewModel: SearchViewModel
+    @StateObject var viewModel: SearchViewModel
     @Binding var searchText: String
     
     //For the LNPopup & Playerview
     @Binding var isPopupBarPresented: Bool
     @Binding var isPopupOpen: Bool
-    @Binding var PlayingPost: Post?
+  //  @Binding var PlayingPost: Post?
+    
+    //Test
+    @StateObject var postViewModel: PostViewModel
         
     var users: [User] {
         return searchText.isEmpty ? viewModel.users : viewModel.filteredUsers(searchText)
@@ -28,7 +31,9 @@ struct UserListView: View {
                 ForEach(users) { user in
                     
                     NavigationLink {
-                        ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, PlayingPost: $PlayingPost)
+                       // ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, PlayingPost: $PlayingPost)
+                        ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
+                        
                     } label: {
                         LargeUserCell(user: user)
                             .padding(.leading)

@@ -10,6 +10,10 @@ import Combine
 import LNPopupUI
 import Kingfisher
 
+class PostViewModel: ObservableObject {
+    @Published var playingPost: Post?
+}
+
 struct TabBarView: View {
     
     let user: User
@@ -17,9 +21,6 @@ struct TabBarView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     @ObservedObject var feedViewModel = FeedViewModel(config: .newest)
-    
-    //Search View Model initialized
-    @ObservedObject var searchModel = SearchViewModel()
     
     //Testing LNPopup
     @State var isPopupBarPresented = false
@@ -30,10 +31,12 @@ struct TabBarView: View {
     
     @State var selectedTab = 1
     
-    @State var PlayingPost: Post? 
-    
+   // @State var PlayingPost: Post?
     
     @State var playerViewPost: Post?
+    
+    //Test
+    @StateObject var postViewModel = PostViewModel()
     
     
     init(user: User) {
@@ -56,7 +59,7 @@ struct TabBarView: View {
                     
                     //MARK: Home View
                     NavigationView{
-                        Feed(viewModel: feedViewModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, PlayingPost: $PlayingPost)
+                        Feed(viewModel: feedViewModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen,  postViewModel: postViewModel)
                             .toolbar {
                                 ToolbarItemGroup(placement: .navigationBarLeading) {
                                     Image("BlackCassettaLogo")
@@ -88,7 +91,8 @@ struct TabBarView: View {
                     
                     //MARK: Search View
                     NavigationView{
-                        SearchView(viewModel: searchModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, PlayingPost: $PlayingPost)
+                        //SearchView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, PlayingPost: $PlayingPost, postViewModel: postViewModel)
+                        SearchView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
                             .navigationTitle("Search")
                             .navigationBarTitleDisplayMode(.inline)
                             .accentColor(.black)
@@ -96,7 +100,7 @@ struct TabBarView: View {
                     .tabItem {
                         Image("SearchImage")
                     }
-                    
+                    .tag(2)
                     
                     //MARK: Upload View
                     Image(systemName: "mic")
@@ -119,11 +123,12 @@ struct TabBarView: View {
                     .tabItem {
                         Image("HeartImage")
                     }
-                    
+                    .tag(4)
                     
                     //Profile
                     NavigationView{
-                        ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, PlayingPost: $PlayingPost)
+                      //  ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, PlayingPost: $PlayingPost)
+                        ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
                             .toolbar {
                                 Menu {
                                     Text("Settings")
@@ -147,6 +152,7 @@ struct TabBarView: View {
                     .tabItem {
                         Image("ProfileImage")
                     }
+                    .tag(5)
                     
                     //All tabs end
                     
@@ -176,7 +182,7 @@ struct TabBarView: View {
             
         }
         .popupInteractionStyle(.drag)
-        .onChange(of: PlayingPost) { newValue in
+        .onChange(of: postViewModel.playingPost) { newValue in
             isPopupBarPresented = true
             
             playerViewPost = newValue
