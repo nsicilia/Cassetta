@@ -40,12 +40,14 @@ struct DetailPostView: View {
         
         ScrollView() {
             VStack {
+                EmptyView()
+                    .id(01)
                 
                 if selectedBtn {
                     ProgressView(value: viewModel.audioProgress)
                         .progressViewStyle(RoundedRectProgressViewStyle())
                         .transition(.move(edge: .bottom))
-                        .id(01)
+                        
                 }
                 
                 Button {
@@ -122,7 +124,7 @@ struct DetailPostView: View {
                 
                 
             }
-            .id(01)
+            
         }
         .onTapGesture {
             self.hideKeyboard()

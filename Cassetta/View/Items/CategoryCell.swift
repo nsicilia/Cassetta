@@ -37,6 +37,10 @@ struct CategoryCell: View {
 
 struct CategoryCell_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryCell(categoryTitle: "Fashion & Beauty", cetegoryEmoji: "💃")
+        VStack{
+            CategoryCell(categoryTitle: "Fashion & Beauty", cetegoryEmoji: "💃")
+        }
+        .frame( width: UIScreen.screenWidth, height: UIScreen.screenHeight)
+        .background(Color("CassettaTan"))
     }
 }

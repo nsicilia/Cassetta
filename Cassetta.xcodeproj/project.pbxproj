@@ -88,6 +88,8 @@
 		01DAE9D028DF83E400F61034 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAE9CF28DF83E400F61034 /* PlayerView.swift */; };
 		01ECA3F02979B45A00AB9082 /* LNPopupUI-Static in Frameworks */ = {isa = PBXBuildFile; productRef = 01ECA3EF2979B45A00AB9082 /* LNPopupUI-Static */; };
 		01F4CDC829A96D6F00FDC7CD /* PostInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4CDC729A96D6F00FDC7CD /* PostInfoViewModel.swift */; };
+		01F4CDEB29B186A700FDC7CD /* _FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4CDEA29B186A700FDC7CD /* _FlexibleView.swift */; };
+		01F4CDED29B186CF00FDC7CD /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4CDEC29B186CF00FDC7CD /* FlexibleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -162,6 +164,8 @@
 		01D0460B28E9F4C200038C1C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		01DAE9CF28DF83E400F61034 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		01F4CDC729A96D6F00FDC7CD /* PostInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInfoViewModel.swift; sourceTree = "<group>"; };
+		01F4CDEA29B186A700FDC7CD /* _FlexibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _FlexibleView.swift; sourceTree = "<group>"; };
+		01F4CDEC29B186CF00FDC7CD /* FlexibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +231,7 @@
 		0116A8CE28C3B6730050780B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				01F4CDE929B1868C00FDC7CD /* FlexibleView */,
 				014DF98028D1807500E6A754 /* Extensions.swift */,
 				01D0460B28E9F4C200038C1C /* CustomTextField.swift */,
 				0198C7D628EA048C00676189 /* CustomSecureField.swift */,
@@ -468,6 +473,15 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
+		01F4CDE929B1868C00FDC7CD /* FlexibleView */ = {
+			isa = PBXGroup;
+			children = (
+				01F4CDEA29B186A700FDC7CD /* _FlexibleView.swift */,
+				01F4CDEC29B186CF00FDC7CD /* FlexibleView.swift */,
+			);
+			path = FlexibleView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -616,6 +630,7 @@
 				014BA7FC299ADA2000370AE3 /* MP3Converter.swift in Sources */,
 				015E087E292EE19700350D13 /* UserService.swift in Sources */,
 				01F4CDC829A96D6F00FDC7CD /* PostInfoViewModel.swift in Sources */,
+				01F4CDED29B186CF00FDC7CD /* FlexibleView.swift in Sources */,
 				019F62EE2947E9F40045FF39 /* MultilineTextField.swift in Sources */,
 				01818DBC2970D06E008B4EB3 /* FeedViewModel.swift in Sources */,
 				01DAE9D028DF83E400F61034 /* PlayerView.swift in Sources */,
@@ -623,6 +638,7 @@
 				019F62F22948FBC90045FF39 /* CategoriesView.swift in Sources */,
 				0198C7DB28EA08C200676189 /* ImagePicker.swift in Sources */,
 				015E0880292EF48400350D13 /* ProfileViewModel.swift in Sources */,
+				01F4CDEB29B186A700FDC7CD /* _FlexibleView.swift in Sources */,
 				014DF98328D29EF000E6A754 /* UserListView.swift in Sources */,
 				014DF98928D3A78300E6A754 /* NotificationsView.swift in Sources */,
 				015CE4E3293AA2F50096D35C /* BottomControlsView.swift in Sources */,

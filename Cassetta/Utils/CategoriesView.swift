@@ -7,37 +7,79 @@
 
 import SwiftUI
 
+class ContentViewModel: ObservableObject {
+    
+    @Published var originalItems = [
+        "🎨 Art",
+        "👂 ASMR",
+        "💅 Beauty",
+        "📚 Books",
+        "📈 Business",
+        "🗃️ Career",
+        "📸 Celebs",
+        "🎭 Comedy",
+        "🙏 Culture",
+        "📓 Education",
+        "📣 Entertainment",
+        "👠 Fashion",
+        "💵 Finance",
+        "🍔 Food",
+        "🌱 Growth",
+        "🩺 Health",
+        "📜 History",
+        "🗣️ Language",
+        "🏡 Lifestyle",
+        "🎵 Music",
+        "📰 News",
+        "💭 Philosophy",
+        "❤️ Relationships",
+        "🧪 Science",
+        "🏀 Sports",
+        "💻 Tech",
+        "🔍 True Crime",
+        "📺 TV",
+        "👾 Video Games"
+    ]
+    
+    @Published var spacing: CGFloat = 12
+    @Published var padding: CGFloat = 22
+    @Published var wordCount: Int = 75
+    @Published var alignmentIndex = 0
+    
+    var words: [String] {
+        Array(originalItems.prefix(wordCount))
+    }
+    
+}
+
+
 struct CategoriesView: View {
     @Binding var value: String
-    @State var selectedButton: Int = 0
+    @State var selectedButton: String = ""
+    @StateObject var model = ContentViewModel()
     
     var body: some View {
         
-        VStack {
-            HStack{
-                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(1), name: "📰 News")
-                StyledButton(value: $value, selectedButton: $selectedButton,  selectedValue: .constant(2), name: "💻 Tech")
-                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(3), name: "🏀 Sports")
-                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(4), name: "🎨 Art")
-            }
-            HStack{
-//                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(4), name: "🎨 Art")
-                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(5), name: "💰 Finance")
-                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(6), name: "📺 TV")
-                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(7), name: "💄 Beauty & Fashion")
-            }
-            HStack{
-//                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(7), name: "💄 Beauty & Fashion")
-                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(8), name: "🌷 Growth")
-                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(9), name: "🥪 Food")
-                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(10), name: "🎵 Music")
-            }
-            HStack{
+        VStack{
+            FlexibleView(
+                data: model.words,
+                spacing: model.spacing,
+                alignment: .center
+            ) { item in
                 
-                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(11), name: "👩‍🔬 Career")
+                StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(item), name: item)
+                
+//                    Text(verbatim: item)
+//                        .padding(8)
+//                        .background(
+//                            RoundedRectangle(cornerRadius: 8)
+//                                .fill(Color.gray.opacity(0.2))
+//                        )
+                
             }
-
+            .padding(.horizontal, model.padding)
         }
+        
         
     }
 }

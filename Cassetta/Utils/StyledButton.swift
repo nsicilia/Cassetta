@@ -10,8 +10,8 @@ import SwiftUI
 struct StyledButton: View {
     @State var selected = false
     @Binding var value: String
-    @Binding var selectedButton: Int
-    @Binding var selectedValue: Int
+    @Binding var selectedButton: String
+    @Binding var selectedValue: String
     
     let name: String
     
@@ -45,6 +45,6 @@ struct StyledButton: View {
 
 struct StyledButton_Previews: PreviewProvider {
     static var previews: some View {
-        StyledButton(value: .constant("News"), selectedButton: .constant(1), selectedValue: .constant(1), name: "📰 News")
+        StyledButton(value: .constant("News"), selectedButton: .constant("📰ham"), selectedValue: .constant("📰ham"), name: "📰 News")
     }
 }

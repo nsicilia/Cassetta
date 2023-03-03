@@ -22,13 +22,14 @@ struct TabBarView: View {
     
     @ObservedObject var feedViewModel = FeedViewModel(config: .newest)
     
-    //Testing LNPopup
+    ///Creates the active status of the popupbar, false ill terminate the view
     @State var isPopupBarPresented = false
-
+    ///Determines if the pop up is showing or minimized
     @State var isPopupOpen = true
     
     @State private var showPopover = false
     
+    ///Value of the currently selected tab
     @State var selectedTab = 1
     
    // @State var PlayingPost: Post?
@@ -56,6 +57,8 @@ struct TabBarView: View {
         VStack(spacing: 0) {
             ZStack {
                 TabView(selection: $selectedTab) {
+                    
+                    
                     
                     //MARK: Home View
                     NavigationView{
@@ -102,6 +105,8 @@ struct TabBarView: View {
                     }
                     .tag(2)
                     
+                    
+                    
                     //MARK: Upload View
                     Image(systemName: "mic")
                         .onTapGesture {
@@ -113,19 +118,20 @@ struct TabBarView: View {
                         .tag(3)
                     
                     
-                    //Notification
+                    
+                    //MARK: Notification View
                     NavigationView{
                         NotificationsView()
                             .navigationTitle("Notifications")
-                        //                        .navigationBarTitleDisplayMode(.inline)
-                        //                        .accentColor(.black)
                     }
                     .tabItem {
                         Image("HeartImage")
                     }
                     .tag(4)
                     
-                    //Profile
+                    
+                    
+                    //MARK: Profile View
                     NavigationView{
                       //  ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, PlayingPost: $PlayingPost)
                         ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
@@ -163,7 +169,8 @@ struct TabBarView: View {
                     }
                 }
             }
-            .fullScreenCover(isPresented: $showPopover, onDismiss: {
+            .fullScreenCover(isPresented: $showPopover,
+                             onDismiss: {
                 self.selectedTab = 1
             }) {
                 // Add the content of your popover here
@@ -183,15 +190,12 @@ struct TabBarView: View {
         }
         .popupInteractionStyle(.drag)
         .onChange(of: postViewModel.playingPost) { newValue in
-            isPopupBarPresented = true
             
+            isPopupBarPresented = true
             playerViewPost = newValue
             
         }
     }
-    
-    
-    
 }
 
 
