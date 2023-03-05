@@ -26,7 +26,7 @@ struct PlayerView: View {
     @Binding var isPopupOpen: Bool
     
     
-    let post: Post
+   // let post: Post
     
     //PlayerState
     @State var previewstatus: Bool = true
@@ -34,7 +34,8 @@ struct PlayerView: View {
     
     //Test info
     @ObservedObject var postInfoVM: PostInfoViewModel
-    
+    //post SOT
+    @ObservedObject var postViewModel: PostViewModel
     
     var body: some View {
         
@@ -56,7 +57,7 @@ struct PlayerView: View {
             Group{
                 TabView(selection: $currentTab) {
                     
-                    PlayerContentView(postInfoVM: postInfoVM, post: post).tag(0)
+                    PlayerContentView(postInfoVM: postInfoVM, postViewModel: postViewModel).tag(0)
                     
                     CommentsView().tag(1)
                 }
@@ -76,7 +77,8 @@ struct PlayerView: View {
         }
         //MARK: Miniview Bar
         //title
-        .popupTitle(verbatim: post.title)
+        //.popupTitle(verbatim: post.title)
+        .popupTitle(verbatim: postViewModel.playingPost?.title ?? "Title")
         //image
         .popupImage(
            // Image(uiImage: UIImage(data: try! Data(contentsOf: URL(string: post.imageUrl)!)) ?? UIImage(named: "GenericPhotoIcon")!).resizable()
@@ -113,9 +115,13 @@ struct PlayerView: View {
         })
         .onAppear{
             if previewstatus{
-                audioManager.trackTitle = post.title
-                audioManager.durationSecs = (round(post.duration * 10) / 10.0) 
-                audioManager.startPlayer(track: post.audioUrl)
+//                audioManager.trackTitle = post.title
+//                audioManager.durationSecs = (round(post.duration * 10) / 10.0)
+//                audioManager.startPlayer(track: post.audioUrl)
+//                audioManager.playingStatus = true
+                audioManager.trackTitle = postViewModel.playingPost?.title ?? "title"
+                audioManager.durationSecs = (round((postViewModel.playingPost?.duration ?? 0) * 10) / 10.0)
+                audioManager.startPlayer(track: postViewModel.playingPost?.audioUrl ?? "")
                 audioManager.playingStatus = true
             }
         }
@@ -123,11 +129,11 @@ struct PlayerView: View {
             audioManager.player.stop()
             
         }
-        .onChange(of: post) { newValue in
+        .onChange(of: postViewModel.playingPost) { newValue in
             if previewstatus{
-                audioManager.trackTitle = newValue.title
-                audioManager.durationSecs = (round(newValue.duration * 10) / 10.0)
-                audioManager.startPlayer(track: newValue.audioUrl)
+                audioManager.trackTitle = newValue?.title ?? "title"
+                audioManager.durationSecs = (round(newValue?.duration ?? 0 * 10) / 10.0)
+                audioManager.startPlayer(track: newValue?.audioUrl ?? "")
                 audioManager.playingStatus = true
             }
         }
@@ -144,7 +150,7 @@ struct PlayerView_Previews: PreviewProvider {
     static let pst = Post(audioUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", category: "News", description: "Description", dislikes: 2, imageUrl: "https://images.unsplash.com/photo-1555992336-fb0d29498b13?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80", likes: 4, ownerFullname: "Jessica Johnson", ownerImageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", ownerUid: "ddd", ownerUsername: "jessica", timestamp: Timestamp(), title: "5 Shocking Facts About Records That Will Change the Way You Listen to Music Forever!", duration: 4.0, listens: 3)
     
     static var previews: some View {
-        PlayerView(isPopupBarPresented: .constant(true), isPopupOpen: .constant(false), post: pst , previewstatus: false, postInfoVM: PostInfoViewModel(post: pst))
+        PlayerView(isPopupBarPresented: .constant(true), isPopupOpen: .constant(false), previewstatus: false, postInfoVM: PostInfoViewModel(post: pst), postViewModel: PostViewModel())
     }
 }
 

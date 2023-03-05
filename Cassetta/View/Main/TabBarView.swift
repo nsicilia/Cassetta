@@ -10,9 +10,9 @@ import Combine
 import LNPopupUI
 import Kingfisher
 
-class PostViewModel: ObservableObject {
-    @Published var playingPost: Post?
-}
+//class PostViewModel: ObservableObject {
+//    @Published var playingPost: Post?
+//}
 
 struct TabBarView: View {
     
@@ -34,10 +34,10 @@ struct TabBarView: View {
     
    // @State var PlayingPost: Post?
     
-    @State var playerViewPost: Post?
+   // @State var playerViewPost: Post?
     
-    //Test
-    @StateObject var postViewModel = PostViewModel()
+    //Test post SOT
+    @ObservedObject var postViewModel = PostViewModel()
     
     
     init(user: User) {
@@ -182,19 +182,19 @@ struct TabBarView: View {
         
         .popup(isBarPresented: $isPopupBarPresented , isPopupOpen: $isPopupOpen ) {
 
-            if let post = playerViewPost{
+            if let post = postViewModel.playingPost{
                 
-                PlayerView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, post: post, postInfoVM: PostInfoViewModel(post: post))
+                PlayerView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postInfoVM: PostInfoViewModel(post: post), postViewModel: postViewModel)
             }
             
         }
         .popupInteractionStyle(.drag)
-        .onChange(of: postViewModel.playingPost) { newValue in
-            
-            isPopupBarPresented = true
-            playerViewPost = newValue
-            
-        }
+//        .onChange(of: postViewModel.playingPost) { newValue in
+//
+//            isPopupBarPresented = true
+//            playerViewPost = newValue
+//
+//        }
     }
 }
 

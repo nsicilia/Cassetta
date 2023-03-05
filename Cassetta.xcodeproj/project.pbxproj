@@ -34,6 +34,7 @@
 		0130F5362929808D0033BC32 /* LargeUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130F5352929808D0033BC32 /* LargeUserCell.swift */; };
 		0130F538292981A80033BC32 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130F537292981A80033BC32 /* SearchViewModel.swift */; };
 		01473BFF29232058004E0429 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01473BFE29232058004E0429 /* ImageUploader.swift */; };
+		0149DAEA29B438E900633CAC /* testSOT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149DAE929B438E900633CAC /* testSOT.swift */; };
 		014BA7E62991A65600370AE3 /* AudioStreaming in Frameworks */ = {isa = PBXBuildFile; productRef = 014BA7E52991A65600370AE3 /* AudioStreaming */; };
 		014BA7E82991A9A400370AE3 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014BA7E72991A9A400370AE3 /* AudioManager.swift */; };
 		014BA7EB2992CEC700370AE3 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 014BA7EA2992CEC700370AE3 /* AudioKit */; };
@@ -109,6 +110,7 @@
 		0130F5352929808D0033BC32 /* LargeUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeUserCell.swift; sourceTree = "<group>"; };
 		0130F537292981A80033BC32 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		01473BFE29232058004E0429 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
+		0149DAE929B438E900633CAC /* testSOT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testSOT.swift; sourceTree = "<group>"; };
 		014BA7E72991A9A400370AE3 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		014BA7F1299AB5E100370AE3 /* ExtAudioConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtAudioConverter.h; sourceTree = "<group>"; };
 		014BA7F2299AB5EC00370AE3 /* Cassetta-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cassetta-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 				012156712953AF3B00C7D4DC /* PreviewAudioPlayerViewModel.swift */,
 				01AA96E729665C7E00011F52 /* UploadPostViewModel.swift */,
 				01F4CDC729A96D6F00FDC7CD /* PostInfoViewModel.swift */,
+				0149DAE929B438E900633CAC /* testSOT.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -631,6 +634,7 @@
 				015E087E292EE19700350D13 /* UserService.swift in Sources */,
 				01F4CDC829A96D6F00FDC7CD /* PostInfoViewModel.swift in Sources */,
 				01F4CDED29B186CF00FDC7CD /* FlexibleView.swift in Sources */,
+				0149DAEA29B438E900633CAC /* testSOT.swift in Sources */,
 				019F62EE2947E9F40045FF39 /* MultilineTextField.swift in Sources */,
 				01818DBC2970D06E008B4EB3 /* FeedViewModel.swift in Sources */,
 				01DAE9D028DF83E400F61034 /* PlayerView.swift in Sources */,
