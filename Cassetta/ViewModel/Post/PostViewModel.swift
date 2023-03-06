@@ -10,23 +10,23 @@ import SwiftUI
 import Firebase
 
 class PostViewModel: ObservableObject {
-    @Published var playingPost: Post?
+    @Published var currentPost: Post?
     
     
     
     init(post: Post? = nil) {
-        self.playingPost = post
+        self.currentPost = post
         ezStatusCheck()
     }
     
     
     
     var likeString: String {
-            return "\(Int(playingPost?.likes ?? 0).roundedWithAbbreviations)"
+            return "\(Int(currentPost?.likes ?? 0).roundedWithAbbreviations)"
         }
     
         var dislikeString: String {
-            return "\(Int(playingPost?.dislikes ?? 0).roundedWithAbbreviations)"
+            return "\(Int(currentPost?.dislikes ?? 0).roundedWithAbbreviations)"
         }
     
     
@@ -36,7 +36,7 @@ class PostViewModel: ObservableObject {
         guard let uid = AuthViewModel.shared.userSession?.uid else {return}
         
         // Get the ID of the post that is being liked.
-        guard let postId = playingPost?.id else {return}
+        guard let postId = currentPost?.id else {return}
         
         // Access the "post-likes" subcollection of the post's document in the "COLLECTION_POSTS" collection.
         // Then, create a new document with the user's ID as the document ID, and an empty dictionary as the data.
@@ -49,13 +49,13 @@ class PostViewModel: ObservableObject {
                     .document(postId).setData([:]) { _ in
                         
                         //In the firebase db add 1 to the like count
-                        if let likes = self.playingPost?.likes{
+                        if let likes = self.currentPost?.likes{
                             COLLECTION_POSTS.document(postId).updateData(["likes": likes + 1])
                         }
                         // Update the post's "didLike" property to true, indicating that the user has liked the post.
-                        self.playingPost?.didLike = true
+                        self.currentPost?.didLike = true
                         //increment likes
-                        self.playingPost?.likes += 1
+                        self.currentPost?.likes += 1
                     }
             }
         
@@ -65,20 +65,20 @@ class PostViewModel: ObservableObject {
     
     
     func unlike(){
-        guard playingPost?.likes ?? 0 > 0 else {return}
+        guard currentPost?.likes ?? 0 > 0 else {return}
         guard let uid = AuthViewModel.shared.userSession?.uid else {return}
-        guard let postId = playingPost?.id else {return}
+        guard let postId = currentPost?.id else {return}
         
         COLLECTION_POSTS.document(postId).collection("post-likes").document(uid).delete { _ in
             COLLECTION_USERS.document(uid).collection("user-likes").document(postId).delete { _ in
                 
-                if let likes = self.playingPost?.likes{
+                if let likes = self.currentPost?.likes{
                     COLLECTION_POSTS.document(postId).updateData(["likes": likes - 1])
                 }
                 
                 
-                self.playingPost?.didLike = false
-                self.playingPost?.likes -= 1
+                self.currentPost?.didLike = false
+                self.currentPost?.likes -= 1
             }
         }
     }
@@ -89,7 +89,7 @@ class PostViewModel: ObservableObject {
         guard let uid = AuthViewModel.shared.userSession?.uid else {return}
         
         // Get the ID of the post that is being disliked.
-        guard let postId = playingPost?.id else {return}
+        guard let postId = currentPost?.id else {return}
         
         // Access the "post-dislikes" subcollection of the post's document in the "COLLECTION_POSTS" collection.
         // Then, create a new document with the user's ID as the document ID, and an empty dictionary as the data.
@@ -102,13 +102,13 @@ class PostViewModel: ObservableObject {
                     .document(postId).setData([:]) { _ in
                         
                         //In the firebase db add 1 to the dislike count
-                        if let dislikes = self.playingPost?.dislikes{
+                        if let dislikes = self.currentPost?.dislikes{
                             COLLECTION_POSTS.document(postId).updateData(["dislikes": dislikes + 1])
                         }
                         // Update the post's "didDislike" property to true, indicating that the user has disliked the post.
-                        self.playingPost?.didDislike = true
+                        self.currentPost?.didDislike = true
                         //increment dislikes
-                        self.playingPost?.dislikes += 1
+                        self.currentPost?.dislikes += 1
                     }
             }
         unlike()
@@ -118,19 +118,19 @@ class PostViewModel: ObservableObject {
     
     
     func undislike(){
-        guard playingPost?.dislikes ?? 0 > 0 else {return}
+        guard currentPost?.dislikes ?? 0 > 0 else {return}
         guard let uid = AuthViewModel.shared.userSession?.uid else {return}
-        guard let postId = playingPost?.id else {return}
+        guard let postId = currentPost?.id else {return}
         
         COLLECTION_POSTS.document(postId).collection("post-dislikes").document(uid).delete { _ in
             COLLECTION_USERS.document(uid).collection("user-dislikes").document(postId).delete { _ in
                 
-                if let dislikes = self.playingPost?.dislikes{
+                if let dislikes = self.currentPost?.dislikes{
                     COLLECTION_POSTS.document(postId).updateData(["dislikes": dislikes - 1])
                 }
                 
-                self.playingPost?.didDislike = false
-                self.playingPost?.dislikes -= 1
+                self.currentPost?.didDislike = false
+                self.currentPost?.dislikes -= 1
             }
         }
     }
@@ -139,11 +139,11 @@ class PostViewModel: ObservableObject {
     
     func checkIfUserLikedPost(){
         guard let uid = AuthViewModel.shared.userSession?.uid else {return}
-        guard let postId = playingPost?.id else {return}
+        guard let postId = currentPost?.id else {return}
         
         COLLECTION_USERS.document(uid).collection("user-likes").document(postId).getDocument { snapshot, _ in
             guard let didlike = snapshot?.exists else {return}
-            self.playingPost?.didLike = didlike
+            self.currentPost?.didLike = didlike
         }
     }
     
@@ -151,11 +151,11 @@ class PostViewModel: ObservableObject {
     
     func checkIfUserDislikedPost(){
         guard let uid = AuthViewModel.shared.userSession?.uid else {return}
-        guard let postId = playingPost?.id else {return}
+        guard let postId = currentPost?.id else {return}
         
         COLLECTION_USERS.document(uid).collection("user-dislikes").document(postId).getDocument { snapshot, _ in
             guard let didDislike = snapshot?.exists else {return}
-            self.playingPost?.didDislike = didDislike
+            self.currentPost?.didDislike = didDislike
         }
         
     }

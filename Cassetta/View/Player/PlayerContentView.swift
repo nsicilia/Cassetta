@@ -21,8 +21,8 @@ struct PlayerContentView: View {
     //post SOT
     @ObservedObject var postViewModel: PostViewModel
     
-    var likeValue: Bool {return postViewModel.playingPost?.didLike ?? false}
-    var dislikeValue: Bool {return postViewModel.playingPost?.didDislike ?? false}
+    var likeValue: Bool {return postViewModel.currentPost?.didLike ?? false}
+    var dislikeValue: Bool {return postViewModel.currentPost?.didDislike ?? false}
     
     var body: some View {
         ScrollView{
@@ -31,14 +31,14 @@ struct PlayerContentView: View {
                 
                // Image("DefaultImage")
                // Image(uiImage: UIImage(data: try! Data(contentsOf: URL(string: post.imageUrl)!)) ?? UIImage(named: "DefaultImage")!)
-                KFImage(URL(string: postViewModel.playingPost?.imageUrl ?? ""))
+                KFImage(URL(string: postViewModel.currentPost?.imageUrl ?? ""))
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: UIScreen.screenWidth / 1.1, height: UIScreen.screenWidth / 1.4)
                     .cornerRadius(15)
                     
                 //the title
-                Text(postViewModel.playingPost?.title ?? "Title")
+                Text(postViewModel.currentPost?.title ?? "Title")
                     
                     .font(.title)
                     .foregroundColor(.primary)
@@ -68,11 +68,9 @@ struct PlayerContentView: View {
                     //Like button
                     Button(action: {
                         //set like value
-                       // likeValue ? postInfoVM.unlike() : postInfoVM.like()
                         likeValue ? postViewModel.unlike(): postViewModel.like()
                     }, label: {
                         HStack{
-                            //Text(postInfoVM.likeString)
                             Text(postViewModel.likeString)
                                 .foregroundColor(.black)
                             
@@ -81,7 +79,7 @@ struct PlayerContentView: View {
                                 .foregroundColor(likeValue ? .red : .gray)
                                 .frame(width: 20, height: 18)
                         }
-                        .frame(minWidth: postViewModel.playingPost?.likes ?? 0 >= 1000 ? 85 : 0)
+                        .frame(minWidth: postViewModel.currentPost?.likes ?? 0 >= 1000 ? 85 : 0)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 8)
                         
@@ -96,7 +94,6 @@ struct PlayerContentView: View {
                     //Dislike button
                     Button(action: {
                         //todo
-                        //dislikeValue ? postInfoVM.undislike() : postInfoVM.dislike()
                         dislikeValue ? postViewModel.undislike() : postViewModel.dislike()
                     }, label: {
                         HStack{
@@ -111,7 +108,7 @@ struct PlayerContentView: View {
                                 
                                 .frame(width: 21, height: 21)
                         }
-                        .frame(minWidth: postViewModel.playingPost?.dislikes ?? 0 >= 1000 ? 85 : 0)
+                        .frame(minWidth: postViewModel.currentPost?.dislikes ?? 0 >= 1000 ? 85 : 0)
                          .padding(.horizontal, 10)
                         .padding(.vertical, 8)
                     })
@@ -129,7 +126,7 @@ struct PlayerContentView: View {
                 Text("Swipe for comments ➡️")
                 
                 LazyVStack(spacing: 15){
-                    Text(postViewModel.playingPost?.description ?? "Description")
+                    Text(postViewModel.currentPost?.description ?? "Description")
                         .padding([.horizontal, .top], 32)
                 }
                 

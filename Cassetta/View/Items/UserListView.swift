@@ -16,7 +16,6 @@ struct UserListView: View {
     //For the LNPopup & Playerview
     @Binding var isPopupBarPresented: Bool
     @Binding var isPopupOpen: Bool
-  //  @Binding var PlayingPost: Post?
     
     //Test
     @StateObject var postViewModel: PostViewModel
@@ -31,7 +30,6 @@ struct UserListView: View {
                 ForEach(users) { user in
                     
                     NavigationLink {
-                       // ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, PlayingPost: $PlayingPost)
                         ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
                         
                     } label: {

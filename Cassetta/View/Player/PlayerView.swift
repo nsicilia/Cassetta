@@ -77,8 +77,7 @@ struct PlayerView: View {
         }
         //MARK: Miniview Bar
         //title
-        //.popupTitle(verbatim: post.title)
-        .popupTitle(verbatim: postViewModel.playingPost?.title ?? "Title")
+        .popupTitle(verbatim: postViewModel.currentPost?.title ?? "Title")
         //image
         .popupImage(
            // Image(uiImage: UIImage(data: try! Data(contentsOf: URL(string: post.imageUrl)!)) ?? UIImage(named: "GenericPhotoIcon")!).resizable()
@@ -115,13 +114,9 @@ struct PlayerView: View {
         })
         .onAppear{
             if previewstatus{
-//                audioManager.trackTitle = post.title
-//                audioManager.durationSecs = (round(post.duration * 10) / 10.0)
-//                audioManager.startPlayer(track: post.audioUrl)
-//                audioManager.playingStatus = true
-                audioManager.trackTitle = postViewModel.playingPost?.title ?? "title"
-                audioManager.durationSecs = (round((postViewModel.playingPost?.duration ?? 0) * 10) / 10.0)
-                audioManager.startPlayer(track: postViewModel.playingPost?.audioUrl ?? "")
+                audioManager.trackTitle = postViewModel.currentPost?.title ?? "title"
+                audioManager.durationSecs = (round((postViewModel.currentPost?.duration ?? 0) * 10) / 10.0)
+                audioManager.startPlayer(track: postViewModel.currentPost?.audioUrl ?? "")
                 audioManager.playingStatus = true
                 postViewModel.ezStatusCheck()
             }
@@ -130,24 +125,19 @@ struct PlayerView: View {
             audioManager.player.stop()
             
         }
-        .onChange(of: postViewModel.playingPost) { [playingPost = postViewModel.playingPost] newValue in
+        .onChange(of: postViewModel.currentPost) { [currentPost = postViewModel.currentPost] newValue in
             
-            print("Old State: \(String(describing: playingPost?.id))")
+            print("Old State: \(String(describing: currentPost?.id))")
             print("Old State: \(String(describing: newValue?.id))")
             
             if previewstatus{
-                if playingPost?.id != newValue?.id {
+                if currentPost?.id != newValue?.id {
                     audioManager.trackTitle = newValue?.title ?? "title"
                     audioManager.durationSecs = (round(newValue?.duration ?? 0 * 10) / 10.0)
                     audioManager.startPlayer(track: newValue?.audioUrl ?? "")
                     audioManager.playingStatus = true
                     postViewModel.ezStatusCheck()
                 }
-//                audioManager.trackTitle = newValue?.title ?? "title"
-//                audioManager.durationSecs = (round(newValue?.duration ?? 0 * 10) / 10.0)
-//                audioManager.startPlayer(track: newValue?.audioUrl ?? "")
-//                audioManager.playingStatus = true
-//                postViewModel.ezStatusCheck()
             }
         }
         

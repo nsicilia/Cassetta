@@ -32,7 +32,7 @@ struct MainTabView: View {
     @ObservedObject var feedViewModel = FeedViewModel(config: .explore)
     
     
-    @State var PlayingPost: Post?
+    //@State var PlayingPost: Post?
     
     init(user: User) {
         self.user = user

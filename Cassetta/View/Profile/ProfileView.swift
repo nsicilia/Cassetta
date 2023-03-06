@@ -16,7 +16,6 @@ struct ProfileView: View {
     //For the LNPopup & Playerview
     @Binding var isPopupBarPresented: Bool
     @Binding var isPopupOpen: Bool
-    //@Binding var PlayingPost: Post?
     
     //test
     @ObservedObject var postViewModel: PostViewModel

@@ -18,7 +18,6 @@ struct Feed: View {
     @Binding var isPopupBarPresented: Bool
     @Binding var isPopupOpen: Bool
     
-   // @Binding var PlayingPost: Post?
     
     //Testnew post view model
     @ObservedObject var postViewModel: PostViewModel
@@ -30,8 +29,7 @@ struct Feed: View {
                 ForEach(viewModel.posts) { post in
                     
                     Button {
-                        //PlayingPost = post
-                        postViewModel.playingPost = post
+                        postViewModel.currentPost = post
                         isPopupBarPresented = true
                         isPopupOpen = true
                     } label: {
@@ -40,11 +38,6 @@ struct Feed: View {
                     .tint(.black)
                     .padding(.bottom, 12)
                     
-//                    Card(post: post)
-//                        .onTapGesture {
-//                            PlayingPost = post
-//                            isPopupBarPresented = true
-//                        }
                     
                 }
                 

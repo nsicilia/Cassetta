@@ -10,9 +10,6 @@ import Combine
 import LNPopupUI
 import Kingfisher
 
-//class PostViewModel: ObservableObject {
-//    @Published var playingPost: Post?
-//}
 
 struct TabBarView: View {
     
@@ -32,11 +29,7 @@ struct TabBarView: View {
     ///Value of the currently selected tab
     @State var selectedTab = 1
     
-   // @State var PlayingPost: Post?
-    
-   // @State var playerViewPost: Post?
-    
-    //Test post SOT
+    //Current post
     @ObservedObject var postViewModel = PostViewModel()
     
     
@@ -94,7 +87,6 @@ struct TabBarView: View {
                     
                     //MARK: Search View
                     NavigationView{
-                        //SearchView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, PlayingPost: $PlayingPost, postViewModel: postViewModel)
                         SearchView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
                             .navigationTitle("Search")
                             .navigationBarTitleDisplayMode(.inline)
@@ -133,7 +125,6 @@ struct TabBarView: View {
                     
                     //MARK: Profile View
                     NavigationView{
-                      //  ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, PlayingPost: $PlayingPost)
                         ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
                             .toolbar {
                                 Menu {
@@ -182,19 +173,12 @@ struct TabBarView: View {
         
         .popup(isBarPresented: $isPopupBarPresented , isPopupOpen: $isPopupOpen ) {
 
-            if let post = postViewModel.playingPost{
-                
+            if let post = postViewModel.currentPost{
                 PlayerView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postInfoVM: PostInfoViewModel(post: post), postViewModel: postViewModel)
             }
             
         }
         .popupInteractionStyle(.drag)
-//        .onChange(of: postViewModel.playingPost) { newValue in
-//
-//            isPopupBarPresented = true
-//            playerViewPost = newValue
-//
-//        }
     }
 }
 
