@@ -16,8 +16,7 @@ class PostViewModel: ObservableObject {
     
     init(post: Post? = nil) {
         self.playingPost = post
-        checkIfUserLikedPost()
-        checkIfUserDislikedPost()
+        ezStatusCheck()
     }
     
     
@@ -60,7 +59,8 @@ class PostViewModel: ObservableObject {
                     }
             }
         
-        //undislike()
+        undislike()
+        checkIfUserDislikedPost()
     }
     
     
@@ -112,6 +112,7 @@ class PostViewModel: ObservableObject {
                     }
             }
         unlike()
+        checkIfUserLikedPost()
     }
     
     
@@ -135,6 +136,7 @@ class PostViewModel: ObservableObject {
     }
     
     
+    
     func checkIfUserLikedPost(){
         guard let uid = AuthViewModel.shared.userSession?.uid else {return}
         guard let postId = playingPost?.id else {return}
@@ -156,6 +158,11 @@ class PostViewModel: ObservableObject {
             self.playingPost?.didDislike = didDislike
         }
         
+    }
+    
+    func ezStatusCheck(){
+        checkIfUserLikedPost()
+        checkIfUserDislikedPost()
     }
     
 }

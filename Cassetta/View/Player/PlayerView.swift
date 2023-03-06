@@ -57,7 +57,7 @@ struct PlayerView: View {
             Group{
                 TabView(selection: $currentTab) {
                     
-                    PlayerContentView(postInfoVM: postInfoVM, postViewModel: postViewModel).tag(0)
+                    PlayerContentView(postViewModel: postViewModel).tag(0)
                     
                     CommentsView().tag(1)
                 }
@@ -123,18 +123,31 @@ struct PlayerView: View {
                 audioManager.durationSecs = (round((postViewModel.playingPost?.duration ?? 0) * 10) / 10.0)
                 audioManager.startPlayer(track: postViewModel.playingPost?.audioUrl ?? "")
                 audioManager.playingStatus = true
+                postViewModel.ezStatusCheck()
             }
         }
         .onDisappear{
             audioManager.player.stop()
             
         }
-        .onChange(of: postViewModel.playingPost) { newValue in
+        .onChange(of: postViewModel.playingPost) { [playingPost = postViewModel.playingPost] newValue in
+            
+            print("Old State: \(String(describing: playingPost?.id))")
+            print("Old State: \(String(describing: newValue?.id))")
+            
             if previewstatus{
-                audioManager.trackTitle = newValue?.title ?? "title"
-                audioManager.durationSecs = (round(newValue?.duration ?? 0 * 10) / 10.0)
-                audioManager.startPlayer(track: newValue?.audioUrl ?? "")
-                audioManager.playingStatus = true
+                if playingPost?.id != newValue?.id {
+                    audioManager.trackTitle = newValue?.title ?? "title"
+                    audioManager.durationSecs = (round(newValue?.duration ?? 0 * 10) / 10.0)
+                    audioManager.startPlayer(track: newValue?.audioUrl ?? "")
+                    audioManager.playingStatus = true
+                    postViewModel.ezStatusCheck()
+                }
+//                audioManager.trackTitle = newValue?.title ?? "title"
+//                audioManager.durationSecs = (round(newValue?.duration ?? 0 * 10) / 10.0)
+//                audioManager.startPlayer(track: newValue?.audioUrl ?? "")
+//                audioManager.playingStatus = true
+//                postViewModel.ezStatusCheck()
             }
         }
         

@@ -10,16 +10,19 @@ import Firebase
 import Kingfisher
 
 struct PlayerContentView: View {
-    @ObservedObject var postInfoVM: PostInfoViewModel
+   // @ObservedObject var postInfoVM: PostInfoViewModel
     
-    var likeValue: Bool {return postInfoVM.post.didLike ?? false}
-    var dislikeValue: Bool {return postInfoVM.post.didDislike ?? false}
+    //var likeValue: Bool {return postInfoVM.post.didLike ?? false}
+    //var dislikeValue: Bool {return postInfoVM.post.didDislike ?? false}
     
     //The post
     //let post: Post
     
     //post SOT
     @ObservedObject var postViewModel: PostViewModel
+    
+    var likeValue: Bool {return postViewModel.playingPost?.didLike ?? false}
+    var dislikeValue: Bool {return postViewModel.playingPost?.didDislike ?? false}
     
     var body: some View {
         ScrollView{
@@ -65,10 +68,12 @@ struct PlayerContentView: View {
                     //Like button
                     Button(action: {
                         //set like value
-                        likeValue ? postInfoVM.unlike() : postInfoVM.like()
+                       // likeValue ? postInfoVM.unlike() : postInfoVM.like()
+                        likeValue ? postViewModel.unlike(): postViewModel.like()
                     }, label: {
                         HStack{
-                            Text(postInfoVM.likeString)
+                            //Text(postInfoVM.likeString)
+                            Text(postViewModel.likeString)
                                 .foregroundColor(.black)
                             
                             Image(systemName: likeValue ? "heart.fill" : "heart")
@@ -91,10 +96,12 @@ struct PlayerContentView: View {
                     //Dislike button
                     Button(action: {
                         //todo
-                        dislikeValue ? postInfoVM.undislike() : postInfoVM.dislike()
+                        //dislikeValue ? postInfoVM.undislike() : postInfoVM.dislike()
+                        dislikeValue ? postViewModel.undislike() : postViewModel.dislike()
                     }, label: {
                         HStack{
-                            Text(postInfoVM.dislikeString)
+                          //  Text(postInfoVM.dislikeString)
+                            Text(postViewModel.dislikeString)
                                 .foregroundColor(.black)
                                 
                             
@@ -141,6 +148,6 @@ struct PlayerContentView_Previews: PreviewProvider {
     static let post = Post(audioUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", category: "News", description: "Description", dislikes: 2, imageUrl: "https://images.unsplash.com/photo-1555992336-fb0d29498b13?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80", likes: 4, ownerFullname: "Jessica Johnson", ownerImageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", ownerUid: "ddd", ownerUsername: "jessica", timestamp: Timestamp(), title: "5 Shocking Facts About Records That Will Change the Way You Listen to Music Forever!", duration: 4.0, listens: 3)
     
     static var previews: some View {
-        PlayerContentView(postInfoVM:PostInfoViewModel(post: post), postViewModel: PostViewModel())
+        PlayerContentView(postViewModel: PostViewModel())
     }
 }
