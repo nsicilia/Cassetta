@@ -67,12 +67,12 @@ struct TabBarView: View {
                                     
                                 }
                                 
-//                                ToolbarItemGroup(placement: .navigationBarTrailing) {
-//                                    Image("MessageImage")
-//                                        .resizable()
-//                                        .scaledToFill()
-//                                        .frame(width: 24, height: 24)
-//                                }
+                                //                                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                                //                                    Image("MessageImage")
+                                //                                        .resizable()
+                                //                                        .scaledToFill()
+                                //                                        .frame(width: 24, height: 24)
+                                //                                }
                             }
                         
                             .background(Color("CassettaTan"))
@@ -172,7 +172,7 @@ struct TabBarView: View {
         }
         
         .popup(isBarPresented: $isPopupBarPresented , isPopupOpen: $isPopupOpen ) {
-
+            
             if let post = postViewModel.currentPost{
                 PlayerView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postInfoVM: PostInfoViewModel(post: post), postViewModel: postViewModel)
             }

@@ -8,15 +8,22 @@
 import Foundation
 import SwiftUI
 import Firebase
+import MediaPlayer
 
 class PostViewModel: ObservableObject {
     @Published var currentPost: Post?
     
+    @Published var currentPostImage: Image = Image("DefaultImage")
+    
+    @Published var testImage: Image?
+    
+    @Published var coverArtImage = UIImage(named: "DefaultImage")
     
     
     init(post: Post? = nil) {
         self.currentPost = post
         ezStatusCheck()
+        getImageFromURL()
     }
     
     
@@ -163,6 +170,100 @@ class PostViewModel: ObservableObject {
     func ezStatusCheck(){
         checkIfUserLikedPost()
         checkIfUserDislikedPost()
+        
     }
     
+    
+//    func getImageFromURL1() {
+//        guard let urlString = currentPost?.imageUrl, let url = URL(string: urlString) else { return }
+//            
+//            URLSession.shared.dataTask(with: url) { data, response, error in
+//                if let data = data, let image = UIImage(data: data) {
+//                    DispatchQueue.main.async {
+//                        self.currentPostImage = Image(uiImage: image)
+//                    }
+//                }
+//            }.resume()
+//        }
+
+    
+//    func getImageFromURL() {
+//        print("Debug: func working")
+//        guard let url = URL(string: currentPost?.imageUrl ?? "") else { return }
+//        URLSession.shared.dataTask(with: url) { data, response, error in
+//            print("Debug: URL Session")
+//            guard let data = data, error == nil else {
+//                print("Error downloading image: \(error?.localizedDescription ?? "Unknown error")")
+//                return
+//            }
+//            print("Debug: Before dispatchqueue")
+//            DispatchQueue.main.async {
+//                self.testImage = Image(uiImage: UIImage(data: data)!)
+//                print("Debug: It worked")
+//            }
+//        }.resume()
+//    }
+
+    
+
+    func getImageFromURL() {
+        print("Debug: func working")
+        guard let url = URL(string: currentPost?.imageUrl ?? "") else { return }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            print("Debug: URL Session")
+            guard let data = data, error == nil else {
+                print("Error downloading image: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+            print("Debug: Before dispatchqueue")
+            DispatchQueue.main.async {
+                if let image = UIImage(data: data)?.resized(to: CGSize(width: 200, height: 200), contentMode: .scaleAspectFill, clipsToBounds: true) {
+                    self.testImage = Image(uiImage: image)
+                    self.coverArtImage = image
+                    print("Debug: It worked")
+                    
+                    var mediaInfo = [String:Any]()
+                    // Convert UIImage to MPMediaItemArtwork
+                    let artwork = MPMediaItemArtwork(boundsSize: image.size) { _ in
+                        return image
+                    }
+                    mediaInfo[MPMediaItemPropertyArtwork] = artwork
+                    mediaInfo[MPMediaItemPropertyTitle] = self.currentPost?.title
+                    mediaInfo[MPMediaItemPropertyArtist] = self.currentPost?.ownerUsername
+                    mediaInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = 0.0
+                    mediaInfo[MPMediaItemPropertyPlaybackDuration] = self.currentPost?.duration
+                    
+                    MPNowPlayingInfoCenter.default().nowPlayingInfo = mediaInfo
+                }
+            }
+        }.resume()
+        
+    }
+
+    
+//    func addMediaCenterInfo(){
+//
+//        let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+//
+//        // Create a dictionary of metadata for the current song
+//        let nowPlayingInfo: [String : Any] = [
+//            MPMediaItemPropertyTitle: currentPost?.title ?? "title",
+//            MPMediaItemPropertyArtist: currentPost?.ownerUsername ?? "user",
+//            MPMediaItemPropertyPlaybackDuration: currentPost?.duration ?? 0.0, // in seconds
+//            MPNowPlayingInfoPropertyPlaybackRate: 1.0, // current playback rate
+//            MPNowPlayingInfoPropertyMediaType: MPNowPlayingInfoMediaType.audio.rawValue, // set to audio
+//            // add more metadata properties as needed, such as artwork image
+//            MPMediaItemPropertyArtwork: MPMediaItemArtwork(boundsSize: CGSize(width: 600, height: 600), requestHandler: { size in
+//                return self.coverArtImage!
+//            })
+//        ]
+//
+//        // Set the nowPlayingInfo property of the MPNowPlayingInfoCenter object
+//        nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
+//
+//    }
+
+
+    
 }
+

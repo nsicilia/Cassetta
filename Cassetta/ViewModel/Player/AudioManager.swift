@@ -21,7 +21,13 @@ class AudioManager: ObservableObject{
     
     @Published var trackTitle: String = "Title of the post"
     @Published var durationSecs: Double = 0.0
-    @Published var coverArt = UIImage(named: "Flower")
+    
+    @Published var coverArt = UIImage(named: "DefaultImage"){
+        didSet {
+            //addMediaCenterInfo()
+            print("Debug: coverArt")
+        }
+    }
     
     private var progressTimer: Timer?
     
@@ -29,7 +35,7 @@ class AudioManager: ObservableObject{
     init() {
         setupRemoteCommandCenter()
     }
-    
+
     
     func startPlayer(track: String){
         do{
@@ -74,7 +80,7 @@ class AudioManager: ObservableObject{
     }
     
     
-    private func setupRemoteCommandCenter() {
+     func setupRemoteCommandCenter() {
         let commandCenter = MPRemoteCommandCenter.shared()
         
         commandCenter.playCommand.addTarget { [weak self] _ in
@@ -108,21 +114,14 @@ class AudioManager: ObservableObject{
         }
 
         
-//        let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
-//        nowPlayingInfoCenter.nowPlayingInfo = [
-//            MPMediaItemPropertyTitle: trackTitle,
-//            MPMediaItemPropertyArtwork: MPMediaItemArtwork(boundsSize: CGSize(width: 600, height: 600), requestHandler: { size in
-//                return self.coverArt!
-//            })
-//        ]
         let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
         nowPlayingInfoCenter.nowPlayingInfo = [
             MPMediaItemPropertyTitle: trackTitle,
             MPNowPlayingInfoPropertyElapsedPlaybackTime: 0.0,
-            MPMediaItemPropertyPlaybackDuration: durationSecs,
-            MPMediaItemPropertyArtwork: MPMediaItemArtwork(boundsSize: CGSize(width: 600, height: 600), requestHandler: { size in
-                return self.coverArt!
-            })
+            MPMediaItemPropertyPlaybackDuration: durationSecs //,
+//            MPMediaItemPropertyArtwork: MPMediaItemArtwork(boundsSize: CGSize(width: 600, height: 600), requestHandler: { size in
+//                return self.coverArt!
+//            })
         ]
         startTimer()
 
@@ -137,6 +136,28 @@ class AudioManager: ObservableObject{
                 nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
             }
         }
+    
+    
+//    func addMediaCenterInfo() {
+//
+//        //guard let post = currentPost else {return}
+//
+//        var mediaInfo = [String:Any]()
+//        mediaInfo[MPMediaItemPropertyTitle] = trackTitle
+//       // mediaInfo[MPMediaItemPropertyArtist] = post.ownerUsername
+//        mediaInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = 0.0
+//        mediaInfo[MPMediaItemPropertyPlaybackDuration] = durationSecs
+//
+//        // Convert UIImage to MPMediaItemArtwork
+////        if let coverrtImage = coverArt {
+////            let artwork = MPMediaItemArtwork(boundsSize: coverrtImage.size) { _ in
+////                return self.coverArt!
+////            }
+////            mediaInfo[MPMediaItemPropertyArtwork] = artwork
+////        }
+//
+//        MPNowPlayingInfoCenter.default().nowPlayingInfo = mediaInfo
+//    }
     
 }
 

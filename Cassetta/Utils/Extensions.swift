@@ -151,3 +151,25 @@ private struct SizePreferenceKey: PreferenceKey {
   static var defaultValue: CGSize = .zero
   static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
 }
+
+
+///Add the resized func to UIImage which resizes an image to be square, primarily for the now playing images
+extension UIImage {
+    func resized(to size: CGSize, contentMode: UIView.ContentMode, clipsToBounds: Bool) -> UIImage? {
+        let horizontalRatio = size.width / self.size.width
+        let verticalRatio = size.height / self.size.height
+        let ratio = clipsToBounds ? max(horizontalRatio, verticalRatio) : min(horizontalRatio, verticalRatio)
+
+        let newSize = CGSize(width: self.size.width * ratio, height: self.size.height * ratio)
+        let rect = CGRect(x: (size.width - newSize.width) / 2, y: (size.height - newSize.height) / 2, width: newSize.width, height: newSize.height)
+
+        UIGraphicsBeginImageContextWithOptions(size, true, 0)
+        defer { UIGraphicsEndImageContext() }
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+
+        context.interpolationQuality = .high
+        draw(in: rect, blendMode: .normal, alpha: 1.0)
+
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+}

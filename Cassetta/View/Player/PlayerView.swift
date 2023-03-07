@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 import Firebase
 import LNPopupUI
 
@@ -81,8 +82,11 @@ struct PlayerView: View {
         //image
         .popupImage(
            // Image(uiImage: UIImage(data: try! Data(contentsOf: URL(string: post.imageUrl)!)) ?? UIImage(named: "GenericPhotoIcon")!).resizable()
-            Image("DefaultImage").resizable()
+           // Image("DefaultImage").resizable().clipped() as! UIImage
+            
+            postViewModel.testImage ?? Image("DefaultImage")
         )
+        
         
         
         //buttons
@@ -91,11 +95,11 @@ struct PlayerView: View {
                 audioManager.playingStatus.toggle()
                 if audioManager.playingStatus {
                     audioManager.player.resume()
-                    print("DEBUG: \(audioManager.player.state)")
+                   // print("DEBUG: \(audioManager.player.state)")
                     
                 } else{
                     audioManager.player.pause()
-                    print("DEBUG: \(audioManager.player.state)")
+                    //print("DEBUG: \(audioManager.player.state)")
                     
                 }
                 
@@ -113,12 +117,16 @@ struct PlayerView: View {
             }
         })
         .onAppear{
+            //MARK: All of the logic for when the view starts
             if previewstatus{
                 audioManager.trackTitle = postViewModel.currentPost?.title ?? "title"
                 audioManager.durationSecs = (round((postViewModel.currentPost?.duration ?? 0) * 10) / 10.0)
                 audioManager.startPlayer(track: postViewModel.currentPost?.audioUrl ?? "")
                 audioManager.playingStatus = true
                 postViewModel.ezStatusCheck()
+                postViewModel.getImageFromURL()
+                audioManager.coverArt = postViewModel.coverArtImage
+                
             }
         }
         .onDisappear{
@@ -127,9 +135,7 @@ struct PlayerView: View {
         }
         .onChange(of: postViewModel.currentPost) { [currentPost = postViewModel.currentPost] newValue in
             
-            print("Old State: \(String(describing: currentPost?.id))")
-            print("Old State: \(String(describing: newValue?.id))")
-            
+            //MARK: All of the logic for when the post changes
             if previewstatus{
                 if currentPost?.id != newValue?.id {
                     audioManager.trackTitle = newValue?.title ?? "title"
@@ -137,6 +143,9 @@ struct PlayerView: View {
                     audioManager.startPlayer(track: newValue?.audioUrl ?? "")
                     audioManager.playingStatus = true
                     postViewModel.ezStatusCheck()
+                    postViewModel.getImageFromURL()
+                    audioManager.coverArt = postViewModel.coverArtImage
+                    
                 }
             }
         }
