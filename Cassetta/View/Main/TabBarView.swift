@@ -17,7 +17,7 @@ struct TabBarView: View {
     
     @EnvironmentObject var viewModel: AuthViewModel
     
-    @ObservedObject var feedViewModel = FeedViewModel(config: .newest)
+    @ObservedObject var feedViewModel = FeedViewModel(config: .random)
     
     ///Creates the active status of the popupbar, false ill terminate the view
     @State var isPopupBarPresented = false
@@ -32,6 +32,8 @@ struct TabBarView: View {
     //Current post
     @ObservedObject var postViewModel = PostViewModel()
     
+    //The nav profile status of post 
+    @State var showPosterProfile = false
     
     init(user: User) {
         self.user = user
@@ -48,36 +50,43 @@ struct TabBarView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            ZStack {
+            ZStack(alignment: .top) {
                 TabView(selection: $selectedTab) {
                     
                     
                     
                     //MARK: Home View
                     NavigationView{
-                        Feed(viewModel: feedViewModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen,  postViewModel: postViewModel)
-                            .toolbar {
-                                ToolbarItemGroup(placement: .navigationBarLeading) {
-                                    Image("BlackCassettaLogo")
-                                        .resizable()
-                                        .renderingMode(.template)
-                                        .scaledToFill()
-                                        .frame(height: 40)
-                                        .foregroundColor(Color("CassettaBlack"))
-                                    
-                                }
-                                
-                                //                                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                                //                                    Image("MessageImage")
-                                //                                        .resizable()
-                                //                                        .scaledToFill()
-                                //                                        .frame(width: 24, height: 24)
-                                //                                }
+                        VStack{
+                            if let postUser = postViewModel.user{
+                                NavigationLink(destination: ProfileView(user: postUser, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel), isActive: $showPosterProfile) { EmptyView() }
                             }
+                            
+                            Feed(viewModel: feedViewModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen,  postViewModel: postViewModel)
+                        }
+                        .toolbar {
+                            ToolbarItemGroup(placement: .navigationBarLeading) {
+                                Image("BlackCassettaLogo")
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .scaledToFill()
+                                    .frame(height: 40)
+                                    .foregroundColor(Color("CassettaBlack"))
+                                
+                            }
+                            
+                            //                                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                            //                                    Image("MessageImage")
+                            //                                        .resizable()
+                            //                                        .scaledToFill()
+                            //                                        .frame(width: 24, height: 24)
+                            //                                }
+                        }
                         
-                            .background(Color("CassettaTan"))
+                        .background(Color("CassettaTan"))
                         
                     }
+                    
                     .tabItem {
                         Image("HomeImage")
                     }
@@ -159,6 +168,7 @@ struct TabBarView: View {
                         self.showPopover = true
                     }
                 }
+                
             }
             .fullScreenCover(isPresented: $showPopover,
                              onDismiss: {
@@ -173,8 +183,8 @@ struct TabBarView: View {
         
         .popup(isBarPresented: $isPopupBarPresented , isPopupOpen: $isPopupOpen ) {
             
-            if let post = postViewModel.currentPost{
-                PlayerView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postInfoVM: PostInfoViewModel(post: post), postViewModel: postViewModel)
+            if postViewModel.currentPost != nil{
+                PlayerView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel, showPosterProfile: $showPosterProfile)
             }
             
         }

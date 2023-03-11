@@ -21,16 +21,20 @@ struct PlayerContentView: View {
     //post SOT
     @ObservedObject var postViewModel: PostViewModel
     
+    //Popupview
+    @Binding var isPopupBarPresented: Bool
+    @Binding var isPopupOpen: Bool
+    
+    //the post profile nav status
+    @Binding var showPosterProfile: Bool
+    
     var likeValue: Bool {return postViewModel.currentPost?.didLike ?? false}
     var dislikeValue: Bool {return postViewModel.currentPost?.didDislike ?? false}
     
     var body: some View {
         ScrollView{
             
-            Group{
-                
-               // Image("DefaultImage")
-               // Image(uiImage: UIImage(data: try! Data(contentsOf: URL(string: post.imageUrl)!)) ?? UIImage(named: "DefaultImage")!)
+            //Group{
                 KFImage(URL(string: postViewModel.currentPost?.imageUrl ?? ""))
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -45,96 +49,39 @@ struct PlayerContentView: View {
                     .fontWeight(.semibold)
                     .lineLimit(8)
                     .padding([.horizontal, .top], 32)
+            
+            
+            
+            Button {
+               // dd
+                isPopupOpen = false
+                showPosterProfile = true
                 
-                
-                HStack(spacing: 10){
-                    
-                    HStack(spacing: 1){
-                        Text("173k")
-                        Text("🎧")
-                    }
-                    
-                    
-                   // Spacer()
-                    
-                    HStack(spacing: 1){
-                        Text("13k")
-                        Text("💬")
-                    }
-                    
-                    
-                    //Spacer()
-                    
-                    //Like button
-                    Button(action: {
-                        //set like value
-                        likeValue ? postViewModel.unlike(): postViewModel.like()
-                    }, label: {
-                        HStack{
-                            Text(postViewModel.likeString)
-                                .foregroundColor(.black)
-                            
-                            Image(systemName: likeValue ? "heart.fill" : "heart")
-                                .resizable()
-                                .foregroundColor(likeValue ? .red : .gray)
-                                .frame(width: 20, height: 18)
-                        }
-                        .frame(minWidth: postViewModel.currentPost?.likes ?? 0 >= 1000 ? 85 : 0)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 8)
-                        
-                    })
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color("CassettaBorder"), lineWidth: 2)
-                    )
-                    
-                    //Spacer()
-                    
-                    //Dislike button
-                    Button(action: {
-                        //todo
-                        dislikeValue ? postViewModel.undislike() : postViewModel.dislike()
-                    }, label: {
-                        HStack{
-                          //  Text(postInfoVM.dislikeString)
-                            Text(postViewModel.dislikeString)
-                                .foregroundColor(.black)
-                                
-                            
-                            Image(systemName: dislikeValue ? "hand.thumbsdown.fill" : "hand.thumbsdown")
-                                .resizable()
-                                .foregroundColor(dislikeValue ? .blue : .gray)
-                                
-                                .frame(width: 21, height: 21)
-                        }
-                        .frame(minWidth: postViewModel.currentPost?.dislikes ?? 0 >= 1000 ? 85 : 0)
-                         .padding(.horizontal, 10)
-                        .padding(.vertical, 8)
-                    })
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color("CassettaBorder"), lineWidth: 2)
-                    )
-                    
-                    
-                    
-                }
-                //.padding()
-                .frame(width: UIScreen.screenWidth )
-                
-                Text("Swipe for comments ➡️")
-                
-                LazyVStack(spacing: 15){
-                    Text(postViewModel.currentPost?.description ?? "Description")
-                        .padding([.horizontal, .top], 32)
-                }
-                
+            } label: {
+                UserCell(ownerFullname: postViewModel.currentPost?.ownerFullname ?? "", ownerImageUrl: postViewModel.currentPost?.ownerImageUrl ?? "", ownerUsername: postViewModel.currentPost?.ownerUsername ?? "", fullInfo: true)
             }
-            .padding(.horizontal)
-            .onTapGesture {
-                //placeholder to make the scrollview work for whatever reason
-            }
+            .foregroundColor(.black)
+            .padding([.horizontal], 36)
+                
+            
+                PlayerLikeListenCell(postViewModel: postViewModel)
+                
+                                    
+                    Text("Swipe for comments ➡️")
+                        .font(.system(size: 14, weight: .semibold))
+                        .padding(.top, 8)
+                    
+                    LazyVStack(spacing: 15){
+                        Text(postViewModel.currentPost?.description ?? "Description")
+                            .padding([.horizontal, .top], 32)
+                    }
+                
+                
+//            }
+//            .padding(.horizontal)
+//            .onTapGesture {
+//                //placeholder to make the scrollview work for whatever reason
+//            }
         }
     }
 }
@@ -142,9 +89,9 @@ struct PlayerContentView: View {
 
 
 struct PlayerContentView_Previews: PreviewProvider {
-    static let post = Post(audioUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", category: "News", description: "Description", dislikes: 2, imageUrl: "https://images.unsplash.com/photo-1555992336-fb0d29498b13?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80", likes: 4, ownerFullname: "Jessica Johnson", ownerImageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", ownerUid: "ddd", ownerUsername: "jessica", timestamp: Timestamp(), title: "5 Shocking Facts About Records That Will Change the Way You Listen to Music Forever!", duration: 4.0, listens: 3)
+    static let post = Post(audioUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", category: "News", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", dislikes: 2, imageUrl: "https://images.unsplash.com/photo-1555992336-fb0d29498b13?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80", likes: 4, ownerFullname: "Jessica Johnson", ownerImageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", ownerUid: "ddd", ownerUsername: "jessica", timestamp: Timestamp(), title: "5 Shocking Facts About Records That Will Change the Way You Listen to Music Forever!", duration: 4.0, listens: 3)
     
     static var previews: some View {
-        PlayerContentView(postViewModel: PostViewModel())
+        PlayerContentView(postViewModel: PostViewModel(post: post), isPopupBarPresented: .constant(false), isPopupOpen: .constant(false), showPosterProfile: .constant(false))
     }
 }

@@ -19,11 +19,14 @@ class PostViewModel: ObservableObject {
     
     @Published var coverArtImage = UIImage(named: "DefaultImage")
     
+    @Published var user: User?
+    
     
     init(post: Post? = nil) {
         self.currentPost = post
         ezStatusCheck()
         getImageFromURL()
+        fetchUser()
     }
     
     
@@ -172,39 +175,7 @@ class PostViewModel: ObservableObject {
         checkIfUserDislikedPost()
         
     }
-    
-    
-//    func getImageFromURL1() {
-//        guard let urlString = currentPost?.imageUrl, let url = URL(string: urlString) else { return }
-//            
-//            URLSession.shared.dataTask(with: url) { data, response, error in
-//                if let data = data, let image = UIImage(data: data) {
-//                    DispatchQueue.main.async {
-//                        self.currentPostImage = Image(uiImage: image)
-//                    }
-//                }
-//            }.resume()
-//        }
 
-    
-//    func getImageFromURL() {
-//        print("Debug: func working")
-//        guard let url = URL(string: currentPost?.imageUrl ?? "") else { return }
-//        URLSession.shared.dataTask(with: url) { data, response, error in
-//            print("Debug: URL Session")
-//            guard let data = data, error == nil else {
-//                print("Error downloading image: \(error?.localizedDescription ?? "Unknown error")")
-//                return
-//            }
-//            print("Debug: Before dispatchqueue")
-//            DispatchQueue.main.async {
-//                self.testImage = Image(uiImage: UIImage(data: data)!)
-//                print("Debug: It worked")
-//            }
-//        }.resume()
-//    }
-
-    
 
     func getImageFromURL() {
         print("Debug: func working")
@@ -241,29 +212,27 @@ class PostViewModel: ObservableObject {
     }
 
     
-//    func addMediaCenterInfo(){
-//
-//        let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
-//
-//        // Create a dictionary of metadata for the current song
-//        let nowPlayingInfo: [String : Any] = [
-//            MPMediaItemPropertyTitle: currentPost?.title ?? "title",
-//            MPMediaItemPropertyArtist: currentPost?.ownerUsername ?? "user",
-//            MPMediaItemPropertyPlaybackDuration: currentPost?.duration ?? 0.0, // in seconds
-//            MPNowPlayingInfoPropertyPlaybackRate: 1.0, // current playback rate
-//            MPNowPlayingInfoPropertyMediaType: MPNowPlayingInfoMediaType.audio.rawValue, // set to audio
-//            // add more metadata properties as needed, such as artwork image
-//            MPMediaItemPropertyArtwork: MPMediaItemArtwork(boundsSize: CGSize(width: 600, height: 600), requestHandler: { size in
-//                return self.coverArtImage!
-//            })
-//        ]
-//
-//        // Set the nowPlayingInfo property of the MPNowPlayingInfoCenter object
-//        nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
-//
-//    }
-
-
+    
+    func fetchUser(){
+        guard let uid = currentPost?.ownerUid else { return }
+        
+        print("Debug: fetchUser uid - \(uid)")
+        
+        COLLECTION_USERS.document(uid).getDocument { SnapshotData, error in
+            if let error = error{
+                print("DEBUG: fetchUser() - \(error.localizedDescription)")
+                return
+            }
+            
+            
+            guard let user = try? SnapshotData?.data(as: User.self) else { return }
+            
+            print("Debug: fetchUser user - \(user)")
+            
+            self.user = user
+        }
+    }
+    
     
 }
 

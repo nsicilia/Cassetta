@@ -16,7 +16,9 @@ class SearchViewModel: ObservableObject {
     }
     
     
+    
     func fetchUsers(){
+        
         COLLECTION_USERS.getDocuments { QuerySnapshot, error in
             if let error = error{
                 print("ERROR: SearchViewModel - \(error.localizedDescription)")

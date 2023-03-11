@@ -11,6 +11,8 @@ import Kingfisher
 
 struct Card: View {
     let post: Post
+    let currentUserCard: Bool = true
+    
     
     var body: some View {
         VStack{
@@ -25,17 +27,20 @@ struct Card: View {
                 
                 //Title
                 Text(post.title)
-                   // .multilineTextAlignment(.center)
+                // .multilineTextAlignment(.center)
                 //Text("The DIFFERENCE between the 5 boroughs (are the STEREOTYPES true)?")
                     .frame(width: UIScreen.main.bounds.width / 1.18)
                     .lineLimit(3)
                     .font(.system(size: 18, weight: .semibold))
             }
             
+            NavigationLink {
+                Text("User Profile")
+            } label: {
+                UserCell(ownerFullname: post.ownerFullname, ownerImageUrl: post.ownerImageUrl, ownerUsername: post.ownerUsername)
+            }
             
-            UserCell(ownerFullname: post.ownerFullname, ownerImageUrl: post.ownerImageUrl, ownerUsername: post.ownerUsername)
-            
-           // Spacer()
+            // Spacer()
             
             HStack{
                 ListenLikeCount(ListenCount: 12222, LikeCount: 234567)
@@ -55,7 +60,7 @@ struct Card: View {
                 
             }
             .frame(width: 330.0)
-
+            
         }
         .padding([.bottom, .top], 13)
        // .padding([.leading, .trailing], 8)

@@ -26,17 +26,15 @@ struct PlayerView: View {
     @Binding var isPopupBarPresented: Bool
     @Binding var isPopupOpen: Bool
     
-    
-   // let post: Post
-    
     //PlayerState
     @State var previewstatus: Bool = true
     @StateObject var audioManager = AudioManager()
     
-    //Test info
-    @ObservedObject var postInfoVM: PostInfoViewModel
     //post SOT
     @ObservedObject var postViewModel: PostViewModel
+    
+    //the post profile nav status
+    @Binding var showPosterProfile: Bool
     
     var body: some View {
         
@@ -58,7 +56,7 @@ struct PlayerView: View {
             Group{
                 TabView(selection: $currentTab) {
                     
-                    PlayerContentView(postViewModel: postViewModel).tag(0)
+                    PlayerContentView(postViewModel: postViewModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, showPosterProfile: $showPosterProfile).tag(0)
                     
                     CommentsView().tag(1)
                 }
@@ -95,12 +93,9 @@ struct PlayerView: View {
                 audioManager.playingStatus.toggle()
                 if audioManager.playingStatus {
                     audioManager.player.resume()
-                   // print("DEBUG: \(audioManager.player.state)")
                     
                 } else{
                     audioManager.player.pause()
-                    //print("DEBUG: \(audioManager.player.state)")
-                    
                 }
                 
             }) {
@@ -125,13 +120,13 @@ struct PlayerView: View {
                 audioManager.playingStatus = true
                 postViewModel.ezStatusCheck()
                 postViewModel.getImageFromURL()
+                postViewModel.fetchUser()
                 audioManager.coverArt = postViewModel.coverArtImage
                 
             }
         }
         .onDisappear{
             audioManager.player.stop()
-            
         }
         .onChange(of: postViewModel.currentPost) { [currentPost = postViewModel.currentPost] newValue in
             
@@ -144,6 +139,7 @@ struct PlayerView: View {
                     audioManager.playingStatus = true
                     postViewModel.ezStatusCheck()
                     postViewModel.getImageFromURL()
+                    postViewModel.fetchUser()
                     audioManager.coverArt = postViewModel.coverArtImage
                     
                 }
@@ -159,10 +155,10 @@ struct PlayerView: View {
 
 struct PlayerView_Previews: PreviewProvider {
     
-    static let pst = Post(audioUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", category: "News", description: "Description", dislikes: 2, imageUrl: "https://images.unsplash.com/photo-1555992336-fb0d29498b13?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80", likes: 4, ownerFullname: "Jessica Johnson", ownerImageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", ownerUid: "ddd", ownerUsername: "jessica", timestamp: Timestamp(), title: "5 Shocking Facts About Records That Will Change the Way You Listen to Music Forever!", duration: 4.0, listens: 3)
+    static let pst = Post(audioUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", category: "News", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.", dislikes: 2, imageUrl: "https://images.unsplash.com/photo-1555992336-fb0d29498b13?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80", likes: 4, ownerFullname: "Jessica Johnson", ownerImageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", ownerUid: "ddd", ownerUsername: "jessica", timestamp: Timestamp(), title: "5 Shocking Facts About Records That Will Change the Way You Listen to Music Forever!", duration: 4.0, listens: 3)
     
     static var previews: some View {
-        PlayerView(isPopupBarPresented: .constant(true), isPopupOpen: .constant(false), previewstatus: false, postInfoVM: PostInfoViewModel(post: pst), postViewModel: PostViewModel())
+        PlayerView(isPopupBarPresented: .constant(true), isPopupOpen: .constant(false), previewstatus: false, postViewModel: PostViewModel(post: pst), showPosterProfile: .constant(false))
     }
 }
 

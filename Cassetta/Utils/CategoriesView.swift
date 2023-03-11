@@ -69,13 +69,6 @@ struct CategoriesView: View {
                 
                 StyledButton(value: $value, selectedButton: $selectedButton, selectedValue: .constant(item), name: item)
                 
-//                    Text(verbatim: item)
-//                        .padding(8)
-//                        .background(
-//                            RoundedRectangle(cornerRadius: 8)
-//                                .fill(Color.gray.opacity(0.2))
-//                        )
-                
             }
             .padding(.horizontal, model.padding)
         }

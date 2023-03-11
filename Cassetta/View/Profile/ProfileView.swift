@@ -47,7 +47,7 @@ struct ProfileView: View {
                 .padding(.bottom)
             
            // Feed(viewModel: FeedViewModel())
-            Feed(viewModel: feedModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
+            Feed(viewModel: feedModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, theUser: viewModel.user.isCurrentUser, postViewModel: postViewModel)
             
         }
         .background(Color("CassettaTan"))

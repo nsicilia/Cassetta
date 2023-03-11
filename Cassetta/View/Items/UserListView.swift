@@ -33,7 +33,7 @@ struct UserListView: View {
                         ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
                         
                     } label: {
-                        LargeUserCell(user: user)
+                        LargeUserCell(profileImg: user.profileImageURL, username: user.username, fullname: user.fullname)
                             .padding(.leading)
                     }
 

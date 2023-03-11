@@ -20,7 +20,7 @@ struct ProfileActionButtonView: View {
             } label: {
                 Text("Edit Profile")
                     .font(.system(size: 15, weight: .semibold))
-                    .frame(width: 360, height: 32)
+                    .frame(width: 300, height: 32)
                     .foregroundColor(.black)
                     .overlay {
                         RoundedRectangle(cornerRadius: 10)

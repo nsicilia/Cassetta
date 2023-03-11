@@ -18,6 +18,8 @@ struct Feed: View {
     @Binding var isPopupBarPresented: Bool
     @Binding var isPopupOpen: Bool
     
+    //Status of the share/delete
+    @State var theUser: Bool = false
     
     //Testnew post view model
     @ObservedObject var postViewModel: PostViewModel
@@ -27,18 +29,25 @@ struct Feed: View {
         ScrollView(showsIndicators: false){
             LazyVStack {
                 ForEach(viewModel.posts) { post in
-                    
-                    Button {
-                        postViewModel.currentPost = post
-                        isPopupBarPresented = true
-                        isPopupOpen = true
-                    } label: {
-                        Card(post: post)
+                    VStack{
+                        
+                        if theUser {
+                            UserCardOptions()
+                                .id(post.id)
+                        }
+                        
+                        Button {
+                            postViewModel.currentPost = post
+                            isPopupBarPresented = true
+                            isPopupOpen = true
+                        } label: {
+                            
+                            Card(post: post)
+                        }
+                        .tint(.black)
+                        .padding(.bottom, 12)
+                        
                     }
-                    .tint(.black)
-                    .padding(.bottom, 12)
-                    
-                    
                 }
                 
             }
