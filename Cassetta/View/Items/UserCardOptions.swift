@@ -45,16 +45,20 @@ struct UserCardOptions: View {
             Button {
                 isPresentingConfirm = true
             } label: {
-                Text("🗑️")
-                    .padding(.vertical, 6)
-                    .padding(.horizontal)
+//                Text("🗑️")
+                Image(systemName: "ellipsis")
+                    //.foregroundColor(.black)
+                    .rotationEffect(Angle(degrees: 90))
+                    .padding(.vertical)
+                    .padding(.horizontal, 10)
                     .background(.white)
-                    .cornerRadius(15)
+                    .cornerRadius(25)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 15)
+                        RoundedRectangle(cornerRadius: 25)
                             .stroke(Color("CassettaBorder"), lineWidth: 2)
                             
                 )
+                
                     
             }
 
