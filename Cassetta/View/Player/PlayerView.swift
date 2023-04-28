@@ -58,7 +58,7 @@ struct PlayerView: View {
                     
                     PlayerContentView(postViewModel: postViewModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, showPosterProfile: $showPosterProfile).tag(0)
                     
-                    CommentsView().tag(1)
+                    CommentsView(post: postViewModel.currentPost! ).tag(1)
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .edgesIgnoringSafeArea(.all)

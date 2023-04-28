@@ -96,7 +96,7 @@
       "location" : "https://github.com/onevcat/Kingfisher.git",
       "state" : {
         "branch" : "master",
-        "revision" : "3e091ee962391a2ddcae5b18e17bc625f9d88d6e"
+        "revision" : "7f6331da4d0fcebec4996e9a64d072f467be932d"
       }
     },
     {
@@ -129,7 +129,7 @@
     {
       "identity" : "lnpopupui",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/LeoNatan/LNPopupUI",
+      "location" : "https://github.com/LeoNatan/LNPopupUI.git",
       "state" : {
         "branch" : "master",
         "revision" : "36dae8ed8bf207c0579edf4d96919bd59876ea7c"
