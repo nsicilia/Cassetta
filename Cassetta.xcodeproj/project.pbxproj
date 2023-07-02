@@ -89,6 +89,8 @@
 		01C42089293AB528003FF2D5 /* PlayerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C42088293AB528003FF2D5 /* PlayerContentView.swift */; };
 		01C4208B293AB7EA003FF2D5 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C4208A293AB7EA003FF2D5 /* CommentsView.swift */; };
 		01C4208D293AC621003FF2D5 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C4208C293AC621003FF2D5 /* CommentCell.swift */; };
+		01CD09772A52089F00EAF001 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CD09762A52089F00EAF001 /* Notification.swift */; };
+		01CD09792A5209D800EAF001 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CD09782A5209D800EAF001 /* NotificationsViewModel.swift */; };
 		01D0460A28E9F3A900038C1C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D0460928E9F3A900038C1C /* LoginView.swift */; };
 		01D0460C28E9F4C200038C1C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D0460B28E9F4C200038C1C /* CustomTextField.swift */; };
 		01DAE9D028DF83E400F61034 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAE9CF28DF83E400F61034 /* PlayerView.swift */; };
@@ -172,6 +174,8 @@
 		01C42088293AB528003FF2D5 /* PlayerContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerContentView.swift; sourceTree = "<group>"; };
 		01C4208A293AB7EA003FF2D5 /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		01C4208C293AC621003FF2D5 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		01CD09762A52089F00EAF001 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		01CD09782A5209D800EAF001 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		01D0460928E9F3A900038C1C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		01D0460B28E9F4C200038C1C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		01DAE9CF28DF83E400F61034 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 				0121566C2953AD3100C7D4DC /* RecordingDataModel.swift */,
 				01818DB92970C961008B4EB3 /* Post.swift */,
 				0180737829EAED6500407ED8 /* Comment.swift */,
+				01CD09762A52089F00EAF001 /* Notification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 		0116A8D928C3B7C70050780B /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				01CD09782A5209D800EAF001 /* NotificationsViewModel.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -602,6 +608,7 @@
 				014DF99128D4D17D00E6A754 /* CategoryCell.swift in Sources */,
 				0198C7D528E9F9E900676189 /* TabBarView.swift in Sources */,
 				0130F538292981A80033BC32 /* SearchViewModel.swift in Sources */,
+				01CD09792A5209D800EAF001 /* NotificationsViewModel.swift in Sources */,
 				01818DBA2970C961008B4EB3 /* Post.swift in Sources */,
 				0189DBAD27D7035100956E28 /* ContentView.swift in Sources */,
 				014DF99928D5006200E6A754 /* ProfileActionButtonView.swift in Sources */,
@@ -621,6 +628,7 @@
 				01473BFF29232058004E0429 /* ImageUploader.swift in Sources */,
 				014DF99728D5000E00E6A754 /* ProfileHeaderView.swift in Sources */,
 				0198C7DD28EA111400676189 /* ForgetPasswordView.swift in Sources */,
+				01CD09772A52089F00EAF001 /* Notification.swift in Sources */,
 				01D0460A28E9F3A900038C1C /* LoginView.swift in Sources */,
 				01C4208B293AB7EA003FF2D5 /* CommentsView.swift in Sources */,
 				0189DBBC27DC38EC00956E28 /* Card.swift in Sources */,

@@ -26,6 +26,8 @@ class ProfileViewModel: ObservableObject{
             //print error
             if let error = error{print("ERROR: class ProfileViewModel func follow - \(error.localizedDescription)")}
             
+            NotificationsViewModel.uploadNotification(toUid: uid, type: .follow)
+            
             //update bool in User model
             self.user.isFollowed = true
         }

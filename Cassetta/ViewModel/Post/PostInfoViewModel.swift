@@ -47,6 +47,8 @@ class PostInfoViewModel: ObservableObject{
                         //In the firebase db add 1 to the like count
                         COLLECTION_POSTS.document(postId).updateData(["likes": self.post.likes + 1])
                         
+                        NotificationsViewModel.uploadNotification(toUid: self.post.ownerUid, type: .like, post: self.post)
+                        
                         // Update the post's "didLike" property to true, indicating that the user has liked the post.
                         self.post.didLike = true
                         //increment likes
