@@ -46,7 +46,7 @@ struct SearchView: View {
                             HighlightsView()
                                 .padding(.bottom)
                             
-                            CategoryGridView()
+                            CategoryGridView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
                         }
                         
                     }

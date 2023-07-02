@@ -86,7 +86,6 @@ struct TabBarView: View {
                         .background(Color("CassettaTan"))
                         
                     }
-                    
                     .tabItem {
                         Image("HomeImage")
                     }
