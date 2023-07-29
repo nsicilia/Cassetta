@@ -50,7 +50,7 @@ struct CategoryGridView: View {
     @Binding var isPopupBarPresented: Bool
     @Binding var isPopupOpen: Bool
     
-    @ObservedObject var feedViewModel = FeedViewModel(config: .random)
+    //@ObservedObject var feedViewModel = FeedViewModel(config: .random)
     
     //Test
     @StateObject var postViewModel: PostViewModel
@@ -61,13 +61,17 @@ struct CategoryGridView: View {
                 ForEach(categoryData) { category in
                     
                     NavigationLink {
-                       // Feed(viewModel: <#T##FeedViewModel#>, isPopupBarPresented: <#T##Binding<Bool>#>, isPopupOpen: <#T##Binding<Bool>#>, postViewModel: <#T##PostViewModel#>)
-                        Text("the")
+                        
+                        Feed(viewModel: FeedViewModel(config: .category(category.title)), isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
+                            .background(Color("CassettaTan"))
+                            .background(ignoresSafeAreaEdges: .all)
+                        
                     } label: {
                         CategoryCell(categoryTitle: category.title, cetegoryEmoji: category.emoji)
                             .foregroundColor(Color(UIColor.label))
                     }
-
+                    .background(Color("CassettaTan"))
+                    .background(ignoresSafeAreaEdges: .all)
                     
                     
                 }

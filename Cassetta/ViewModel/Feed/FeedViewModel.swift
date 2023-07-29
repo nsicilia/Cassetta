@@ -12,6 +12,7 @@ enum PostFeedConfiguration{
     case newest
     case random
     case profile(String)
+    case category(String)
 }
 
 class FeedViewModel: ObservableObject {
@@ -38,7 +39,13 @@ class FeedViewModel: ObservableObject {
             
         case .profile(let uid):
             fetchUserPosts(forUid: uid)
+            
+        case .category(let category):
+            fetchCategoryPost(forCategory: category)
+            
+            
         }
+        
     }
     
     
@@ -67,6 +74,19 @@ class FeedViewModel: ObservableObject {
             self.posts = documents.compactMap({try? $0.data(as: Post.self)})
         }
     }
+    
+    
+    func fetchCategoryPost(forCategory category: String){
+        COLLECTION_POSTS.whereField("category", isEqualTo: category).getDocuments { SnapshotData, error in
+            //Handle error
+            if let error = error{print("ERROR: SearchViewModel - \(error.localizedDescription)"); return }
+            // check if SnapshotData contains any documents
+            guard let documents = SnapshotData?.documents else {return}
+            // map the documents to Post objects using the data(as:) method and assign the result to the posts property
+            self.posts = documents.compactMap({try? $0.data(as: Post.self)})
+        }
+    }
+    
     
     
     func fetchNewestPosts(){
