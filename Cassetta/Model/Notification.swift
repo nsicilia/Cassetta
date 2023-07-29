@@ -5,9 +5,9 @@
 //  Created by Nicholas Siciliano-Salazar  on 7/2/23.
 //
 
-import Foundation
 import FirebaseFirestoreSwift
 import Firebase
+import Foundation
 
 struct Notification: Identifiable, Decodable {
     @DocumentID var id: String?
@@ -18,6 +18,9 @@ struct Notification: Identifiable, Decodable {
     let type: NotificationType
     let uid: String
     
+    var isFollowed: Bool? = false
+    var post: Post?
+    var user: User?
 }
 
 enum NotificationType: Int, Decodable{

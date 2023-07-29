@@ -17,7 +17,7 @@ struct ProfileView: View {
     @Binding var isPopupBarPresented: Bool
     @Binding var isPopupOpen: Bool
     
-    //test
+    //Universal Post Object
     @ObservedObject var postViewModel: PostViewModel
     
     

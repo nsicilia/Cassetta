@@ -99,7 +99,8 @@ struct MainTabView: View {
                         //Navigation view
                     case 3:
                         NavigationView {
-                            NotificationsView()
+                           // NotificationsView()
+                            Text("Notifications")
                                 .navigationTitle("Notifications")
                         }
                         

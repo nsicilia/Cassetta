@@ -62,6 +62,9 @@ class PostViewModel: ObservableObject {
                         if let likes = self.currentPost?.likes{
                             COLLECTION_POSTS.document(postId).updateData(["likes": likes + 1])
                         }
+                        
+                        NotificationsViewModel.uploadNotification(toUid: self.currentPost?.ownerUid ?? "", type: .like, post: self.currentPost)
+                        
                         // Update the post's "didLike" property to true, indicating that the user has liked the post.
                         self.currentPost?.didLike = true
                         //increment likes

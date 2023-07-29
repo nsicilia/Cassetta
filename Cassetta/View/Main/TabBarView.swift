@@ -121,7 +121,7 @@ struct TabBarView: View {
                     
                     //MARK: Notification View
                     NavigationView{
-                        NotificationsView()
+                        NotificationsView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
                             .navigationTitle("Notifications")
                     }
                     .tabItem {
