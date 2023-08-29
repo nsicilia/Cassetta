@@ -27,6 +27,10 @@ struct CommentCell: View {
             VStack(alignment: .leading){
                 Text(comment.username)
                     .font(.system(size: 14, weight: .semibold))
+//                +
+//                Text(" \(comment.timestampString ?? "")")
+//                    .foregroundColor(.gray)
+//                    .font(.system(size: 12))
                 
                 Text(comment.commentText)
                     .font(.system(size: 15))
@@ -68,6 +72,7 @@ struct CommentCell: View {
             RoundedRectangle(cornerRadius: 15)
                 .stroke(Color("CassettaBorder"), lineWidth: 2)
         )
+        .padding(.horizontal)
     }
         
 }
@@ -79,7 +84,7 @@ struct CommentCell_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
            // Color("CassettaTan").edgesIgnoringSafeArea(.all)
-            CommentCell(comment: Comment(username: "Test McUser", postOwnerUid: pst.ownerUid, profileImageUrl: pst.ownerImageUrl, commentText: "This is a comment about something!", timestamp: pst.timestamp, uid: "dsf"))
+            CommentCell(comment: Comment(username: "Test McUser", postOwnerUid: pst.ownerUid, profileImageUrl: pst.ownerImageUrl, commentText: "This is a comment about something really important that I feel that I need to express to the poster of this cast? audio? casette? idk!", timestamp: pst.timestamp, uid: "dsf"))
             
         }
     }

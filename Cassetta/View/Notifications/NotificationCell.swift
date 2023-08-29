@@ -53,6 +53,10 @@ struct NotificationCell: View {
             Text(viewModel.notification.type.notificationMessage)
                 .font(.system(size: 15))
                 .foregroundColor(.black)
+            +
+            Text(" \(viewModel.timestampString)")
+                .foregroundColor(.gray)
+                .font(.system(size: 12))
             
         }}
             
