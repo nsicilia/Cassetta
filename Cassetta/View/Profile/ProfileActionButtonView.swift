@@ -40,7 +40,7 @@ struct ProfileActionButtonView: View {
                 } label: {
                     Text(isFollowed ? "Following": "Follow")
                         .font(.system(size: 15, weight: .semibold))
-                        .frame(width: 170, height: 32)
+                        .frame(width: 150, height: 32)
                         .foregroundColor(isFollowed ? .black : .white)
                         .background(isFollowed ? .white : Color("CassettaOrange"))
                         .cornerRadius(10)
@@ -57,7 +57,7 @@ struct ProfileActionButtonView: View {
                 } label: {
                     Text("Message")
                         .font(.system(size: 15, weight: .semibold))
-                        .frame(width: 170, height: 32)
+                        .frame(width: 150, height: 32)
                         .foregroundColor(Color("CassettaBlack"))
                         .background(Color("CassettaWhite"))
                         .cornerRadius(10)

@@ -21,6 +21,12 @@ struct Feed: View {
     //Status of the share/delete
     @State var theUser: Bool = false
     
+    //Show a no posts
+    @State var noPostDefault: Bool = true
+    
+    //Show no post pic
+    @State var showNoPostPic: Bool = false
+    
     //Testnew post view model
     @ObservedObject var postViewModel: PostViewModel
     
@@ -29,22 +35,44 @@ struct Feed: View {
         ScrollView(showsIndicators: false){
             LazyVStack {
                 
-                if(viewModel.posts.isEmpty){
+                if(viewModel.posts.isEmpty && noPostDefault){
                     VStack{
-                        Image("EmptyFeed")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 250, height: 250)
-                            .padding(.top, 100)
+                        if (theUser){
+                            Text("Create your first post by clicking the + button below!")
+                                .font(.title3)
+                                .fontWeight(.light)
+                                .foregroundColor(.black)
+                                .frame(width: UIScreen.screenWidth / 2)
+                                .multilineTextAlignment(.center)
+                                .padding()
                         
                         
-                        
-                        Text("No posts yet")
-                            .font(.title2)
-                            .fontWeight(.light)
-                            .foregroundColor(.black)
-                            .padding()
+                        } else {
+                            if(showNoPostPic){
+                                Image("EmptyFeed")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 250, height: 250)
+                                    .padding(.top, 25)
+                                    .padding(.bottom, 25)
+                            }
+                            
+                            
+                            Text("No posts yet")
+                                .font(.title2)
+                                .fontWeight(.light)
+                                .foregroundColor(.black)
+                                .frame(width: 250)
+                                .padding(.top, 25)
+                                .padding(.bottom, 25)
+                        }
+                            
+                    
                     }
+                    .padding([.leading, .trailing], UIScreen.screenWidth / 6)
+                    .background(.white)
+                    .cornerRadius(15)
+                    .padding(.bottom, 100)
                 }
                 
                 ForEach(viewModel.posts) { post in
@@ -72,6 +100,7 @@ struct Feed: View {
             }
             .padding(.top)
             .background(Color("CassettaTan"))
+            
         }
         //
     }

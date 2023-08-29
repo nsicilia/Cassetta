@@ -53,8 +53,6 @@ struct TabBarView: View {
             ZStack(alignment: .top) {
                 TabView(selection: $selectedTab) {
                     
-                    
-                    
                     //MARK: Home View
                     NavigationView{
                         VStack{
@@ -62,7 +60,7 @@ struct TabBarView: View {
                                 NavigationLink(destination: ProfileView(user: postUser, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel), isActive: $showPosterProfile) { EmptyView() }
                             }
                             
-                            Feed(viewModel: feedViewModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen,  postViewModel: postViewModel)
+                            Feed(viewModel: feedViewModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen,  noPostDefault: false, postViewModel: postViewModel)
                         }
                         .toolbar {
                             ToolbarItemGroup(placement: .navigationBarLeading) {
