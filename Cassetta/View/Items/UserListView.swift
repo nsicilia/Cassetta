@@ -30,7 +30,11 @@ struct UserListView: View {
                 ForEach(users) { user in
                     
                     NavigationLink {
-                        ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
+                        LazyView(ProfileView(
+                            user: user,
+                            isPopupBarPresented: $isPopupBarPresented,
+                            isPopupOpen: $isPopupOpen,
+                            postViewModel: postViewModel))
                         
                     } label: {
                         LargeUserCell(profileImg: user.profileImageURL, username: user.username, fullname: user.fullname)

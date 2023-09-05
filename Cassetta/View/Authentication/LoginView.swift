@@ -56,8 +56,8 @@ struct LoginView: View {
                         HStack{
                             Spacer()
                             
-                            Button {
-                                //todo
+                            NavigationLink {
+                                ForgetPasswordView(email: $email)
                             } label: {
                                 Text("Forgot Password")
                                     .font(.system(size: 14, weight: .semibold))

@@ -60,6 +60,8 @@
 		015E087E292EE19700350D13 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015E087D292EE19700350D13 /* UserService.swift */; };
 		015E0880292EF48400350D13 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015E087F292EF48400350D13 /* ProfileViewModel.swift */; };
 		0178E8B82A9E4E4100C2F9D7 /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0178E8B72A9E4E4100C2F9D7 /* LazyView.swift */; };
+		0178E8BA2AA42ECC00C2F9D7 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0178E8B92AA42ECC00C2F9D7 /* EditProfileViewModel.swift */; };
+		0178E8BC2AA4429800C2F9D7 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0178E8BB2AA4429800C2F9D7 /* EditProfileView.swift */; };
 		0180737929EAED6500407ED8 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180737829EAED6500407ED8 /* Comment.swift */; };
 		0180737B29EAF15300407ED8 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180737A29EAF15300407ED8 /* CommentViewModel.swift */; };
 		0180737D29EAFF4A00407ED8 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180737C29EAFF4A00407ED8 /* CustomInputView.swift */; };
@@ -146,6 +148,8 @@
 		015E087D292EE19700350D13 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		015E087F292EF48400350D13 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		0178E8B72A9E4E4100C2F9D7 /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
+		0178E8B92AA42ECC00C2F9D7 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		0178E8BB2AA4429800C2F9D7 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		0180737829EAED6500407ED8 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		0180737A29EAF15300407ED8 /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		0180737C29EAFF4A00407ED8 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
@@ -333,6 +337,7 @@
 				014DF99428D4FF9A00E6A754 /* UserStatView.swift */,
 				014DF99628D5000E00E6A754 /* ProfileHeaderView.swift */,
 				014DF99828D5006200E6A754 /* ProfileActionButtonView.swift */,
+				0178E8BB2AA4429800C2F9D7 /* EditProfileView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -487,6 +492,7 @@
 			isa = PBXGroup;
 			children = (
 				015E087F292EF48400350D13 /* ProfileViewModel.swift */,
+				0178E8B92AA42ECC00C2F9D7 /* EditProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -666,6 +672,7 @@
 				014DF97F28D17EBC00E6A754 /* SearchBar.swift in Sources */,
 				019F62EC2947D1FA0045FF39 /* DetailPostView.swift in Sources */,
 				014BA7FC299ADA2000370AE3 /* MP3Converter.swift in Sources */,
+				0178E8BA2AA42ECC00C2F9D7 /* EditProfileViewModel.swift in Sources */,
 				015E087E292EE19700350D13 /* UserService.swift in Sources */,
 				01F4CDC829A96D6F00FDC7CD /* PostInfoViewModel.swift in Sources */,
 				01F4CDED29B186CF00FDC7CD /* FlexibleView.swift in Sources */,
@@ -678,6 +685,7 @@
 				0198C7DB28EA08C200676189 /* ImagePicker.swift in Sources */,
 				015E0880292EF48400350D13 /* ProfileViewModel.swift in Sources */,
 				01F4CDEB29B186A700FDC7CD /* _FlexibleView.swift in Sources */,
+				0178E8BC2AA4429800C2F9D7 /* EditProfileView.swift in Sources */,
 				014DF98328D29EF000E6A754 /* UserListView.swift in Sources */,
 				014DF98928D3A78300E6A754 /* NotificationsView.swift in Sources */,
 				015CE4E3293AA2F50096D35C /* BottomControlsView.swift in Sources */,

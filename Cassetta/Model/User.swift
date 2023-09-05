@@ -12,6 +12,8 @@ struct User: Identifiable, Decodable{
     let email: String
     let profileImageURL: String
     let fullname: String
+    var stats: UserStats?
+    var bio: String?
     
     @DocumentID var id: String?
     
@@ -20,4 +22,11 @@ struct User: Identifiable, Decodable{
     
     //determines if user is the current user from shared user session
     var isCurrentUser: Bool { return AuthViewModel.shared.userSession?.uid == id}
+}
+
+
+struct UserStats: Decodable {
+    var followers: Int
+    var following: Int
+    var posts: Int
 }

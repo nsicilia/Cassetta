@@ -25,9 +25,9 @@ struct ProfileHeaderView: View {
                 
                 HStack(spacing: 8){
                     //Stats
-                    UserStatView(value: 15, title: "Posts")
-                    UserStatView(value: 34, title: "Followers")
-                    UserStatView(value: 64, title: "Following")
+                    UserStatView(value: viewModel.user.stats?.posts ?? 0, title: "Posts")
+                    UserStatView(value: viewModel.user.stats?.followers ?? 0, title: "Followers")
+                    UserStatView(value: viewModel.user.stats?.following ?? 0, title: "Following")
                 }
                 .padding(.trailing, 16)
                 
@@ -36,42 +36,58 @@ struct ProfileHeaderView: View {
             //name
             
             //name
-           // HStack{
-                Text(viewModel.user.fullname)
-                    .font(.system(size: 16, weight: .semibold))
-                    .padding(.top)
-                    .padding(.bottom, 0.5)
-                
-                Text("@\(viewModel.user.username)")
-                    .font(.system(size: 14))
-                    .padding(.bottom, 26)
-                    
-           // }
-                
+            // HStack{
+            Text(viewModel.user.fullname)
+                .font(.system(size: 16, weight: .semibold))
+                .padding(.top)
+                .padding(.bottom, 0.5)
+            
+            Text("@\(viewModel.user.username)")
+                .font(.system(size: 14))
+                .padding(.bottom, 26)
+            
+            // }
+            
             
             //description
-            Text("OH ✈️ NY ✈️ CA   |   ASU '19   |   fashion, travel & lifestyle")
-                .font(.system(size: 15))
-                .multilineTextAlignment(.center)
-                .padding([.leading, .trailing], 32)
-                .padding(.top, 1)
+            
+            if let bio = viewModel.user.bio {
+                
+                Text(bio)
+                    .font(.system(size: 15))
+                    .multilineTextAlignment(.center)
+                    .padding([.leading, .trailing], 32)
+                    .padding(.top, 1)
+                    .lineLimit(3)
+                
+            } else {
+                Text("Bio")
+                    .font(.system(size: 15))
+                    .multilineTextAlignment(.center)
+                    .padding([.leading, .trailing], 32)
+                    .padding(.top, 1)
+                    .lineLimit(4)
+                    
+                
+            }
             
             
             VStack {
                 //Buttons
                 ProfileActionButtonView(viewModel: viewModel)
-
+                
             }
             .padding(.top, 42)
             .padding(.bottom)
             
         }
+        .frame(width: UIScreen.main.bounds.width - 32)
         .background(.white)
         .cornerRadius(15.0)
         .overlay {
-                    RoundedRectangle(cornerRadius: 15)
+            RoundedRectangle(cornerRadius: 15)
                 .stroke(Color(UIColor.secondaryLabel), lineWidth: 0.5)
-                }
+        }
     }
 }
 
