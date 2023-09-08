@@ -25,5 +25,14 @@ class EditProfileViewModel: ObservableObject {
         }
     }
     
+    func saveUserFullname(_ fullname: String) {
+        guard let uid = user.id else { return }
+        COLLECTION_USERS.document(uid).updateData(["fullname": fullname]) { _ in
+            self.user.fullname = fullname
+            self.uploadComplete = true
+            
+        }
+    }
+    
     
 }

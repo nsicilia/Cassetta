@@ -11,7 +11,7 @@ struct User: Identifiable, Decodable{
     let username: String
     let email: String
     let profileImageURL: String
-    let fullname: String
+    var fullname: String
     var stats: UserStats?
     var bio: String?
     

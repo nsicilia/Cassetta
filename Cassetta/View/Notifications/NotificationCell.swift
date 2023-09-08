@@ -74,8 +74,10 @@ struct NotificationCell: View {
                             .resizable()
                             .scaledToFill()
                             .frame(width: 40, height: 40)
+                            
                             .clipped()
                     }
+                    
 
                 }
             } else{
@@ -98,8 +100,10 @@ struct NotificationCell: View {
         }
         .padding()
         .frame(maxWidth: UIScreen.screenWidth - 12 )
+        .frame(minHeight: 80)
         .background(.white)
         .cornerRadius(15.0)
+        
     }
 }
 
@@ -109,7 +113,7 @@ struct NotificationCell_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color("CassettaTan").edgesIgnoringSafeArea(.all)
-            NotificationCell(viewModel: NotificationCellViewModel(notification: Notification(username: "nickssalazr23465", profileImageUrl: "https://firebasestorage.googleapis.com/v0/b/cassetta-production.appspot.com/o/profile_images%2FC9BCB365-335B-4D21-80D6-E71F54E4A671?alt=media&token=43b1000f-dbbf-4e54-b366-59fbce5901b8", timestamp: Timestamp(), type: .follow, uid: "OlWrOF8N9YX43S2iuLiJUUKx7R32")) , isPopupBarPresented: .constant(false), isPopupOpen: .constant(false), postViewModel: PostViewModel(post: post))
+            NotificationCell(viewModel: NotificationCellViewModel(notification: Notification(username: "nickssalazr23465", profileImageUrl: "https://firebasestorage.googleapis.com/v0/b/cassetta-production.appspot.com/o/profile_images%2FC9BCB365-335B-4D21-80D6-E71F54E4A671?alt=media&token=43b1000f-dbbf-4e54-b366-59fbce5901b8", timestamp: Timestamp(), type: .like, uid: "OlWrOF8N9YX43S2iuLiJUUKx7R32")) , isPopupBarPresented: .constant(false), isPopupOpen: .constant(false), postViewModel: PostViewModel(post: post))
                 .previewLayout(.sizeThatFits)
                 
         }

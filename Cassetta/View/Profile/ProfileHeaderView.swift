@@ -30,13 +30,10 @@ struct ProfileHeaderView: View {
                     UserStatView(value: viewModel.user.stats?.following ?? 0, title: "Following")
                 }
                 .padding(.trailing, 16)
-                
             }
-            
+                        
             //name
             
-            //name
-            // HStack{
             Text(viewModel.user.fullname)
                 .font(.system(size: 16, weight: .semibold))
                 .padding(.top)
@@ -46,11 +43,8 @@ struct ProfileHeaderView: View {
                 .font(.system(size: 14))
                 .padding(.bottom, 26)
             
-            // }
-            
             
             //description
-            
             if let bio = viewModel.user.bio {
                 
                 Text(bio)
@@ -67,15 +61,12 @@ struct ProfileHeaderView: View {
                     .padding([.leading, .trailing], 32)
                     .padding(.top, 1)
                     .lineLimit(4)
-                    
-                
             }
             
             
             VStack {
                 //Buttons
                 ProfileActionButtonView(viewModel: viewModel)
-                
             }
             .padding(.top, 42)
             .padding(.bottom)

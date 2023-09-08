@@ -17,12 +17,15 @@ class ProfileViewModel: ObservableObject{
         checkIfUserIsFollowed()
         fetchUserStats()
         fetchUserBio()
+        fetchUserFullname()
     }
     
     
     func follow(){
         //get uid of a user
         guard let uid = user.id else {return}
+        
+        
         
         UserService.follow(uid: uid) { error in
             //print error
@@ -102,22 +105,22 @@ class ProfileViewModel: ObservableObject{
             }
         }
     
-//    func fetchUserFullname() {
-//            guard let uid = user.id else { return }
-//            
-//            // Replace 'COLLECTION_USERS' with your actual database collection for users
-//            COLLECTION_USERS.document(uid).getDocument { snapshot, error in
-//                if let error = error {
-//                    print("ERROR: ProfileViewModel fetchUserBio - \(error.localizedDescription)")
-//                    return
-//                }
-//
-//                if let data = snapshot?.data(),
-//                   let fullname = data["fullname"] as? String {
-//                    self.user.fullname = fullname
-//                }
-//            }
-//        }
+    func fetchUserFullname() {
+            guard let uid = user.id else { return }
+            
+            // Replace 'COLLECTION_USERS' with your actual database collection for users
+            COLLECTION_USERS.document(uid).getDocument { snapshot, error in
+                if let error = error {
+                    print("ERROR: ProfileViewModel fetchUserBio - \(error.localizedDescription)")
+                    return
+                }
+
+                if let data = snapshot?.data(),
+                   let fullname = data["fullname"] as? String {
+                    self.user.fullname = fullname
+                }
+            }
+        }
     
     
     }

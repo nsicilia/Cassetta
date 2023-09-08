@@ -17,6 +17,7 @@ class AuthViewModel: ObservableObject {
     
     static let shared = AuthViewModel()
     
+    
     init(){
         userSession = Auth.auth().currentUser
         fetchUser()
