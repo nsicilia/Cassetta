@@ -16,7 +16,7 @@ struct ProfileHeaderView: View {
             
             //Image
             VStack {
-                KFImage(URL(string: viewModel.user.profileImageURL))
+                KFImage(viewModel.userSessionProfilePhoto)
                     .resizable()
                     .scaledToFill()
                     .frame(width: 80, height: 80)
@@ -33,7 +33,6 @@ struct ProfileHeaderView: View {
             }
                         
             //name
-            
             Text(viewModel.user.fullname)
                 .font(.system(size: 16, weight: .semibold))
                 .padding(.top)

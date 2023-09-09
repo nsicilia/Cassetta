@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import Firebase
 
 class ProfileViewModel: ObservableObject{
     //instance of the model
     @Published var user: User
+    
+    let userSessionProfilePhoto = AuthViewModel.shared.userSession?.photoURL
     
     init(user: User) {
         self.user = user
@@ -19,6 +22,11 @@ class ProfileViewModel: ObservableObject{
         fetchUserBio()
         fetchUserFullname()
     }
+    
+    
+    
+    
+    
     
     
     func follow(){

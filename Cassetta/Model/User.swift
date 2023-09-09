@@ -15,6 +15,7 @@ struct User: Identifiable, Decodable{
     var stats: UserStats?
     var bio: String?
     
+    
     @DocumentID var id: String?
     
     //set as an optional to conform with Decodable

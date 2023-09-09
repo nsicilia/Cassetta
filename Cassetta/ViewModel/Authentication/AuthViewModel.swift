@@ -37,39 +37,54 @@ class AuthViewModel: ObservableObject {
     }
     
     func register(withEmail email: String, password: String, image: UIImage?, fullname: String, username: String){
-        
-        guard let image = image else {return}
+            
+        guard let image = image else { return }
         
         ImageUploader.uploadImage(image: image, type: .profile) { imageUrl in
             Auth.auth().createUser(withEmail: email, password: password) { result, error in
-                if let error = error{
+                if let error = error {
                     print(error.localizedDescription)
                     return
                 }
                 
                 guard let user = result?.user else { return }
                 
-               // print("DEBUG:Succsessfully registered user")
-               // print("DEBUG: uid \(user.uid)")
+                // Update the user's profile with the image URL
+                let changeRequest = user.createProfileChangeRequest()
+                changeRequest.photoURL = URL(string: imageUrl)
+                changeRequest.displayName = username
                 
-                //agrigate user infomration
-                let data = ["email": email,
-                            "username": username,
-                            "fullname": fullname,
-                            "profileImageURL": imageUrl,
-                            "uid": user.uid]
-                
-                //Upload
-                Firestore.firestore().collection("users").document(user.uid).setData(data) { _ in
-                   // print("DEBUG:Succsessfully uploaded user data")
-                    self.userSession = user
-                    self.fetchUser()
+                changeRequest.commitChanges { error in
+                    if let error = error {
+                        print("Error updating user profile: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    // Aggregate user information
+                    let data = [
+                        "email": email,
+                        "username": username,
+                        "fullname": fullname,
+                        "profileImageURL": imageUrl,
+                        "uid": user.uid
+                    ]
+                    
+                    // Upload user data to Firestore
+                    Firestore.firestore().collection("users").document(user.uid).setData(data) { error in
+                        if let error = error {
+                            print("Error uploading user data: \(error.localizedDescription)")
+                            return
+                        }
+                        
+                        // Registration and data upload successful
+                        self.userSession = user
+                        self.fetchUser()
+                    }
                 }
-                
             }
         }
-        
     }
+
     
     func signout(){
         self.userSession = nil
