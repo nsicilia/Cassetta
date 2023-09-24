@@ -10,7 +10,7 @@ import FirebaseFirestoreSwift
 struct User: Identifiable, Decodable{
     let username: String
     let email: String
-    let profileImageURL: String
+    var profileImageURL: String
     var fullname: String
     var stats: UserStats?
     var bio: String?
@@ -23,6 +23,7 @@ struct User: Identifiable, Decodable{
     
     //determines if user is the current user from shared user session
     var isCurrentUser: Bool { return AuthViewModel.shared.userSession?.uid == id}
+    
 }
 
 

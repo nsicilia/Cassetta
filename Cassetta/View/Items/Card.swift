@@ -48,7 +48,7 @@ struct Card: View {
                 Spacer()
                 
                 Button {
-                    print("Edit button was tapped")
+                   // print("Edit button was tapped")
                 } label: {
                     Image(systemName: "play.circle.fill")
                         .font(.system(size: 15))

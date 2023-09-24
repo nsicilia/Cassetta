@@ -143,7 +143,7 @@ struct DetailPostView: View {
                             
                             viewModel.uploadPost(title: title, description: description, category: category, image: image, audio: audio, duration: audioDuration){ error in
                                 //error handling
-                                if let error = error {print("DEBUG: failed to upload an image - \(error.localizedDescription)"); return }
+                               // if let error = error {print("DEBUG: failed to upload an image - \(error.localizedDescription)"); return }
                                 //On Completion
                                 postImage = nil
                                 audioRecorder.deleteAllRecordings()

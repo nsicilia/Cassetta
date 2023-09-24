@@ -107,7 +107,7 @@ class ConcatenateAudioFiles {
             try FileManager.default.removeItem(at: urlToDelete)
             // print("DEBUG:deleteRecording - Sucessfully deleted \(urlToDelete)")
         } catch{
-            print("DEBUG:deleteRecording - File could not be deleted!")
+           // print("DEBUG:deleteRecording - File could not be deleted!")
         }
         
         

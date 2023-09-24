@@ -11,17 +11,23 @@ import Kingfisher
 struct ProfileHeaderView: View {
     @ObservedObject var viewModel: ProfileViewModel
     
+    
+    
+    
     var body: some View {
         VStack(alignment: .center, spacing: 0){
             
             //Image
             VStack {
-                KFImage(viewModel.userSessionProfilePhoto)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 80, height: 80)
-                    .clipShape(Circle())
-                    .padding()
+              // let _ = print("DEBUG: the profile image - \(viewModel.user.profileImageURL)")
+                
+                KFImage(URL(string: viewModel.user.profileImageURL))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 80, height: 80)
+                        .clipShape(Circle())
+                        .padding()
+                
                 
                 HStack(spacing: 8){
                     //Stats
@@ -78,7 +84,9 @@ struct ProfileHeaderView: View {
             RoundedRectangle(cornerRadius: 15)
                 .stroke(Color(UIColor.secondaryLabel), lineWidth: 0.5)
         }
+        
     }
+        
 }
 
 struct ProfileHeaderView_Previews: PreviewProvider {

@@ -25,7 +25,7 @@ class AudioManager: ObservableObject{
     @Published var coverArt = UIImage(named: "DefaultImage"){
         didSet {
             //addMediaCenterInfo()
-            print("Debug: coverArt")
+           // print("Debug: coverArt")
         }
     }
     

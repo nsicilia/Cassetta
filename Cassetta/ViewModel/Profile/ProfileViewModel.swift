@@ -11,8 +11,9 @@ import Firebase
 class ProfileViewModel: ObservableObject{
     //instance of the model
     @Published var user: User
+   
     
-    let userSessionProfilePhoto = AuthViewModel.shared.userSession?.photoURL
+    
     
     init(user: User) {
         self.user = user
@@ -21,12 +22,8 @@ class ProfileViewModel: ObservableObject{
         fetchUserStats()
         fetchUserBio()
         fetchUserFullname()
+        fetchUserPhotoURL()
     }
-    
-    
-    
-    
-    
     
     
     func follow(){
@@ -122,13 +119,30 @@ class ProfileViewModel: ObservableObject{
                     print("ERROR: ProfileViewModel fetchUserBio - \(error.localizedDescription)")
                     return
                 }
-
                 if let data = snapshot?.data(),
                    let fullname = data["fullname"] as? String {
                     self.user.fullname = fullname
                 }
             }
+        
         }
     
-    
+
+    func fetchUserPhotoURL() {
+        guard let uid = user.id else { return }
+
+        // Replace 'COLLECTION_USERS' with your actual database collection for users
+        COLLECTION_USERS.document(uid).getDocument { snapshot, error in
+            if let error = error {
+                print("ERROR: ProfileViewModel fetchUserPhotoURL - \(error.localizedDescription)")
+                return
+            }
+
+            if let data = snapshot?.data(),
+               let photoURL = data["profileImageURL"] as? String {
+                self.user.profileImageURL = photoURL
+            }
+        }
+    }
+
     }

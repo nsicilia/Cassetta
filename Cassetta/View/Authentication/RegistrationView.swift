@@ -12,8 +12,8 @@ struct RegistrationView: View {
     @State private var username = ""
     @State private var fullname = ""
     @State private var password = ""
-    @State private var selectedImage: UIImage?
-    @State private var image: Image?
+    @State  var selectedImage: UIImage?
+    @State  var image: Image?
     @State var imagePickerPresented = false
     
     @State private var genericImage = UIImage(named: "GenericUser")
@@ -33,7 +33,7 @@ struct RegistrationView: View {
             
             
             VStack{
-                //Logo
+                
                 if let image = image{
                     image
                         .resizable()

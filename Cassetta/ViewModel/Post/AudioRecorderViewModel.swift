@@ -53,7 +53,7 @@ class AudioRecorderViewModel: NSObject, ObservableObject {
             try recordingSession.setActive(true)
             
         } catch {
-            print("DEBUG:AudioRecorder - Failed to set up recording session")
+          //  print("DEBUG:AudioRecorder - Failed to set up recording session")
         }
         
         //location where the recording should be saved
@@ -89,7 +89,7 @@ class AudioRecorderViewModel: NSObject, ObservableObject {
             recording = true
             
         } catch{
-            print("DEBUG:AudioRecorder - Could not start recording")
+            //print("DEBUG:AudioRecorder - Could not start recording")
         }
         
     }

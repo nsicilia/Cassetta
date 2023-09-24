@@ -42,7 +42,7 @@ struct ImageUploader {
         ref.putData(imageData, metadata: nil) { _ , error in
             //error handling
             if let error = error {
-                print("DEBUG: failed to upload an image - \(error.localizedDescription)")
+                //print("DEBUG: failed to upload an image - \(error.localizedDescription)")
                 return
             }
             

@@ -52,7 +52,7 @@ class AuthViewModel: ObservableObject {
                 // Update the user's profile with the image URL
                 let changeRequest = user.createProfileChangeRequest()
                 changeRequest.photoURL = URL(string: imageUrl)
-                changeRequest.displayName = username
+                changeRequest.displayName = fullname
                 
                 changeRequest.commitChanges { error in
                     if let error = error {
@@ -113,6 +113,8 @@ class AuthViewModel: ObservableObject {
             self.currentUser = user
         }
     }
+    
+
     
 }
 

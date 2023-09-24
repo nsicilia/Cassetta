@@ -31,7 +31,7 @@ class AudioUploader: NSObject, ObservableObject {
        let uploadTask =  ref.putFile(from: audio, metadata: nil) { _, error in
             //error handling
             if let error = error {
-                print("DEBUG: failed to upload an audio file - \(error.localizedDescription)")
+               // print("DEBUG: failed to upload an audio file - \(error.localizedDescription)")
                 return
             }
             
@@ -47,7 +47,7 @@ class AudioUploader: NSObject, ObservableObject {
         uploadTask.observe(.progress) { snapshot in
                     let progress = snapshot.progress?.fractionCompleted
                     self.progress = progress ?? 0
-                    print("Progress from uploadTask: \(self.progress)")
+                    //print("Progress from uploadTask: \(self.progress)")
                 }
         
     }

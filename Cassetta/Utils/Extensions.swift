@@ -57,7 +57,7 @@ extension AVMutableCompositionTrack {
         let newAsset = AVURLAsset(url: url)
         let range = CMTimeRangeMake(start: CMTime.zero, duration: newAsset.duration)
         let end = timeRange.end
-        print(end)
+        //print("end", end)
         if let track = newAsset.tracks(withMediaType: AVMediaType.audio).first {
             try! insertTimeRange(range, of: track, at: end)
         }
@@ -89,7 +89,7 @@ extension AVAudioSessionPortDescription {
 extension DateComponentsFormatter {
     
     static let abbreviated: DateComponentsFormatter = {
-        print("Initializing DateComponentsFormatter.abbreviated")
+        //print("Initializing DateComponentsFormatter.abbreviated")
         let formatter = DateComponentsFormatter()
         
         formatter.allowedUnits = [.hour, .minute, .second]
@@ -100,7 +100,7 @@ extension DateComponentsFormatter {
     
     
     static let positional: DateComponentsFormatter = {
-        print("Initializing DateComponentsFormatter.abbreviated")
+       // print("Initializing DateComponentsFormatter.positional")
         let formatter = DateComponentsFormatter()
         
         formatter.allowedUnits = [.minute, .second]

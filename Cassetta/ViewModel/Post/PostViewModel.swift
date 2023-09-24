@@ -181,20 +181,20 @@ class PostViewModel: ObservableObject {
 
 
     func getImageFromURL() {
-        print("Debug: func working")
+      //  print("Debug: func working")
         guard let url = URL(string: currentPost?.imageUrl ?? "") else { return }
         URLSession.shared.dataTask(with: url) { data, response, error in
-            print("Debug: URL Session")
+        
             guard let data = data, error == nil else {
-                print("Error downloading image: \(error?.localizedDescription ?? "Unknown error")")
+            //    print("Error downloading image: \(error?.localizedDescription ?? "Unknown error")")
                 return
             }
-            print("Debug: Before dispatchqueue")
+          
             DispatchQueue.main.async {
                 if let image = UIImage(data: data)?.resized(to: CGSize(width: 200, height: 200), contentMode: .scaleAspectFill, clipsToBounds: true) {
                     self.testImage = Image(uiImage: image)
                     self.coverArtImage = image
-                    print("Debug: It worked")
+                  
                     
                     var mediaInfo = [String:Any]()
                     // Convert UIImage to MPMediaItemArtwork
@@ -219,11 +219,11 @@ class PostViewModel: ObservableObject {
     func fetchUser(){
         guard let uid = currentPost?.ownerUid else { return }
         
-        print("Debug: fetchUser uid - \(uid)")
+      //  print("Debug: fetchUser uid - \(uid)")
         
         COLLECTION_USERS.document(uid).getDocument { SnapshotData, error in
             if let error = error{
-                print("DEBUG: fetchUser() - \(error.localizedDescription)")
+              //  print("DEBUG: fetchUser() - \(error.localizedDescription)")
                 return
             }
             

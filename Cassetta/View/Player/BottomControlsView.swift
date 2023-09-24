@@ -81,11 +81,11 @@ struct BottomControlsView: View {
                         audioManager.playingStatus.toggle()
                         if audioManager.playingStatus {
                             audioManager.player.resume()
-                            print("DEBUG: \(audioManager.player.state)")
+                           // print("DEBUG: \(audioManager.player.state)")
                             
                         } else{
                             audioManager.player.pause()
-                            print("DEBUG: \(audioManager.player.state)")
+                           // print("DEBUG: \(audioManager.player.state)")
                             
                         }
                         
