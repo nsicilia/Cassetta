@@ -62,7 +62,6 @@ class EditProfileViewModel: ObservableObject {
         
         guard let newImage = newImage else { return }
         
-        
         // Upload the new image to Firebase Storage
         ImageUploader.uploadImage(image: newImage, type: .profile) { imageUrl in
             // Update the user's profile with the new photo URL
@@ -74,29 +73,14 @@ class EditProfileViewModel: ObservableObject {
                 
 
                 COLLECTION_USERS.document(uid).updateData(["profileImageURL": imageUrl]) { _ in
-                    
-                    print("DEBUG: imageURL: \(imageUrl.suffix(5))")
                     self.user.profileImageURL = imageUrl
-                    
                     self.uploadComplete = true
-                    print("DEBUG: uploadComplete: \(self.uploadComplete)")
                     
                 }
-
-//                // Update the user's profile data in Firestore
-//                let userData = ["profileImageURL": imageUrl]
-//                let userRef = Firestore.firestore().collection("users").document(user.uid)
-//
-//                userRef.updateData(userData) { error in
-//                    if let error = error {
-//                        print("Error updating user profile: \(error.localizedDescription)")
-//                        return
-//
-//                    }
-//                }
             }
         }
     }
+    
     
     
 }

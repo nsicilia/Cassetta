@@ -51,7 +51,6 @@ struct EditProfileView: View {
                         viewModel.saveUserFullname(fullnameText)
                         viewModel.updateProfilePhoto(newImage: selectedImage)
                         isLoading.toggle() // Toggle the loading state
-                        
                         // Simulate an asynchronous task (you should replace this with your actual async operation)
                         DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
                             DispatchQueue.main.async {
@@ -117,17 +116,10 @@ struct EditProfileView: View {
 
                 
                 ZStack {
-                    if fullnameText.isEmpty {
-                        TextEditor(text:$fullnameTextplaceholer)
-                            .font(.body)
-                            .foregroundColor(.gray)
-                            .disabled(true)
-                            .padding()
-                    }
-                    TextEditor(text: $fullnameText)
+                    TextField("Full Name", text: $fullnameText)
                         .font(.body)
-                        .opacity(fullnameText.isEmpty ? 0.25 : 1)
                         .padding()
+                
                 }
                 .frame(height: 70)
                 .overlay(
