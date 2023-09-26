@@ -19,17 +19,28 @@ class EditProfileViewModel: ObservableObject {
         self.user = user
     }
     
+    private var uploadTasksCount = 0 {
+            didSet {
+                if uploadTasksCount == 3 {
+                   uploadComplete = true
+                }
+            }
+        }
+    
+
+    
     func saveUserBio(_ bio: String) {
         guard let uid = user.id else { return }
         
         if (user.bio == bio) {
-           // print("DEBUG: bio is the same as before")
+            uploadTasksCount += 1
             return
         }
         
         COLLECTION_USERS.document(uid).updateData(["bio": bio]) { _ in
             self.user.bio = bio
-            self.uploadComplete = true
+            //self.uploadComplete = true
+            self.uploadTasksCount += 1
             print("DEBUG: uploadComplete bio: \(self.uploadComplete)")
             
             
@@ -41,7 +52,7 @@ class EditProfileViewModel: ObservableObject {
         guard let uid = user.id else { return }
         
         if (user.fullname == fullname) {
-            //print("DEBUG: fullname is the same as before")
+            uploadTasksCount += 1
             return
         }
         
@@ -50,7 +61,9 @@ class EditProfileViewModel: ObservableObject {
             
           //  print("DEBUG: fullname: \(fullname)")
             self.user.fullname = fullname
-            self.uploadComplete = true
+            //self.uploadComplete = true
+            self.uploadTasksCount += 1
+            
             print("DEBUG: uploadComplete fullname: \(self.uploadComplete)")
         }
         
@@ -74,7 +87,8 @@ class EditProfileViewModel: ObservableObject {
 
                 COLLECTION_USERS.document(uid).updateData(["profileImageURL": imageUrl]) { _ in
                     self.user.profileImageURL = imageUrl
-                    self.uploadComplete = true
+                    //self.uploadComplete = true
+                    self.uploadTasksCount += 1
                     
                 }
             }

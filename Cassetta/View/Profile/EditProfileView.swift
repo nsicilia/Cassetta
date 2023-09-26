@@ -71,87 +71,92 @@ struct EditProfileView: View {
 
                 }
                 .padding()
-                
-                //profile photo
-                
-                if let image = image{
-                    image
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 110, height: 110)
-                        .clipShape(Circle())
-                        .padding()
-                        .padding(.vertical, 32)
-                        .padding(.horizontal, 32)
-                    
-                }else{
-                    
-                    //Pick a photo button
-                    Button {
-                        imagePickerPresented.toggle()
+                ScrollView{
+                    VStack{
                         
-                    } label: {
-                        VStack{
-                            KFImage(URL(string: user.profileImageURL))
+                        //profile photo
+                        
+                        if let image = image{
+                            image
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: 110, height: 110)
                                 .clipShape(Circle())
                                 .padding()
-                        }
-                        .foregroundColor(.black)
-                        .padding(.vertical, 32)
-                        .padding(.horizontal, 32)
-                    }
-                    .background(Color(.white))
-                    .clipShape(Circle())
-                    //The image selection pop-up, runs the loadImage function when the sheet is dismissed
-                    .sheet(isPresented: $imagePickerPresented, onDismiss: loadImg, content: {
-                        //Selects an image from the UIKit image picker, sets that photo to selectedImage var
-                        ImagePicker(image: $selectedImage)
-                    })
-                    .padding()
-                }
-                
-
-                
-                ZStack {
-                    TextField("Full Name", text: $fullnameText)
-                        .font(.body)
-                        .padding()
-                
-                }
-                .frame(height: 70)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(.gray, lineWidth: 1)
-                )
-                .padding()
-                
-                
-                ZStack {
-                    if bioText.isEmpty {
-                        TextEditor(text:$bioTextplaceholer)
-                            .font(.body)
-                            .foregroundColor(.gray)
-                            .disabled(true)
+                                .padding(.vertical, 32)
+                                .padding(.horizontal, 32)
+                            
+                        }else{
+                            
+                            //Pick a photo button
+                            Button {
+                                imagePickerPresented.toggle()
+                                
+                            } label: {
+                                VStack{
+                                    KFImage(URL(string: user.profileImageURL))
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 110, height: 110)
+                                        .clipShape(Circle())
+                                        .padding()
+                                }
+                                .foregroundColor(.black)
+                                .padding(.vertical, 32)
+                                .padding(.horizontal, 32)
+                            }
+                            .background(Color(.white))
+                            .clipShape(Circle())
+                            //The image selection pop-up, runs the loadImage function when the sheet is dismissed
+                            .sheet(isPresented: $imagePickerPresented, onDismiss: loadImg, content: {
+                                //Selects an image from the UIKit image picker, sets that photo to selectedImage var
+                                ImagePicker(image: $selectedImage)
+                            })
                             .padding()
-                    }
-                    TextEditor(text: $bioText)
-                        .font(.body)
-                        .opacity(bioText.isEmpty ? 0.25 : 1)
+                        }
+                        
+                        
+                        
+                        ZStack {
+                            TextField("Full Name", text: $fullnameText)
+                                .font(.body)
+                                .padding()
+                            
+                        }
+                        .frame(height: 70)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(.gray, lineWidth: 1)
+                        )
                         .padding()
+                        
+                        
+                        ZStack {
+                            if bioText.isEmpty {
+                                TextEditor(text:$bioTextplaceholer)
+                                    .font(.body)
+                                    .foregroundColor(.gray)
+                                    .disabled(true)
+                                    .padding()
+                            }
+                            TextEditor(text: $bioText)
+                                .font(.body)
+                                .opacity(bioText.isEmpty ? 0.25 : 1)
+                                .padding()
+                        }
+                        .frame(height: 200)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(.gray, lineWidth: 1)
+                        )
+                        .padding()
+                        
+                        
+                        
+                        Spacer()
+                        
+                    }
                 }
-                .frame(height: 200)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(.gray, lineWidth: 1)
-                )
-                .padding()
-                
-                    
-                
-                Spacer()
             }
             .onReceive(viewModel.$uploadComplete, perform: { completed in
                 if completed {
