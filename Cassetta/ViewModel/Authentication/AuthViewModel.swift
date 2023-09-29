@@ -15,6 +15,10 @@ class AuthViewModel: ObservableObject {
     @Published var currentUser: User?
     @Published var didSendPasswordLink = false
     
+    @Published var loginFail = false
+    
+    
+    
     static let shared = AuthViewModel()
     
     
@@ -26,6 +30,7 @@ class AuthViewModel: ObservableObject {
     func login(withEmail email: String, password: String){
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if let error = error{
+                self.loginFail = true
                 print("DEBUG: Login failed - \(error.localizedDescription)")
                 return
             }
@@ -33,6 +38,8 @@ class AuthViewModel: ObservableObject {
             guard let user = result?.user else { return }
             self.userSession = user
             self.fetchUser()
+            self.loginFail = false
+        
         }
     }
     

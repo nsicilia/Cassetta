@@ -14,18 +14,10 @@ struct LoginView: View {
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var viewModel: AuthViewModel
     
+    
     var body: some View {
         NavigationView{
             ZStack {
-//                LinearGradient(
-//                    gradient: Gradient(stops: [
-//                        .init(color: Color("CassettaYellow"), location: 0),
-//                        .init(color: Color("CassettaOrange"), location: 0.42),
-//                        .init(color: Color("CassettaOrange"), location: 1)
-//                                ]),
-//                    startPoint: .topLeading ,
-//                    endPoint: .bottomTrailing)
-//                    .ignoresSafeArea()
                 Image("CassettaBackground")
                     .resizable()
                     .scaledToFill()
@@ -45,12 +37,11 @@ struct LoginView: View {
                     
                     VStack(spacing: 20){
                         //email field
-                        //CustomTextField(text: $email, placeholder: Text("Email..."), imageName: "envelope")
                         EmailTextField(text: $email)
                         
                         //password field
                         CustomSecureField(text: $password, placeholder: Text("Password..."), newPassword: false)
-
+                        
                         
                         //forgot password
                         HStack{
@@ -62,9 +53,9 @@ struct LoginView: View {
                                 Text("Forgot Password")
                                     .font(.system(size: 14, weight: .semibold))
                                     .foregroundColor(.black)
-                                    
+                                
                             }
-
+                            
                         }
                         .padding(.horizontal, 32)
                         
@@ -84,6 +75,18 @@ struct LoginView: View {
                                 .padding()
                         }
                         
+                        if viewModel.loginFail {
+                            Text("Login failed. \n Please check your email and password.")
+                                .font(.system(size: 16, weight: .bold))
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.red)
+                                .padding()
+                                .background(.white)
+                                .cornerRadius(15)
+                                
+                        }
+
+                        
                         Spacer()
                         
                         //Switch to sign up button
@@ -95,12 +98,12 @@ struct LoginView: View {
                                     .font(.system(size: 16))
                                     .foregroundColor(.black)
                                     .padding(8)
-
+                                
                                 Text("Sign Up")
                                     .font(.system(size: 16, weight: .bold))
                                     .foregroundColor(.black)
                                     .padding(8)
-
+                                
                             }
                             .foregroundColor(.white)
                             .background(.white)
@@ -108,7 +111,7 @@ struct LoginView: View {
                             .padding()
                         }
                         
-
+                        
                     }
                     
                 }
@@ -120,5 +123,7 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+            .environmentObject(AuthViewModel())
+    
     }
 }
