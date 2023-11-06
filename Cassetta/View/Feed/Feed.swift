@@ -34,7 +34,7 @@ struct Feed: View {
     var body: some View {
         ScrollView(showsIndicators: false){
             LazyVStack {
-                
+                //No Posts
                 if(viewModel.posts.isEmpty && noPostDefault){
                     VStack{
                         if (theUser){
@@ -74,13 +74,13 @@ struct Feed: View {
                     .cornerRadius(15)
                     .padding(.bottom, 100)
                 }
-                
+                //Posts to show
                 ForEach(viewModel.posts) { post in
                     VStack{
                         
                         if theUser {
-                            UserCardOptions()
-                                .id(post.id)
+                            UserCardOptions(post: post,  viewModelposts: viewModel)
+                                
                         }
                         
                         Button {

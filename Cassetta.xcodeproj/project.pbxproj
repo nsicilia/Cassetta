@@ -67,6 +67,7 @@
 		0180737D29EAFF4A00407ED8 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180737C29EAFF4A00407ED8 /* CustomInputView.swift */; };
 		01818DBA2970C961008B4EB3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01818DB92970C961008B4EB3 /* Post.swift */; };
 		01818DBC2970D06E008B4EB3 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01818DBB2970D06E008B4EB3 /* FeedViewModel.swift */; };
+		018221882AC7A97400045D3D /* DeletePostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018221872AC7A97400045D3D /* DeletePostViewModel.swift */; };
 		0189DBAB27D7035100956E28 /* CassettaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189DBAA27D7035100956E28 /* CassettaApp.swift */; };
 		0189DBAD27D7035100956E28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189DBAC27D7035100956E28 /* ContentView.swift */; };
 		0189DBAF27D7035400956E28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0189DBAE27D7035400956E28 /* Assets.xcassets */; };
@@ -155,6 +156,7 @@
 		0180737C29EAFF4A00407ED8 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
 		01818DB92970C961008B4EB3 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		01818DBB2970D06E008B4EB3 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		018221872AC7A97400045D3D /* DeletePostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePostViewModel.swift; sourceTree = "<group>"; };
 		0189DBA727D7035100956E28 /* Cassetta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cassetta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0189DBAA27D7035100956E28 /* CassettaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassettaApp.swift; sourceTree = "<group>"; };
 		0189DBAC27D7035100956E28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 				01F4CDC729A96D6F00FDC7CD /* PostInfoViewModel.swift */,
 				0149DAE929B438E900633CAC /* PostViewModel.swift */,
 				0180737A29EAF15300407ED8 /* CommentViewModel.swift */,
+				018221872AC7A97400045D3D /* DeletePostViewModel.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -683,6 +686,7 @@
 				0116A8DC28C3B9800050780B /* UserCell.swift in Sources */,
 				019F62F22948FBC90045FF39 /* CategoriesView.swift in Sources */,
 				0198C7DB28EA08C200676189 /* ImagePicker.swift in Sources */,
+				018221882AC7A97400045D3D /* DeletePostViewModel.swift in Sources */,
 				015E0880292EF48400350D13 /* ProfileViewModel.swift in Sources */,
 				01F4CDEB29B186A700FDC7CD /* _FlexibleView.swift in Sources */,
 				0178E8BC2AA4429800C2F9D7 /* EditProfileView.swift in Sources */,
