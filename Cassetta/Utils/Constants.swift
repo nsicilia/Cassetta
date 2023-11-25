@@ -18,3 +18,5 @@ let COLLECTION_FOLLOWING = Firestore.firestore().collection("following")
 let COLLECTION_POSTS = Firestore.firestore().collection("posts")
 ///Access firestore collection "notifications"
 let COLLECTION_NOTIFICATIONS = Firestore.firestore().collection("notifications")
+///Access firestore collection "blocked"
+let COLLECTION_BLOCKED = Firestore.firestore().collection("blocked")

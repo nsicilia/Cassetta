@@ -11,15 +11,60 @@ import Kingfisher
 struct ProfileHeaderView: View {
     @ObservedObject var viewModel: ProfileViewModel
     
-    
+    @Binding var showSheet: Bool
+    @Binding var blockSheet: Bool
+    @Binding var reportSheet: Bool
     
     
     var body: some View {
         VStack(alignment: .center, spacing: 0){
             
+            #if targetEnvironment(simulator)
+            HStack{
+                Button("block"){
+                    blockSheet = true
+                }
+                Button("report"){
+                    reportSheet = true
+                }
+            }
+            #endif
+            
             //Image
             VStack {
-              // let _ = print("DEBUG: the profile image - \(viewModel.user.profileImageURL)")
+                //if the user isn't the current user, show the settings button
+                if !viewModel.user.isCurrentUser{
+                    HStack {
+                        Spacer()
+                        
+                        Button{
+                            showSheet = true
+                        }
+                    label: {
+                            Image(systemName: "ellipsis")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 20, height: 20)
+                                .padding()
+                                .rotationEffect(Angle(degrees: 90))
+                                .foregroundColor(Color.black)
+                        }
+                    .confirmationDialog("Select a color", isPresented: $showSheet, titleVisibility: .hidden) {
+                        Button("Block", role: .destructive) {
+                                       blockSheet = true
+                                    }
+
+                        Button("Report", role: .destructive) {
+                                      //  selection = "Green"
+                                    }
+                        
+                                }
+                        .padding(.bottom, -40)
+                        
+                    }
+                }
+                
+                // let _ = print("DEBUG: the profile image - \(viewModel.user.profileImageURL)")
                 
                 KFImage(URL(string: viewModel.user.profileImageURL))
                         .resizable()
@@ -27,6 +72,8 @@ struct ProfileHeaderView: View {
                         .frame(width: 80, height: 80)
                         .clipShape(Circle())
                         .padding()
+                        
+                
                 
                 
                 HStack(spacing: 8){
@@ -76,6 +123,7 @@ struct ProfileHeaderView: View {
             .padding(.top, 42)
             .padding(.bottom)
             
+            
         }
         .frame(width: UIScreen.main.bounds.width - 32)
         .background(.white)
@@ -85,6 +133,7 @@ struct ProfileHeaderView: View {
                 .stroke(Color(UIColor.secondaryLabel), lineWidth: 0.5)
         }
         
+        
     }
         
 }
@@ -93,7 +142,10 @@ struct ProfileHeaderView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color("CassettaTan").edgesIgnoringSafeArea(.all)
-            ProfileHeaderView(viewModel: ProfileViewModel(user: User(username: "jessicadoeinton", email: "email@email.com", profileImageURL: "https://firebasestorage.googleapis.com:443/v0/b/instagramclone-256b6.appspot.com/o/profile_images%2F16B6A869-E2CE-4138-8D1C-7D8DA9C9A5E2?alt=media&token=5cf97352-08b8-4698-b71d-31b390a52b52", fullname: "Jessica Doeinton")))
-        }
+            ProfileHeaderView(viewModel: ProfileViewModel(user: User(username: "jessicadoeinton", email: "email@email.com", profileImageURL: "https://firebasestorage.googleapis.com:443/v0/b/instagramclone-256b6.appspot.com/o/profile_images%2F16B6A869-E2CE-4138-8D1C-7D8DA9C9A5E2?alt=media&token=5cf97352-08b8-4698-b71d-31b390a52b52", fullname: "Jessica Doeinton")),
+                              showSheet: .constant(false),
+                              blockSheet: .constant(false), reportSheet: .constant(false)
+            )}
     }
 }
+

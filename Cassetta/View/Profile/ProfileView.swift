@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import Kingfisher
 
 struct ProfileView: View {
     let user: User
@@ -16,6 +17,12 @@ struct ProfileView: View {
     //For the LNPopup & Playerview
     @Binding var isPopupBarPresented: Bool
     @Binding var isPopupOpen: Bool
+    
+    @State var confirmBlock = true
+    
+    @State var showSheet = false
+    @State var blockSheet = false
+    @State var reportSheet = false
     
     //Universal Post Object
     @ObservedObject var postViewModel: PostViewModel
@@ -41,17 +48,33 @@ struct ProfileView: View {
 
     
     var body: some View {
-        
-        ScrollView(showsIndicators: false){
-            ProfileHeaderView(viewModel: viewModel)
-                .padding(.bottom)
+        ZStack{
+            ZStack{
             
-           // Feed(viewModel: FeedViewModel())
-            Feed(viewModel: feedModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, theUser: viewModel.user.isCurrentUser, postViewModel: postViewModel)
-            
+            ScrollView(showsIndicators: false){
+                ProfileHeaderView(viewModel: viewModel, showSheet: $showSheet, blockSheet: $blockSheet, reportSheet: $reportSheet)
+                    .padding(.bottom)
+
+                Feed(viewModel: feedModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, theUser: viewModel.user.isCurrentUser, postViewModel: postViewModel)
+            }
         }
+            //BlockSheet
+            .sheet(isPresented: $blockSheet, onDismiss: {
+                showSheet = false
+                blockSheet = false
+            }) {
+                BlockSheet(viewModel: viewModel)
+            }
+            .sheet(isPresented: $reportSheet, onDismiss: {
+                showSheet = false
+                reportSheet = false
+            }) {
+                Text("Report Sheet")
+            }
+            
+            
+        }//ZStack
         .background(Color("CassettaTan"))
-        
     }
 }
 

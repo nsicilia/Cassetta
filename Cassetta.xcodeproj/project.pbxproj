@@ -56,6 +56,7 @@
 		014DF99528D4FF9A00E6A754 /* UserStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF99428D4FF9A00E6A754 /* UserStatView.swift */; };
 		014DF99728D5000E00E6A754 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF99628D5000E00E6A754 /* ProfileHeaderView.swift */; };
 		014DF99928D5006200E6A754 /* ProfileActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF99828D5006200E6A754 /* ProfileActionButtonView.swift */; };
+		01580D9A2B11A9BC00FEB89A /* BlockSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01580D992B11A9BC00FEB89A /* BlockSheet.swift */; };
 		015CE4E3293AA2F50096D35C /* BottomControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015CE4E2293AA2F50096D35C /* BottomControlsView.swift */; };
 		015E087E292EE19700350D13 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015E087D292EE19700350D13 /* UserService.swift */; };
 		015E0880292EF48400350D13 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015E087F292EF48400350D13 /* ProfileViewModel.swift */; };
@@ -144,6 +145,7 @@
 		014DF99428D4FF9A00E6A754 /* UserStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatView.swift; sourceTree = "<group>"; };
 		014DF99628D5000E00E6A754 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		014DF99828D5006200E6A754 /* ProfileActionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileActionButtonView.swift; sourceTree = "<group>"; };
+		01580D992B11A9BC00FEB89A /* BlockSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockSheet.swift; sourceTree = "<group>"; };
 		015AA3BD2950269E000BC6F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		015CE4E2293AA2F50096D35C /* BottomControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsView.swift; sourceTree = "<group>"; };
 		015E087D292EE19700350D13 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				0149DAF329B7DCFE00633CAC /* UserCardOptions.swift */,
 				0149DAF729BBC0A100633CAC /* PlayerLikeListenCell.swift */,
 				0180737C29EAFF4A00407ED8 /* CustomInputView.swift */,
+				01580D992B11A9BC00FEB89A /* BlockSheet.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 				01AA96E829665C7E00011F52 /* UploadPostViewModel.swift in Sources */,
 				010B6B8E2915B3B800A13DC8 /* AuthViewModel.swift in Sources */,
 				01473BFF29232058004E0429 /* ImageUploader.swift in Sources */,
+				01580D9A2B11A9BC00FEB89A /* BlockSheet.swift in Sources */,
 				014DF99728D5000E00E6A754 /* ProfileHeaderView.swift in Sources */,
 				0198C7DD28EA111400676189 /* ForgetPasswordView.swift in Sources */,
 				01CD09772A52089F00EAF001 /* Notification.swift in Sources */,
@@ -752,7 +756,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -807,7 +811,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

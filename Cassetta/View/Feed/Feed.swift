@@ -27,7 +27,7 @@ struct Feed: View {
     //Show no post pic
     @State var showNoPostPic: Bool = false
     
-    //Testnew post view model
+    //Universal post view model
     @ObservedObject var postViewModel: PostViewModel
     
     

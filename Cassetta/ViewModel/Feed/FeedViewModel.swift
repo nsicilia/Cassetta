@@ -90,6 +90,7 @@ class FeedViewModel: ObservableObject {
     
     
     func fetchNewestPosts(){
+        let currentUser = AuthViewModel.shared.userSession?.uid ?? ""
         // retrieve documents from COLLECTION_POSTS collection
         COLLECTION_POSTS.order(by: "timestamp", descending: true).getDocuments { SnapshotData, error in
             //Handle error
@@ -106,6 +107,7 @@ class FeedViewModel: ObservableObject {
     
     
     func fetchPostsRandomly(){
+        let currentUser = AuthViewModel.shared.userSession?.uid ?? ""
         // retrieve documents from COLLECTION_POSTS collection
         COLLECTION_POSTS.getDocuments { SnapshotData, error in
             //Handle error
