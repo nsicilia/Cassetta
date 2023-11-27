@@ -57,6 +57,10 @@
 		014DF99728D5000E00E6A754 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF99628D5000E00E6A754 /* ProfileHeaderView.swift */; };
 		014DF99928D5006200E6A754 /* ProfileActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF99828D5006200E6A754 /* ProfileActionButtonView.swift */; };
 		01580D9A2B11A9BC00FEB89A /* BlockSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01580D992B11A9BC00FEB89A /* BlockSheet.swift */; };
+		01580D9D2B11B37C00FEB89A /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01580D9C2B11B37C00FEB89A /* ReportView.swift */; };
+		01580D9F2B11C21000FEB89A /* SomethingElseReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01580D9E2B11C21000FEB89A /* SomethingElseReportView.swift */; };
+		01580DA12B11D24400FEB89A /* UnderAgeReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01580DA02B11D24400FEB89A /* UnderAgeReportView.swift */; };
+		01580DA32B13F4B400FEB89A /* ImpersonationReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01580DA22B13F4B400FEB89A /* ImpersonationReportView.swift */; };
 		015CE4E3293AA2F50096D35C /* BottomControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015CE4E2293AA2F50096D35C /* BottomControlsView.swift */; };
 		015E087E292EE19700350D13 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015E087D292EE19700350D13 /* UserService.swift */; };
 		015E0880292EF48400350D13 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015E087F292EF48400350D13 /* ProfileViewModel.swift */; };
@@ -146,6 +150,10 @@
 		014DF99628D5000E00E6A754 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		014DF99828D5006200E6A754 /* ProfileActionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileActionButtonView.swift; sourceTree = "<group>"; };
 		01580D992B11A9BC00FEB89A /* BlockSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockSheet.swift; sourceTree = "<group>"; };
+		01580D9C2B11B37C00FEB89A /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
+		01580D9E2B11C21000FEB89A /* SomethingElseReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomethingElseReportView.swift; sourceTree = "<group>"; };
+		01580DA02B11D24400FEB89A /* UnderAgeReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderAgeReportView.swift; sourceTree = "<group>"; };
+		01580DA22B13F4B400FEB89A /* ImpersonationReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpersonationReportView.swift; sourceTree = "<group>"; };
 		015AA3BD2950269E000BC6F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		015CE4E2293AA2F50096D35C /* BottomControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsView.swift; sourceTree = "<group>"; };
 		015E087D292EE19700350D13 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -435,6 +443,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		01580D9B2B11B32200FEB89A /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				01580D9C2B11B37C00FEB89A /* ReportView.swift */,
+				01580D9E2B11C21000FEB89A /* SomethingElseReportView.swift */,
+				01580DA02B11D24400FEB89A /* UnderAgeReportView.swift */,
+				01580DA22B13F4B400FEB89A /* ImpersonationReportView.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
 		0189DB9E27D7035100956E28 = {
 			isa = PBXGroup;
 			children = (
@@ -481,6 +500,7 @@
 		0189DBBA27DC38C700956E28 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				01580D9B2B11B32200FEB89A /* Report */,
 				01DAE9D328DF88C500F61034 /* Player */,
 				0116A8D028C3B6BF0050780B /* Authentication */,
 				0116A8D328C3B6EC0050780B /* Feed */,
@@ -635,6 +655,7 @@
 				018C4A54285194870029BEB1 /* Feed.swift in Sources */,
 				0189DBC027E03CBA00956E28 /* ListenLikeCount.swift in Sources */,
 				018C4A5228516FE70029BEB1 /* ProfileView.swift in Sources */,
+				01580DA12B11D24400FEB89A /* UnderAgeReportView.swift in Sources */,
 				01D0460C28E9F4C200038C1C /* CustomTextField.swift in Sources */,
 				014DF99328D4DE8400E6A754 /* CategoryGridView.swift in Sources */,
 				0130F5362929808D0033BC32 /* LargeUserCell.swift in Sources */,
@@ -643,6 +664,7 @@
 				014BA7F4299AB5EC00370AE3 /* ExtAudioConverter.m in Sources */,
 				01AA96E829665C7E00011F52 /* UploadPostViewModel.swift in Sources */,
 				010B6B8E2915B3B800A13DC8 /* AuthViewModel.swift in Sources */,
+				01580D9F2B11C21000FEB89A /* SomethingElseReportView.swift in Sources */,
 				01473BFF29232058004E0429 /* ImageUploader.swift in Sources */,
 				01580D9A2B11A9BC00FEB89A /* BlockSheet.swift in Sources */,
 				014DF99728D5000E00E6A754 /* ProfileHeaderView.swift in Sources */,
@@ -686,6 +708,7 @@
 				0149DAEA29B438E900633CAC /* PostViewModel.swift in Sources */,
 				019F62EE2947E9F40045FF39 /* MultilineTextField.swift in Sources */,
 				01818DBC2970D06E008B4EB3 /* FeedViewModel.swift in Sources */,
+				01580D9D2B11B37C00FEB89A /* ReportView.swift in Sources */,
 				01DAE9D028DF83E400F61034 /* PlayerView.swift in Sources */,
 				0116A8DC28C3B9800050780B /* UserCell.swift in Sources */,
 				019F62F22948FBC90045FF39 /* CategoriesView.swift in Sources */,
@@ -695,6 +718,7 @@
 				01F4CDEB29B186A700FDC7CD /* _FlexibleView.swift in Sources */,
 				0178E8BC2AA4429800C2F9D7 /* EditProfileView.swift in Sources */,
 				014DF98328D29EF000E6A754 /* UserListView.swift in Sources */,
+				01580DA32B13F4B400FEB89A /* ImpersonationReportView.swift in Sources */,
 				014DF98928D3A78300E6A754 /* NotificationsView.swift in Sources */,
 				015CE4E3293AA2F50096D35C /* BottomControlsView.swift in Sources */,
 				012156722953AF3B00C7D4DC /* PreviewAudioPlayerViewModel.swift in Sources */,

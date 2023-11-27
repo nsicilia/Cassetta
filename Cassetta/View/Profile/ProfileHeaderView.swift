@@ -55,7 +55,7 @@ struct ProfileHeaderView: View {
                                     }
 
                         Button("Report", role: .destructive) {
-                                      //  selection = "Green"
+                            reportSheet = true
                                     }
                         
                                 }

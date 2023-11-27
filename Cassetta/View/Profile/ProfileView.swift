@@ -27,6 +27,8 @@ struct ProfileView: View {
     //Universal Post Object
     @ObservedObject var postViewModel: PostViewModel
     
+    @State private var isFullScreenCoverPresented = false
+    
     
     init(user: User, isPopupBarPresented: Binding<Bool>, isPopupOpen: Binding<Bool>, postViewModel: PostViewModel) {
         self.user = user
@@ -49,15 +51,16 @@ struct ProfileView: View {
     
     var body: some View {
         ZStack{
-            ZStack{
             
-            ScrollView(showsIndicators: false){
-                ProfileHeaderView(viewModel: viewModel, showSheet: $showSheet, blockSheet: $blockSheet, reportSheet: $reportSheet)
-                    .padding(.bottom)
-
-                Feed(viewModel: feedModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, theUser: viewModel.user.isCurrentUser, postViewModel: postViewModel)
+            ZStack{
+                
+                ScrollView(showsIndicators: false){
+                    ProfileHeaderView(viewModel: viewModel, showSheet: $showSheet, blockSheet: $blockSheet, reportSheet: $reportSheet)
+                        .padding(.bottom)
+                    
+                    Feed(viewModel: feedModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, theUser: viewModel.user.isCurrentUser, postViewModel: postViewModel)
+                }
             }
-        }
             //BlockSheet
             .sheet(isPresented: $blockSheet, onDismiss: {
                 showSheet = false
@@ -69,12 +72,65 @@ struct ProfileView: View {
                 showSheet = false
                 reportSheet = false
             }) {
-                Text("Report Sheet")
+                ReportView(viewModel: viewModel, reportSheet: $reportSheet)
             }
+            
+            //Fullscreencover
+            if isFullScreenCoverPresented {
+            ZStack {
+                Color.gray // Background color, you can change this as needed
+                VStack{
+                    //Icon
+                    Image(systemName: "lock.slash.fill")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(.white)
+                        .padding(.top, 46)
+                    
+                    
+                    Text("You have Blocked this profile.")
+                        .foregroundColor(.white)
+                        .font(.system(size: 20, weight: .bold))
+                        .padding(.top, 10)
+                    
+                    Text("You will no longer see their content.")
+                        .foregroundColor(.white)
+                        .font(.system(size: 15, weight: .regular))
+                    
+                    
+                    Text("You can unblock this profile in settings.")
+                        .foregroundColor(.white)
+                        .font(.system(size: 15, weight: .regular))
+                        .padding(.top, 40)
+                    
+                    Spacer()
+                    
+                    Divider()
+                        .frame(width: UIScreen.screenWidth / 1.1, height: 1)
+                        .background(Color("CassettaTan"))
+                        .padding(.top, 40)
+                    
+                    Button(action: {
+                        //Show
+                    }, label: {
+                        Text("Show Profile")
+                            .foregroundColor(.white)
+                            .font(.system(size: 15, weight: .bold))
+                            .padding(.top, 40)
+                            .padding(.bottom, 20)
+                            .padding(.horizontal, 50)
+                            .background(Color("CassettaGreen"))
+                            .cornerRadius(10)
+                    })
+                }
+            }
+        }
+            
             
             
         }//ZStack
         .background(Color("CassettaTan"))
+        
     }
 }
 
