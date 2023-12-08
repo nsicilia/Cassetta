@@ -67,7 +67,59 @@ struct UserService{
             }
     }
     
+    static func blockUser(uid: String, completion: ((Error?) -> Void)?) {
+            // get current user id
+            guard let currentUID = AuthViewModel.shared.userSession?.uid else { return }
+            
+            // update a user's blocked collection
+            COLLECTION_BLOCKED.document(currentUID).collection("has-blocked")
+                .document(uid).setData([:]) { error in
+                    // handle, print out error
+                    if let error = error {
+                        print("ERROR: Userservice func blockUser - \(error.localizedDescription)")
+                    }
+                    // Additional logic can be added here if needed
+                    completion?(error)
+                }
+        }
     
     
+    static func unblockUser(uid: String, completion: ((Error?) -> Void)?) {
+            // get current user id
+            guard let currentUID = AuthViewModel.shared.userSession?.uid else { return }
+            
+            // update a user's blocked collection, remove document
+            COLLECTION_BLOCKED.document(currentUID).collection("has-blocked")
+                .document(uid).delete { error in
+                    // handle, print out error
+                    if let error = error {
+                        print("ERROR: Userservice func unblockUser - \(error.localizedDescription)")
+                    }
+                    // Additional logic can be added here if needed
+                    completion?(error)
+                }
+        }
     
+    
+    static func checkIfUserIsBlocked(uid: String, completion: @escaping (Bool) -> Void) {
+            // get current user id
+            guard let currentUID = AuthViewModel.shared.userSession?.uid else { return }
+            
+            // Check for the existence of the document in the blocked collection
+            COLLECTION_BLOCKED.document(currentUID).collection("has-blocked")
+                .document(uid).getDocument { documentSnapshot, error in
+                    // handle error, print to console
+                    if let error = error {
+                        print("ERROR: Userservice func checkIfUserIsBlocked - \(error.localizedDescription)")
+                    }
+                    
+                    // set isBlocked to a bool
+                    let isBlocked = documentSnapshot?.exists ?? false
+                    
+                    // set completion to bool value
+                    completion(isBlocked)
+                }
+        }
+    
+
 }

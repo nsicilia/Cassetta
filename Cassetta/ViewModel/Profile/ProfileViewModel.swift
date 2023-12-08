@@ -23,15 +23,14 @@ class ProfileViewModel: ObservableObject{
         fetchUserBio()
         fetchUserFullname()
         fetchUserPhotoURL()
+        checkIfUserIsBlocked()
     }
     
     
     func follow(){
         //get uid of a user
         guard let uid = user.id else {return}
-        
-        
-        
+                
         UserService.follow(uid: uid) { error in
             //print error
             if let error = error{print("ERROR: class ProfileViewModel func follow - \(error.localizedDescription)")}
@@ -142,6 +141,48 @@ class ProfileViewModel: ObservableObject{
                let photoURL = data["profileImageURL"] as? String {
                 self.user.profileImageURL = photoURL
             }
+        }
+    }
+    
+    
+    func block(){
+        print("DEBUG: ProfileViewModel func block - \(String(describing: user.id))")
+        //get uid of a user
+        guard let uid = user.id else {return}
+                
+        UserService.blockUser(uid: uid) { error in
+            //print error
+            if let error = error{print("ERROR: class ProfileViewModel func follow - \(error.localizedDescription)")}
+            
+            //update bool in User model
+            self.user.isBlocked = true
+            print("DEBUG: ProfileViewModel func block - \(String(describing: self.user.isBlocked))")
+        }
+    }
+    
+    
+    func unblock(){
+        //get uid of a user
+        guard let uid = user.id else { return }
+        
+        UserService.unblockUser(uid: uid) { error in
+            //print error
+            if let error = error{print("ERROR: class ProfileViewModel func unfollow - \(error.localizedDescription)")}
+            
+            //update bool in User model
+            self.user.isBlocked = false
+        }
+    }
+    
+    func checkIfUserIsBlocked(){
+        //don't make an api call if its the current user
+        guard !user.isCurrentUser else { return }
+        //get uid if a user
+        guard let uid = user.id else { return }
+        //check if currentUser is following user
+        UserService.checkIfUserIsBlocked(uid: uid) { isBlocked in
+            //set a user value to result
+            self.user.isBlocked = isBlocked
         }
     }
 

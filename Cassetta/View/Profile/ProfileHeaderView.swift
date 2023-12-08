@@ -49,7 +49,7 @@ struct ProfileHeaderView: View {
                                 .rotationEffect(Angle(degrees: 90))
                                 .foregroundColor(Color.black)
                         }
-                    .confirmationDialog("Select a color", isPresented: $showSheet, titleVisibility: .hidden) {
+                    .confirmationDialog("settings", isPresented: $showSheet, titleVisibility: .hidden) {
                         Button("Block", role: .destructive) {
                                        blockSheet = true
                                     }
@@ -62,7 +62,7 @@ struct ProfileHeaderView: View {
                         .padding(.bottom, -40)
                         
                     }
-                }
+                }//END Ellipsis
                 
                 // let _ = print("DEBUG: the profile image - \(viewModel.user.profileImageURL)")
                 
