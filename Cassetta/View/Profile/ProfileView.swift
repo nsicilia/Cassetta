@@ -28,6 +28,7 @@ struct ProfileView: View {
     @ObservedObject var postViewModel: PostViewModel
     
     @State private var isFullScreenCoverPresented = true
+    var isBlocked: Bool { return viewModel.user.isBlocked ?? false}
     
     
     init(user: User, isPopupBarPresented: Binding<Bool>, isPopupOpen: Binding<Bool>, postViewModel: PostViewModel) {
@@ -75,8 +76,11 @@ struct ProfileView: View {
                 ReportView(viewModel: viewModel, reportSheet: $reportSheet)
             }
             
+            let _ = print("isFullScreenCoverPresented: \(isFullScreenCoverPresented)")
+            let _ = print("viewModel.user.isBlocked: \(viewModel.user.isBlocked)")
+            
             //Fullscreencover
-            if (isFullScreenCoverPresented && (viewModel.user.isBlocked != nil) ){
+            if (isFullScreenCoverPresented && (isBlocked) ){
             ZStack {
                 Color.gray // Background color, you can change this as needed
                 VStack{
@@ -120,7 +124,7 @@ struct ProfileView: View {
                             .padding(.top, 40)
                             .padding(.bottom, 20)
                             .padding(.horizontal, 50)
-                            .background(Color("CassettaGreen"))
+                            //.background(Color("Casse"))
                             .cornerRadius(10)
                     })
                 }

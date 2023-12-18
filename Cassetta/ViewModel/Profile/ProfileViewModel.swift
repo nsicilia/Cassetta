@@ -75,10 +75,10 @@ class ProfileViewModel: ObservableObject{
     func fetchUserStats(){
         guard let uid = user.id else { return }
         
-        COLLECTION_FOLLOWING.document(uid).collection("user-following").getDocuments { snapshot, _ in
+        COLLECTION_FOLLOWING.document(uid).collection("is-following").getDocuments { snapshot, _ in
             guard let following = snapshot?.documents.count else { return }
             
-            COLLECTION_FOLLOWERS.document(uid).collection("user-followers").getDocuments { snapshot, _ in
+            COLLECTION_FOLLOWERS.document(uid).collection("followed-by").getDocuments { snapshot, _ in
                 guard let followers = snapshot?.documents.count else { return }
                 
                 COLLECTION_POSTS.whereField("ownerUid", isEqualTo: uid).getDocuments { snapshot, _ in

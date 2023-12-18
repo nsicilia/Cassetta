@@ -72,7 +72,7 @@ struct UserService{
             guard let currentUID = AuthViewModel.shared.userSession?.uid else { return }
             
             // update a user's blocked collection
-            COLLECTION_BLOCKED.document(currentUID).collection("has-blocked")
+            COLLECTION_BLOCKERS.document(currentUID).collection("is-blocking")
                 .document(uid).setData([:]) { error in
                     // handle, print out error
                     if let error = error {
@@ -80,6 +80,9 @@ struct UserService{
                     }
                     // Additional logic can be added here if needed
                     completion?(error)
+                    
+                    COLLECTION_BLOCKED.document(uid).collection("blocked-by")
+                        .document(currentUID).setData([:], completion: completion)
                 }
         }
     
@@ -89,7 +92,7 @@ struct UserService{
             guard let currentUID = AuthViewModel.shared.userSession?.uid else { return }
             
             // update a user's blocked collection, remove document
-            COLLECTION_BLOCKED.document(currentUID).collection("has-blocked")
+            COLLECTION_BLOCKERS.document(currentUID).collection("is-blocking")
                 .document(uid).delete { error in
                     // handle, print out error
                     if let error = error {
@@ -97,6 +100,10 @@ struct UserService{
                     }
                     // Additional logic can be added here if needed
                     completion?(error)
+                    
+                    //updating the followers collection, remove document
+                    COLLECTION_BLOCKED.document(uid).collection("blocked-by")
+                        .document(currentUID).delete(completion: completion)
                 }
         }
     
@@ -105,20 +112,19 @@ struct UserService{
             // get current user id
             guard let currentUID = AuthViewModel.shared.userSession?.uid else { return }
             
-            // Check for the existence of the document in the blocked collection
-            COLLECTION_BLOCKED.document(currentUID).collection("has-blocked")
-                .document(uid).getDocument { documentSnapshot, error in
-                    // handle error, print to console
-                    if let error = error {
-                        print("ERROR: Userservice func checkIfUserIsBlocked - \(error.localizedDescription)")
-                    }
-                    
-                    // set isBlocked to a bool
-                    let isBlocked = documentSnapshot?.exists ?? false
-                    
-                    // set completion to bool value
-                    completion(isBlocked)
-                }
+        //Check for the existance of the document in the following collection
+        COLLECTION_BLOCKERS.document(currentUID).collection("is-blocking")
+            .document(uid).getDocument { DocumentSnapshot, Error in
+                //handle error, print to console
+                if let error = Error{print("ERROR: Userservice func checkIfUserIsFollowed - \(error.localizedDescription)")}
+                
+                //set isFollowed to a bool
+                guard let isBlocked = DocumentSnapshot?.exists else { return }
+                
+                //set completion to bool value
+                completion(isBlocked)
+            }
+           
         }
     
 

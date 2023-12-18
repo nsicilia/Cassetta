@@ -21,7 +21,7 @@ struct UserListView: View {
     @StateObject var postViewModel: PostViewModel
         
     var users: [User] {
-        return searchText.isEmpty ? viewModel.users : viewModel.filteredUsers(searchText)
+        return searchText.isEmpty ? viewModel.filteredUsers2() : viewModel.filteredUsers(searchText)
     }
     
     var body: some View {
