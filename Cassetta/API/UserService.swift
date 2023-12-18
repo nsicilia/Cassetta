@@ -124,8 +124,39 @@ struct UserService{
                 //set completion to bool value
                 completion(isBlocked)
             }
-           
         }
+        
+    static func getBlockedUsers(completion: @escaping ([User]) -> Void) {
+        guard let currentUID = AuthViewModel.shared.userSession?.uid else {
+            completion([])
+            return
+        }
+
+        COLLECTION_BLOCKERS.document(currentUID).collection("is-blocking").getDocuments { snapshot, _ in
+            guard let documents = snapshot?.documents else { return }
+            var users:[User] = [];
+            
+            let blockedUsers = documents.map { $0.documentID }
+            
+            for id in blockedUsers {
+                COLLECTION_USERS.document(id).getDocument { snapshot, error in
+                    guard let user = try? snapshot?.data(as: User.self) else { return }
+                    //print("DEBUG: blockedBy - \(user)")
+                    users.append(user)
+                   // print("DEBUG: blockedByList - \(self.blockedByList)")
+                }
+            }
+            
+            //var users: [User] = documents.compactMap { try? $0.data(as: User.self) }
+            
+            //self.users = documents.compactMap { try? $0.data(as: User.self) }
+
+            completion(users)
+        }
+    }
+
+    
+    
     
 
-}
+}//END: UserService

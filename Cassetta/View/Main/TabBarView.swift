@@ -32,7 +32,7 @@ struct TabBarView: View {
     //Current post
     @ObservedObject var postViewModel = PostViewModel()
     
-    //The nav profile status of post 
+    //The nav profile status of post
     @State var showPosterProfile = false
     
     init(user: User) {
@@ -133,22 +133,11 @@ struct TabBarView: View {
                     NavigationView{
                         ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
                             .toolbar {
-                                Menu {
-                                    Text("Settings")
-                                    
-                                    Text("coming soon")
-                                    
-                                    //Log out button
-                                    Button {
-                                        viewModel.signout()
-                                    } label: {
-                                        Text("Logout").foregroundColor(.black)
-                                    }
-                                    
-                                } label: {
-                                    Label("More Settings", systemImage: "gearshape")
-                                        .foregroundColor(.black)
-                                }
+                                ToolbarItem(placement: .navigationBarTrailing) {
+                                    NavigationLink(destination: SettingsView(authView: viewModel, user: user)) {
+                                                   Label("Settings", systemImage: "gearshape")
+                                               }
+                                           }
                                 
                             }
                     }
@@ -177,7 +166,6 @@ struct TabBarView: View {
             
             
         }
-        
         .popup(isBarPresented: $isPopupBarPresented , isPopupOpen: $isPopupOpen ) {
             
             if postViewModel.currentPost != nil{
@@ -186,6 +174,7 @@ struct TabBarView: View {
             
         }
         .popupInteractionStyle(.drag)
+        
     }
 }
 
@@ -195,5 +184,7 @@ struct TabBarView: View {
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
         TabBarView(user: User(username: "name", email: "email@email.com", profileImageURL: "https://firebasestorage.googleapis.com:443/v0/b/instagramclone-256b6.appspot.com/o/profile_images%2F16B6A869-E2CE-4138-8D1C-7D8DA9C9A5E2?alt=media&token=5cf97352-08b8-4698-b71d-31b390a52b52", fullname: "Jane Doeinton"))
+            .environmentObject(AuthViewModel())
+            
     }
 }

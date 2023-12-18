@@ -11,9 +11,10 @@ import Firebase
 class ProfileViewModel: ObservableObject{
     //instance of the model
     @Published var user: User
-   
     
+    @Published var blockedUsers = [User]()
     
+    @Published var userUnblocked = false
     
     init(user: User) {
         self.user = user
@@ -30,7 +31,7 @@ class ProfileViewModel: ObservableObject{
     func follow(){
         //get uid of a user
         guard let uid = user.id else {return}
-                
+        
         UserService.follow(uid: uid) { error in
             //print error
             if let error = error{print("ERROR: class ProfileViewModel func follow - \(error.localizedDescription)")}
@@ -88,55 +89,55 @@ class ProfileViewModel: ObservableObject{
                     //print("DEBUG: class ProfileViewModel func fetchUserStats - \(self.user.stats)")
                 }
             }
-        
+            
         }
     }
     
     func fetchUserBio() {
-            guard let uid = user.id else { return }
+        guard let uid = user.id else { return }
+        
+        // Replace 'COLLECTION_USERS' with your actual database collection for users
+        COLLECTION_USERS.document(uid).getDocument { snapshot, error in
+            if let error = error {
+                print("ERROR: ProfileViewModel fetchUserBio - \(error.localizedDescription)")
+                return
+            }
             
-            // Replace 'COLLECTION_USERS' with your actual database collection for users
-            COLLECTION_USERS.document(uid).getDocument { snapshot, error in
-                if let error = error {
-                    print("ERROR: ProfileViewModel fetchUserBio - \(error.localizedDescription)")
-                    return
-                }
-
-                if let data = snapshot?.data(),
-                   let bio = data["bio"] as? String {
-                    self.user.bio = bio
-                }
+            if let data = snapshot?.data(),
+               let bio = data["bio"] as? String {
+                self.user.bio = bio
             }
         }
+    }
     
     func fetchUserFullname() {
-            guard let uid = user.id else { return }
-            
-            // Replace 'COLLECTION_USERS' with your actual database collection for users
-            COLLECTION_USERS.document(uid).getDocument { snapshot, error in
-                if let error = error {
-                    print("ERROR: ProfileViewModel fetchUserBio - \(error.localizedDescription)")
-                    return
-                }
-                if let data = snapshot?.data(),
-                   let fullname = data["fullname"] as? String {
-                    self.user.fullname = fullname
-                }
-            }
+        guard let uid = user.id else { return }
         
+        // Replace 'COLLECTION_USERS' with your actual database collection for users
+        COLLECTION_USERS.document(uid).getDocument { snapshot, error in
+            if let error = error {
+                print("ERROR: ProfileViewModel fetchUserBio - \(error.localizedDescription)")
+                return
+            }
+            if let data = snapshot?.data(),
+               let fullname = data["fullname"] as? String {
+                self.user.fullname = fullname
+            }
         }
+        
+    }
     
-
+    
     func fetchUserPhotoURL() {
         guard let uid = user.id else { return }
-
+        
         // Replace 'COLLECTION_USERS' with your actual database collection for users
         COLLECTION_USERS.document(uid).getDocument { snapshot, error in
             if let error = error {
                 print("ERROR: ProfileViewModel fetchUserPhotoURL - \(error.localizedDescription)")
                 return
             }
-
+            
             if let data = snapshot?.data(),
                let photoURL = data["profileImageURL"] as? String {
                 self.user.profileImageURL = photoURL
@@ -149,7 +150,7 @@ class ProfileViewModel: ObservableObject{
         print("DEBUG: ProfileViewModel func block - \(String(describing: user.id))")
         //get uid of a user
         guard let uid = user.id else {return}
-                
+        
         UserService.blockUser(uid: uid) { error in
             //print error
             if let error = error{print("ERROR: class ProfileViewModel func follow - \(error.localizedDescription)")}
@@ -161,18 +162,36 @@ class ProfileViewModel: ObservableObject{
     }
     
     
-    func unblock(){
-        //get uid of a user
-        guard let uid = user.id else { return }
-        
-        UserService.unblockUser(uid: uid) { error in
-            //print error
-            if let error = error{print("ERROR: class ProfileViewModel func unfollow - \(error.localizedDescription)")}
-            
-            //update bool in User model
+//    func unblock(){
+//        //get uid of a user
+//        guard let uid = user.id else { return }
+//        
+//        UserService.unblockUser(uid: uid) { error in
+//            //print error
+//            if let error = error{print("ERROR: class ProfileViewModel func unfollow - \(error.localizedDescription)")}
+//            
+//            //update bool in User model
+//            self.user.isBlocked = false
+//        }
+//    }
+    func unblock(uid: String? = nil) {
+        // Get the UID of the user to unblock
+        guard let targetUID = uid ?? user.id else {
+            print("Error: No UID provided for unblocking.")
+            return
+        }
+
+        UserService.unblockUser(uid: targetUID) { error in
+            // Print error
+            if let error = error {
+                print("ERROR: class ProfileViewModel func unblock - \(error.localizedDescription)")
+            }
+
+            // Update bool in User model
             self.user.isBlocked = false
         }
     }
+
     
     func checkIfUserIsBlocked(){
         //don't make an api call if its the current user
@@ -185,5 +204,35 @@ class ProfileViewModel: ObservableObject{
             self.user.isBlocked = isBlocked
         }
     }
+    
+    func getBlockedUsersList() {
+        
+        guard let currentUID = AuthViewModel.shared.userSession?.uid else {return}
 
-    }
+        COLLECTION_BLOCKERS.document(currentUID).collection("is-blocking").getDocuments { snapshot, _ in
+            guard let documents = snapshot?.documents else { return }
+            
+            let blockedUsers = documents.map { $0.documentID }
+            
+            self.blockedUsers = [User]()
+            
+            for id in blockedUsers {
+                COLLECTION_USERS.document(id).getDocument { snapshot, error in
+                    guard let user = try? snapshot?.data(as: User.self) else { return }
+                    //print("DEBUG: blockedBy - \(user.username)")
+                    self.blockedUsers.append(user)
+                   // print("DEBUG: blockedByList - \(self.blockedByList)")
+                }
+            }
+        }
+        
+//            UserService.getBlockedUsers { blockedUsers in
+//                // Update the blockedUsers property with the fetched list
+//                print("DEBUG: ProfileViewModel func getBlockedUsersList - \(blockedUsers)")
+//                self.blockedUsers = blockedUsers
+//                
+//            }
+       // print("DEBUG: blockedUsers - \(self.blockedUsers)")
+        }
+    
+}//END: class ProfileViewModel

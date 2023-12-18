@@ -96,6 +96,8 @@
 		01AA96E62966524900011F52 /* AudioUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AA96E52966524800011F52 /* AudioUploader.swift */; };
 		01AA96E829665C7E00011F52 /* UploadPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AA96E729665C7E00011F52 /* UploadPostViewModel.swift */; };
 		01AEB7F92A6C54F700BEC3E5 /* NotificationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AEB7F82A6C54F700BEC3E5 /* NotificationCellViewModel.swift */; };
+		01C10D332B2FFBF4002133E9 /* BlockListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C10D322B2FFBF4002133E9 /* BlockListView.swift */; };
+		01C10D352B30EB15002133E9 /* UnblockButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C10D342B30EB15002133E9 /* UnblockButtonView.swift */; };
 		01C42089293AB528003FF2D5 /* PlayerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C42088293AB528003FF2D5 /* PlayerContentView.swift */; };
 		01C4208B293AB7EA003FF2D5 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C4208A293AB7EA003FF2D5 /* CommentsView.swift */; };
 		01C4208D293AC621003FF2D5 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C4208C293AC621003FF2D5 /* CommentCell.swift */; };
@@ -103,6 +105,7 @@
 		01CD09792A5209D800EAF001 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CD09782A5209D800EAF001 /* NotificationsViewModel.swift */; };
 		01D0460A28E9F3A900038C1C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D0460928E9F3A900038C1C /* LoginView.swift */; };
 		01D0460C28E9F4C200038C1C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D0460B28E9F4C200038C1C /* CustomTextField.swift */; };
+		01D3257A2B2FE621002E4543 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D325792B2FE621002E4543 /* SettingsView.swift */; };
 		01DAE9D028DF83E400F61034 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAE9CF28DF83E400F61034 /* PlayerView.swift */; };
 		01ECA3F02979B45A00AB9082 /* LNPopupUI-Static in Frameworks */ = {isa = PBXBuildFile; productRef = 01ECA3EF2979B45A00AB9082 /* LNPopupUI-Static */; };
 		01F4CDC829A96D6F00FDC7CD /* PostInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4CDC729A96D6F00FDC7CD /* PostInfoViewModel.swift */; };
@@ -191,6 +194,8 @@
 		01AA96E52966524800011F52 /* AudioUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUploader.swift; sourceTree = "<group>"; };
 		01AA96E729665C7E00011F52 /* UploadPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostViewModel.swift; sourceTree = "<group>"; };
 		01AEB7F82A6C54F700BEC3E5 /* NotificationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCellViewModel.swift; sourceTree = "<group>"; };
+		01C10D322B2FFBF4002133E9 /* BlockListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListView.swift; sourceTree = "<group>"; };
+		01C10D342B30EB15002133E9 /* UnblockButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnblockButtonView.swift; sourceTree = "<group>"; };
 		01C42088293AB528003FF2D5 /* PlayerContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerContentView.swift; sourceTree = "<group>"; };
 		01C4208A293AB7EA003FF2D5 /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		01C4208C293AC621003FF2D5 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
@@ -198,6 +203,7 @@
 		01CD09782A5209D800EAF001 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		01D0460928E9F3A900038C1C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		01D0460B28E9F4C200038C1C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		01D325792B2FE621002E4543 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		01DAE9CF28DF83E400F61034 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		01F4CDC729A96D6F00FDC7CD /* PostInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInfoViewModel.swift; sourceTree = "<group>"; };
 		01F4CDEA29B186A700FDC7CD /* _FlexibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _FlexibleView.swift; sourceTree = "<group>"; };
@@ -500,6 +506,7 @@
 		0189DBBA27DC38C700956E28 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				01D325782B2FE5BE002E4543 /* Settings */,
 				01580D9B2B11B32200FEB89A /* Report */,
 				01DAE9D328DF88C500F61034 /* Player */,
 				0116A8D028C3B6BF0050780B /* Authentication */,
@@ -521,6 +528,16 @@
 				0178E8B92AA42ECC00C2F9D7 /* EditProfileViewModel.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		01D325782B2FE5BE002E4543 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				01D325792B2FE621002E4543 /* SettingsView.swift */,
+				01C10D322B2FFBF4002133E9 /* BlockListView.swift */,
+				01C10D342B30EB15002133E9 /* UnblockButtonView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		01DAE9D328DF88C500F61034 /* Player */ = {
@@ -641,6 +658,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01C10D332B2FFBF4002133E9 /* BlockListView.swift in Sources */,
 				0180737B29EAF15300407ED8 /* CommentViewModel.swift in Sources */,
 				0198C7D728EA048C00676189 /* CustomSecureField.swift in Sources */,
 				014DF99128D4D17D00E6A754 /* CategoryCell.swift in Sources */,
@@ -665,6 +683,7 @@
 				01AA96E829665C7E00011F52 /* UploadPostViewModel.swift in Sources */,
 				010B6B8E2915B3B800A13DC8 /* AuthViewModel.swift in Sources */,
 				01580D9F2B11C21000FEB89A /* SomethingElseReportView.swift in Sources */,
+				01C10D352B30EB15002133E9 /* UnblockButtonView.swift in Sources */,
 				01473BFF29232058004E0429 /* ImageUploader.swift in Sources */,
 				01580D9A2B11A9BC00FEB89A /* BlockSheet.swift in Sources */,
 				014DF99728D5000E00E6A754 /* ProfileHeaderView.swift in Sources */,
@@ -677,6 +696,7 @@
 				014DF98F28D3B7D400E6A754 /* HighlightCell.swift in Sources */,
 				014DF98B28D3A7C900E6A754 /* NotificationCell.swift in Sources */,
 				01AA96E62966524900011F52 /* AudioUploader.swift in Sources */,
+				01D3257A2B2FE621002E4543 /* SettingsView.swift in Sources */,
 				012156742953B01D00C7D4DC /* ConcatenateAudioFiles.swift in Sources */,
 				014DF98D28D3AC8C00E6A754 /* HighlightsView.swift in Sources */,
 				014DF99528D4FF9A00E6A754 /* UserStatView.swift in Sources */,
