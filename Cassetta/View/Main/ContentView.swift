@@ -15,7 +15,12 @@ struct ContentView: View {
         ZStack {
             Group {
                 if viewModel.userSession == nil{
-                    LoginView()
+                    //LoginView()
+                    
+                        PhoneLoginView()
+                            .navigationBarHidden(true)
+                            .navigationBarBackButtonHidden(true)
+                    
                 } else{
                     if let user = viewModel.currentUser{
                         TabBarView(user: user)

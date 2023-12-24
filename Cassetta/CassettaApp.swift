@@ -15,6 +15,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
     return true
   }
+    //Needed for Firebase Phone Auth
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    }
 }
 
 @main
