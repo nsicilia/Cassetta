@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct PhoneLoginView: View {
-    @StateObject var viewModel = PhoneLoginViewModel()
+    //@StateObject var viewModel = PhoneLoginViewModel()
+    @Environment(\.presentationMode) var mode
+    @EnvironmentObject var viewModel: AuthViewModel
     @State var isSmallScreen = UIScreen.screenHeight < 750
     
     var body: some View {
@@ -64,7 +66,7 @@ struct PhoneLoginView: View {
 //                            Text("")
 //                                .hidden()
 //                        }
-                        NavigationLink(destination: PhoneVerificationView(viewModel: viewModel), isActive: $viewModel.goToVerify) {
+                        NavigationLink(destination: PhoneVerificationView(viewModel: _viewModel), isActive: $viewModel.goToVerify) {
                             Text("")
                                 .hidden()
                         }

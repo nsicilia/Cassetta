@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct PhoneVerificationView: View {
-    @ObservedObject var viewModel : PhoneLoginViewModel
+    //@ObservedObject var viewModel : PhoneLoginViewModel
+    @EnvironmentObject var viewModel: AuthViewModel
     @Environment(\.presentationMode) var present
-    
-    //@Binding var isActive: Bool
+
+
     
     var body: some View {
         
-
+    ZStack{
         VStack {
             
             VStack{
@@ -35,10 +36,10 @@ struct PhoneVerificationView: View {
                     
                     Spacer()
                     
-//                    if viewModel.isLoading{
-//                        ProgressView()
-//                            .progressViewStyle(CircularProgressViewStyle(tint: Color.black))
-//                    }
+                    if viewModel.isLoading{
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: Color.black))
+                    }
                     
                 }
                 .padding()
@@ -63,7 +64,7 @@ struct PhoneVerificationView: View {
                     Text("Didn't receive the code?")
                         .foregroundColor(.gray)
                     
-                    Button(action: {}, label: {
+                    Button(action: {viewModel.requestCode()}, label: {
                         Text("Request Again")
                             .fontWeight(.bold)
                             .foregroundColor(.black)
@@ -77,7 +78,7 @@ struct PhoneVerificationView: View {
                 })
                 .padding(.top, 6)
                 
-                Button(action: {}, label: {
+                Button(action: {viewModel.verifyCode()}, label: {
                     Text("Veryfy and Create Account")
                         .fontWeight(.bold)
                         .foregroundColor(.white)
@@ -96,6 +97,11 @@ struct PhoneVerificationView: View {
             CustomNumPadView(value: $viewModel.code, isVerify: true)
         }
         .background(Color(.secondarySystemBackground).ignoresSafeArea(.all, edges: .all))
+        
+        if viewModel.error{
+            AlertView(msg: viewModel.errorMsg, showAlert: $viewModel.error)
+        }
+    }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }
@@ -132,5 +138,6 @@ struct CodeView: View {
 }
 
 #Preview {
-    PhoneVerificationView(viewModel: PhoneLoginViewModel())
+    PhoneVerificationView()
+        .environmentObject(AuthViewModel())
 }

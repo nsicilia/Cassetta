@@ -13,6 +13,7 @@ struct ContentView: View {
     var body: some View {
         
         ZStack {
+            
             Group {
                 if viewModel.userSession == nil{
                     //LoginView()
@@ -29,6 +30,9 @@ struct ContentView: View {
                 }
             }
         }
+//        .onAppear(){
+//            viewModel.signout()
+//        }
             
     }
 }
