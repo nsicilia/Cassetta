@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct PhoneVerificationView: View {
-    //@ObservedObject var viewModel : PhoneLoginViewModel
     @EnvironmentObject var viewModel: AuthViewModel
     @Environment(\.presentationMode) var present
 
+    @FocusState private var keyboardFocused: Bool
+    @State private var isCodeValid: Bool = false
+    @State private var otp: String = ""
 
     
     var body: some View {
@@ -46,18 +48,43 @@ struct PhoneVerificationView: View {
                 
                 Text("Code sent to \(viewModel.phoneNumber)")
                     .foregroundColor(.gray)
-                    .padding(.bottom)
+                    //.padding(.bottom)
                 
                 Spacer(minLength: 0)
                 
-                HStack(spacing: 15){
-                    ForEach(0..<6, id: \.self){index in
-                        CodeView(code: getCodeAtIndex(index: index))
-                    }
-                }
-                .padding()
-                .padding(.horizontal, 20)
                 
+                ZStack {
+                    TextField("Enter OTP", text: $viewModel.code)
+                        .padding()
+                        .keyboardType(.numberPad)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .focused($keyboardFocused)
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                keyboardFocused = true
+                            }
+                        }
+                        .onChange(of: viewModel.code) { newOTP in
+                            // Assuming OTP length is 6
+                            if newOTP.count == 6 {
+                                viewModel.verifyCode()
+                            }
+                        }
+                        .disabled(isCodeValid)
+                    // Disable TextField once code is valid
+                    .opacity(0)
+                    //END: TextField
+                    
+                    
+                    
+                    HStack(spacing: 15){
+                        ForEach(0..<6, id: \.self){index in
+                            CodeView(code: getCodeAtIndex(index: index))
+                        }
+                    }
+                    .padding()
+                    .padding(.horizontal, 20)
+                }
                 Spacer(minLength: 0)
                 
                 HStack(spacing: 6){
@@ -69,13 +96,14 @@ struct PhoneVerificationView: View {
                             .fontWeight(.bold)
                             .foregroundColor(.black)
                     })
+                    
                 }
-                
-                Button(action: {}, label: {
-                    Text("Get via Call")
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                })
+                .padding(.bottom)
+//                Button(action: {}, label: {
+//                    Text("Get via Call")
+//                        .fontWeight(.bold)
+//                        .foregroundColor(.black)
+//                })
                 .padding(.top, 6)
                 
                 Button(action: {viewModel.verifyCode()}, label: {
@@ -94,7 +122,8 @@ struct PhoneVerificationView: View {
             .background(Color.white)
             .cornerRadius(20)
             
-            CustomNumPadView(value: $viewModel.code, isVerify: true)
+           // CustomNumPadView(value: $viewModel.code, isVerify: true)
+            Spacer(minLength: 0)
         }
         .background(Color(.secondarySystemBackground).ignoresSafeArea(.all, edges: .all))
         
@@ -136,6 +165,9 @@ struct CodeView: View {
     }
     
 }
+
+
+
 
 #Preview {
     PhoneVerificationView()

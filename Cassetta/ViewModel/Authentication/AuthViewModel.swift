@@ -148,9 +148,10 @@ class AuthViewModel: ObservableObject {
     //Send a verification code for phone number login/signup
     func sendCode(){
         
-        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+       // Auth.auth().settings?.isAppVerificationDisabledForTesting = true
         
         let number = "+\(getCountryCode())\(phoneNumber)"
+        print("Number is \(number)")
         
         PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { (CODE, err) in
             if let error = err{
@@ -176,72 +177,157 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    
-    func verifyCode(){
+    func verifyCode() {
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: self.CODE, verificationCode: code)
         
         isLoading = true
         
-        let random = Int.random(in: 1...100000)
+        let random = generateUniqueUsername()
         
         guard let image = UIImage(named: "GenericUser") else { return }
-        let fullname = generateUniqueUsername()
-        let username = generateUniqueUsername()
+        let fullname = random
+        let username = random
         //let email = "user\(random)@gmail.com"
         let email = ""
         
         ImageUploader.uploadImage(image: image, type: .profile) { imageUrl in
             Auth.auth().signIn(with: credential) { (res, err) in
-                if let error = err{
+                if let error = err {
                     self.errorMsg = error.localizedDescription
                     self.isLoading = false
-                    withAnimation{ self.error.toggle()}
+                    withAnimation { self.error.toggle() }
                     return
                 }
                 
                 self.isLoading = false
                 guard let user = res?.user else { return }
                 
-                // Update the user's profile with the image URL
-                let changeRequest = user.createProfileChangeRequest()
-                changeRequest.photoURL = URL(string: imageUrl)
-                changeRequest.displayName = fullname
-                
-                changeRequest.commitChanges { error in
-                    if let error = error {
-                        print("Error updating user profile: \(error.localizedDescription)")
-                        return
-                    }
-                    
-                    // Aggregate user information
-                    let data = [
-                        "email": email,
-                        "username": username,
-                        "fullname": fullname,
-                        "profileImageURL": imageUrl,
-                        "uid": user.uid
-                    ]
-                    
-                    // Upload user data to Firestore
-                    Firestore.firestore().collection("users").document(user.uid).setData(data) { error in
-                        if let error = error {
-                            print("Error uploading user data: \(error.localizedDescription)")
-                            return
-                        }
+                // Check if user already exists in Firestore
+                Firestore.firestore().collection("users").document(user.uid).getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        // User document already exists, don't add data
+                        print("User data already exists in Firestore")
                         
-                        // Registration and data upload successful
+                        // You may want to handle this case accordingly
+                        // For example, update userSession or fetch user data
                         self.userSession = user
                         self.fetchUser()
                         self.loginFail = false
+                    } else {
+                        // User document doesn't exist, add data to Firestore
+                        let changeRequest = user.createProfileChangeRequest()
+                        changeRequest.photoURL = URL(string: imageUrl)
+                        changeRequest.displayName = fullname
+                        
+                        changeRequest.commitChanges { error in
+                            if let error = error {
+                                print("Error updating user profile: \(error.localizedDescription)")
+                                return
+                            }
+                            
+                            // Aggregate user information
+                            let data = [
+                                "email": email,
+                                "username": username,
+                                "fullname": fullname,
+                                "profileImageURL": imageUrl,
+                                "uid": user.uid,
+                                "phoneNumber": "+\(self.getCountryCode())\(self.phoneNumber)"
+                            ]
+                            
+                            // Upload user data to Firestore
+                            Firestore.firestore().collection("users").document(user.uid).setData(data) { error in
+                                if let error = error {
+                                    print("Error uploading user data: \(error.localizedDescription)")
+                                    return
+                                }
+                                
+                                // Registration and data upload successful
+                                self.userSession = user
+                                self.fetchUser()
+                                self.loginFail = false
+                            }
+                        }
+                        
+                        // Else logged in successfully
+                        self.status = true
+                        print("Success login")
                     }
                 }
-                
-                //else logged in successfully
-                self.status = true
-                print("Success login")
-            }//End of Auth
+            }
         }
-    }//End of Verify Code
+    }
+
+    
+//    func verifyCode(){
+//        let credential = PhoneAuthProvider.provider().credential(withVerificationID: self.CODE, verificationCode: code)
+//        
+//        isLoading = true
+//        
+//        let random = generateUniqueUsername()
+//        
+//        guard let image = UIImage(named: "GenericUser") else { return }
+//        let fullname = random
+//        let username = random
+//        //let email = "user\(random)@gmail.com"
+//        let email = ""
+//        
+//        
+//        
+//        ImageUploader.uploadImage(image: image, type: .profile) { imageUrl in
+//            Auth.auth().signIn(with: credential) { (res, err) in
+//                if let error = err{
+//                    self.errorMsg = error.localizedDescription
+//                    self.isLoading = false
+//                    withAnimation{ self.error.toggle()}
+//                    return
+//                }
+//                
+//                self.isLoading = false
+//                guard let user = res?.user else { return }
+//                
+//                // Update the user's profile with the image URL
+//                let changeRequest = user.createProfileChangeRequest()
+//                changeRequest.photoURL = URL(string: imageUrl)
+//                changeRequest.displayName = fullname
+//                
+//                changeRequest.commitChanges { error in
+//                    if let error = error {
+//                        print("Error updating user profile: \(error.localizedDescription)")
+//                        return
+//                    }
+//                    
+//                    // Aggregate user information
+//                    let data = [
+//                        "email": email,
+//                        "username": username,
+//                        "fullname": fullname,
+//                        "profileImageURL": imageUrl,
+//                        "uid": user.uid,
+//                        "phoneNumber": "+\(self.getCountryCode())\(self.phoneNumber)"
+//                    ]
+//                    
+//                    // Upload user data to Firestore
+//                    Firestore.firestore().collection("users").document(user.uid).setData(data) { error in
+//                        if let error = error {
+//                            print("Error uploading user data: \(error.localizedDescription)")
+//                            return
+//                        }
+//                        
+//                        // Registration and data upload successful
+//                        self.userSession = user
+//                        self.fetchUser()
+//                        self.loginFail = false
+//                    }
+//                }
+//                
+//                //else logged in successfully
+//                self.status = true
+//                print("Success login")
+//            }//End of Auth
+//        }
+//        
+//    }//End of Verify Code
     
     
     func checkUsernameAvailability(_ username: String) -> Bool {

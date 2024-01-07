@@ -13,6 +13,10 @@ struct PhoneLoginView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     @State var isSmallScreen = UIScreen.screenHeight < 750
     
+    @FocusState private var keyboardFocused: Bool
+    let characterLimit = 10
+
+    
     var body: some View {
         NavigationView{
         ZStack {
@@ -50,22 +54,42 @@ struct PhoneLoginView: View {
                             Text("Enter your phone number")
                                 .font(.caption)
                                 .foregroundColor(.gray)
-                            
-                            Text("+ \(viewModel.getCountryCode()) \(viewModel.phoneNumber)")
-                                .font(.title2)
-                                .fontWeight(.bold)
-                                .foregroundColor(.black)
+                            ZStack{
+                                TextField("", text: $viewModel.phoneNumber)
+                                    .font(.title2)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                    //.background(Color.pink)
+                                    .keyboardType(.numberPad)
+                                    .focused($keyboardFocused)
+                                    .onChange(of: viewModel.phoneNumber) { newValue in
+                                        // Limit the number of characters
+                                        if newValue.count > characterLimit {
+                                            viewModel.phoneNumber = String(newValue.prefix(characterLimit))
+                                            print("limiting characters /n \(viewModel.phoneNumber)")
+                                        }
+                                    }
+                                    .onAppear {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                            keyboardFocused = true
+                                        }
+                                    }
+                                    .padding(.leading, 35)
+                                
+                                HStack{
+                                    Text("+ \(viewModel.getCountryCode()) \(viewModel.phoneNumber)")
+                                        .font(.title2)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.black)
+                                    
+                                    Spacer(minLength: 0)
+                                }
+                               
+                            }
                             
                         }
                         Spacer(minLength: 0)
                         
-//                        NavigationLink {
-//                            PhoneVerificationView(viewModel: viewModel, isActive: $viewModel.goToVerify)
-//                            
-//                        } label: {
-//                            Text("")
-//                                .hidden()
-//                        }
                         NavigationLink(destination: PhoneVerificationView(viewModel: _viewModel), isActive: $viewModel.goToVerify) {
                             Text("")
                                 .hidden()
@@ -92,7 +116,8 @@ struct PhoneLoginView: View {
                 .cornerRadius(20)
                 
                 //Custom number pad
-                CustomNumPadView(value: $viewModel.phoneNumber, isVerify: false)
+                //CustomNumPadView(value: $viewModel.phoneNumber, isVerify: false)
+                Spacer(minLength: 0)
 
             }
             
@@ -109,4 +134,5 @@ struct PhoneLoginView: View {
 
 #Preview {
     PhoneLoginView()
+        .environmentObject(AuthViewModel())
 }

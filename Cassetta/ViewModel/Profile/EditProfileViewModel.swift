@@ -11,7 +11,7 @@ import Firebase
 class EditProfileViewModel: ObservableObject {
     var user: User
     @Published var uploadComplete = false
-    @Published var userSessionProfilePhoto = AuthViewModel.shared.userSession?.photoURL
+    //@Published var userSessionProfilePhoto = AuthViewModel.shared.userSession?.photoURL
 
 
     
@@ -21,7 +21,8 @@ class EditProfileViewModel: ObservableObject {
     
     private var uploadTasksCount = 0 {
             didSet {
-                if uploadTasksCount == 3 {
+                //count is 4 because there are 4 tasks to complete, image, bio, fullname, and username
+                if uploadTasksCount == 4 {
                    uploadComplete = true
                 }
             }
@@ -48,26 +49,37 @@ class EditProfileViewModel: ObservableObject {
     }
     
     func saveUserFullname(_ fullname: String) {
-        
+
         guard let uid = user.id else { return }
-        
+    
         if (user.fullname == fullname) {
             uploadTasksCount += 1
             return
         }
         
-        
         COLLECTION_USERS.document(uid).updateData(["fullname": fullname]) { _ in
-            
-          //  print("DEBUG: fullname: \(fullname)")
             self.user.fullname = fullname
-            //self.uploadComplete = true
             self.uploadTasksCount += 1
             
-            print("DEBUG: uploadComplete fullname: \(self.uploadComplete)")
+        }
+    }
+    
+    
+    func saveUsername(_ username: String) {
+        guard let uid = user.id else { return }
+        
+        if (user.username == username) {
+            uploadTasksCount += 1
+            return
         }
         
+        COLLECTION_USERS.document(uid).updateData(["username": username]) { _ in
+            self.user.username = username
+            self.uploadTasksCount += 1
+        }
     }
+    
+    
     
     func updateProfilePhoto(newImage: UIImage?) {
         guard let uid = user.id else { return }

@@ -57,7 +57,6 @@
 		014DF99728D5000E00E6A754 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF99628D5000E00E6A754 /* ProfileHeaderView.swift */; };
 		014DF99928D5006200E6A754 /* ProfileActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF99828D5006200E6A754 /* ProfileActionButtonView.swift */; };
 		0156E2572B34DA3E00E0BAA4 /* PhoneLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156E2562B34DA3E00E0BAA4 /* PhoneLoginView.swift */; };
-		0156E2592B34DE0E00E0BAA4 /* PhoneLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156E2582B34DE0E00E0BAA4 /* PhoneLoginViewModel.swift */; };
 		0156E25B2B352DAA00E0BAA4 /* CountryCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156E25A2B352DAA00E0BAA4 /* CountryCodes.swift */; };
 		0156E25D2B353EC400E0BAA4 /* PhoneVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156E25C2B353EC400E0BAA4 /* PhoneVerificationView.swift */; };
 		0156E25F2B3620A600E0BAA4 /* CustomNumPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156E25E2B3620A600E0BAA4 /* CustomNumPadView.swift */; };
@@ -159,7 +158,6 @@
 		014DF99628D5000E00E6A754 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		014DF99828D5006200E6A754 /* ProfileActionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileActionButtonView.swift; sourceTree = "<group>"; };
 		0156E2562B34DA3E00E0BAA4 /* PhoneLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLoginView.swift; sourceTree = "<group>"; };
-		0156E2582B34DE0E00E0BAA4 /* PhoneLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLoginViewModel.swift; sourceTree = "<group>"; };
 		0156E25A2B352DAA00E0BAA4 /* CountryCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodes.swift; sourceTree = "<group>"; };
 		0156E25C2B353EC400E0BAA4 /* PhoneVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationView.swift; sourceTree = "<group>"; };
 		0156E25E2B3620A600E0BAA4 /* CustomNumPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNumPadView.swift; sourceTree = "<group>"; };
@@ -403,7 +401,6 @@
 			isa = PBXGroup;
 			children = (
 				010B6B8D2915B3B800A13DC8 /* AuthViewModel.swift */,
-				0156E2582B34DE0E00E0BAA4 /* PhoneLoginViewModel.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -754,7 +751,6 @@
 				0116A8DC28C3B9800050780B /* UserCell.swift in Sources */,
 				019F62F22948FBC90045FF39 /* CategoriesView.swift in Sources */,
 				0198C7DB28EA08C200676189 /* ImagePicker.swift in Sources */,
-				0156E2592B34DE0E00E0BAA4 /* PhoneLoginViewModel.swift in Sources */,
 				018221882AC7A97400045D3D /* DeletePostViewModel.swift in Sources */,
 				015E0880292EF48400350D13 /* ProfileViewModel.swift in Sources */,
 				0156E25B2B352DAA00E0BAA4 /* CountryCodes.swift in Sources */,
