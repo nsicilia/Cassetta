@@ -28,24 +28,37 @@ struct PhoneLoginView: View {
             
             VStack(spacing: 0) {
                 VStack{
-                    Text("Phone Login")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .padding()
-                    
-                    Image(systemName: "phone")
+                    //Logo
+                    Image("BlackCassettaLogo")
                         .resizable()
-                        .foregroundColor(.white)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 100, height: 100)
-                        .padding()
+                        .renderingMode(.template)
+                        .foregroundColor(.black)
+                        .scaledToFill()
+                        .frame(width: 150, height: 60)
+                        .padding(.top)
+                        .padding(.bottom, 32)
                     
-                    Text("You will receive a text with a code to verify your phone number")
-                        .font(isSmallScreen ? .none : .title2)
+                    
+                    
+                    NavigationLink{
+                        LoginView().navigationBarHidden(true)
+                    } label: {
+                        HStack{
+                            Text("Prefer email? ")
+                                .font(.system(size: 16))
+                                .foregroundColor(.black)
+                            
+                            Text("Sign Up")
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(.black)
+                            
+                        }
+                        .padding(8)
                         .foregroundColor(.white)
-                        .multilineTextAlignment(.center)
+                        .background(.white)
+                        .cornerRadius(10)
                         .padding()
+                    }
                     
                     //Number Field
                     
@@ -98,9 +111,10 @@ struct PhoneLoginView: View {
                         Button(action: {viewModel.sendCode()}, label: {
                             Text("Continue")
                                 .foregroundColor(.white)
+                                .bold()
                                 .padding(.vertical, 10)
                                 .padding(.horizontal, 25)
-                                .background(Color.black)
+                                .background(Color(.cassettaOrange))
                                 .clipShape(Capsule())
                         })
                         .disabled(viewModel.phoneNumber == "" ? true : false)
@@ -114,6 +128,7 @@ struct PhoneLoginView: View {
                 .frame(height: UIScreen.screenHeight / 1.8)
                 //.background(Color.white)
                 .cornerRadius(20)
+                .padding(.horizontal, 8)
                 
                 //Custom number pad
                 //CustomNumPadView(value: $viewModel.phoneNumber, isVerify: false)

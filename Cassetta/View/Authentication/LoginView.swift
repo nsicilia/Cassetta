@@ -90,25 +90,42 @@ struct LoginView: View {
                         Spacer()
                         
                         //Switch to sign up button
-                        NavigationLink{
-                            RegistrationView().navigationBarHidden(true)
-                        } label: {
-                            HStack{
-                                Text("Don't have an account? ")
-                                    .font(.system(size: 16))
-                                    .foregroundColor(.black)
-                                    .padding(8)
-                                
-                                Text("Sign Up")
-                                    .font(.system(size: 16, weight: .bold))
-                                    .foregroundColor(.black)
-                                    .padding(8)
-                                
-                            }
-                            .foregroundColor(.white)
-                            .background(.white)
-                            .cornerRadius(10)
-                            .padding()
+                        HStack {
+                            NavigationLink{
+                                PhoneLoginView().navigationBarHidden(true)
+                            } label: {
+                                HStack{
+                                    Text("Login/Signup with phone")
+                                        .font(.system(size: 14))
+                                        .foregroundColor(.black)
+                                        .bold()
+                                    
+                                }
+                                .padding(8)
+                                .foregroundColor(.white)
+                                .background(.white)
+                                .cornerRadius(10)
+                                .padding()
+                        }
+                            
+                            
+                            NavigationLink{
+                                RegistrationView().navigationBarHidden(true)
+                            } label: {
+                                HStack{
+                                    Text("Signup with email")
+                                        .font(.system(size: 14))
+                                        .foregroundColor(.black)
+                                        .bold()
+                                        
+                                    
+                                }
+                                .padding(8)
+                                .foregroundColor(.white)
+                                .background(.white)
+                                .cornerRadius(10)
+                                .padding()
+                        }
                         }
                         
                         
