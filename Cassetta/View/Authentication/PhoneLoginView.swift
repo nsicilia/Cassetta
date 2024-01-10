@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PhoneLoginView: View {
-    //@StateObject var viewModel = PhoneLoginViewModel()
+
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var viewModel: AuthViewModel
     @State var isSmallScreen = UIScreen.screenHeight < 750
@@ -39,7 +39,7 @@ struct PhoneLoginView: View {
                         .padding(.bottom, 32)
                     
                     
-                    
+                    //Switch to email login
                     NavigationLink{
                         LoginView().navigationBarHidden(true)
                     } label: {
@@ -108,14 +108,26 @@ struct PhoneLoginView: View {
                                 .hidden()
                         }
                         
-                        Button(action: {viewModel.sendCode()}, label: {
-                            Text("Continue")
-                                .foregroundColor(.white)
-                                .bold()
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 25)
-                                .background(Color(.cassettaOrange))
-                                .clipShape(Capsule())
+                        Button(action: {
+                            viewModel.sendCode()
+                            viewModel.continueLoading = true
+                        }, label: {
+                            if viewModel.continueLoading{
+                                ProgressView()
+                                    .padding(.vertical, 10)
+                                    .padding(.horizontal, 25)
+                                    .background(Color(.cassettaOrange))
+                                    .clipShape(Capsule())
+                            } else {
+                                Text("Continue")
+                                    .foregroundColor(.white)
+                                    .bold()
+                                    .padding(.vertical, 10)
+                                    .padding(.horizontal, 25)
+                                    .background(Color(.cassettaOrange))
+                                    .clipShape(Capsule())
+                            }
+                            
                         })
                         .disabled(viewModel.phoneNumber == "" ? true : false)
                         

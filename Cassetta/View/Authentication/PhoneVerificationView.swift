@@ -60,6 +60,7 @@ struct PhoneVerificationView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .focused($keyboardFocused)
                         .onAppear {
+                            viewModel.continueLoading = false
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                 keyboardFocused = true
                             }

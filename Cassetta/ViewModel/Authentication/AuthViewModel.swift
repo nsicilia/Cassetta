@@ -15,6 +15,9 @@ class AuthViewModel: ObservableObject {
     @Published var currentUser: User?
     @Published var didSendPasswordLink = false
     
+    //continue button on phone login
+    @Published var continueLoading = false
+    
     @Published var loginFail = false
     
     static let shared = AuthViewModel()
