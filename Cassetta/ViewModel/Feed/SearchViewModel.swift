@@ -50,30 +50,28 @@ class SearchViewModel: ObservableObject {
     
     
     func blockedBy() {
-        guard let uid = AuthViewModel.shared.userSession?.uid else { return }
-
-        COLLECTION_BLOCKED.document(uid).collection("blocked-by").getDocuments { snapshot, error in
-            guard let documents = snapshot?.documents else {
-                print("Error fetching blocked-by documents: \(error?.localizedDescription ?? "Unknown error")")
-                return
-            }
-
-            let blockedByUserIDs = documents.map { $0.documentID }
+        guard let currentUID = AuthViewModel.shared.userSession?.uid else {return}
         
-            for id in blockedByUserIDs {
+        COLLECTION_BLOCKERS.document(currentUID).collection("is-blocking").getDocuments { snapshot, _ in
+            guard let documents = snapshot?.documents else { return }
+            
+            let blockedUsers = documents.map { $0.documentID }
+            
+            self.blockedByList = [User]()
+            
+            for id in blockedUsers {
                 COLLECTION_USERS.document(id).getDocument { snapshot, error in
                     guard let user = try? snapshot?.data(as: User.self) else { return }
-                    //print("DEBUG: blockedBy - \(user)")
+                    //print("DEBUG: blockedBy - \(user.username)")
                     self.blockedByList.append(user)
-                   // print("DEBUG: blockedByList - \(self.blockedByList)")
+                    // print("DEBUG: blockedByList - \(self.blockedByList)")
                 }
             }
-            
         }
     }
 
     
-    func filteredUsers2() -> [User] {
+    func filteredUsersBlockedList() -> [User] {
         
             return users.filter { user in
                 // Check if the user is not in the blockedByList and filter based on the query

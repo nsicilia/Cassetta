@@ -162,18 +162,6 @@ class ProfileViewModel: ObservableObject{
     }
     
     
-//    func unblock(){
-//        //get uid of a user
-//        guard let uid = user.id else { return }
-//        
-//        UserService.unblockUser(uid: uid) { error in
-//            //print error
-//            if let error = error{print("ERROR: class ProfileViewModel func unfollow - \(error.localizedDescription)")}
-//            
-//            //update bool in User model
-//            self.user.isBlocked = false
-//        }
-//    }
     func unblock(uid: String? = nil) {
         // Get the UID of the user to unblock
         guard let targetUID = uid ?? user.id else {
@@ -208,7 +196,7 @@ class ProfileViewModel: ObservableObject{
     func getBlockedUsersList() {
         
         guard let currentUID = AuthViewModel.shared.userSession?.uid else {return}
-
+        
         COLLECTION_BLOCKERS.document(currentUID).collection("is-blocking").getDocuments { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             
@@ -221,18 +209,11 @@ class ProfileViewModel: ObservableObject{
                     guard let user = try? snapshot?.data(as: User.self) else { return }
                     //print("DEBUG: blockedBy - \(user.username)")
                     self.blockedUsers.append(user)
-                   // print("DEBUG: blockedByList - \(self.blockedByList)")
+                    // print("DEBUG: blockedByList - \(self.blockedByList)")
                 }
             }
         }
         
-//            UserService.getBlockedUsers { blockedUsers in
-//                // Update the blockedUsers property with the fetched list
-//                print("DEBUG: ProfileViewModel func getBlockedUsersList - \(blockedUsers)")
-//                self.blockedUsers = blockedUsers
-//                
-//            }
-       // print("DEBUG: blockedUsers - \(self.blockedUsers)")
-        }
+    }
     
 }//END: class ProfileViewModel
