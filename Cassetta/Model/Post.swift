@@ -26,6 +26,7 @@ struct Post: Identifiable, Decodable, Equatable {
     let duration: Double
     var listens: Int
     
+    var listentime: Double? = 0.0
     var didLike: Bool? = false
     var didDislike: Bool? = false
 }

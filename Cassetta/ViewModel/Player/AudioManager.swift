@@ -36,7 +36,10 @@ class AudioManager: ObservableObject{
         setupRemoteCommandCenter()
     }
 
-    
+    /// Starts the player with the given track
+    /// - Parameter track: The URL of the track to play
+    /// - Returns: Void
+    /// - Throws: None
     func startPlayer(track: String){
         do{
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
@@ -52,7 +55,9 @@ class AudioManager: ObservableObject{
         setupRemoteCommandCenter()
 
     }
-    
+    /// Stops the player
+    /// - Returns: Void
+    /// - Throws: None
     func handleAudioEnd(){
         player.queue(url: URL(string: trackURLString)!)
         }

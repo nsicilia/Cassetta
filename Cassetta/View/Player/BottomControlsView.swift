@@ -13,6 +13,9 @@ struct BottomControlsView: View {
     
     @ObservedObject var audioManager: AudioManager
     
+    //post SOT
+    @ObservedObject var postViewModel: PostViewModel
+    
     @State private var isEditing: Bool = false
     
     let timer = Timer
@@ -24,7 +27,6 @@ struct BottomControlsView: View {
         ZStack{
             
             VStack {
-                //Divider()
                 
                 //MARK: Playback
                 VStack(spacing: 5){
@@ -72,7 +74,6 @@ struct BottomControlsView: View {
                             .font(.title)
                             .foregroundColor(.black)
                     }
-
                     
                     Spacer()
                     
@@ -95,8 +96,6 @@ struct BottomControlsView: View {
                             .foregroundColor(.black)
                     }
                     
-                    
-                    
                     Spacer()
                     Button {
                         //Skip forward ten
@@ -115,6 +114,11 @@ struct BottomControlsView: View {
             .onReceive(timer) { _ in
                 if !isEditing {
                     value = audioManager.player.progress
+                    
+                    if(audioManager.player.isEngineRunning){
+                        postViewModel.updateListeningProgress(currentProgress: audioManager.player.progress)
+                    }
+                    
                 }
             }
             
@@ -127,6 +131,6 @@ struct BottomControlsView: View {
 
 struct BottomControlsView_Previews: PreviewProvider {
     static var previews: some View {
-        BottomControlsView(audioManager: AudioManager())
+        BottomControlsView(audioManager: AudioManager(), postViewModel: PostViewModel())
     }
 }

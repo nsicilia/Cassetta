@@ -21,12 +21,15 @@ class PostViewModel: ObservableObject {
     
     @Published var user: User?
     
+    @Published var postListenTime: Double = 0.0
+    
     
     init(post: Post? = nil) {
         self.currentPost = post
         ezStatusCheck()
         getImageFromURL()
         fetchUser()
+        pullListenTime()
     }
     
     
@@ -44,27 +47,21 @@ class PostViewModel: ObservableObject {
     func like(){
         // Check if there is a user currently signed in. If not, return and do nothing.
         guard let uid = AuthViewModel.shared.userSession?.uid else {return}
-        
         // Get the ID of the post that is being liked.
         guard let postId = currentPost?.id else {return}
-        
         // Access the "post-likes" subcollection of the post's document in the "COLLECTION_POSTS" collection.
         // Then, create a new document with the user's ID as the document ID, and an empty dictionary as the data.
         COLLECTION_POSTS.document(postId).collection("post-likes")
             .document(uid).setData([:]) { _ in
-                
                 // Access the "user-likes" subcollection of the user's document in the "COLLECTION_USERS" collection.
                 // Then, create a new document with the post's ID as the document ID, and an empty dictionary as the data.
                 COLLECTION_USERS.document(uid).collection("user-likes")
                     .document(postId).setData([:]) { _ in
-                        
                         //In the firebase db add 1 to the like count
                         if let likes = self.currentPost?.likes{
                             COLLECTION_POSTS.document(postId).updateData(["likes": likes + 1])
                         }
-                        
                         NotificationsViewModel.uploadNotification(toUid: self.currentPost?.ownerUid ?? "", type: .like, post: self.currentPost)
-                        
                         // Update the post's "didLike" property to true, indicating that the user has liked the post.
                         self.currentPost?.didLike = true
                         //increment likes
@@ -218,7 +215,6 @@ class PostViewModel: ObservableObject {
     
     func fetchUser(){
         guard let uid = currentPost?.ownerUid else { return }
-        
       //  print("Debug: fetchUser uid - \(uid)")
         
         COLLECTION_USERS.document(uid).getDocument { SnapshotData, error in
@@ -226,15 +222,62 @@ class PostViewModel: ObservableObject {
               //  print("DEBUG: fetchUser() - \(error.localizedDescription)")
                 return
             }
-            
-            
             guard let user = try? SnapshotData?.data(as: User.self) else { return }
             
-            print("Debug: fetchUser user - \(user)")
+            //print("Debug: fetchUser user - \(user)")
             
             self.user = user
         }
     }
+    
+    
+    func updateListeningProgress(currentProgress: Double = 0.0){
+        guard let uid = AuthViewModel.shared.userSession?.uid else {return}
+        guard let postId = currentPost?.id else {return}
+        
+        // Access the "user-likes" subcollection of the user's document in the "COLLECTION_USERS" collection.
+        // Then, create a new document with the post's ID as the document ID, and an empty dictionary as the data.
+        COLLECTION_USERS.document(uid).collection("listening-progress").document(postId).setData(["listentime": currentProgress ]) { _ in
+            //users -> asdfasdf -> listening-progress -> zxcvzxcv -> listentime: 0.0
+           // print("Updated listening progress: \(currentProgress)")
+            
+        }
+    }
+    
+    
+    func getListentime() {
+        guard let uid = AuthViewModel.shared.userSession?.uid else {return}
+        guard let postId = currentPost?.id else {return}
+        
+        COLLECTION_USERS.document(uid).collection("listening-progress").document(postId).getDocument { documentSnapshot, error in
+            if let error = error {
+                print("Error getting listening progress document: \(error)")
+                return
+            }
+
+            guard let data = documentSnapshot?.data() else { return }
+            let listentime = data["listentime"] as? Double ?? 0.0
+           // self.currentPost?.listentime = listentime
+            //print("Debug: listentime - \(listentime)")
+        }
+    }
+    
+    func pullListenTime(){
+        guard let uid = AuthViewModel.shared.userSession?.uid else {return}
+        guard let postId = currentPost?.id else {return}
+
+        COLLECTION_USERS.document(uid).collection("listening-progress").document(postId).getDocument { snapshot, _ in
+            guard let data = snapshot?.exists else {return}
+            guard let listentime = snapshot?.data()?["listentime"] as? Double else {return}
+            print("Debug: pullListenTime listentime - \(listentime)")
+            self.postListenTime = listentime
+
+        }
+    }
+    
+
+
+    
     
     
 }

@@ -148,7 +148,7 @@ class FeedViewModel: ObservableObject {
                 // map the documents to Post objects using the data(as:) method and assign the result to the posts property
                 self.posts = documents.compactMap({ try? $0.data(as: Post.self) })
                 
-                print("DEBUG: blockebByList - \(self.blockedByList)")
+                //print("DEBUG: blockebByList - \(self.blockedByList)")
                 self.posts = self.posts.filter { post in
                     return !self.blockedByList.contains(where: { $0.id == post.ownerUid })
                 }
