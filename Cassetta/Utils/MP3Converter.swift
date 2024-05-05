@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import AVFoundation
 
 final class MP3Converter {
     enum MP3ConverterError: Error, LocalizedError {

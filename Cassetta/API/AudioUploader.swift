@@ -30,7 +30,7 @@ class AudioUploader: NSObject, ObservableObject {
         
        let uploadTask =  ref.putFile(from: audio, metadata: nil) { _, error in
             //error handling
-            if let error = error {
+           if error != nil {
                // print("DEBUG: failed to upload an audio file - \(error.localizedDescription)")
                 return
             }
