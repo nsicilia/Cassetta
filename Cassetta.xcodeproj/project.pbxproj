@@ -16,6 +16,8 @@
 		0116A8DF28C3BE390050780B /* RecordPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116A8DE28C3BE390050780B /* RecordPostView.swift */; };
 		0116A8E128C3BEB60050780B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116A8E028C3BEB60050780B /* SearchView.swift */; };
 		011EE4F82BFC50C400A41432 /* LAME in Frameworks */ = {isa = PBXBuildFile; productRef = 011EE4F72BFC50C400A41432 /* LAME */; };
+		011EE4FA2C237CCF00A41432 /* LAME in Frameworks */ = {isa = PBXBuildFile; productRef = 011EE4F92C237CCF00A41432 /* LAME */; };
+		011EE4FB2C2385AA00A41432 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014BA7F9299ABBB900370AE3 /* AudioToolbox.framework */; };
 		0121566B2953ACD000C7D4DC /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0121566A2953ACD000C7D4DC /* Helper.swift */; };
 		0121566D2953AD3100C7D4DC /* RecordingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0121566C2953AD3100C7D4DC /* RecordingDataModel.swift */; };
 		012156702953ADD600C7D4DC /* AudioRecorderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0121566F2953ADD600C7D4DC /* AudioRecorderViewModel.swift */; };
@@ -32,7 +34,6 @@
 		014BA7E82991A9A400370AE3 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014BA7E72991A9A400370AE3 /* AudioManager.swift */; };
 		014BA7EB2992CEC700370AE3 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 014BA7EA2992CEC700370AE3 /* AudioKit */; };
 		014BA7F4299AB5EC00370AE3 /* ExtAudioConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 014BA7F3299AB5EC00370AE3 /* ExtAudioConverter.m */; };
-		014BA7FA299ABBB900370AE3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014BA7F9299ABBB900370AE3 /* AudioToolbox.framework */; };
 		014BA7FC299ADA2000370AE3 /* MP3Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014BA7FB299ADA2000370AE3 /* MP3Converter.swift */; };
 		014DF97F28D17EBC00E6A754 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF97E28D17EBC00E6A754 /* SearchBar.swift */; };
 		014DF98128D1807500E6A754 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF98028D1807500E6A754 /* Extensions.swift */; };
@@ -255,6 +256,7 @@
 				016C5A5A2BE74724007F4BBF /* FirebaseRemoteConfigSwift in Frameworks */,
 				016C5A5C2BE74724007F4BBF /* FirebaseStorage in Frameworks */,
 				016C5A3A2BE74724007F4BBF /* FirebaseCrashlytics in Frameworks */,
+				011EE4FA2C237CCF00A41432 /* LAME in Frameworks */,
 				016C5A462BE74724007F4BBF /* FirebaseFirestoreSwift in Frameworks */,
 				016C5A302BE74724007F4BBF /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				016C5A3E2BE74724007F4BBF /* FirebaseDatabaseSwift in Frameworks */,
@@ -279,7 +281,7 @@
 				016C5A2E2BE74724007F4BBF /* FirebaseAnalyticsSwift in Frameworks */,
 				016C5A382BE74724007F4BBF /* FirebaseAuthCombine-Community in Frameworks */,
 				016C5A582BE74724007F4BBF /* FirebaseRemoteConfig in Frameworks */,
-				014BA7FA299ABBB900370AE3 /* AudioToolbox.framework in Frameworks */,
+				011EE4FB2C2385AA00A41432 /* AudioToolbox.framework in Frameworks */,
 				014BA7EB2992CEC700370AE3 /* AudioKit in Frameworks */,
 				016C5A502BE74724007F4BBF /* FirebaseInstallations in Frameworks */,
 			);
@@ -670,6 +672,7 @@
 				016C5A5B2BE74724007F4BBF /* FirebaseStorage */,
 				016C5A5D2BE74724007F4BBF /* FirebaseStorageCombine-Community */,
 				011EE4F72BFC50C400A41432 /* LAME */,
+				011EE4F92C237CCF00A41432 /* LAME */,
 			);
 			productName = Cassetta;
 			productReference = 0189DBA727D7035100956E28 /* Cassetta.app */;
@@ -1128,6 +1131,10 @@
 			productName = Kingfisher;
 		};
 		011EE4F72BFC50C400A41432 /* LAME */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LAME;
+		};
+		011EE4F92C237CCF00A41432 /* LAME */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LAME;
 		};

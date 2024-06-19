@@ -16,18 +16,27 @@ class NotificationsViewModel: ObservableObject{
     }
     
     
-    func fetchNotifications(){
-        guard let uid = AuthViewModel.shared.userSession?.uid else {return}
+    func fetchNotifications() {
+        // Ensure the user is logged in and has a valid user ID
+        guard let uid = AuthViewModel.shared.userSession?.uid else { return }
         
+        // Construct the Firestore query to fetch user notifications,
+        // ordered by timestamp in descending order (most recent first)
         let query = COLLECTION_NOTIFICATIONS.document(uid).collection("user-notifications").order(by: "timestamp", descending: true)
         
+        // Execute the query to get the documents
         query.getDocuments { snapshot, _ in
+            // Ensure the snapshot contains documents
             guard let documents = snapshot?.documents else { return }
-            self.notifications = documents.compactMap({ try? $0.data(as: Notification.self) })
             
-            //print("DEBUG: Notifications - \(self.notifications)")
+            // Map the documents to Notification objects, ignoring any that fail to convert
+            self.notifications = documents.compactMap { try? $0.data(as: Notification.self) }
+            
+            // Debugging: Print the fetched notifications (commented out)
+            // print("DEBUG: Notifications - \(self.notifications)")
         }
     }
+
     
     
     static func uploadNotification(toUid uid: String, type: NotificationType, post: Post? = nil){
