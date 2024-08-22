@@ -14,17 +14,19 @@ import Combine
 
 
 class AudioUploader: NSObject, ObservableObject {
+    
 
     @Published var progress: Double = 0
     
     //static func uploadImage(image: UIImage, completion: @escaping(String) -> Void){
-    func uploadAudio(audio: URL, completion: @escaping(String) -> Void){
+    func uploadAudio(audio: URL, filename: String?, completion: @escaping(String) -> Void){
         
         //generate unique file name string
-        let filename = NSUUID().uuidString
+        let filename: String = filename ?? NSUUID().uuidString
+        //let filename = NSUUID().uuidString
         
         //path in firebase storage
-        let ref = Storage.storage().reference(withPath: "/post_audios/\(filename)")
+        let ref = Storage.storage().reference(withPath: "/post_audios/\(filename).m4a")
         
         
         

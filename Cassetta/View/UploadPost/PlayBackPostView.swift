@@ -168,6 +168,6 @@ struct PlayBackPostView: View {
 
 struct PlayBackPostView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayBackPostView(showStatus: .constant(true), audioRecorder: AudioRecorderViewModel(), combinedURL: .constant(URL(string: "https://www.apple.com")!))
+        PlayBackPostView(showStatus: .constant(true), audioRecorder: AudioRecorderViewModel(), combinedURL: .constant(URL(string: "gs://cassetta-production.appspot.com/post_audios/063A7F15-4FC7-4390-B37E-0CD1284B677B")!))
     }
 }

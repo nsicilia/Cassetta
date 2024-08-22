@@ -28,6 +28,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         )
 
         application.registerForRemoteNotifications()
+        
         // Messaging Delegate
         Messaging.messaging().delegate = self
 
@@ -62,8 +63,7 @@ struct CassettaApp: App {
 extension AppDelegate: UNUserNotificationCenterDelegate {
     // Receive displayed notifications for iOS 10 devices.
     func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification) async
-        -> UNNotificationPresentationOptions {
+                                willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
         let userInfo = notification.request.content.userInfo
 
         // With swizzling disabled you must let Messaging know about the message, for Analytics
@@ -109,15 +109,45 @@ extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         print("Firebase registration token: \(String(describing: fcmToken))")
 
+        // Create a dictionary to store the token
         let dataDict: [String: String] = ["token": fcmToken ?? ""]
+        
+        // Post a notification with the new token
         NotificationCenter.default.post(
             name: NSNotification.Name("FCMToken"),
             object: nil,
             userInfo: dataDict
         )
-        // TODO: If necessary send token to application server.
+        
+        // TODO: If necessary, send the token to your application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
+        // Optionally, send the token to your server
+               sendTokenToServer(token: fcmToken)
+        
     }
-
     // [END refresh_token]
+    
+    func sendTokenToServer(token: String?) {
+        //Send the token to firestore user/[uid]/fcmToken
+        guard let token = token else { return }
+        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let db = Firestore.firestore()
+        
+        let docRef = db.collection("users").document(uid)
+        
+        docRef.updateData(["fcmToken": token]) { error in
+            if let error = error {
+                print("Error updating document: \(error)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        
+        
+    }
 }
+
+
+

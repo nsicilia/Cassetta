@@ -16,18 +16,22 @@ class UploadPostViewModel: ObservableObject {
     func uploadPost(title: String, description: String, category: String, image:UIImage, audio: URL, duration: Double, completion: FirestoreCompletion){
         //get info about current user
         guard let user = AuthViewModel.shared.currentUser else { return }
-        
+        //get timestamp for post
+        let postTimeStamp = Timestamp(date: Date())
+        //generate unique document ID
+        let docID = NSUUID().uuidString
+
         ImageUploader.uploadImage(image: image, type: .post) { imageURL in
             
             let audioUploader = AudioUploader()
             self.audioUploadCancellable = audioUploader.$progress.sink { self.audioProgress = $0 }
             
-            audioUploader.uploadAudio(audio: audio) { audioURL in
+            audioUploader.uploadAudio(audio: audio, filename: docID) { audioURL in
                 
                 let data = ["title": title,
                             "description": description,
                             "category": category,
-                            "timestamp": Timestamp(date: Date()),
+                            "timestamp": postTimeStamp,
                             "likes": 0,
                             "listens": 0,
                             "duration": duration,
@@ -39,7 +43,7 @@ class UploadPostViewModel: ObservableObject {
                             "ownerFullname": user.fullname,
                             "ownerUsername": user.username] as [String: Any]
                 
-                COLLECTION_POSTS.addDocument(data: data, completion: completion)
+                COLLECTION_POSTS.document(docID).setData(data, completion: completion)
                 
             }//AudioUploader
         }//ImageUploader

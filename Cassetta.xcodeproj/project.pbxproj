@@ -15,9 +15,6 @@
 		0116A8DC28C3B9800050780B /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116A8DB28C3B9800050780B /* UserCell.swift */; };
 		0116A8DF28C3BE390050780B /* RecordPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116A8DE28C3BE390050780B /* RecordPostView.swift */; };
 		0116A8E128C3BEB60050780B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116A8E028C3BEB60050780B /* SearchView.swift */; };
-		011EE4F82BFC50C400A41432 /* LAME in Frameworks */ = {isa = PBXBuildFile; productRef = 011EE4F72BFC50C400A41432 /* LAME */; };
-		011EE4FA2C237CCF00A41432 /* LAME in Frameworks */ = {isa = PBXBuildFile; productRef = 011EE4F92C237CCF00A41432 /* LAME */; };
-		011EE4FB2C2385AA00A41432 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014BA7F9299ABBB900370AE3 /* AudioToolbox.framework */; };
 		0121566B2953ACD000C7D4DC /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0121566A2953ACD000C7D4DC /* Helper.swift */; };
 		0121566D2953AD3100C7D4DC /* RecordingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0121566C2953AD3100C7D4DC /* RecordingDataModel.swift */; };
 		012156702953ADD600C7D4DC /* AudioRecorderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0121566F2953ADD600C7D4DC /* AudioRecorderViewModel.swift */; };
@@ -33,7 +30,6 @@
 		014BA7E62991A65600370AE3 /* AudioStreaming in Frameworks */ = {isa = PBXBuildFile; productRef = 014BA7E52991A65600370AE3 /* AudioStreaming */; };
 		014BA7E82991A9A400370AE3 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014BA7E72991A9A400370AE3 /* AudioManager.swift */; };
 		014BA7EB2992CEC700370AE3 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 014BA7EA2992CEC700370AE3 /* AudioKit */; };
-		014BA7F4299AB5EC00370AE3 /* ExtAudioConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 014BA7F3299AB5EC00370AE3 /* ExtAudioConverter.m */; };
 		014BA7FC299ADA2000370AE3 /* MP3Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014BA7FB299ADA2000370AE3 /* MP3Converter.swift */; };
 		014DF97F28D17EBC00E6A754 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF97E28D17EBC00E6A754 /* SearchBar.swift */; };
 		014DF98128D1807500E6A754 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DF98028D1807500E6A754 /* Extensions.swift */; };
@@ -61,7 +57,6 @@
 		015E087E292EE19700350D13 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015E087D292EE19700350D13 /* UserService.swift */; };
 		015E0880292EF48400350D13 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015E087F292EF48400350D13 /* ProfileViewModel.swift */; };
 		016C5A232BE72B26007F4BBF /* LAME.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 016C5A222BE72B26007F4BBF /* LAME.framework.dSYM */; };
-		016C5A272BE73AC7007F4BBF /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 016C5A262BE73A7C007F4BBF /* libmp3lame.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		016C5A2A2BE74724007F4BBF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 016C5A292BE74724007F4BBF /* FirebaseAnalytics */; };
 		016C5A2C2BE74724007F4BBF /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 016C5A2B2BE74724007F4BBF /* FirebaseAnalyticsOnDeviceConversion */; };
 		016C5A2E2BE74724007F4BBF /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 016C5A2D2BE74724007F4BBF /* FirebaseAnalyticsSwift */; };
@@ -159,10 +154,6 @@
 		0149DAF329B7DCFE00633CAC /* UserCardOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardOptions.swift; sourceTree = "<group>"; };
 		0149DAF729BBC0A100633CAC /* PlayerLikeListenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerLikeListenCell.swift; sourceTree = "<group>"; };
 		014BA7E72991A9A400370AE3 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
-		014BA7F1299AB5E100370AE3 /* ExtAudioConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtAudioConverter.h; sourceTree = "<group>"; };
-		014BA7F2299AB5EC00370AE3 /* Cassetta-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cassetta-Bridging-Header.h"; sourceTree = "<group>"; };
-		014BA7F3299AB5EC00370AE3 /* ExtAudioConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtAudioConverter.m; sourceTree = "<group>"; };
-		014BA7F5299AB6CA00370AE3 /* lame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
 		014BA7F9299ABBB900370AE3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		014BA7FB299ADA2000370AE3 /* MP3Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MP3Converter.swift; sourceTree = "<group>"; };
 		014DF97E28D17EBC00E6A754 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
@@ -192,7 +183,6 @@
 		015E087D292EE19700350D13 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		015E087F292EF48400350D13 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		016C5A222BE72B26007F4BBF /* LAME.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = LAME.framework.dSYM; sourceTree = "<group>"; };
-		016C5A242BE73972007F4BBF /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmp3lame.a; path = "../../../../Downloads/ExtAudioFileConverter-master/ExtAudioConverter/libmp3lame.a"; sourceTree = "<group>"; };
 		016C5A262BE73A7C007F4BBF /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmp3lame.a; path = ToMP3Components/libmp3lame.a; sourceTree = "<group>"; };
 		016C5A282BE73D69007F4BBF /* Cassetta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cassetta.entitlements; sourceTree = "<group>"; };
 		0178E8B72A9E4E4100C2F9D7 /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
@@ -256,7 +246,6 @@
 				016C5A5A2BE74724007F4BBF /* FirebaseRemoteConfigSwift in Frameworks */,
 				016C5A5C2BE74724007F4BBF /* FirebaseStorage in Frameworks */,
 				016C5A3A2BE74724007F4BBF /* FirebaseCrashlytics in Frameworks */,
-				011EE4FA2C237CCF00A41432 /* LAME in Frameworks */,
 				016C5A462BE74724007F4BBF /* FirebaseFirestoreSwift in Frameworks */,
 				016C5A302BE74724007F4BBF /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				016C5A3E2BE74724007F4BBF /* FirebaseDatabaseSwift in Frameworks */,
@@ -267,11 +256,9 @@
 				016C5A5E2BE74724007F4BBF /* FirebaseStorageCombine-Community in Frameworks */,
 				014BA7E62991A65600370AE3 /* AudioStreaming in Frameworks */,
 				016C5A322BE74724007F4BBF /* FirebaseAppCheck in Frameworks */,
-				011EE4F82BFC50C400A41432 /* LAME in Frameworks */,
 				016C5A4A2BE74724007F4BBF /* FirebaseFunctionsCombine-Community in Frameworks */,
 				016C5A482BE74724007F4BBF /* FirebaseFunctions in Frameworks */,
 				016C5A342BE74724007F4BBF /* FirebaseAppDistribution-Beta in Frameworks */,
-				016C5A272BE73AC7007F4BBF /* libmp3lame.a in Frameworks */,
 				016C5A2C2BE74724007F4BBF /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				016C5A3C2BE74724007F4BBF /* FirebaseDatabase in Frameworks */,
 				016C5A402BE74724007F4BBF /* FirebaseDynamicLinks in Frameworks */,
@@ -281,7 +268,6 @@
 				016C5A2E2BE74724007F4BBF /* FirebaseAnalyticsSwift in Frameworks */,
 				016C5A382BE74724007F4BBF /* FirebaseAuthCombine-Community in Frameworks */,
 				016C5A582BE74724007F4BBF /* FirebaseRemoteConfig in Frameworks */,
-				011EE4FB2C2385AA00A41432 /* AudioToolbox.framework in Frameworks */,
 				014BA7EB2992CEC700370AE3 /* AudioKit in Frameworks */,
 				016C5A502BE74724007F4BBF /* FirebaseInstallations in Frameworks */,
 			);
@@ -488,18 +474,6 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
-		014BA7F0299AB27100370AE3 /* ToMP3Components */ = {
-			isa = PBXGroup;
-			children = (
-				016C5A242BE73972007F4BBF /* libmp3lame.a */,
-				014BA7F5299AB6CA00370AE3 /* lame.h */,
-				014BA7F3299AB5EC00370AE3 /* ExtAudioConverter.m */,
-				014BA7F1299AB5E100370AE3 /* ExtAudioConverter.h */,
-				014BA7F2299AB5EC00370AE3 /* Cassetta-Bridging-Header.h */,
-			);
-			path = ToMP3Components;
-			sourceTree = "<group>";
-		};
 		014BA7F8299ABBB900370AE3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -524,7 +498,6 @@
 		0189DB9E27D7035100956E28 = {
 			isa = PBXGroup;
 			children = (
-				014BA7F0299AB27100370AE3 /* ToMP3Components */,
 				0189DBA927D7035100956E28 /* Cassetta */,
 				0189DBA827D7035100956E28 /* Products */,
 				014BA7F8299ABBB900370AE3 /* Frameworks */,
@@ -671,8 +644,6 @@
 				016C5A592BE74724007F4BBF /* FirebaseRemoteConfigSwift */,
 				016C5A5B2BE74724007F4BBF /* FirebaseStorage */,
 				016C5A5D2BE74724007F4BBF /* FirebaseStorageCombine-Community */,
-				011EE4F72BFC50C400A41432 /* LAME */,
-				011EE4F92C237CCF00A41432 /* LAME */,
 			);
 			productName = Cassetta;
 			productReference = 0189DBA727D7035100956E28 /* Cassetta.app */;
@@ -708,7 +679,6 @@
 				01ECA3EE2979B45A00AB9082 /* XCRemoteSwiftPackageReference "LNPopupUI" */,
 				014BA7E42991A65600370AE3 /* XCRemoteSwiftPackageReference "AudioStreaming" */,
 				014BA7E92992CEC700370AE3 /* XCRemoteSwiftPackageReference "AudioKit" */,
-				014BA813299F4E1C00370AE3 /* XCRemoteSwiftPackageReference "LAME-xcframework" */,
 				0152FFB22BFC458300FF30AA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 0189DBA827D7035100956E28 /* Products */;
@@ -762,7 +732,6 @@
 				0130F5362929808D0033BC32 /* LargeUserCell.swift in Sources */,
 				019F62EA2947D15E0045FF39 /* PlayBackPostView.swift in Sources */,
 				019F62F4294909AA0045FF39 /* StyledButton.swift in Sources */,
-				014BA7F4299AB5EC00370AE3 /* ExtAudioConverter.m in Sources */,
 				01AA96E829665C7E00011F52 /* UploadPostViewModel.swift in Sources */,
 				010B6B8E2915B3B800A13DC8 /* AuthViewModel.swift in Sources */,
 				01580D9F2B11C21000FEB89A /* SomethingElseReportView.swift in Sources */,
@@ -985,10 +954,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/ToMP3Components",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nickcancode.Cassetta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -997,7 +963,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "ToMP3Components/Cassetta-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1032,10 +998,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/ToMP3Components",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nickcancode.Cassetta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1044,7 +1007,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "ToMP3Components/Cassetta-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1086,21 +1049,13 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dimitris-c/AudioStreaming";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 		014BA7E92992CEC700370AE3 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AudioKit/AudioKit.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		014BA813299F4E1C00370AE3 /* XCRemoteSwiftPackageReference "LAME-xcframework" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/bb9z/LAME-xcframework";
 			requirement = {
 				branch = main;
 				kind = branch;
@@ -1129,14 +1084,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 010251692926EEF400908D62 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
-		};
-		011EE4F72BFC50C400A41432 /* LAME */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = LAME;
-		};
-		011EE4F92C237CCF00A41432 /* LAME */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = LAME;
 		};
 		014BA7E52991A65600370AE3 /* AudioStreaming */ = {
 			isa = XCSwiftPackageProductDependency;
