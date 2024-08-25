@@ -200,35 +200,48 @@ class AudioRecorderViewModel: NSObject, ObservableObject {
     
 
     func addFileRecording(from url: URL) {
+        // Get the default file manager instance
         let fileManager = FileManager.default
-        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let attributes = [FileAttributeKey.creationDate: Date()]
-        //let destinationURL = documentsDirectory.appendingPathComponent("\(Date().toString(dateFormat: "dd-MM-YY_'at'_HH:mm:ss"))"+"\(url.lastPathComponent)")
         
+        // Get the path to the documents directory for the user's domain
+        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        
+        // Set the creation date attribute to the current date
+        let attributes = [FileAttributeKey.creationDate: Date()]
+        
+        // Check if a recording with the same file name already exists in the recordings array
         let recordingExists = recordings.contains { (recordingInArray) -> Bool in
             return recordingInArray.fileURL.lastPathComponent == url.lastPathComponent
         }
         
-        
-        let destinationURL = documentsDirectory.appendingPathComponent( recordingExists ? "\(Date().toString(dateFormat: "HH:mm:ss"))\(url.lastPathComponent)" : "\(url.lastPathComponent)")
-        
+        // If the recording exists, append the current time to the file name to avoid overwriting
+        // Otherwise, use the original file name
+        let destinationURL = documentsDirectory.appendingPathComponent(
+            recordingExists ? "\(Date().toString(dateFormat: "HH:mm:ss"))\(url.lastPathComponent)" : "\(url.lastPathComponent)"
+        )
         
         do {
+            // Attempt to copy the file from the source URL to the destination URL
             try fileManager.copyItem(at: url, to: destinationURL)
+            
+            // Set the file's attributes (e.g., creation date)
             try fileManager.setAttributes(attributes, ofItemAtPath: destinationURL.path)
-
             
         } catch {
-            //print("DEBUG: AudioRecorderViewModel - Error copying file: \(error)")
+            // Handle errors in file copying or attribute setting
             return
         }
         
-        
+        // Create a new Recording object with the destination URL and current date
         let recording = Recording(fileURL: destinationURL, createdAt: Date())
-        //print("DEBUG: AudioRecordingViewModel: the recording createdAt - \(recording.createdAt)")
+        
+        // Add the new recording to the recordings array
         recordings.append(recording)
+        
+        // Notify any observers that the object has changed
         objectWillChange.send(self)
         
+        // Refresh the list of recordings
         fetchRecordings()
     }
     

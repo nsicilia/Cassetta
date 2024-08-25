@@ -34,59 +34,90 @@ class ConcatenateAudioFiles {
         return outputURL
     }
     
-    
     func concatenateAudioFiles(urls: [URL]) async throws -> URL {
         let composition = AVMutableComposition()
         
-        let checkURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("concatenated.m4a")
+        let outputURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("concatenated.m4a")
         
-        deleteFinalRecording(urlToDelete: checkURL)
+        deleteFinalRecording(urlToDelete: outputURL)
         
-        // Add audio tracks from each URL to the composition
+        // Add audio tracks from each URL to the composition and convert each to .m4a
         for url in urls {
             let asset = AVURLAsset(url: url)
-            for track in asset.tracks(withMediaType: .audio) {
+            
+            // Create a temporary .m4a file for each input URL
+            let tempM4AURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString).appendingPathExtension("m4a")
+            
+            let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetAppleM4A)
+            exportSession?.outputURL = tempM4AURL
+            exportSession?.outputFileType = .m4a
+            await exportSession?.export()
+            
+            // Load the converted .m4a file into the composition
+            let m4aAsset = AVURLAsset(url: tempM4AURL)
+            for track in m4aAsset.tracks(withMediaType: .audio) {
                 let compositionTrack = composition.addMutableTrack(withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid)
-                try compositionTrack?.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: asset.duration), of: track, at: composition.duration)
+                try compositionTrack?.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: m4aAsset.duration), of: track, at: composition.duration)
             }
+            
+            // Optionally, delete the temporary .m4a file after adding to the composition
+            try? FileManager.default.removeItem(at: tempM4AURL)
         }
         
-        // Export the composition to a new audio file
-        let exportSession = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetAppleM4A)
-        let tempURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("concatenated.m4a")
-        exportSession?.outputURL = tempURL
-        exportSession?.outputFileType = .m4a
-        await exportSession?.export()
+        // Export the final concatenated composition to a single .m4a file
+        let finalExportSession = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetAppleM4A)
+        finalExportSession?.outputURL = outputURL
+        finalExportSession?.outputFileType = .m4a
+        await finalExportSession?.export()
         
-//        let temp2URL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("concatenated2.wav")
-//        convertAudio(tempURL, outputURL: temp2URL)
-        
-        let temp2URL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("concatenated2.wav")
-
-        var options = FormatConverter.Options()
-        options.format = .wav
-        options.sampleRate = 44100
-        options.bitRate = 16
-        options.channels = 2
-        options.bitDepth = 16
-        options.eraseFile = true
-        options.isInterleaved = true
-
-
-        let converter = FormatConverter(inputURL: tempURL, outputURL: temp2URL, options: options)
-
-        converter.start { error in
-           // the error will be nil on success
-            print("DEBUG: \(String(describing: error))")
-        }
-        
-//        let temp2URL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("concatenated2.mp3")
-//        
-//       
-//        
-//        
-        return tempURL
+        return outputURL
     }
+    
+    //    func concatenateAudioFiles(urls: [URL]) async throws -> URL {
+    //        let composition = AVMutableComposition()
+    //
+    //        let checkURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("concatenated.m4a")
+    //
+    //        deleteFinalRecording(urlToDelete: checkURL)
+    //
+    //        // Add audio tracks from each URL to the composition
+    //        for url in urls {
+    //            let asset = AVURLAsset(url: url)
+    //            for track in asset.tracks(withMediaType: .audio) {
+    //                let compositionTrack = composition.addMutableTrack(withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid)
+    //                try compositionTrack?.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: asset.duration), of: track, at: composition.duration)
+    //            }
+    //        }
+    //
+    //        // Export the composition to a new audio file
+    //        let exportSession = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetAppleM4A)
+    //        let tempURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("concatenated.m4a")
+    //        exportSession?.outputURL = tempURL
+    //        exportSession?.outputFileType = .m4a
+    //        await exportSession?.export()
+    //
+    //
+    //        let temp2URL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("concatenated2.wav")
+    //
+    //        var options = FormatConverter.Options()
+    //        options.format = .wav
+    //        options.sampleRate = 44100
+    //        options.bitRate = 16
+    //        options.channels = 2
+    //        options.bitDepth = 16
+    //        options.eraseFile = true
+    //        options.isInterleaved = true
+    //
+    //
+    //        let converter = FormatConverter(inputURL: tempURL, outputURL: temp2URL, options: options)
+    //
+    //        converter.start { error in
+    //           // the error will be nil on success
+    //            print("DEBUG: \(String(describing: error))")
+    //        }
+    //
+    //        return tempURL
+    //    }
     
     
     func deleteFinalRecording(urlToDelete: URL){
@@ -97,7 +128,7 @@ class ConcatenateAudioFiles {
             try FileManager.default.removeItem(at: urlToDelete)
             // print("DEBUG:deleteRecording - Sucessfully deleted \(urlToDelete)")
         } catch{
-           // print("DEBUG:deleteRecording - File could not be deleted!")
+            // print("DEBUG:deleteRecording - File could not be deleted!")
         }
         
         
@@ -113,18 +144,18 @@ class ConcatenateAudioFiles {
         var error : OSStatus = noErr
         var destinationFile: ExtAudioFileRef? = nil
         var sourceFile : ExtAudioFileRef? = nil
-
+        
         var srcFormat : AudioStreamBasicDescription = AudioStreamBasicDescription()
         var dstFormat : AudioStreamBasicDescription = AudioStreamBasicDescription()
-
+        
         ExtAudioFileOpenURL(url as CFURL, &sourceFile)
-
+        
         var thePropertySize: UInt32 = UInt32(MemoryLayout.stride(ofValue: srcFormat))
-
+        
         ExtAudioFileGetProperty(sourceFile!,
                                 kExtAudioFileProperty_FileDataFormat,
                                 &thePropertySize, &srcFormat)
-
+        
         dstFormat.mSampleRate = 44100  //Set sample rate
         dstFormat.mFormatID = kAudioFormatLinearPCM
         dstFormat.mChannelsPerFrame = 1
@@ -134,7 +165,7 @@ class ConcatenateAudioFiles {
         dstFormat.mFramesPerPacket = 1
         dstFormat.mFormatFlags = kLinearPCMFormatFlagIsPacked |
         kAudioFormatFlagIsSignedInteger
-
+        
         // Create destination file
         error = ExtAudioFileCreateWithURL(
             outputURL as CFURL,
@@ -144,23 +175,23 @@ class ConcatenateAudioFiles {
             AudioFileFlags.eraseFile.rawValue,
             &destinationFile)
         print("Error 1 in convertAudio: \(error.description)")
-
+        
         error = ExtAudioFileSetProperty(sourceFile!,
                                         kExtAudioFileProperty_ClientDataFormat,
                                         thePropertySize,
                                         &dstFormat)
         print("Error 2 in convertAudio: \(error.description)")
-
+        
         error = ExtAudioFileSetProperty(destinationFile!,
                                         kExtAudioFileProperty_ClientDataFormat,
                                         thePropertySize,
                                         &dstFormat)
         print("Error 3 in convertAudio: \(error.description)")
-
+        
         let bufferByteSize : UInt32 = 32768
         var srcBuffer = [UInt8](repeating: 0, count: 32768)
         var sourceFrameOffset : ULONG = 0
-
+        
         while(true){
             var fillBufList = AudioBufferList(
                 mNumberBuffers: 1,
@@ -171,24 +202,24 @@ class ConcatenateAudioFiles {
                 )
             )
             var numFrames : UInt32 = 0
-
+            
             if(dstFormat.mBytesPerFrame > 0){
                 numFrames = bufferByteSize / dstFormat.mBytesPerFrame
             }
-
+            
             error = ExtAudioFileRead(sourceFile!, &numFrames, &fillBufList)
             print("Error 4 in convertAudio: \(error.description)")
-
+            
             if(numFrames == 0){
                 error = noErr;
                 break;
             }
-
+            
             sourceFrameOffset += numFrames
             error = ExtAudioFileWrite(destinationFile!, numFrames, &fillBufList)
             print("Error 5 in convertAudio: \(error.description)")
         }
-
+        
         error = ExtAudioFileDispose(destinationFile!)
         print("Error 6 in convertAudio: \(error.description)")
         error = ExtAudioFileDispose(sourceFile!)
