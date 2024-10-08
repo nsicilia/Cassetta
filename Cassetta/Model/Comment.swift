@@ -5,7 +5,7 @@
 //  Created by Nicholas Siciliano-Salazar  on 4/15/23.
 //
 
-import FirebaseFirestoreSwift
+import FirebaseFirestore
 import Firebase
 
 struct Comment: Identifiable, Decodable{

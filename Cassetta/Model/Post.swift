@@ -5,7 +5,7 @@
 //  Created by Nicholas Siciliano-Salazar  on 1/12/23.
 //
 
-import FirebaseFirestoreSwift
+import FirebaseFirestore
 import Firebase
 
 struct Post: Identifiable, Decodable, Equatable {

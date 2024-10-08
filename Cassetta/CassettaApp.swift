@@ -10,6 +10,7 @@ import FirebaseCore
 import FirebaseMessaging
 import SwiftUI
 import UserNotifications
+import FirebaseAuth
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     let gcmMessageIDKey = "gcm.message_id"

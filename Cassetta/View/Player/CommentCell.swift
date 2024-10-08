@@ -15,66 +15,35 @@ struct CommentCell: View {
     let comment: Comment
     
     var body: some View {
-        HStack(alignment: .top) {
-            //Image
-            KFImage(URL(string: comment.profileImageUrl))
-                .resizable()
-                .scaledToFill()
-                .frame(width: 48, height: 48)
-                .clipShape(Circle())
-            
-            //Name + Comment
-            VStack(alignment: .leading){
-                Text(comment.username)
-                    .font(.system(size: 14, weight: .semibold))
-//                +
-//                Text(" \(comment.timestampString ?? "")")
-//                    .foregroundColor(.gray)
-//                    .font(.system(size: 12))
+
+            HStack(alignment: .top) {
+                // Image (profile picture)
+                KFImage(URL(string: comment.profileImageUrl))
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 30, height: 30)
+                    .clipShape(Circle())
                 
-                Text(comment.commentText)
-                    .font(.system(size: 15))
-                    .padding(.bottom)
-                
-//                HStack{
-//                    Button {
-//                        //todo
-//                    } label: {
-//                        Image(systemName: "hand.thumbsup")
-//                    }
-//
-//                    Spacer()
-//
-//                    Button {
-//                        //todo
-//                    } label: {
-//                        Image(systemName: "hand.thumbsdown")
-//                    }
-//
-//                    Spacer()
-//
-//                    Button {
-//                        //todo
-//                    } label: {
-//                        Image(systemName: "text.bubble")
-//                    }
-//
-//                }
-//                .frame(width: UIScreen.screenWidth / 3)
-                
+                // Name + Comment Bubble
+                VStack(alignment: .leading) {
+                    Text(comment.username)
+                        .font(.system(size: 14, weight: .semibold))
+                    
+                    Text(comment.commentText)
+                        .font(.system(size: 15))
+                        .padding(10)
+                        .background(.white)
+                        .cornerRadius(15)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(Color("CassettaBorder"), lineWidth: 2)
+                        )
+                }
+                Spacer()
             }
-            Spacer()
-        }
-        .padding()
-        .background(.white)
-        .cornerRadius(15.0)
-        .overlay(
-            RoundedRectangle(cornerRadius: 15)
-                .stroke(Color("CassettaBorder"), lineWidth: 2)
-        )
-        .padding(.horizontal)
-    }
+           // .padding(.trailing,  UIScreen.screenWidth / 16 )
         
+    }
 }
 
 struct CommentCell_Previews: PreviewProvider {

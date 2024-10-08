@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseAuth
 
 class EditProfileViewModel: ObservableObject {
     var user: User

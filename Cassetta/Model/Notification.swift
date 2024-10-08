@@ -5,7 +5,7 @@
 //  Created by Nicholas Siciliano-Salazar  on 7/2/23.
 //
 
-import FirebaseFirestoreSwift
+import FirebaseFirestore
 import Firebase
 import Foundation
 

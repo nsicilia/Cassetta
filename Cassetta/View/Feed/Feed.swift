@@ -102,6 +102,9 @@ struct Feed: View {
             .background(Color("CassettaTan"))
             
         }
+        .refreshable{
+            //Do something on refresh
+        }
         //
     }
     
