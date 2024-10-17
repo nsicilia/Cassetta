@@ -30,7 +30,7 @@ struct ReportView: View {
                 .padding(.top, 8)
          
                 List {
-                    NavigationLink(destination: ImpersonationReportView()) { Text("They are pretending to be someone else") }
+                    NavigationLink(destination: ImpersonationReportView(viewModel: viewModel, reportSheet: $reportSheet)) { Text("They are pretending to be someone else") }
                     
                     NavigationLink(destination: UnderAgeReportView(viewModel: viewModel, reportSheet: $reportSheet)) { Text("They may be under the age of 13") }
                     

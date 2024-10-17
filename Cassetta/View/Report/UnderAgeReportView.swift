@@ -31,7 +31,9 @@ struct UnderAgeReportView: View {
 
             Spacer(minLength: 0)
             
-            Button(action: {}, label: {
+            Button(action: {
+                viewModel.reportUser(reason: "Underage User")
+            }, label: {
                 Text("Submit")
                     .font(.headline)
                     .foregroundColor(.white)

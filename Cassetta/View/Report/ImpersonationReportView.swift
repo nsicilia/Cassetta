@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ImpersonationReportView: View {
+    @ObservedObject var viewModel: ProfileViewModel
+    @Binding var reportSheet: Bool
     @State private var reportTextplaceholer = "@username \n Full Name"
     @State var reportText: String = ""
     
@@ -51,7 +53,9 @@ struct ImpersonationReportView: View {
                 
                 
                 
-                Button(action: {}, label: {
+                Button(action: {
+                    viewModel.reportUser(reason: reportText)
+                }, label: {
                     Text("Submit")
                         .font(.headline)
                         .foregroundColor(.white)
@@ -71,5 +75,5 @@ struct ImpersonationReportView: View {
 }
 
 #Preview {
-    ImpersonationReportView()
+    ImpersonationReportView(viewModel: ProfileViewModel(user: User(username: "jessicadoeinton", email: "email@email.com", profileImageURL: "https://firebasestorage.googleapis.com:443/v0/b/instagramclone-256b6.appspot.com/o/profile_images%2F16B6A869-E2CE-4138-8D1C-7D8DA9C9A5E2?alt=media&token=5cf97352-08b8-4698-b71d-31b390a52b52", fullname: "Jessica Doeinton")), reportSheet: .constant(false))
 }

@@ -161,7 +161,7 @@ class ProfileViewModel: ObservableObject{
         }
     }
     
-    
+    // MARK: - Unblock
     func unblock(uid: String? = nil) {
         // Get the UID of the user to unblock
         guard let targetUID = uid ?? user.id else {
@@ -180,7 +180,7 @@ class ProfileViewModel: ObservableObject{
         }
     }
 
-    
+    // MARK: - Check if User is Blocked
     func checkIfUserIsBlocked(){
         //don't make an api call if its the current user
         guard !user.isCurrentUser else { return }
@@ -193,6 +193,7 @@ class ProfileViewModel: ObservableObject{
         }
     }
     
+    // MARK: - Get List of Blocked Users
     func getBlockedUsersList() {
         
         guard let currentUID = AuthViewModel.shared.userSession?.uid else {return}
@@ -215,5 +216,38 @@ class ProfileViewModel: ObservableObject{
         }
         
     }
+    
+    
+    // MARK: - User Reporting
+        
+        /// Function to report a user for inappropriate behavior or content
+        /// - Parameter reason: A string describing why the user is being reported
+        func reportUser(reason: String) {
+            guard let reporterUID = AuthViewModel.shared.userSession?.uid else {
+                print("Error: Current user is not logged in.")
+                return
+            }
+            
+            guard let reportedUID = user.id else {
+                print("Error: Reported user does not have a valid UID.")
+                return
+            }
+
+            let reportData: [String: Any] = [
+                "reporterUid": reporterUID,
+                "reportedUid": reportedUID,
+                "reason": reason,
+                "timestamp": Timestamp(),
+                "status": "Pending"
+            ]
+
+            COLLECTION_USER_REPORTS.addDocument(data: reportData) { error in
+                if let error = error {
+                    print("Error reporting user: \(error.localizedDescription)")
+                } else {
+                    print("User successfully reported for reason: \(reason)")
+                }
+            }
+        }
     
 }//END: class ProfileViewModel

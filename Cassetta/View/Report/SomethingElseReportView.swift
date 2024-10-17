@@ -9,22 +9,22 @@ import SwiftUI
 
 struct SomethingElseReportView: View {
     @ObservedObject var viewModel: ProfileViewModel
-    @State private var selection: Int = 1
+    @State private var selection: Int = 0
     @Binding var reportSheet: Bool
        
        let pickerItems = [
-           ("Its spam", 1),
-           ("I don't like it", 2),
-           ("Suicide, self-injury or eating disorders", 3),
-           ("Sale of illegal or regulated goods", 4),
-           ("Nudity or sexual activity", 5),
-           ("Hate speech or symbols", 6),
-           ("Violence or dangerous organizations", 7),
-           ("Bully or harassment", 8),
-           ("Intellectual property violation", 9),
-           ("Misleading or Possible Scam", 10),
-           ("Phishing schemes or other fraudulent activities", 11),
-           ("Promoting gambling or betting schemes", 12)
+           ("Its spam", 0),
+           ("I don't like it", 1),
+           ("Suicide, self-injury or eating disorders", 2),
+           ("Sale of illegal or regulated goods", 3),
+           ("Nudity or sexual activity", 4),
+           ("Hate speech or symbols", 5),
+           ("Violence or dangerous organizations", 6),
+           ("Bully or harassment", 7),
+           ("Intellectual property violation", 8),
+           ("Misleading or Possible Scam", 9),
+           ("Phishing schemes or other fraudulent activities", 10),
+           ("Promoting gambling or betting schemes", 11)
        ]
     
     
@@ -61,7 +61,9 @@ struct SomethingElseReportView: View {
             
             Button(action: {
                 //Todo
-                
+                print("Selection: ", selection)
+                print("picker: ",pickerItems[selection].0)
+                viewModel.reportUser(reason: pickerItems[selection].0 )
                 reportSheet = false
             }, label: {
                 Text("Submit")

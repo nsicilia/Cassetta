@@ -22,3 +22,5 @@ let COLLECTION_NOTIFICATIONS = Firestore.firestore().collection("notifications")
 let COLLECTION_BLOCKERS = Firestore.firestore().collection("blockers")
 ///Access firestore collection "blocked"
 let COLLECTION_BLOCKED = Firestore.firestore().collection("blocked")
+///Access firestore collection "user reports"
+let COLLECTION_USER_REPORTS = Firestore.firestore().collection("user_reports")
