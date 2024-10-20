@@ -19,45 +19,54 @@ struct SearchView: View {
     @Binding var isPopupBarPresented: Bool
     @Binding var isPopupOpen: Bool
     
-    //Test
     @ObservedObject var postViewModel: PostViewModel
     
+    @Environment(\.isSearching) private var isSearching
+    
     var body: some View {
-        
-        ZStack {
-            
-            Color("CassettaTan").ignoresSafeArea()
-            
-            ScrollView(showsIndicators: false){
-                //search bar
-                SearchBar(text: $searchText, isEditing: $inSearchMode)
-                    .padding()
+        NavigationView {
+            ZStack {
+                Color("CassettaTan").ignoresSafeArea()
                 
-                
-                //grid view/ user list view
-                ZStack{
-                    if inSearchMode {
-                        UserListView(viewModel: viewModel, searchText: $searchText, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
-                        
-                    } else {
-                        
-                        //Default view
-                        VStack{
-                            HighlightsView()
-                                .padding(.bottom)
-                            
-                            CategoryGridView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
-                        }
-                        
-                    }
+                ScrollView(showsIndicators: false) {
+                    SearchingView(searchText: $searchText, viewModel: viewModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
                 }
-                
             }
+            .navigationBarTitleDisplayMode(.inline)
+           
         }
-        
+        .searchable(text: $searchText, prompt: LocalizedStringKey("Look for something"))
+        .navigationBarHidden(true) 
         
     }
 }
+
+struct SearchingView: View {
+    @Environment(\.isSearching) private var isSearching
+    @Binding var searchText: String
+    
+    //Search View Model initialized
+    @StateObject var viewModel = SearchViewModel()
+    
+    //For the LNPopup & Playerview
+    @Binding var isPopupBarPresented: Bool
+    @Binding var isPopupOpen: Bool
+    
+    @ObservedObject var postViewModel: PostViewModel
+
+    var body: some View {
+        if isSearching {
+            UserListView(viewModel: viewModel, searchText: $searchText, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
+        } else {
+            VStack {
+                HighlightsView()
+                    .padding(.bottom)
+                CategoryGridView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
+            }
+        }
+    }
+}
+
 
 struct SearchView_Previews: PreviewProvider {
     

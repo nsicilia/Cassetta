@@ -11,6 +11,8 @@ struct SearchBar: View {
     
     @Binding var text: String
     @Binding var isEditing: Bool
+    @FocusState private var isFocused: Bool  // Add a FocusState for the TextField
+    
     
     var body: some View {
         HStack{
@@ -30,10 +32,11 @@ struct SearchBar: View {
                         
                     }
                 )
+                .focused($isFocused)  // Use the FocusState to control the focus
                 .onTapGesture {
-                    //controls the state of the cancel button
                     isEditing = true
-                    
+                    isFocused = true  // Set focus when tapped
+                    print("SearchBar tapped. inSearchMode = \(isEditing)")
                 }
             
             //Add the cancel button of true
@@ -47,9 +50,8 @@ struct SearchBar: View {
                         .foregroundColor(Color.black)
                 }
                 .padding(.trailing, 8)
-                .transition(.move(edge: .trailing))
-                //Dosent work...
-                //.animation(.default)
+                //.transition(.move(edge: .trailing))
+                
             }
         }
     }
