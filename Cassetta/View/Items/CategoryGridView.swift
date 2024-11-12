@@ -62,7 +62,7 @@ struct CategoryGridView: View {
                     
                     NavigationLink {
                         
-                        Feed(viewModel: FeedViewModel(config: .category(category.title)), isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, showNoPostPic: true, postViewModel: postViewModel)
+                        Feed(feedviewModel: FeedViewModel(config: .category(category.title)), isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, showNoPostPic: true, postViewModel: postViewModel)
                             .background(Color("CassettaTan"))
                             .background(ignoresSafeAreaEdges: .all)
                         

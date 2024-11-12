@@ -26,7 +26,7 @@ class FeedViewModel: ObservableObject {
         fetchPosts(forConfig: config)
     }
     
-    
+    // MARK: - Fetch Posts for Configuration
     func fetchPosts(forConfig config: PostFeedConfiguration){
         switch config {
         case .explore:
@@ -49,7 +49,7 @@ class FeedViewModel: ObservableObject {
         
     }
     
-    
+    // MARK: - Fetch Posts
     func fetchExplorePosts(){
         // retrieve documents from COLLECTION_POSTS collection
         COLLECTION_POSTS.getDocuments { SnapshotData, error in
@@ -65,7 +65,7 @@ class FeedViewModel: ObservableObject {
     }
     
     
-    
+    // MARK: - Fetch User Posts
     func fetchUserPosts(forUid uid: String){
         COLLECTION_POSTS.whereField("ownerUid", isEqualTo: uid).getDocuments { SnapshotData, error in
             //Handle error
@@ -77,7 +77,7 @@ class FeedViewModel: ObservableObject {
         }
     }
     
-    
+    // MARK: - Fetch Category Posts
     func fetchCategoryPost(forCategory category: String){
         COLLECTION_POSTS.whereField("category", isEqualTo: category).getDocuments { SnapshotData, error in
             //Handle error
@@ -90,9 +90,9 @@ class FeedViewModel: ObservableObject {
     }
     
     
-    
+    // MARK: - Fetch Newest Posts
     func fetchNewestPosts(){
-       // let currentUser = AuthViewModel.shared.userSession?.uid ?? ""
+        // let currentUser = AuthViewModel.shared.userSession?.uid ?? ""
         // retrieve documents from COLLECTION_POSTS collection
         COLLECTION_POSTS.order(by: "timestamp", descending: true).getDocuments { SnapshotData, error in
             //Handle error
@@ -106,35 +106,7 @@ class FeedViewModel: ObservableObject {
             // print("DEBUG: self.posts", self.posts)
         }
     }
-    
-    
-    //    func fetchPostsRandomly(){
-    //        blockedBy()
-    //
-    //        let currentUser = AuthViewModel.shared.userSession?.uid ?? ""
-    //        // retrieve documents from COLLECTION_POSTS collection
-    //        COLLECTION_POSTS.getDocuments { SnapshotData, error in
-    //            //Handle error
-    //            if let error = error{ print("ERROR: SearchViewModel - \(error.localizedDescription)"); return }
-    //
-    //            // check if SnapshotData contains any documents
-    //            guard let documents = SnapshotData?.documents else {return}
-    //            // map the documents to Post objects using the data(as:) method and assign the result to the posts property
-    //            self.posts = documents.compactMap({try? $0.data(as: Post.self)})
-    //
-    //            print("DEBUG: blockebByList - \(self.blockedByList)")
-    //            self.posts = self.posts.filter{ post in
-    //
-    //                return !self.blockedByList.contains(where: { $0.id == post.ownerUid})
-    //            }
-    //
-    //
-    //            self.posts.shuffle()
-    //
-    //        }
-    //    }
-
-    
+    // MARK: - Fetch Random Posts
     func fetchPostsRandomly() {
         blockedBy {
             // let currentUser = AuthViewModel.shared.userSession?.uid ?? ""

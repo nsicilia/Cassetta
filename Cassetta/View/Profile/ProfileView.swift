@@ -59,7 +59,7 @@ struct ProfileView: View {
                     ProfileHeaderView(viewModel: viewModel, showSheet: $showSheet, blockSheet: $blockSheet, reportSheet: $reportSheet)
                         .padding(.bottom)
                     
-                    Feed(viewModel: feedModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, theUser: viewModel.user.isCurrentUser, postViewModel: postViewModel)
+                    Feed(feedviewModel: feedModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, theUser: viewModel.user.isCurrentUser, postViewModel: postViewModel)
                 }
             }
             //BlockSheet

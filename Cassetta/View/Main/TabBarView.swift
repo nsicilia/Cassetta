@@ -12,51 +12,51 @@ import SwiftUI
 
 struct TabBarView: View {
     let user: User
-
+    
     @EnvironmentObject var viewModel: AuthViewModel
-
+    
     @ObservedObject var feedViewModel = FeedViewModel(config: .random)
-
+    
     /// Creates the active status of the popupbar, false ill terminate the view
     @State var isPopupBarPresented = false
     /// Determines if the pop up is showing or minimized
     @State var isPopupOpen = true
-
+    
     @State private var showPopover = false
-
+    
     /// Value of the currently selected tab
     @State var selectedTab = 1
-
+    
     // Current post
     @ObservedObject var postViewModel = PostViewModel()
-
+    
     // The nav profile status of post
     @State var showPosterProfile = false
-
+    
     init(user: User) {
         self.user = user
-
+        
         // Make the navigation bar trasparent
         UINavigationBar.appearance().barTintColor = .clear
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         UINavigationBar.appearance().shadowImage = UIImage()
-
+        
         UITabBar.appearance().unselectedItemTintColor = .black
     }
-
+    
     var body: some View {
         VStack(spacing: 0) {
             ZStack(alignment: .top) {
                 TabView(selection: $selectedTab) {
+                    
                     // MARK: Home View
-
                     NavigationView {
                         VStack {
                             if let postUser = postViewModel.user {
                                 NavigationLink(destination: ProfileView(user: postUser, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel), isActive: $showPosterProfile) { EmptyView() }
                             }
-
-                            Feed(viewModel: feedViewModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, noPostDefault: false, postViewModel: postViewModel)
+                            
+                            Feed(feedviewModel: feedViewModel, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, noPostDefault: false, postViewModel: postViewModel)
                         }
                         .toolbar {
                             ToolbarItemGroup(placement: .navigationBarLeading) {
@@ -67,24 +67,16 @@ struct TabBarView: View {
                                     .frame(height: 40)
                                     .foregroundColor(Color("CassettaBlack"))
                             }
-
-                            //                                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                            //                                    Image("MessageImage")
-                            //                                        .resizable()
-                            //                                        .scaledToFill()
-                            //                                        .frame(width: 24, height: 24)
-                            //                                }
                         }
-
+                        
                         .background(Color("CassettaTan"))
                     }
                     .tabItem {
                         Image("HomeImage")
                     }
                     .tag(1)
-
+                    
                     // MARK: Search View
-
                     NavigationView {
                         SearchView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
                             .navigationTitle("Search")
@@ -95,9 +87,8 @@ struct TabBarView: View {
                         Image("SearchImage")
                     }
                     .tag(2)
-
+                    
                     // MARK: Upload View
-
                     Image(systemName: "mic")
                         .onTapGesture {
                             self.showPopover = true
@@ -106,9 +97,8 @@ struct TabBarView: View {
                             Image("AddImage")
                         }
                         .tag(3)
-
+                    
                     // MARK: Notification View
-
                     NavigationView {
                         NotificationsView(isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
                             .navigationTitle("Notifications")
@@ -117,9 +107,9 @@ struct TabBarView: View {
                         Image("HeartImage")
                     }
                     .tag(4)
-
+                
+                    
                     // MARK: Profile View
-
                     NavigationView {
                         ProfileView(user: user, isPopupBarPresented: $isPopupBarPresented, isPopupOpen: $isPopupOpen, postViewModel: postViewModel)
                             .toolbar {
@@ -134,8 +124,8 @@ struct TabBarView: View {
                         Image("ProfileImage")
                     }
                     .tag(5)
-
-                    // All tabs end
+                    
+                    //MARK: All tabs end
                 }
                 .onChange(of: selectedTab) { newValue in
                     if newValue == 3 {
@@ -145,8 +135,8 @@ struct TabBarView: View {
             }
             .fullScreenCover(isPresented: $showPopover,
                              onDismiss: {
-                                 self.selectedTab = 1
-                             }) {
+                self.selectedTab = 1
+            }) {
                 // Add the content of your popover here
                 RecordPostView(audioRecorder: AudioRecorderViewModel(), showStatus: $showPopover)
             }
