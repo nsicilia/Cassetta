@@ -20,7 +20,7 @@ struct DetailPostView: View {
     
     //Input Texts
     @State private var title = ""
-    @State  var description: String = "Description..."
+    @State  var description: String = ""
     @State private var category = ""
     
     //for color of publish button
@@ -69,14 +69,11 @@ struct DetailPostView: View {
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                            //.frame(width: UIScreen.screenWidth / 1.1, height: UIScreen.screenWidth / 1.4)
                                 .cornerRadius(15)
                             
                         }
                     }
-                    // .frame(width: 200, height: 200)
                     .frame(width: UIScreen.screenWidth / 1.1, height: UIScreen.screenWidth / 1.4)
-                    //.background(.gray.opacity(0.5))
                     .cornerRadius(15)
                     .overlay {
                         RoundedRectangle(cornerRadius: 15)
@@ -105,7 +102,16 @@ struct DetailPostView: View {
                 .frame(width: UIScreen.screenWidth / 0.93)
                 .padding(.bottom)
                 
-                MultilineTextField(text: $description, placeholder: "Description...")
+                TextField("Description...", text: $description, axis: .vertical)
+                            .lineLimit(8...)
+                            .padding()
+                            .padding(.horizontal, 32)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 15)
+                                    .stroke(Color("CassettaBorder"), lineWidth: 2)
+                                    .padding(.horizontal, 32)
+                            }
+                
                 
                 
                 HStack(alignment: .center){
