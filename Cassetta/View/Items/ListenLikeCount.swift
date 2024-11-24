@@ -22,9 +22,16 @@ struct ListenLikeCount: View {
 //                .foregroundColor(.gray)
 //                .padding(.trailing)
             Text("🎧")
-            Text(String(LikeCount.roundedWithAbbreviations))
-                .font(.caption)
-                .foregroundColor(.gray)
+            if(ListenCount > 100){
+                Text(String(ListenCount.roundedWithAbbreviations))
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            } else {
+                Text("> 100")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+           
         }
     }
 }
@@ -34,6 +41,6 @@ struct ListenLikeCount: View {
 
 struct ListenLikeCount_Previews: PreviewProvider {
     static var previews: some View {
-        ListenLikeCount(ListenCount: 101324, LikeCount: 160000)
+        ListenLikeCount(ListenCount: 14, LikeCount: 160000)
     }
 }

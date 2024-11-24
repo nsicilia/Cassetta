@@ -50,7 +50,7 @@ struct UserCell: View {
                         Text(ownerUsername)
                             .font(.system(size: 12, weight: .semibold))
                         
-                        Text("Jessica Johnson")
+                        Text(ownerFullname)
                             .font(.system(size: 14))
                     }
                 }

@@ -18,14 +18,21 @@ struct PlayerLikeListenCell: View {
     var body: some View {
         HStack(spacing: 10) {
             HStack(spacing: 1) {
-                Text("173k")
                 Text("🎧")
-            }
+                if(postViewModel.currentPost?.likes ?? 0 > 100){
+                    Text(postViewModel.currentPost?.likes.roundedWithAbbreviations ?? "0")
+                } else {
+                    Text("> 100")
+                }
+            }.padding(.trailing, 10)
             
-            HStack(spacing: 1) {
-                Text("13k")
-                Text("💬")
-            }
+            
+//            HStack(spacing: 1) {
+//                Text("💬")
+//                Text("13k")
+//
+            
+//            }
             
             // Like button
             Button(action: {

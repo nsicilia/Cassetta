@@ -34,16 +34,17 @@ struct Card: View {
                     .font(.system(size: 18, weight: .semibold))
             }
             
-            NavigationLink {
-                Text("User Profile")
-            } label: {
+//            NavigationLink {
+//                //Go to user
+//                //ProfileView(user: post.ownerUid, isPopupBarPresented: .constant(false), isPopupOpen: .constant(false), postViewModel: post)
+//            } label: {
                 UserCell(ownerFullname: post.ownerFullname, ownerImageUrl: post.ownerImageUrl, ownerUsername: post.ownerUsername)
-            }
+//            }
             
             // Spacer()
             
             HStack{
-                ListenLikeCount(ListenCount: 12222, LikeCount: 234567)
+                ListenLikeCount(ListenCount: post.listens, LikeCount: post.likes)
                 
                 Spacer()
                 
