@@ -103,7 +103,6 @@
 		0198C7D928EA080500676189 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0198C7D828EA080500676189 /* RegistrationView.swift */; };
 		0198C7DB28EA08C200676189 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0198C7DA28EA08C200676189 /* ImagePicker.swift */; };
 		0198C7DD28EA111400676189 /* ForgetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0198C7DC28EA111300676189 /* ForgetPasswordView.swift */; };
-		019F62E82947C1040045FF39 /* DEPR_MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F62E72947C1040045FF39 /* DEPR_MainTabView.swift */; };
 		019F62EA2947D15E0045FF39 /* PlayBackPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F62E92947D15E0045FF39 /* PlayBackPostView.swift */; };
 		019F62EC2947D1FA0045FF39 /* DetailPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F62EB2947D1FA0045FF39 /* DetailPostView.swift */; };
 		019F62EE2947E9F40045FF39 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F62ED2947E9F40045FF39 /* MultilineTextField.swift */; };
@@ -220,7 +219,6 @@
 		0198C7D828EA080500676189 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		0198C7DA28EA08C200676189 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		0198C7DC28EA111300676189 /* ForgetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordView.swift; sourceTree = "<group>"; };
-		019F62E72947C1040045FF39 /* DEPR_MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEPR_MainTabView.swift; sourceTree = "<group>"; };
 		019F62E92947D15E0045FF39 /* PlayBackPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBackPostView.swift; sourceTree = "<group>"; };
 		019F62EB2947D1FA0045FF39 /* DetailPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostView.swift; sourceTree = "<group>"; };
 		019F62ED2947E9F40045FF39 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
@@ -445,7 +443,6 @@
 			children = (
 				0189DBAC27D7035100956E28 /* ContentView.swift */,
 				0198C7D428E9F9E900676189 /* TabBarView.swift */,
-				019F62E72947C1040045FF39 /* DEPR_MainTabView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -791,7 +788,6 @@
 				014DF99528D4FF9A00E6A754 /* UserStatView.swift in Sources */,
 				01AEB7F92A6C54F700BEC3E5 /* NotificationCellViewModel.swift in Sources */,
 				014BA7E82991A9A400370AE3 /* AudioManager.swift in Sources */,
-				019F62E82947C1040045FF39 /* DEPR_MainTabView.swift in Sources */,
 				0149DAF429B7DCFE00633CAC /* UserCardOptions.swift in Sources */,
 				0102516D2926F39E00908D62 /* User.swift in Sources */,
 				0102516F2926F58900908D62 /* Constants.swift in Sources */,
