@@ -148,6 +148,7 @@ class AuthViewModel: ObservableObject {
         return countries[regionCode] ?? ""
     }
     
+//    MARK: sendcode
     //Send a verification code for phone number login/signup
     func sendCode(){
         
@@ -156,13 +157,24 @@ class AuthViewModel: ObservableObject {
         let number = "+\(getCountryCode())\(phoneNumber)"
         print("Number is \(number)")
         
-        PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { (CODE, err) in
-            if let error = err{
-                self.errorMsg = error.localizedDescription
-                self.loginFail = true
-                withAnimation{ self.error.toggle()}
-                return
-            }
+        Auth.auth().languageCode = "en"
+        PhoneAuthProvider.provider()
+            .verifyPhoneNumber(number, uiDelegate: nil) { CODE, err in
+//            if let error = err{
+//                self.errorMsg = error.localizedDescription
+//                self.loginFail = true
+//                withAnimation{ self.error.toggle()}
+//                print("Firebase Auth error: \(error.code) - \(error.localizedDescription)")
+//                  print("UserInfo: \(error.userInfo)")
+//                print("Underlying error: \(String(describing: error.userInfo["NSUnderlyingError"]))")
+//                return
+//            }
+                if let error = err as NSError? {
+                    print("Firebase Auth error: \(error.code) - \(error.localizedDescription)")
+                      print("UserInfo: \(error.userInfo)")
+                    print("Underlying error: \(String(describing: error.userInfo["NSUnderlyingError"]))")
+                    return
+                }
             
             self.CODE = CODE ?? ""
             self.goToVerify = true

@@ -10,7 +10,6 @@
 		0102516B2926EEF400908D62 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0102516A2926EEF400908D62 /* Kingfisher */; };
 		0102516D2926F39E00908D62 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0102516C2926F39E00908D62 /* User.swift */; };
 		0102516F2926F58900908D62 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0102516E2926F58900908D62 /* Constants.swift */; };
-		010B6B8C2915AFDD00A13DC8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 010B6B8B2915AFDD00A13DC8 /* GoogleService-Info.plist */; };
 		010B6B8E2915B3B800A13DC8 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010B6B8D2915B3B800A13DC8 /* AuthViewModel.swift */; };
 		0116A8DC28C3B9800050780B /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116A8DB28C3B9800050780B /* UserCell.swift */; };
 		0116A8DF28C3BE390050780B /* RecordPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116A8DE28C3BE390050780B /* RecordPostView.swift */; };
@@ -56,6 +55,8 @@
 		015CE4E3293AA2F50096D35C /* BottomControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015CE4E2293AA2F50096D35C /* BottomControlsView.swift */; };
 		015E087E292EE19700350D13 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015E087D292EE19700350D13 /* UserService.swift */; };
 		015E0880292EF48400350D13 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015E087F292EF48400350D13 /* ProfileViewModel.swift */; };
+		015EC23C2E54281A003A043D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015EC23B2E542803003A043D /* SignInView.swift */; };
+		015EC2402E6D49B3003A043D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 015EC23F2E6D49B3003A043D /* GoogleService-Info.plist */; };
 		016C5A232BE72B26007F4BBF /* LAME.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 016C5A222BE72B26007F4BBF /* LAME.framework.dSYM */; };
 		016C5A2A2BE74724007F4BBF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 016C5A292BE74724007F4BBF /* FirebaseAnalytics */; };
 		016C5A2C2BE74724007F4BBF /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 016C5A2B2BE74724007F4BBF /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -98,6 +99,8 @@
 		018BA10E2CF3B79E0040AF45 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 018BA10D2CF3B79E0040AF45 /* TOCropViewController */; };
 		018C4A5228516FE70029BEB1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018C4A5128516FE70029BEB1 /* ProfileView.swift */; };
 		018C4A54285194870029BEB1 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018C4A53285194870029BEB1 /* Feed.swift */; };
+		0190C3C32E8DBBA700B61132 /* LNPopupUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0190C3C22E8DBBA700B61132 /* LNPopupUI */; };
+		0190C3C52E8DBBA700B61132 /* LNPopupUI-Static in Frameworks */ = {isa = PBXBuildFile; productRef = 0190C3C42E8DBBA700B61132 /* LNPopupUI-Static */; };
 		0198C7D528E9F9E900676189 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0198C7D428E9F9E900676189 /* TabBarView.swift */; };
 		0198C7D728EA048C00676189 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0198C7D628EA048C00676189 /* CustomSecureField.swift */; };
 		0198C7D928EA080500676189 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0198C7D828EA080500676189 /* RegistrationView.swift */; };
@@ -123,7 +126,6 @@
 		01D0460C28E9F4C200038C1C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D0460B28E9F4C200038C1C /* CustomTextField.swift */; };
 		01D3257A2B2FE621002E4543 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D325792B2FE621002E4543 /* SettingsView.swift */; };
 		01DAE9D028DF83E400F61034 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAE9CF28DF83E400F61034 /* PlayerView.swift */; };
-		01ECA3F02979B45A00AB9082 /* LNPopupUI-Static in Frameworks */ = {isa = PBXBuildFile; productRef = 01ECA3EF2979B45A00AB9082 /* LNPopupUI-Static */; };
 		01F4CDC829A96D6F00FDC7CD /* PostInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4CDC729A96D6F00FDC7CD /* PostInfoViewModel.swift */; };
 		01F4CDEB29B186A700FDC7CD /* _FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4CDEA29B186A700FDC7CD /* _FlexibleView.swift */; };
 		01F4CDED29B186CF00FDC7CD /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F4CDEC29B186CF00FDC7CD /* FlexibleView.swift */; };
@@ -147,7 +149,6 @@
 /* Begin PBXFileReference section */
 		0102516C2926F39E00908D62 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0102516E2926F58900908D62 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		010B6B8B2915AFDD00A13DC8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		010B6B8D2915B3B800A13DC8 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		0116A8DB28C3B9800050780B /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		0116A8DE28C3BE390050780B /* RecordPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPostView.swift; sourceTree = "<group>"; };
@@ -193,6 +194,8 @@
 		015CE4E2293AA2F50096D35C /* BottomControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsView.swift; sourceTree = "<group>"; };
 		015E087D292EE19700350D13 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		015E087F292EF48400350D13 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		015EC23B2E542803003A043D /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		015EC23F2E6D49B3003A043D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		016C5A222BE72B26007F4BBF /* LAME.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = LAME.framework.dSYM; sourceTree = "<group>"; };
 		016C5A262BE73A7C007F4BBF /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmp3lame.a; path = ToMP3Components/libmp3lame.a; sourceTree = "<group>"; };
 		016C5A282BE73D69007F4BBF /* Cassetta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cassetta.entitlements; sourceTree = "<group>"; };
@@ -280,12 +283,13 @@
 				016C5A2C2BE74724007F4BBF /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				016C5A3C2BE74724007F4BBF /* FirebaseDatabase in Frameworks */,
 				016C5A402BE74724007F4BBF /* FirebaseDynamicLinks in Frameworks */,
-				01ECA3F02979B45A00AB9082 /* LNPopupUI-Static in Frameworks */,
 				016C5A562BE74724007F4BBF /* FirebasePerformance in Frameworks */,
 				016C5A542BE74724007F4BBF /* FirebaseMessaging in Frameworks */,
+				0190C3C32E8DBBA700B61132 /* LNPopupUI in Frameworks */,
 				01F847292C7EC774006A0EA9 /* FirebaseAnalytics in Frameworks */,
 				016C5A382BE74724007F4BBF /* FirebaseAuthCombine-Community in Frameworks */,
 				01F847352C7EC774006A0EA9 /* FirebaseCrashlytics in Frameworks */,
+				0190C3C52E8DBBA700B61132 /* LNPopupUI-Static in Frameworks */,
 				016C5A582BE74724007F4BBF /* FirebaseRemoteConfig in Frameworks */,
 				014BA7EB2992CEC700370AE3 /* AudioKit in Frameworks */,
 				016C5A502BE74724007F4BBF /* FirebaseInstallations in Frameworks */,
@@ -380,6 +384,7 @@
 		0116A8D028C3B6BF0050780B /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				015EC23B2E542803003A043D /* SignInView.swift */,
 				01D0460928E9F3A900038C1C /* LoginView.swift */,
 				0198C7D828EA080500676189 /* RegistrationView.swift */,
 				0198C7DC28EA111300676189 /* ForgetPasswordView.swift */,
@@ -537,9 +542,9 @@
 			isa = PBXGroup;
 			children = (
 				016C5A282BE73D69007F4BBF /* Cassetta.entitlements */,
+				015EC23F2E6D49B3003A043D /* GoogleService-Info.plist */,
 				015AA3BD2950269E000BC6F5 /* Info.plist */,
 				0189DBAA27D7035100956E28 /* CassettaApp.swift */,
-				010B6B8B2915AFDD00A13DC8 /* GoogleService-Info.plist */,
 				0189DBAE27D7035400956E28 /* Assets.xcassets */,
 				0116A8CD28C3B66B0050780B /* API */,
 				0116A8CC28C3B6620050780B /* Model */,
@@ -635,7 +640,6 @@
 			name = Cassetta;
 			packageProductDependencies = (
 				0102516A2926EEF400908D62 /* Kingfisher */,
-				01ECA3EF2979B45A00AB9082 /* LNPopupUI-Static */,
 				014BA7E52991A65600370AE3 /* AudioStreaming */,
 				014BA7EA2992CEC700370AE3 /* AudioKit */,
 				016C5A292BE74724007F4BBF /* FirebaseAnalytics */,
@@ -677,6 +681,8 @@
 				01F847442C7EC774006A0EA9 /* FirebaseStorage */,
 				018BA10B2CF3B79E0040AF45 /* CropViewController */,
 				018BA10D2CF3B79E0040AF45 /* TOCropViewController */,
+				0190C3C22E8DBBA700B61132 /* LNPopupUI */,
+				0190C3C42E8DBBA700B61132 /* LNPopupUI-Static */,
 			);
 			productName = Cassetta;
 			productReference = 0189DBA727D7035100956E28 /* Cassetta.app */;
@@ -709,11 +715,11 @@
 			mainGroup = 0189DB9E27D7035100956E28;
 			packageReferences = (
 				010251692926EEF400908D62 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				01ECA3EE2979B45A00AB9082 /* XCRemoteSwiftPackageReference "LNPopupUI" */,
 				014BA7E42991A65600370AE3 /* XCRemoteSwiftPackageReference "AudioStreaming" */,
 				014BA7E92992CEC700370AE3 /* XCRemoteSwiftPackageReference "AudioKit" */,
 				0152FFB22BFC458300FF30AA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				018BA10A2CF3B79E0040AF45 /* XCRemoteSwiftPackageReference "TOCropViewController" */,
+				0190C3C12E8DBBA700B61132 /* XCRemoteSwiftPackageReference "LNPopupUI" */,
 			);
 			productRefGroup = 0189DBA827D7035100956E28 /* Products */;
 			projectDirPath = "";
@@ -730,9 +736,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0189DBB227D7035500956E28 /* Preview Assets.xcassets in Resources */,
+				015EC2402E6D49B3003A043D /* GoogleService-Info.plist in Resources */,
 				016C5A232BE72B26007F4BBF /* LAME.framework.dSYM in Resources */,
 				0189DBAF27D7035400956E28 /* Assets.xcassets in Resources */,
-				010B6B8C2915AFDD00A13DC8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -821,6 +827,7 @@
 				0198C7DB28EA08C200676189 /* ImagePicker.swift in Sources */,
 				018221882AC7A97400045D3D /* DeletePostViewModel.swift in Sources */,
 				015E0880292EF48400350D13 /* ProfileViewModel.swift in Sources */,
+				015EC23C2E54281A003A043D /* SignInView.swift in Sources */,
 				0156E25B2B352DAA00E0BAA4 /* CountryCodes.swift in Sources */,
 				01F4CDEB29B186A700FDC7CD /* _FlexibleView.swift in Sources */,
 				0178E8BC2AA4429800C2F9D7 /* EditProfileView.swift in Sources */,
@@ -983,6 +990,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1027,6 +1035,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1110,12 +1119,12 @@
 				minimumVersion = 2.7.4;
 			};
 		};
-		01ECA3EE2979B45A00AB9082 /* XCRemoteSwiftPackageReference "LNPopupUI" */ = {
+		0190C3C12E8DBBA700B61132 /* XCRemoteSwiftPackageReference "LNPopupUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LeoNatan/LNPopupUI.git";
+			repositoryURL = "https://github.com/LeoNatan/LNPopupUI";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1234,9 +1243,14 @@
 			package = 018BA10A2CF3B79E0040AF45 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
 			productName = TOCropViewController;
 		};
-		01ECA3EF2979B45A00AB9082 /* LNPopupUI-Static */ = {
+		0190C3C22E8DBBA700B61132 /* LNPopupUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 01ECA3EE2979B45A00AB9082 /* XCRemoteSwiftPackageReference "LNPopupUI" */;
+			package = 0190C3C12E8DBBA700B61132 /* XCRemoteSwiftPackageReference "LNPopupUI" */;
+			productName = LNPopupUI;
+		};
+		0190C3C42E8DBBA700B61132 /* LNPopupUI-Static */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0190C3C12E8DBBA700B61132 /* XCRemoteSwiftPackageReference "LNPopupUI" */;
 			productName = "LNPopupUI-Static";
 		};
 		01F847282C7EC774006A0EA9 /* FirebaseAnalytics */ = {

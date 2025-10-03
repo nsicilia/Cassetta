@@ -6,54 +6,147 @@
 //
 
 import Firebase
+import FirebaseAppCheck
+import FirebaseAuth
 import FirebaseCore
 import FirebaseMessaging
 import SwiftUI
 import UserNotifications
-import FirebaseAuth
+import WebKit
+
+//class AppDelegate: NSObject, UIApplicationDelegate {
+//    let gcmMessageIDKey = "gcm.message_id"
+//
+//    // MARK: didFinishLaunchingWithOptions
+//
+//    func application(_ application: UIApplication,
+//                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+//        let providerFactory = YourAppCheckProviderFactory()
+//        AppCheck.setAppCheckProviderFactory(providerFactory)
+//
+//        FirebaseConfiguration.shared.setLoggerLevel(.debug)
+//
+//        FirebaseApp.configure()
+//
+//        // For development purposes only
+//        //  AppCheck.setAppCheckProviderFactory(AppCheckDebugProviderFactory())
+//
+//        // Push Notifications
+//        UNUserNotificationCenter.current().delegate = self
+//
+//        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+//        UNUserNotificationCenter.current().requestAuthorization(
+//            options: authOptions,
+//            completionHandler: { _, _ in }
+//        )
+//
+//        application.registerForRemoteNotifications()
+//
+//        // Messaging Delegate
+//        Messaging.messaging().delegate = self
+//
+//        return true
+//    }
+//
+//    //    MARK: didRegisterForRemoteNotificationsWithDeviceToken
+//    func application(_ application: UIApplication,
+//        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+//        // Swizzling
+//        Messaging.messaging().apnsToken = deviceToken
+//        Auth.auth().setAPNSToken(deviceToken, type: .prod)
+//    }
+//
+//    // Needed for Firebase Phone Auth
+////    func application(_ application: UIApplication,
+////                     didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+////                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+////        if Auth.auth().canHandleNotification(userInfo) {
+////            completionHandler(.noData)
+////            return
+////        }
+////        // This notification is not auth related; it should be handled separately.
+////    }
+//    func application(_ application: UIApplication,
+//                     didReceiveRemoteNotification notification: [AnyHashable: Any],
+//                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+//        if Auth.auth().canHandleNotification(notification) {
+//            completionHandler(.noData)
+//            return
+//        }
+//        // This notification is not auth related; it should be handled separately.
+//    }
+//
+//    func application(_ application: UIApplication, open url: URL,
+//                     options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
+//        if Auth.auth().canHandle(url) {
+//            return true
+//        } else {
+//            print("RETURNED false")
+//            return false
+//        }
+//        // URL not auth related; it should be handled separately.
+//    }
+//}
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-    let gcmMessageIDKey = "gcm.message_id"
+    
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
+      ) -> Bool {
 
-    func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        // App Check first
+        AppCheck.setAppCheckProviderFactory(YourAppCheckProviderFactory())
+
+        // Configure Firebase AS EARLY AS POSSIBLE
         FirebaseApp.configure()
-        
-        //For development purposes only
-        AppCheck.setAppCheckProviderFactory(AppCheckDebugProviderFactory())
 
-        // Push Notifications
-        UNUserNotificationCenter.current().delegate = self
+        // (Optional) logging
+        FirebaseConfiguration.shared.setLoggerLevel(.debug)
 
-        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-        UNUserNotificationCenter.current().requestAuthorization(
-            options: authOptions,
-            completionHandler: { _, _ in }
-        )
-
-        application.registerForRemoteNotifications()
-        
-        // Messaging Delegate
-        Messaging.messaging().delegate = self
+        // Remote notifications registration
+        // For alert pushes you’d request UN auth; for phone-auth silent push it’s not required.
+        UIApplication.shared.registerForRemoteNotifications()
 
         return true
-    }
+      }
 
-    // Needed for Firebase Phone Auth
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-    }
-
-    // Swizzling
-    func application(_ application: UIApplication,
-                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
+        Auth.auth().setAPNSToken(deviceToken, type: .prod)
     }
-}
+    
+
+    // APNs silent push for Phone Auth must be forwarded here:
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+      if Auth.auth().canHandleNotification(userInfo) {
+        print("Firebase Auth handled silent push.")
+        completionHandler(.noData)
+        return
+      }
+      // Handle your other notifications (if any)
+      completionHandler(.noData)
+    }
+
+    // reCAPTCHA / SafetyNet redirect must be forwarded here:
+      func application(_ app: UIApplication,
+                       open url: URL,
+                       options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if Auth.auth().canHandle(url) {
+          print("Firebase Auth handled URL callback.")
+          return true
+        }
+        // Handle other URL schemes (your deep links, etc.)
+        return false
+      }
+    }
 
 @main
 struct CassettaApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
 
     var body: some Scene {
         WindowGroup {
@@ -62,96 +155,15 @@ struct CassettaApp: App {
     }
 }
 
-// [START ios_10_message_handling]
 
-extension AppDelegate: UNUserNotificationCenterDelegate {
-    // Receive displayed notifications for iOS 10 devices.
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
-        let userInfo = notification.request.content.userInfo
-
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-
-        // [START_EXCLUDE]
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        // [END_EXCLUDE]
-
-        // Print full message.
-        print(userInfo)
-
-        // Change this to your preferred presentation option
-        return [[.banner, .sound, .badge]]
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse) async {
-        let userInfo = response.notification.request.content.userInfo
-
-        // [START_EXCLUDE]
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        // [END_EXCLUDE]
-
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-
-        // Print full message.
-        print(userInfo)
+class YourAppCheckProviderFactory: NSObject, AppCheckProviderFactory {
+    func createProvider(with app: FirebaseApp) -> AppCheckProvider? {
+        return AppAttestProvider(app: app)
     }
 }
 
-// [END ios_10_message_handling]
-
-extension AppDelegate: MessagingDelegate {
-    // [START refresh_token]
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("Firebase registration token: \(String(describing: fcmToken))")
-
-        // Create a dictionary to store the token
-        let dataDict: [String: String] = ["token": fcmToken ?? ""]
-        
-        // Post a notification with the new token
-        NotificationCenter.default.post(
-            name: NSNotification.Name("FCMToken"),
-            object: nil,
-            userInfo: dataDict
-        )
-        
-        // TODO: If necessary, send the token to your application server.
-        // Note: This callback is fired at each app startup and whenever a new token is generated.
-        // Optionally, send the token to your server
-               sendTokenToServer(token: fcmToken)
-        
-    }
-    // [END refresh_token]
-    
-    func sendTokenToServer(token: String?) {
-        //Send the token to firestore user/[uid]/fcmToken
-        guard let token = token else { return }
-        
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        
-        let db = Firestore.firestore()
-        
-        let docRef = db.collection("users").document(uid)
-        
-        docRef.updateData(["fcmToken": token]) { error in
-            if let error = error {
-                print("Error updating document: \(error)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-        
-        
+class RecaptchaDebugHelper: NSObject, WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        print("Started loading: \(webView.url?.absoluteString ?? "nil")")
     }
 }
-
-
-
